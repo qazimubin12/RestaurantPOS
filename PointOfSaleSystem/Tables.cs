@@ -13,7 +13,7 @@ namespace PointOfSaleSystem
     public partial class Tables : Form
     {
         private Button tablebutton;
-        public delegate void TransfDelegate(String value);
+        public delegate void TransfDelegate(String value, String value2);
         public event TransfDelegate TransfEvent;
         public Tables()
         {
@@ -80,12 +80,16 @@ namespace PointOfSaleSystem
 
             SqlCommand cmd = null;
             string tablename = "";
+            string tablespace = "";
             string tag = ((Button)sender).Tag.ToString();
             try
             {
                 MainClass.con.Open();
                 cmd = new SqlCommand("select TableName from Tables where TableID = '" + tag + "'", MainClass.con);
                 tablename = cmd.ExecuteScalar().ToString();
+
+                cmd = new SqlCommand("select TableSpace from Tables where TableID = '" + tag + "'", MainClass.con);
+                tablespace = cmd.ExecuteScalar().ToString();
                 MainClass.con.Close();
             }
             catch (Exception ex)
@@ -93,7 +97,7 @@ namespace PointOfSaleSystem
                 MessageBox.Show(ex.Message);
                 MainClass.con.Close();
             }
-            TransfEvent(tablename);
+            TransfEvent(tablename, tablespace);
 
             this.Close();
            

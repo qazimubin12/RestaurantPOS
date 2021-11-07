@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace PointOfSaleSystem
@@ -235,6 +236,15 @@ namespace PointOfSaleSystem
             ShowStore();
             GetCategoryData();
         }
+
+        public Image ConvertByteArraytoImage(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
         private void ShowStore()
         {
             MainClass.con.Open();
@@ -246,6 +256,8 @@ namespace PointOfSaleSystem
 
                 lblStore.Text = dr["StoreName"].ToString();
                 lblStoreAddress.Text = dr["StoreAddress"].ToString();
+                pictureBox1.Image = ConvertByteArraytoImage((byte[])dr["Logo"]);
+
             }
             else
             {
@@ -258,8 +270,18 @@ namespace PointOfSaleSystem
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            Login ls = new Login();
-            MainClass.showWindow(ls, this, MDI.ActiveForm);
+            if(lblLoggedInUser.Text == "Admin")
+            {
+                HomeScreen hs = new HomeScreen();
+                hs.lblLoggedUser.Text = "Admin";
+                MainClass.showWindow(hs, this, MDI.ActiveForm);
+            }
+            else
+            {
+                Login ls = new Login();
+                MainClass.showWindow(ls, this, MDI.ActiveForm);
+            }
+            
         }
 
         private void CHECKORDERTYPE()
@@ -270,16 +292,25 @@ namespace PointOfSaleSystem
                 lblTable.Visible = true;
                 txtTableName.Visible = true;
                 btnSaveOrder.Enabled = true;
+                txtTableSpace.Visible = true;
+                btnSaveandPrintOrder.Enabled = false;
             }
             else
             {
                 btnTables.Visible = false;
                 lblTable.Visible = false;
+                txtTableSpace.Visible = false;
                 btnSaveOrder.Enabled = false;
                 txtTableName.Visible = false;
+                btnSaveandPrintOrder.Enabled = true;
+                lblDeliveryAddress.Visible = false;
+                lblEntername.Visible = false;
+                txtDeliveryName.Visible = false;
+                txtDeliveryAddress.Visible = false;
+
             }
 
-            if(cboOrderType.Text == "Credit")
+            if (cboOrderType.Text == "Credit")
             {
                 btnSaveOrder.Text = "SAVE IN &LEDGER";
                 lblSelectCustomer.Visible = true;
@@ -287,6 +318,27 @@ namespace PointOfSaleSystem
                 btnSaveandPrintOrder.Enabled = false;
                 cboSelectCustomer.Visible = true;
                 MainClass.FillCustomer(cboSelectCustomer);
+                lblSelectCustomer.Text = "Select Customer";
+                lblDeliveryAddress.Visible = false;
+                lblEntername.Visible = false;
+                txtDeliveryName.Visible = false;
+                txtDeliveryAddress.Visible = false;
+
+
+            }
+            else if (cboOrderType.Text == "Delivery")
+            {
+                lblSelectCustomer.Visible = true;
+                lblSelectCustomer.Text = "Select Delivery Person";
+                lblDeliveryAddress.Visible = true;
+                lblEntername.Visible = true;
+                txtDeliveryName.Visible = true;
+                txtDeliveryAddress.Visible = true;
+                cboSelectCustomer.Visible = true;
+                MainClass.FillDelivery(cboSelectCustomer);
+                btnSaveandPrintOrder.Enabled = true;
+                btnSaveOrder.Enabled = false;
+                btnSaveOrder.Text = "&SAVE";
 
             }
             else
@@ -295,6 +347,10 @@ namespace PointOfSaleSystem
                 lblSelectCustomer.Visible = false;
                 btnSaveandPrintOrder.Enabled = true;
                 cboSelectCustomer.Visible = false;
+                lblDeliveryAddress.Visible = false;
+                lblEntername.Visible = false;
+                txtDeliveryName.Visible = false;
+                txtDeliveryAddress.Visible = false;
             }
         }
 
@@ -338,9 +394,10 @@ namespace PointOfSaleSystem
 
         }
 
-        void frm_TransfEvent(string value)
+        void frm_TransfEvent(string value,string value2)
         {
             txtTableName.Text = value;
+            txtTableSpace.Text = value2;
         }
 
 
@@ -411,14 +468,29 @@ namespace PointOfSaleSystem
         private void ClearForm()
         {
             DGVCartProduct.Rows.Clear();
+            cbGST.Checked = false;
             txtDiscount.Text = "0";
+            LedgerSaleID = 0;
+            TakeAwaySaleID = 0;
+            DINEINID = 0;
             lblGrandTotal.Text = "0.00";
             txtTableName.Text = "";
             lblOrderID.Text = "OrderID";
             btnSaveandPrintOrder.Enabled = true;
             btnSaveOrder.Text = "SAVE";
+            cboOrderType.SelectedIndex = 0;
         }
 
+        byte[] ConvertImageToBytes(Image img)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
+        public static int LedgerSaleID = 0;
         private void btnSaveOrder_Click(object sender, EventArgs e)
         {
             if (cboOrderType.Text == "Credit")
@@ -442,16 +514,20 @@ namespace PointOfSaleSystem
                 try
                 {
                     MainClass.con.Open();
+
+                    PaymentWindow pm = new PaymentWindow(this);
+                    pm.ShowDialog();
                     cmd = new SqlCommand("SELECT CONVERT(varchar(15),  CAST(GETDATE() AS TIME), 100) as SaleTime", MainClass.con);
                     saletime = cmd.ExecuteScalar().ToString();
 
-                    cmd = new SqlCommand("insert into CustomerInvoicesTable (Customer_ID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,RemainingBalance) values (@Customer_ID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@RemainingBalance)", MainClass.con);
+                    cmd = new SqlCommand("insert into CustomerInvoicesTable (Customer_ID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,RemainingBalance) values (@Customer_ID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@RemainingBalance)", MainClass.con);
                     cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
                     cmd.Parameters.AddWithValue("@PaymentType", cboOrderType.Text);
                     cmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now.ToShortDateString());
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
-                    cmd.Parameters.AddWithValue("@RemainingBalance", float.Parse(lblGrandTotal.Text));
+                    cmd.Parameters.AddWithValue("@PaidAmount", float.Parse(pm.txtPaying.Text));
+                    cmd.Parameters.AddWithValue("@RemainingBalance", float.Parse(pm.txtBalance.Text));
                     cmd.ExecuteNonQuery();
 
                     string CustomerInvoiceID = Convert.ToString(MainClass.Retrieve("select MAX(CustomerInvoiceID) from CustomerInvoicesTable").Rows[0][0]);
@@ -468,9 +544,6 @@ namespace PointOfSaleSystem
                     cmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now.ToShortDateString());
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
-
-                    PaymentWindow pm = new PaymentWindow(this);
-                    pm.ShowDialog();
                     cmd.Parameters.AddWithValue("@PaidAmount",float.Parse(pm.txtPaying.Text));
                     cmd.Parameters.AddWithValue("@Balance", float.Parse(pm.txtBalance.Text));
                     cmd.ExecuteNonQuery();
@@ -494,7 +567,7 @@ namespace PointOfSaleSystem
                     cmd.ExecuteNonQuery();
 
 
-                    cmd = new SqlCommand("insert into SalesTable (CustomerInvoice_ID, Customer_ID,InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus) values (@CustomerInvoice_ID, @Customer_ID,@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus)", MainClass.con);
+                    cmd = new SqlCommand("insert into SalesTable (CustomerInvoice_ID, Customer_ID,InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo) values (@CustomerInvoice_ID, @Customer_ID,@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo)", MainClass.con);
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
                     cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
@@ -505,8 +578,11 @@ namespace PointOfSaleSystem
                     cmd.Parameters.AddWithValue("@SaleTime", saletime);
                     cmd.Parameters.AddWithValue("@OrderStatus", "In Ledger");
                     cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@BillGST", billgst);
                     cmd.Parameters.AddWithValue("@CustomerInvoice_ID", CustomerInvoiceID);
                     cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
+
 
                     cmd.ExecuteNonQuery();
 
@@ -537,8 +613,12 @@ namespace PointOfSaleSystem
 
                     MainClass.con.Close();
                     btnGenerate_Click(sender, e);
+                    LedgerSaleID = int.Parse(SaleID);
                     MessageBox.Show("Sale Saved");
+                    BillForm bill = new BillForm();
+                    bill.Show();
                     ClearForm();
+
 
                 }
                 catch (Exception ex)
@@ -626,7 +706,7 @@ namespace PointOfSaleSystem
                         saletime = cmd.ExecuteScalar().ToString();
 
 
-                        cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus) values (@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus)", MainClass.con);
+                        cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo) values (@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo)", MainClass.con);
                         cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                         cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
                         cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
@@ -635,7 +715,9 @@ namespace PointOfSaleSystem
                         cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
                         cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
                         cmd.Parameters.AddWithValue("@SaleTime", saletime);
+                        cmd.Parameters.AddWithValue("@BillGST", billgst);
                         cmd.Parameters.AddWithValue("@OrderStatus", "Pending");
+                        cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
                         if (cboOrderType.Text == "Dine In")
                         {
                             cmd.Parameters.AddWithValue("@TableData", txtTableName.Text);
@@ -719,6 +801,8 @@ namespace PointOfSaleSystem
             }
         }
 
+        public static int TakeAwaySaleID = 0;
+        public static int DeliverySaleID = 0;
         private void btnSaveandPrintOrder_Click(object sender, EventArgs e)
         {
             if (DGVCartProduct.Rows.Count == 0)
@@ -735,7 +819,14 @@ namespace PointOfSaleSystem
             SqlCommand cmd = null;
             string invoiceno = "";
             string saletime = "";
-            invoiceno = "TSALE" + txtInvoiceNo.Text;
+            if(cboOrderType.Text == "Delivery")
+            {
+                invoiceno = "DSALE" + txtInvoiceNo.Text;
+            }
+            else
+            {
+                invoiceno = "TSALE" + txtInvoiceNo.Text;
+            }
 
             try
             {
@@ -744,17 +835,41 @@ namespace PointOfSaleSystem
                 saletime = cmd.ExecuteScalar().ToString();
 
 
-                cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus) values (@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus)", MainClass.con);
-                cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
-                cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
-                cmd.Parameters.AddWithValue("@StoreName", lblStore.Text);
-                cmd.Parameters.AddWithValue("@StoreAddress", lblStoreAddress.Text);
-                cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
-                cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
-                cmd.Parameters.AddWithValue("@SaleTime", saletime);
-                cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
-                cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
+                if (cboOrderType.Text == "Delivery")
+                {
+                    cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo,DeliveryName,DeliveryAddress) values (@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo,@DeliveryName,@DeliveryAddress)", MainClass.con);
+                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                    cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
+                    cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
+                    cmd.Parameters.AddWithValue("@StoreName", lblStore.Text);
+                    cmd.Parameters.AddWithValue("@StoreAddress", lblStoreAddress.Text);
+                    cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
+                    cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@SaleTime", saletime);
+                    cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
+                    cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@BillGST", billgst);
+                    cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
+                    cmd.Parameters.AddWithValue("@DeliveryName", txtDeliveryName.Text);
+                    cmd.Parameters.AddWithValue("@DeliveryAddress", txtDeliveryAddress.Text);
+                }
+                else
+                {
+                    cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo) values (@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo)", MainClass.con);
+                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                    cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
+                    cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
+                    cmd.Parameters.AddWithValue("@StoreName", lblStore.Text);
+                    cmd.Parameters.AddWithValue("@StoreAddress", lblStoreAddress.Text);
+                    cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
+                    cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@SaleTime", saletime);
+                    cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
+                    cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
+                    cmd.Parameters.AddWithValue("@BillGST", billgst);
+                    cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
+                }
+               
                 cmd.ExecuteNonQuery();
 
                 string SaleID = Convert.ToString(MainClass.Retrieve("select MAX(SaleID) from SalesTable").Rows[0][0]);
@@ -781,15 +896,25 @@ namespace PointOfSaleSystem
                     cmd.ExecuteNonQuery();
                 }
 
-
+                if(cboOrderType.Text == "Take Away")
+                {
+                    TakeAwaySaleID = int.Parse(SaleID);
+                }
+                else
+                {
+                    DeliverySaleID = int.Parse(SaleID);
+                }
                 MainClass.con.Close();
                 btnGenerate_Click(sender, e);
                 MessageBox.Show("Sale Finalized");
-                ClearForm();
+
+
 
 
                 //RECEIPT GENERATE
-
+                BillForm bf = new BillForm();
+                bf.Show();
+                ClearForm();
                 //
             }
             catch (Exception ex)
@@ -800,6 +925,7 @@ namespace PointOfSaleSystem
 
         }
 
+        public static int DINEINID = 0;
         private void btnPaymentOrder_Click(object sender, EventArgs e)
         {
             SqlCommand cmd = null;
@@ -827,13 +953,16 @@ namespace PointOfSaleSystem
 
                 cmd = new SqlCommand("update Tables set Availability = 1 where TableName = '" + txtTableName.Text + "'", MainClass.con);
                 cmd.ExecuteNonQuery();
-
+                DINEINID = int.Parse(lblOrderID.Text);
                 MessageBox.Show("Sale Finalized");
-                ClearForm();
                 MainClass.con.Close();
 
                 //RECEIPT GENERATE
 
+                BillForm bf = new BillForm();
+                bf.Show();
+                ClearForm();
+                GenerateInvoiceNo();
                 //
 
 
@@ -886,6 +1015,51 @@ namespace PointOfSaleSystem
                 {
                     MainClass.con.Close();
                     MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        public static float billgst = 0;
+        private void cbGST_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DGVCartProduct.Rows.Count != 0)
+            {
+
+                SqlCommand cmd = null;
+                if (cbGST.Checked)
+                {
+                    MainClass.con.Open();
+                    cmd = new SqlCommand("select GST from StoreTable", MainClass.con);
+                    object GST = cmd.ExecuteScalar();
+                    if (GST != null)
+                    {
+                        GST = float.Parse(GST.ToString()) / 100;
+
+                        float finalTotal = float.Parse(lblGrandTotal.Text) * float.Parse(GST.ToString());
+                        billgst = finalTotal;
+                        float total = float.Parse(lblGrandTotal.Text);
+                        total += finalTotal;
+
+                        lblGrandTotal.Text = Math.Round(total, 0).ToString();
+
+                    }
+                    else
+                    {
+                        float finalTotal = float.Parse(lblGrandTotal.Text) * 1;
+                        lblGrandTotal.Text = finalTotal.ToString();
+                    }
+
+
+                    MainClass.con.Close();
+                }
+                else
+                {
+                    float gd = 0;
+                    foreach (DataGridViewRow item in DGVCartProduct.Rows)
+                    {
+                        gd += float.Parse(item.Cells["TotalGV"].Value.ToString());
+                    }
+                    lblGrandTotal.Text = Convert.ToString(gd);
                 }
             }
         }

@@ -54,6 +54,7 @@ namespace PointOfSaleSystem
 
         private void Persons_Load(object sender, EventArgs e)
         {
+            lblLoggedUser.Text = "Admin";
             ShowPersons(DGVPersons, PersonIDGV, NameGV, TypeGV, ContactGV, AddressGV);
         }
 

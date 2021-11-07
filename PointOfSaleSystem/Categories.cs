@@ -50,6 +50,7 @@ namespace PointOfSaleSystem
         }
         private void Categorys_Load(object sender, EventArgs e)
         {
+            lblLoggedUser.Text = "Admin";
             ShowCategorys(DgvCategory, CatIDGV, CategoryGV);
         }
 
@@ -191,6 +192,12 @@ namespace PointOfSaleSystem
         {
             HomeScreen hs = new HomeScreen();
             MainClass.showWindow(hs, this, MDI.ActiveForm);
+        }
+
+        private void Categories_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            HomeScreen hs = new HomeScreen();
+            hs.lblLoggedUser.Text = "Admin";
         }
     }
 }

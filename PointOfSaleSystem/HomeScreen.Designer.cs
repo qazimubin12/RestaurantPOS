@@ -32,6 +32,18 @@ namespace PointOfSaleSystem
             this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnProducts = new System.Windows.Forms.Button();
+            this.btnUnits = new System.Windows.Forms.Button();
+            this.btnCategories = new System.Windows.Forms.Button();
+            this.btnPersons = new System.Windows.Forms.Button();
+            this.btnExpenses = new System.Windows.Forms.Button();
+            this.btnLedgers = new System.Windows.Forms.Button();
+            this.btnPos = new System.Windows.Forms.Button();
+            this.btnInventory = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnReports = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.btnPurchase = new System.Windows.Forms.Button();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblTotalCustomerLedger = new System.Windows.Forms.Label();
@@ -45,18 +57,8 @@ namespace PointOfSaleSystem
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDailySales = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnProducts = new System.Windows.Forms.Button();
-            this.btnUnits = new System.Windows.Forms.Button();
-            this.btnPurchase = new System.Windows.Forms.Button();
-            this.btnLedgers = new System.Windows.Forms.Button();
-            this.btnInventory = new System.Windows.Forms.Button();
-            this.btnCategories = new System.Windows.Forms.Button();
-            this.btnPersons = new System.Windows.Forms.Button();
-            this.btnExpenses = new System.Windows.Forms.Button();
-            this.btnPos = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.btnReports = new System.Windows.Forms.Button();
-            this.btnLogout = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblLoggedUser = new System.Windows.Forms.Label();
             this.guna2GradientPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
@@ -68,6 +70,8 @@ namespace PointOfSaleSystem
             // 
             // guna2GradientPanel1
             // 
+            this.guna2GradientPanel1.Controls.Add(this.lblLoggedUser);
+            this.guna2GradientPanel1.Controls.Add(this.label3);
             this.guna2GradientPanel1.Controls.Add(this.label1);
             this.guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2GradientPanel1.FillColor = System.Drawing.Color.SeaGreen;
@@ -101,16 +105,16 @@ namespace PointOfSaleSystem
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.btnProducts, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnUnits, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnPurchase, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnLedgers, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnInventory, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnCategories, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnPersons, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnExpenses, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnPos, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnReports, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnLogout, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnLedgers, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnPos, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnInventory, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnReports, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnLogout, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnPurchase, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 79);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -121,6 +125,210 @@ namespace PointOfSaleSystem
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 490);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // btnProducts
+            // 
+            this.btnProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnProducts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProducts.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnProducts.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnProducts.Image = global::PointOfSaleSystem.Properties.Resources.product;
+            this.btnProducts.Location = new System.Drawing.Point(315, 3);
+            this.btnProducts.Name = "btnProducts";
+            this.btnProducts.Size = new System.Drawing.Size(150, 116);
+            this.btnProducts.TabIndex = 2;
+            this.btnProducts.Text = "PRODUCTS";
+            this.btnProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnProducts.UseVisualStyleBackColor = false;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
+            // 
+            // btnUnits
+            // 
+            this.btnUnits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnUnits.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUnits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUnits.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnUnits.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnUnits.Image = global::PointOfSaleSystem.Properties.Resources.weighing_machine__1_;
+            this.btnUnits.Location = new System.Drawing.Point(159, 3);
+            this.btnUnits.Name = "btnUnits";
+            this.btnUnits.Size = new System.Drawing.Size(150, 116);
+            this.btnUnits.TabIndex = 1;
+            this.btnUnits.Text = "UNITS";
+            this.btnUnits.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUnits.UseVisualStyleBackColor = false;
+            this.btnUnits.Click += new System.EventHandler(this.btnUnits_Click);
+            // 
+            // btnCategories
+            // 
+            this.btnCategories.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnCategories.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCategories.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnCategories.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnCategories.Image = global::PointOfSaleSystem.Properties.Resources.categories__2_;
+            this.btnCategories.Location = new System.Drawing.Point(3, 3);
+            this.btnCategories.Name = "btnCategories";
+            this.btnCategories.Size = new System.Drawing.Size(150, 116);
+            this.btnCategories.TabIndex = 3;
+            this.btnCategories.Text = "CATEGORIES";
+            this.btnCategories.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCategories.UseVisualStyleBackColor = false;
+            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
+            // 
+            // btnPersons
+            // 
+            this.btnPersons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnPersons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPersons.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnPersons.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnPersons.Image = global::PointOfSaleSystem.Properties.Resources.team;
+            this.btnPersons.Location = new System.Drawing.Point(471, 3);
+            this.btnPersons.Name = "btnPersons";
+            this.btnPersons.Size = new System.Drawing.Size(150, 116);
+            this.btnPersons.TabIndex = 8;
+            this.btnPersons.Text = "PERSONS";
+            this.btnPersons.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPersons.UseVisualStyleBackColor = false;
+            this.btnPersons.Click += new System.EventHandler(this.btnPersons_Click);
+            // 
+            // btnExpenses
+            // 
+            this.btnExpenses.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnExpenses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExpenses.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExpenses.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnExpenses.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnExpenses.Image = global::PointOfSaleSystem.Properties.Resources.expenses;
+            this.btnExpenses.Location = new System.Drawing.Point(627, 3);
+            this.btnExpenses.Name = "btnExpenses";
+            this.btnExpenses.Size = new System.Drawing.Size(154, 116);
+            this.btnExpenses.TabIndex = 11;
+            this.btnExpenses.Text = "EXPENSES";
+            this.btnExpenses.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExpenses.UseVisualStyleBackColor = false;
+            this.btnExpenses.Click += new System.EventHandler(this.btnExpenses_Click);
+            // 
+            // btnLedgers
+            // 
+            this.btnLedgers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnLedgers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLedgers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLedgers.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnLedgers.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnLedgers.Image = global::PointOfSaleSystem.Properties.Resources.ledger;
+            this.btnLedgers.Location = new System.Drawing.Point(3, 125);
+            this.btnLedgers.Name = "btnLedgers";
+            this.btnLedgers.Size = new System.Drawing.Size(150, 116);
+            this.btnLedgers.TabIndex = 6;
+            this.btnLedgers.Text = "LEDGERS";
+            this.btnLedgers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnLedgers.UseVisualStyleBackColor = false;
+            this.btnLedgers.Click += new System.EventHandler(this.btnLedgers_Click);
+            // 
+            // btnPos
+            // 
+            this.btnPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnPos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPos.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnPos.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnPos.Image = global::PointOfSaleSystem.Properties.Resources.pos_terminal;
+            this.btnPos.Location = new System.Drawing.Point(159, 125);
+            this.btnPos.Name = "btnPos";
+            this.btnPos.Size = new System.Drawing.Size(150, 116);
+            this.btnPos.TabIndex = 9;
+            this.btnPos.Text = "POS";
+            this.btnPos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPos.UseVisualStyleBackColor = false;
+            this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
+            // 
+            // btnInventory
+            // 
+            this.btnInventory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventory.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnInventory.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnInventory.Image = global::PointOfSaleSystem.Properties.Resources.box;
+            this.btnInventory.Location = new System.Drawing.Point(3, 247);
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Size = new System.Drawing.Size(150, 116);
+            this.btnInventory.TabIndex = 4;
+            this.btnInventory.Text = "INVENTORY";
+            this.btnInventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnInventory.UseVisualStyleBackColor = false;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnSettings.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnSettings.Image = global::PointOfSaleSystem.Properties.Resources.settings__1_;
+            this.btnSettings.Location = new System.Drawing.Point(471, 125);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(150, 116);
+            this.btnSettings.TabIndex = 7;
+            this.btnSettings.Text = "SETTINGS";
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnReports
+            // 
+            this.btnReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnReports.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReports.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnReports.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnReports.Image = global::PointOfSaleSystem.Properties.Resources.report;
+            this.btnReports.Location = new System.Drawing.Point(315, 125);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(150, 116);
+            this.btnReports.TabIndex = 12;
+            this.btnReports.Text = "REPORTS";
+            this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnReports.UseVisualStyleBackColor = false;
+            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnLogout.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnLogout.Image = global::PointOfSaleSystem.Properties.Resources.log_out;
+            this.btnLogout.Location = new System.Drawing.Point(627, 125);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(154, 116);
+            this.btnLogout.TabIndex = 10;
+            this.btnLogout.Text = "LOGOUT";
+            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // btnPurchase
+            // 
+            this.btnPurchase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnPurchase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPurchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPurchase.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnPurchase.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnPurchase.Image = global::PointOfSaleSystem.Properties.Resources.order;
+            this.btnPurchase.Location = new System.Drawing.Point(159, 247);
+            this.btnPurchase.Name = "btnPurchase";
+            this.btnPurchase.Size = new System.Drawing.Size(150, 116);
+            this.btnPurchase.TabIndex = 5;
+            this.btnPurchase.Text = "PURCHASE";
+            this.btnPurchase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPurchase.UseVisualStyleBackColor = false;
+            this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
             // 
             // guna2GroupBox1
             // 
@@ -275,209 +483,28 @@ namespace PointOfSaleSystem
             this.label2.TabIndex = 0;
             this.label2.Text = "DAILY SALES";
             // 
-            // btnProducts
+            // label3
             // 
-            this.btnProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProducts.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnProducts.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnProducts.Image = global::PointOfSaleSystem.Properties.Resources.product;
-            this.btnProducts.Location = new System.Drawing.Point(315, 3);
-            this.btnProducts.Name = "btnProducts";
-            this.btnProducts.Size = new System.Drawing.Size(150, 116);
-            this.btnProducts.TabIndex = 2;
-            this.btnProducts.Text = "PRODUCTS";
-            this.btnProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnProducts.UseVisualStyleBackColor = false;
-            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(12, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 20);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Logged In:";
             // 
-            // btnUnits
+            // lblLoggedUser
             // 
-            this.btnUnits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnUnits.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUnits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUnits.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnUnits.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnUnits.Image = global::PointOfSaleSystem.Properties.Resources.weighing_machine__1_;
-            this.btnUnits.Location = new System.Drawing.Point(159, 3);
-            this.btnUnits.Name = "btnUnits";
-            this.btnUnits.Size = new System.Drawing.Size(150, 116);
-            this.btnUnits.TabIndex = 1;
-            this.btnUnits.Text = "UNITS";
-            this.btnUnits.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnUnits.UseVisualStyleBackColor = false;
-            this.btnUnits.Click += new System.EventHandler(this.btnUnits_Click);
-            // 
-            // btnPurchase
-            // 
-            this.btnPurchase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnPurchase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPurchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPurchase.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnPurchase.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPurchase.Image = global::PointOfSaleSystem.Properties.Resources.order;
-            this.btnPurchase.Location = new System.Drawing.Point(3, 125);
-            this.btnPurchase.Name = "btnPurchase";
-            this.btnPurchase.Size = new System.Drawing.Size(150, 116);
-            this.btnPurchase.TabIndex = 5;
-            this.btnPurchase.Text = "PURCHASE";
-            this.btnPurchase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPurchase.UseVisualStyleBackColor = false;
-            this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
-            // 
-            // btnLedgers
-            // 
-            this.btnLedgers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnLedgers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLedgers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLedgers.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnLedgers.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnLedgers.Image = global::PointOfSaleSystem.Properties.Resources.ledger;
-            this.btnLedgers.Location = new System.Drawing.Point(159, 125);
-            this.btnLedgers.Name = "btnLedgers";
-            this.btnLedgers.Size = new System.Drawing.Size(150, 116);
-            this.btnLedgers.TabIndex = 6;
-            this.btnLedgers.Text = "LEDGERS";
-            this.btnLedgers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnLedgers.UseVisualStyleBackColor = false;
-            this.btnLedgers.Click += new System.EventHandler(this.btnLedgers_Click);
-            // 
-            // btnInventory
-            // 
-            this.btnInventory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventory.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnInventory.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnInventory.Image = global::PointOfSaleSystem.Properties.Resources.box;
-            this.btnInventory.Location = new System.Drawing.Point(315, 125);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(150, 116);
-            this.btnInventory.TabIndex = 4;
-            this.btnInventory.Text = "INVENTORY";
-            this.btnInventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnInventory.UseVisualStyleBackColor = false;
-            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
-            // 
-            // btnCategories
-            // 
-            this.btnCategories.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnCategories.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCategories.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnCategories.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnCategories.Image = global::PointOfSaleSystem.Properties.Resources.categories__2_;
-            this.btnCategories.Location = new System.Drawing.Point(3, 3);
-            this.btnCategories.Name = "btnCategories";
-            this.btnCategories.Size = new System.Drawing.Size(150, 116);
-            this.btnCategories.TabIndex = 3;
-            this.btnCategories.Text = "CATEGORIES";
-            this.btnCategories.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCategories.UseVisualStyleBackColor = false;
-            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
-            // 
-            // btnPersons
-            // 
-            this.btnPersons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnPersons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPersons.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnPersons.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPersons.Image = global::PointOfSaleSystem.Properties.Resources.team;
-            this.btnPersons.Location = new System.Drawing.Point(471, 3);
-            this.btnPersons.Name = "btnPersons";
-            this.btnPersons.Size = new System.Drawing.Size(150, 116);
-            this.btnPersons.TabIndex = 8;
-            this.btnPersons.Text = "PERSONS";
-            this.btnPersons.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPersons.UseVisualStyleBackColor = false;
-            this.btnPersons.Click += new System.EventHandler(this.btnPersons_Click);
-            // 
-            // btnExpenses
-            // 
-            this.btnExpenses.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnExpenses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExpenses.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExpenses.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnExpenses.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnExpenses.Image = global::PointOfSaleSystem.Properties.Resources.expenses;
-            this.btnExpenses.Location = new System.Drawing.Point(627, 3);
-            this.btnExpenses.Name = "btnExpenses";
-            this.btnExpenses.Size = new System.Drawing.Size(154, 116);
-            this.btnExpenses.TabIndex = 11;
-            this.btnExpenses.Text = "EXPENSES";
-            this.btnExpenses.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnExpenses.UseVisualStyleBackColor = false;
-            this.btnExpenses.Click += new System.EventHandler(this.btnExpenses_Click);
-            // 
-            // btnPos
-            // 
-            this.btnPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnPos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPos.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnPos.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPos.Image = global::PointOfSaleSystem.Properties.Resources.pos_terminal;
-            this.btnPos.Location = new System.Drawing.Point(471, 125);
-            this.btnPos.Name = "btnPos";
-            this.btnPos.Size = new System.Drawing.Size(150, 116);
-            this.btnPos.TabIndex = 9;
-            this.btnPos.Text = "POS";
-            this.btnPos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPos.UseVisualStyleBackColor = false;
-            this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnSettings.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSettings.Image = global::PointOfSaleSystem.Properties.Resources.settings__1_;
-            this.btnSettings.Location = new System.Drawing.Point(3, 247);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(150, 116);
-            this.btnSettings.TabIndex = 7;
-            this.btnSettings.Text = "SETTINGS";
-            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // btnReports
-            // 
-            this.btnReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnReports.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReports.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnReports.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnReports.Image = global::PointOfSaleSystem.Properties.Resources.report;
-            this.btnReports.Location = new System.Drawing.Point(627, 125);
-            this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(154, 116);
-            this.btnReports.TabIndex = 12;
-            this.btnReports.Text = "REPORTS";
-            this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnReports.UseVisualStyleBackColor = false;
-            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnLogout.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnLogout.Image = global::PointOfSaleSystem.Properties.Resources.log_out;
-            this.btnLogout.Location = new System.Drawing.Point(159, 247);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(150, 116);
-            this.btnLogout.TabIndex = 10;
-            this.btnLogout.Text = "LOGOUT";
-            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.lblLoggedUser.AutoSize = true;
+            this.lblLoggedUser.BackColor = System.Drawing.Color.Transparent;
+            this.lblLoggedUser.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.lblLoggedUser.ForeColor = System.Drawing.Color.White;
+            this.lblLoggedUser.Location = new System.Drawing.Point(12, 29);
+            this.lblLoggedUser.Name = "lblLoggedUser";
+            this.lblLoggedUser.Size = new System.Drawing.Size(0, 20);
+            this.lblLoggedUser.TabIndex = 0;
             // 
             // HomeScreen
             // 
@@ -539,5 +566,7 @@ namespace PointOfSaleSystem
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnUnits;
         private System.Windows.Forms.Button btnReports;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label lblLoggedUser;
     }
 }

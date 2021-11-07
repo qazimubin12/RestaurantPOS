@@ -183,6 +183,7 @@ namespace PointOfSaleSystem
 
         private void Products_Load(object sender, EventArgs e)
         {
+            lblLoggedUser.Text = "Admin";
             CheckMode();
             ShownHide();
             MainClass.FillCategories(cboCategory);

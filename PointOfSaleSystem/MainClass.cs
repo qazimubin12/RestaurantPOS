@@ -127,6 +127,112 @@ namespace PointOfSaleSystem
         }
 
 
+        public static void ShowBill(ReportDocument rd, CrystalReportViewer crv, string proc, string param1 = "", object val1 = null)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(proc, MainClass.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (param1 != "")
+                {
+                    cmd.Parameters.AddWithValue(param1, val1);
+                }
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                rd.Load(Application.StartupPath + "\\Reports\\Bill.rpt");
+                rd.SetDataSource(dt);
+                crv.ReportSource = rd;
+                crv.RefreshReport();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        public static void ShowDeliveryBill(ReportDocument rd, CrystalReportViewer crv, string proc, string param1 = "", object val1 = null)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(proc, MainClass.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (param1 != "")
+                {
+                    cmd.Parameters.AddWithValue(param1, val1);
+                }
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                rd.Load(Application.StartupPath + "\\Reports\\DeliveryBill.rpt");
+                rd.SetDataSource(dt);
+                crv.ReportSource = rd;
+                crv.RefreshReport();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+        public static void ShowDineInBill(ReportDocument rd, CrystalReportViewer crv, string proc, string param1 = "", object val1 = null)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(proc, MainClass.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (param1 != "")
+                {
+                    cmd.Parameters.AddWithValue(param1, val1);
+                }
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                rd.Load(Application.StartupPath + "\\Reports\\DineInBill.rpt");
+                rd.SetDataSource(dt);
+                crv.ReportSource = rd;
+                crv.RefreshReport();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static void ShowLedgerBill(ReportDocument rd, CrystalReportViewer crv, string proc, string param1 = "", object val1 = null)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(proc, MainClass.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (param1 != "")
+                {
+                    cmd.Parameters.AddWithValue(param1, val1);
+                }
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                rd.Load(Application.StartupPath + "\\Reports\\InLedgerBill.rpt");
+                rd.SetDataSource(dt);
+                crv.ReportSource = rd;
+                crv.RefreshReport();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+
         public static void FillBrands(ComboBox cmb)
         {
             DataTable dgBrands = new DataTable();
@@ -201,6 +307,38 @@ namespace PointOfSaleSystem
             try
             {
                 DataTable dt = Retrieve("select PersonID, Name from PersonsTable where Type = 'Customer'");
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow customer in dt.Rows)
+                        {
+                            dgCustomer.Rows.Add(customer["PersonID"], customer["Name"]);
+                        }
+                    }
+
+                }
+                cmb.DisplayMember = "Name";
+                cmb.ValueMember = "PersonID";
+                cmb.DataSource = dgCustomer;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                cmb.DataSource = dgCustomer;
+            }
+        }
+
+
+        public static void FillDelivery(ComboBox cmb)
+        {
+            DataTable dgCustomer = new DataTable();
+            dgCustomer.Columns.Add("PersonID");
+            dgCustomer.Columns.Add("Name");
+            dgCustomer.Rows.Add("0", "-----Select-----");
+            try
+            {
+                DataTable dt = Retrieve("select PersonID, Name from PersonsTable where Type = 'Delivery Guy'");
                 if (dt != null)
                 {
                     if (dt.Rows.Count > 0)

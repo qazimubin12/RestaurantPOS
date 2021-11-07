@@ -30,6 +30,10 @@ namespace PointOfSaleSystem
                 {
                     cmd = new SqlCommand("select * from ExpensesTable  where ExpenseDate between '" + dt1.Value.ToShortDateString() + "' and '" + dt2.Value.ToShortDateString() + "' ", MainClass.con);
                 }
+                else if (search != null)
+                {
+                    cmd = new SqlCommand("select * from ExpensesTable  where ExpenseName like '%"+search+"%'  ", MainClass.con);
+                }
                 else
                 {
                     cmd = new SqlCommand("select * from ExpensesTable order by ExpenseName", MainClass.con);
@@ -49,6 +53,7 @@ namespace PointOfSaleSystem
                 MainClass.con.Close();
                 MessageBox.Show(ex.Message);
             }
+            ShowTotal();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -129,8 +134,9 @@ namespace PointOfSaleSystem
 
         private void Expenses_Load(object sender, EventArgs e)
         {
+            lblLoggedUser.Text = "Admin";
             ShowExpense(DGVExpenses, ExpenseID, ExpenseNameGV, ExpensePriceGV, DateGV);
-            ShowTotal();
+          //  ShowTotal();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -218,6 +224,11 @@ namespace PointOfSaleSystem
             date = 1;
             ShowExpense(DGVExpenses, ExpenseID, ExpenseNameGV, ExpensePriceGV, DateGV);
             ShowTotal();
+        }
+
+        private void Expenses_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           
         }
     }
 }

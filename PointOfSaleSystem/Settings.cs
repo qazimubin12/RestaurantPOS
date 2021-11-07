@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,16 +87,22 @@ namespace PointOfSaleSystem
                 txtStoreName.Text = dr["StoreName"].ToString();
                 txtStoreAddress.Text = dr["StoreAddress"].ToString();
                 txtLowStockQty.Text = dr["LowStockQty"].ToString();
+                txtGst.Text = dr["GST"].ToString();
+                pictureBox1.Image = ConvertByteArraytoImage((byte[])dr["Logo"]);
+              
             }
             else
             {
                 txtStoreName.Text = "";
                 txtStoreAddress.Text = "";
                 txtLowStockQty.Text = "";
+                txtGst.Text = "";
             }
            
             dr.Close();
             MainClass.con.Close();
+
+           
         }
 
 
@@ -124,7 +132,7 @@ namespace PointOfSaleSystem
                             cmd.Parameters.AddWithValue("@Role", cboRole.SelectedItem);
                             cmd.ExecuteNonQuery();
                             MainClass.con.Close();
-                            MessageBox.Show("User Updated Successfully.");
+                            MessageBox.Show("User Inserted Successfully.");
                             Clear();
                             ShowUsers(DgvUsers, NameGV, UserNameGV, PasswordGV, RoleGV);
                         }
@@ -194,11 +202,11 @@ namespace PointOfSaleSystem
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             edit = 1;
-            txtName.Text = DgvUsers.CurrentRow.Cells[1].Value.ToString();
-            txtUsername.Text = DgvUsers.CurrentRow.Cells[0].Value.ToString();
-            txtPasword.Text = DgvUsers.CurrentRow.Cells[2].Value.ToString();
-            txtConfimPassword.Text = DgvUsers.CurrentRow.Cells[2].Value.ToString();
-            cboRole.SelectedItem = DgvUsers.CurrentRow.Cells[3].Value.ToString();
+            txtName.Text = DgvUsers.CurrentRow.Cells["NameGV"].Value.ToString();
+            txtUsername.Text = DgvUsers.CurrentRow.Cells["UserNameGV"].Value.ToString();
+            txtPasword.Text = DgvUsers.CurrentRow.Cells["PasswordGV"].Value.ToString();
+            txtConfimPassword.Text = DgvUsers.CurrentRow.Cells["PasswordGV"].Value.ToString();
+            cboRole.SelectedItem = DgvUsers.CurrentRow.Cells["RoleGV"].Value.ToString();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -212,7 +220,7 @@ namespace PointOfSaleSystem
                         try
                         {
                             MainClass.con.Open();
-                            SqlCommand cmd = new SqlCommand("delete from Users where Username = @Username", MainClass.con);
+                            SqlCommand cmd = new SqlCommand("delete from UsersTable where Username = @Username", MainClass.con);
                             cmd.Parameters.AddWithValue("@Username", DgvUsers.CurrentRow.Cells[0].Value.ToString());
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("Record Deleted Successfully");
@@ -231,9 +239,11 @@ namespace PointOfSaleSystem
 
         private void Settings_Load(object sender, EventArgs e)
         {
+            lblLoggedUser.Text = "Admin";
             ShowUsers(DgvUsers, NameGV, UserNameGV, PasswordGV, RoleGV);
             MainClass.HideAllTabsOnTabControl(tabControl1);
             tabControl1.SelectedIndex = 0;
+            lblLoggedUser.Text = "Admin";
             CheckMode();
             ShowStore();
         }
@@ -369,26 +379,62 @@ namespace PointOfSaleSystem
         private void btnSaveStore_Click(object sender, EventArgs e)
         {
             MainClass.con.Open();
-            SqlCommand cmd = new SqlCommand("insert into StoreTable (StoreName,StoreAddress,LowStockQty) values (@StoreName,@StoreAddress,@LowStockQty) ", MainClass.con);
+            SqlCommand cmd = new SqlCommand("insert into StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo) values (@StoreName,@StoreAddress,@LowStockQty,@GST,@Logo) ", MainClass.con);
             cmd.Parameters.AddWithValue("@StoreName", txtStoreName.Text);
             cmd.Parameters.AddWithValue("@StoreAddress", txtStoreAddress.Text);
             cmd.Parameters.AddWithValue("@LowStockQty", txtLowStockQty.Text);
+            cmd.Parameters.AddWithValue("@GST", float.Parse(txtGst.Text));
+            cmd.Parameters.AddWithValue("Logo", ConvertImageToBytes(pictureBox1.Image));
             cmd.ExecuteNonQuery();
             MessageBox.Show("Store Saved Successfully");
             MainClass.con.Close();
         }
 
+        byte[] ConvertImageToBytes(Image img)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
+        public Image ConvertByteArraytoImage(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
         private void btnUpdateStore_Click(object sender, EventArgs e)
         {
             MainClass.con.Open();
-            SqlCommand cmd = new SqlCommand("update StoreTable set StoreName = @StoreName, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty ", MainClass.con);
+            SqlCommand cmd = new SqlCommand("update StoreTable set StoreName = @StoreName, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty, GST = @GST, Logo = @Logo ", MainClass.con);
             cmd.Parameters.AddWithValue("@StoreName", txtStoreName.Text);
             cmd.Parameters.AddWithValue("@StoreAddress", txtStoreAddress.Text);
             cmd.Parameters.AddWithValue("@LowStockQty", txtLowStockQty.Text);
+            cmd.Parameters.AddWithValue("@GST", float.Parse(txtGst.Text));
+            cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
             cmd.ExecuteNonQuery();
             MessageBox.Show("Store Updated Successfully");
             MainClass.con.Close();
             ShowStore();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog odf = new OpenFileDialog() { Filter = "Image files(*.jpg;*.jpeg)|*.jpg;*jpeg", Multiselect = false })
+                if(odf.ShowDialog() == DialogResult.OK)
+                {
+                    pictureBox1.Image = Image.FromFile(odf.FileName);
+                }
+            
+        }
+
+        private void Settings_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           
         }
     }
 }

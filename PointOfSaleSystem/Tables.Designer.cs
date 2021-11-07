@@ -32,6 +32,7 @@ namespace PointOfSaleSystem
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.txtTableSpace = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtTableName = new Guna.UI2.WinForms.Guna2TextBox();
@@ -40,7 +41,6 @@ namespace PointOfSaleSystem
             this.btnViewAll = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.fpTables = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblID = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +79,19 @@ namespace PointOfSaleSystem
             this.label1.Size = new System.Drawing.Size(127, 40);
             this.label1.TabIndex = 2;
             this.label1.Text = "TABLES";
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.BackColor = System.Drawing.Color.White;
+            this.lblID.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblID.ForeColor = System.Drawing.Color.Black;
+            this.lblID.Location = new System.Drawing.Point(784, 53);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(21, 17);
+            this.lblID.TabIndex = 1;
+            this.lblID.Text = "ID";
+            this.lblID.Visible = false;
             // 
             // guna2GroupBox1
             // 
@@ -212,18 +225,6 @@ namespace PointOfSaleSystem
             this.fpTables.Name = "fpTables";
             this.fpTables.Size = new System.Drawing.Size(894, 339);
             this.fpTables.TabIndex = 30;
-            // 
-            // lblID
-            // 
-            this.lblID.AutoSize = true;
-            this.lblID.BackColor = System.Drawing.Color.White;
-            this.lblID.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.ForeColor = System.Drawing.Color.Black;
-            this.lblID.Location = new System.Drawing.Point(784, 53);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(21, 17);
-            this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID";
             // 
             // Tables
             // 

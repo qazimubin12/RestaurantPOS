@@ -125,6 +125,8 @@ namespace PointOfSaleSystem
         private void Ledgers_Load(object sender, EventArgs e)
         {
             CheckMode();
+            lblLoggedUser.Text = "Admin";
+
             tabControl1.SelectedIndex = 1;
             ShowSupplierLedgers(DGVSupplierLedger, IDGV, NameGV, InvoiceNoGV, InvoiceDateGV, TotalAmountGV, PaidAmountGV, BalanceGV);
             ShowCustomerLedgers(DGVCustomerLedger, CIDGV, CNameGV, CInvoiceNoGV, CInvoiceDateGV, CTotalAmountGV, CPaidAmountGV, CBalanceGV);

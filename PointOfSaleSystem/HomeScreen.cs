@@ -77,6 +77,10 @@ namespace PointOfSaleSystem
         private void btnPos_Click(object sender, EventArgs e)
         {
             RestaurantPOS p = new RestaurantPOS();
+            if(lblLoggedUser.Text == "Admin")
+            {
+                p.lblLoggedInUser.Text = "Admin";
+            }
             MainClass.showWindow(p, this, MDI.ActiveForm);
         }
 
@@ -121,7 +125,7 @@ namespace PointOfSaleSystem
             try
             {
                 MainClass.con.Open();
-                SqlCommand cmd = new SqlCommand("select sum(GrandTotal) from SalesTable where SaleDate between '"+DateTime.Now.ToShortDateString()+ "' and '" + DateTime.Now.ToShortDateString() + "'  ", MainClass.con);
+                SqlCommand cmd = new SqlCommand("select sum(Round(GrandTotal,0)) from SalesTable where SaleDate between '" + DateTime.Now.ToShortDateString()+ "' and '" + DateTime.Now.ToShortDateString() + "'  ", MainClass.con);
                 lblDailySales.Text = cmd.ExecuteScalar().ToString();
                 MainClass.con.Close();
 
@@ -138,7 +142,7 @@ namespace PointOfSaleSystem
             try
             {
                 MainClass.con.Open();
-                SqlCommand cmd = new SqlCommand("select sum(Balance) from CustomerLedgersTable", MainClass.con);
+                SqlCommand cmd = new SqlCommand("select sum(Round(Balance,0)) from CustomerLedgersTable", MainClass.con);
                 lblTotalCustomerLedger.Text = cmd.ExecuteScalar().ToString();
                 MainClass.con.Close();
 

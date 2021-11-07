@@ -34,6 +34,8 @@ namespace PointOfSaleSystem
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblLoggedUser = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.btnUserSettings = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDatabaseSettings = new System.Windows.Forms.Button();
@@ -74,19 +76,24 @@ namespace PointOfSaleSystem
             this.btnBackupBrowse = new System.Windows.Forms.Button();
             this.btnBackup = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUpdateStore = new System.Windows.Forms.Button();
             this.btnSaveStore = new System.Windows.Forms.Button();
+            this.txtGst = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtLowStockQty = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtStoreAddress = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtStoreName = new Guna.UI2.WinForms.Guna2TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnSaveMode = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.modetoggle = new Guna.UI2.WinForms.Guna2ToggleSwitch();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtLowStockQty = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -96,11 +103,14 @@ namespace PointOfSaleSystem
             ((System.ComponentModel.ISupportInitialize)(this.DgvUsers)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.panel1.Controls.Add(this.lblLoggedUser);
+            this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.btnUserSettings);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnDatabaseSettings);
@@ -111,6 +121,29 @@ namespace PointOfSaleSystem
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1370, 94);
             this.panel1.TabIndex = 24;
+            // 
+            // lblLoggedUser
+            // 
+            this.lblLoggedUser.AutoSize = true;
+            this.lblLoggedUser.BackColor = System.Drawing.Color.Transparent;
+            this.lblLoggedUser.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.lblLoggedUser.ForeColor = System.Drawing.Color.White;
+            this.lblLoggedUser.Location = new System.Drawing.Point(12, 27);
+            this.lblLoggedUser.Name = "lblLoggedUser";
+            this.lblLoggedUser.Size = new System.Drawing.Size(0, 20);
+            this.lblLoggedUser.TabIndex = 31;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(12, 7);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(88, 20);
+            this.label18.TabIndex = 32;
+            this.label18.Text = "Logged In:";
             // 
             // btnUserSettings
             // 
@@ -504,6 +537,7 @@ namespace PointOfSaleSystem
             this.NameGV,
             this.PasswordGV,
             this.RoleGV});
+            this.DgvUsers.ContextMenuStrip = this.contextMenuStrip1;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -723,16 +757,21 @@ namespace PointOfSaleSystem
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Controls.Add(this.pictureBox1);
             this.tabPage3.Controls.Add(this.btnUpdateStore);
             this.tabPage3.Controls.Add(this.btnSaveStore);
+            this.tabPage3.Controls.Add(this.txtGst);
             this.tabPage3.Controls.Add(this.txtLowStockQty);
             this.tabPage3.Controls.Add(this.txtStoreAddress);
             this.tabPage3.Controls.Add(this.txtStoreName);
+            this.tabPage3.Controls.Add(this.button2);
             this.tabPage3.Controls.Add(this.btnSaveMode);
             this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.label16);
             this.tabPage3.Controls.Add(this.label15);
             this.tabPage3.Controls.Add(this.label14);
             this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label17);
             this.tabPage3.Controls.Add(this.label13);
             this.tabPage3.Controls.Add(this.label10);
             this.tabPage3.Controls.Add(this.modetoggle);
@@ -742,6 +781,14 @@ namespace PointOfSaleSystem
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(993, 131);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(209, 164);
+            this.pictureBox1.TabIndex = 38;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnUpdateStore
             // 
             this.btnUpdateStore.BackColor = System.Drawing.Color.White;
@@ -750,7 +797,7 @@ namespace PointOfSaleSystem
             this.btnUpdateStore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnUpdateStore.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnUpdateStore.Location = new System.Drawing.Point(720, 320);
+            this.btnUpdateStore.Location = new System.Drawing.Point(720, 366);
             this.btnUpdateStore.Name = "btnUpdateStore";
             this.btnUpdateStore.Size = new System.Drawing.Size(114, 42);
             this.btnUpdateStore.TabIndex = 37;
@@ -766,13 +813,65 @@ namespace PointOfSaleSystem
             this.btnSaveStore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnSaveStore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnSaveStore.Location = new System.Drawing.Point(840, 320);
+            this.btnSaveStore.Location = new System.Drawing.Point(840, 366);
             this.btnSaveStore.Name = "btnSaveStore";
             this.btnSaveStore.Size = new System.Drawing.Size(114, 42);
             this.btnSaveStore.TabIndex = 37;
             this.btnSaveStore.Text = "SAVE";
             this.btnSaveStore.UseVisualStyleBackColor = false;
             this.btnSaveStore.Click += new System.EventHandler(this.btnSaveStore_Click);
+            // 
+            // txtGst
+            // 
+            this.txtGst.AutoRoundedCorners = true;
+            this.txtGst.BorderRadius = 12;
+            this.txtGst.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtGst.DefaultText = "";
+            this.txtGst.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtGst.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtGst.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtGst.DisabledState.Parent = this.txtGst;
+            this.txtGst.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtGst.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtGst.FocusedState.Parent = this.txtGst;
+            this.txtGst.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGst.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtGst.HoverState.Parent = this.txtGst;
+            this.txtGst.Location = new System.Drawing.Point(633, 332);
+            this.txtGst.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGst.Name = "txtGst";
+            this.txtGst.PasswordChar = '\0';
+            this.txtGst.PlaceholderText = "";
+            this.txtGst.SelectedText = "";
+            this.txtGst.ShadowDecoration.Parent = this.txtGst;
+            this.txtGst.Size = new System.Drawing.Size(314, 27);
+            this.txtGst.TabIndex = 36;
+            // 
+            // txtLowStockQty
+            // 
+            this.txtLowStockQty.AutoRoundedCorners = true;
+            this.txtLowStockQty.BorderRadius = 12;
+            this.txtLowStockQty.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtLowStockQty.DefaultText = "";
+            this.txtLowStockQty.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtLowStockQty.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtLowStockQty.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtLowStockQty.DisabledState.Parent = this.txtLowStockQty;
+            this.txtLowStockQty.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtLowStockQty.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtLowStockQty.FocusedState.Parent = this.txtLowStockQty;
+            this.txtLowStockQty.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLowStockQty.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtLowStockQty.HoverState.Parent = this.txtLowStockQty;
+            this.txtLowStockQty.Location = new System.Drawing.Point(630, 268);
+            this.txtLowStockQty.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLowStockQty.Name = "txtLowStockQty";
+            this.txtLowStockQty.PasswordChar = '\0';
+            this.txtLowStockQty.PlaceholderText = "";
+            this.txtLowStockQty.SelectedText = "";
+            this.txtLowStockQty.ShadowDecoration.Parent = this.txtLowStockQty;
+            this.txtLowStockQty.Size = new System.Drawing.Size(314, 27);
+            this.txtLowStockQty.TabIndex = 36;
             // 
             // txtStoreAddress
             // 
@@ -826,6 +925,22 @@ namespace PointOfSaleSystem
             this.txtStoreName.Size = new System.Drawing.Size(314, 27);
             this.txtStoreName.TabIndex = 36;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button2.FlatAppearance.BorderSize = 2;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button2.Location = new System.Drawing.Point(993, 298);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(209, 42);
+            this.button2.TabIndex = 35;
+            this.button2.Text = "BROWSE";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // btnSaveMode
             // 
             this.btnSaveMode.BackColor = System.Drawing.Color.White;
@@ -840,6 +955,7 @@ namespace PointOfSaleSystem
             this.btnSaveMode.TabIndex = 35;
             this.btnSaveMode.Text = "SAVE";
             this.btnSaveMode.UseVisualStyleBackColor = false;
+            this.btnSaveMode.Visible = false;
             this.btnSaveMode.Click += new System.EventHandler(this.btnSaveMode_Click);
             // 
             // label12
@@ -852,6 +968,29 @@ namespace PointOfSaleSystem
             this.label12.Size = new System.Drawing.Size(47, 23);
             this.label12.TabIndex = 34;
             this.label12.Text = "OFF";
+            this.label12.Visible = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
+            this.label16.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label16.Location = new System.Drawing.Point(629, 305);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(45, 23);
+            this.label16.TabIndex = 34;
+            this.label16.Text = "GST";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
+            this.label15.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label15.Location = new System.Drawing.Point(626, 241);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(149, 23);
+            this.label15.TabIndex = 34;
+            this.label15.Text = "Low Stock Qty";
             // 
             // label14
             // 
@@ -874,6 +1013,18 @@ namespace PointOfSaleSystem
             this.label11.Size = new System.Drawing.Size(42, 23);
             this.label11.TabIndex = 34;
             this.label11.Text = "ON";
+            this.label11.Visible = false;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
+            this.label17.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label17.Location = new System.Drawing.Point(986, 88);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(98, 40);
+            this.label17.TabIndex = 34;
+            this.label17.Text = "Logo";
             // 
             // label13
             // 
@@ -896,6 +1047,7 @@ namespace PointOfSaleSystem
             this.label10.Size = new System.Drawing.Size(278, 40);
             this.label10.TabIndex = 34;
             this.label10.Text = "Inventory Mode";
+            this.label10.Visible = false;
             // 
             // modetoggle
             // 
@@ -914,43 +1066,7 @@ namespace PointOfSaleSystem
             this.modetoggle.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.modetoggle.UncheckedState.InnerColor = System.Drawing.Color.White;
             this.modetoggle.UncheckedState.Parent = this.modetoggle;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
-            this.label15.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label15.Location = new System.Drawing.Point(626, 241);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(149, 23);
-            this.label15.TabIndex = 34;
-            this.label15.Text = "Low Stock Qty";
-            // 
-            // txtLowStockQty
-            // 
-            this.txtLowStockQty.AutoRoundedCorners = true;
-            this.txtLowStockQty.BorderRadius = 12;
-            this.txtLowStockQty.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtLowStockQty.DefaultText = "";
-            this.txtLowStockQty.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtLowStockQty.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtLowStockQty.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtLowStockQty.DisabledState.Parent = this.txtLowStockQty;
-            this.txtLowStockQty.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtLowStockQty.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtLowStockQty.FocusedState.Parent = this.txtLowStockQty;
-            this.txtLowStockQty.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLowStockQty.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtLowStockQty.HoverState.Parent = this.txtLowStockQty;
-            this.txtLowStockQty.Location = new System.Drawing.Point(630, 268);
-            this.txtLowStockQty.Margin = new System.Windows.Forms.Padding(4);
-            this.txtLowStockQty.Name = "txtLowStockQty";
-            this.txtLowStockQty.PasswordChar = '\0';
-            this.txtLowStockQty.PlaceholderText = "";
-            this.txtLowStockQty.SelectedText = "";
-            this.txtLowStockQty.ShadowDecoration.Parent = this.txtLowStockQty;
-            this.txtLowStockQty.Size = new System.Drawing.Size(314, 27);
-            this.txtLowStockQty.TabIndex = 36;
+            this.modetoggle.Visible = false;
             // 
             // Settings
             // 
@@ -967,6 +1083,7 @@ namespace PointOfSaleSystem
             this.MinimizeBox = false;
             this.Name = "Settings";
             this.Text = "Settings";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Settings_FormClosed);
             this.Load += new System.EventHandler(this.Settings_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -981,6 +1098,7 @@ namespace PointOfSaleSystem
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1041,5 +1159,12 @@ namespace PointOfSaleSystem
         private System.Windows.Forms.Label label14;
         private Guna.UI2.WinForms.Guna2TextBox txtLowStockQty;
         private System.Windows.Forms.Label label15;
+        private Guna.UI2.WinForms.Guna2TextBox txtGst;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Label lblLoggedUser;
+        private System.Windows.Forms.Label label18;
     }
 }

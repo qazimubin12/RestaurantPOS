@@ -42,7 +42,7 @@ namespace PointOfSaleSystem
                 SqlCommand cmd = null;
                 MainClass.con.Open();
 
-                cmd = new SqlCommand("select SaleID,InvoiceNo,SaleDate,SaleTime,GrandTotal,TableData from SalesTable where OrderStatus = 'Pending'", MainClass.con);
+                cmd = new SqlCommand("select SaleID,InvoiceNo,SaleDate,SaleTime,Round(GrandTotal,0) as 'GrandTotal',TableData from SalesTable where OrderStatus = 'Pending'", MainClass.con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -69,6 +69,20 @@ namespace PointOfSaleSystem
             {
                 if(e.ColumnIndex == 0)
                 {
+                    MainClass.con.Open();
+                    SqlCommand cmd = new SqlCommand("select BillGst from SalesTable where SaleID = '" + DGVOrders.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'",MainClass.con);
+                    float ob = float.Parse(cmd.ExecuteScalar().ToString());
+                    MainClass.con.Close();
+
+                    if(ob == 0)
+                    {
+                        rsp.cbGST.Checked = false;
+                    }
+                    else
+                    {
+                        rsp.cbGST.Checked = true;
+                    }
+
                     rsp.lblOrderID.Text = DGVOrders.CurrentRow.Cells["SaleIDGV"].Value.ToString();
                     rsp.txtTableName.Text = DGVOrders.CurrentRow.Cells["TableDataGV"].Value.ToString();
                     rsp.lblGrandTotal.Text = DGVOrders.CurrentRow.Cells["AmountGV"].Value.ToString();

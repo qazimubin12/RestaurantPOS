@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
+
 namespace PointOfSaleSystem
 {
     public partial class Login : Form
@@ -28,6 +30,8 @@ namespace PointOfSaleSystem
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+           
+
             try
             {
                 bool found = false;
@@ -57,7 +61,6 @@ namespace PointOfSaleSystem
                 {
                     if (Role.ToString() == "Admin")
                     {
-
                         try
                         {
                             MainClass.con.Open();
@@ -90,12 +93,14 @@ namespace PointOfSaleSystem
 
                         MessageBox.Show("Welcome " + User_NAME);
                         HomeScreen das = new HomeScreen();
+                        das.lblLoggedUser.Text = Role.ToString();
                         MainClass.showWindow(das, this, MDI.ActiveForm);
                     }
                     else
                     {
                         MessageBox.Show("Welcome " + User_NAME);
-                        HomeScreen das = new HomeScreen();
+                        RestaurantPOS das = new RestaurantPOS();
+                        das.lblLoggedInUser.Text = Role.ToString();
                         MainClass.showWindow(das, this, MDI.ActiveForm);
                     }
                 }
@@ -104,6 +109,18 @@ namespace PointOfSaleSystem
             {
                 MainClass.con.Close();
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void CBShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if(CBShowPassword.Checked)
+            {
+                txtPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtPassword.UseSystemPasswordChar = true;
             }
         }
     }

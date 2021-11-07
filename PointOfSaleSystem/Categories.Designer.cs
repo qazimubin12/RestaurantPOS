@@ -34,6 +34,8 @@ namespace PointOfSaleSystem
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblLoggedUser = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,6 +60,8 @@ namespace PointOfSaleSystem
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.panel1.Controls.Add(this.lblLoggedUser);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.label1);
@@ -66,6 +70,29 @@ namespace PointOfSaleSystem
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1370, 73);
             this.panel1.TabIndex = 24;
+            // 
+            // lblLoggedUser
+            // 
+            this.lblLoggedUser.AutoSize = true;
+            this.lblLoggedUser.BackColor = System.Drawing.Color.Transparent;
+            this.lblLoggedUser.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.lblLoggedUser.ForeColor = System.Drawing.Color.White;
+            this.lblLoggedUser.Location = new System.Drawing.Point(1132, 29);
+            this.lblLoggedUser.Name = "lblLoggedUser";
+            this.lblLoggedUser.Size = new System.Drawing.Size(0, 20);
+            this.lblLoggedUser.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(1132, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Logged In:";
             // 
             // button1
             // 
@@ -105,6 +132,7 @@ namespace PointOfSaleSystem
             this.txtSearch.ShadowDecoration.Parent = this.txtSearch;
             this.txtSearch.Size = new System.Drawing.Size(418, 27);
             this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.Click += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label1
@@ -325,6 +353,7 @@ namespace PointOfSaleSystem
             this.Controls.Add(this.panel1);
             this.Name = "Categories";
             this.Text = "Categories";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Categories_FormClosed);
             this.Load += new System.EventHandler(this.Categorys_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -354,5 +383,7 @@ namespace PointOfSaleSystem
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn CatIDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryGV;
+        public System.Windows.Forms.Label lblLoggedUser;
+        private System.Windows.Forms.Label label3;
     }
 }

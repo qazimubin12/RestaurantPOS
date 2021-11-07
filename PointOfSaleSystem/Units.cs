@@ -151,6 +151,7 @@ namespace PointOfSaleSystem
         }
         private void Units_Load(object sender, EventArgs e)
         {
+            lblLoggedUser.Text = "Admin";
             ShowUnits(DgvUnits, UNITIDDGV, UnitGV);
         }
 
@@ -193,6 +194,8 @@ namespace PointOfSaleSystem
             HomeScreen hs = new HomeScreen();
             MainClass.showWindow(hs, this, MDI.ActiveForm);
         }
+
+      
     }
 }
 

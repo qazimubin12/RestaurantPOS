@@ -39,6 +39,7 @@ namespace PointOfSaleSystem
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.CBShowPassword = new Guna.UI2.WinForms.Guna2CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +54,7 @@ namespace PointOfSaleSystem
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(856, 693);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 5;
             // 
             // label4
             // 
@@ -63,7 +64,7 @@ namespace PointOfSaleSystem
             this.label4.Location = new System.Drawing.Point(3, 641);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(160, 23);
-            this.label4.TabIndex = 0;
+            this.label4.TabIndex = 3;
             this.label4.Text = "+92 3009259266";
             // 
             // label3
@@ -74,7 +75,7 @@ namespace PointOfSaleSystem
             this.label3.Location = new System.Drawing.Point(3, 609);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(341, 23);
-            this.label3.TabIndex = 0;
+            this.label3.TabIndex = 2;
             this.label3.Text = "Developed By Cyber Soft Services";
             // 
             // label2
@@ -85,7 +86,7 @@ namespace PointOfSaleSystem
             this.label2.Location = new System.Drawing.Point(303, 305);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(213, 64);
-            this.label2.TabIndex = 0;
+            this.label2.TabIndex = 1;
             this.label2.Text = "System";
             // 
             // label1
@@ -104,7 +105,7 @@ namespace PointOfSaleSystem
             this.txtPassword.AutoRoundedCorners = true;
             this.txtPassword.BorderRadius = 11;
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPassword.DefaultText = "admin123";
+            this.txtPassword.DefaultText = "";
             this.txtPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -121,10 +122,9 @@ namespace PointOfSaleSystem
             this.txtPassword.PasswordChar = '\0';
             this.txtPassword.PlaceholderText = "";
             this.txtPassword.SelectedText = "";
-            this.txtPassword.SelectionStart = 8;
             this.txtPassword.ShadowDecoration.Parent = this.txtPassword;
             this.txtPassword.Size = new System.Drawing.Size(331, 25);
-            this.txtPassword.TabIndex = 8;
+            this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
@@ -132,7 +132,7 @@ namespace PointOfSaleSystem
             this.txtUsername.AutoRoundedCorners = true;
             this.txtUsername.BorderRadius = 11;
             this.txtUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtUsername.DefaultText = "admin";
+            this.txtUsername.DefaultText = "";
             this.txtUsername.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txtUsername.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txtUsername.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -149,10 +149,9 @@ namespace PointOfSaleSystem
             this.txtUsername.PasswordChar = '\0';
             this.txtUsername.PlaceholderText = "";
             this.txtUsername.SelectedText = "";
-            this.txtUsername.SelectionStart = 5;
             this.txtUsername.ShadowDecoration.Parent = this.txtUsername;
             this.txtUsername.Size = new System.Drawing.Size(331, 25);
-            this.txtUsername.TabIndex = 9;
+            this.txtUsername.TabIndex = 0;
             // 
             // label5
             // 
@@ -162,7 +161,7 @@ namespace PointOfSaleSystem
             this.label5.Location = new System.Drawing.Point(915, 274);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(120, 19);
-            this.label5.TabIndex = 10;
+            this.label5.TabIndex = 3;
             this.label5.Text = "Enter Username:";
             // 
             // label6
@@ -173,7 +172,7 @@ namespace PointOfSaleSystem
             this.label6.Location = new System.Drawing.Point(915, 346);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 19);
-            this.label6.TabIndex = 10;
+            this.label6.TabIndex = 4;
             this.label6.Text = "Enter Password";
             // 
             // btnLogin
@@ -184,13 +183,34 @@ namespace PointOfSaleSystem
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(1002, 399);
+            this.btnLogin.Location = new System.Drawing.Point(919, 424);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(247, 42);
-            this.btnLogin.TabIndex = 30;
+            this.btnLogin.Size = new System.Drawing.Size(330, 42);
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "&LOGIN";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // CBShowPassword
+            // 
+            this.CBShowPassword.AutoSize = true;
+            this.CBShowPassword.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CBShowPassword.CheckedState.BorderRadius = 2;
+            this.CBShowPassword.CheckedState.BorderThickness = 0;
+            this.CBShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.CBShowPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CBShowPassword.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.CBShowPassword.Location = new System.Drawing.Point(1102, 399);
+            this.CBShowPassword.Name = "CBShowPassword";
+            this.CBShowPassword.Size = new System.Drawing.Size(158, 23);
+            this.CBShowPassword.TabIndex = 6;
+            this.CBShowPassword.Text = "SHOW PASSWORD?";
+            this.CBShowPassword.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.CBShowPassword.UncheckedState.BorderRadius = 2;
+            this.CBShowPassword.UncheckedState.BorderThickness = 0;
+            this.CBShowPassword.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.CBShowPassword.UseVisualStyleBackColor = true;
+            this.CBShowPassword.CheckedChanged += new System.EventHandler(this.CBShowPassword_CheckedChanged);
             // 
             // Login
             // 
@@ -200,6 +220,7 @@ namespace PointOfSaleSystem
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1370, 693);
             this.ControlBox = false;
+            this.Controls.Add(this.CBShowPassword);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -231,5 +252,6 @@ namespace PointOfSaleSystem
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnLogin;
+        private Guna.UI2.WinForms.Guna2CheckBox CBShowPassword;
     }
 }
