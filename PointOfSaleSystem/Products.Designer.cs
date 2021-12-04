@@ -30,12 +30,12 @@ namespace PointOfSaleSystem
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLoggedUser = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -60,7 +60,6 @@ namespace PointOfSaleSystem
             this.cboCategory = new System.Windows.Forms.ComboBox();
             this.txtSalePrice = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtRemarks = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtDiscountPercentage = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtCostPrice = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtProductName = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtBarcode = new Guna.UI2.WinForms.Guna2TextBox();
@@ -69,14 +68,19 @@ namespace PointOfSaleSystem
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.DgvProducts = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.DGVSomeProducts = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.CS1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ProIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarcodeGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductNameGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiscountAvaiGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CostPriceGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SalePriceGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,22 +91,14 @@ namespace PointOfSaleSystem
             this.PackCostGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PackSaleGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PackUnitGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.DGVSomeProducts = new Guna.UI2.WinForms.Guna2DataGridView();
             this.ProSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarcodeSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiscountPercentageGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategorySID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CostSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaleSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RemarksSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CS1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.GBPacking.SuspendLayout();
@@ -221,7 +217,6 @@ namespace PointOfSaleSystem
             this.panel2.Controls.Add(this.cboCategory);
             this.panel2.Controls.Add(this.txtSalePrice);
             this.panel2.Controls.Add(this.txtRemarks);
-            this.panel2.Controls.Add(this.txtDiscountPercentage);
             this.panel2.Controls.Add(this.txtCostPrice);
             this.panel2.Controls.Add(this.txtProductName);
             this.panel2.Controls.Add(this.txtBarcode);
@@ -230,7 +225,6 @@ namespace PointOfSaleSystem
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -238,6 +232,7 @@ namespace PointOfSaleSystem
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(479, 436);
             this.panel2.TabIndex = 0;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // btnCancel
             // 
@@ -445,7 +440,7 @@ namespace PointOfSaleSystem
             this.cbPackage.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cbPackage.CheckMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.cbPackage.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPackage.Location = new System.Drawing.Point(19, 213);
+            this.cbPackage.Location = new System.Drawing.Point(17, 182);
             this.cbPackage.Name = "cbPackage";
             this.cbPackage.Size = new System.Drawing.Size(93, 21);
             this.cbPackage.TabIndex = 8;
@@ -464,9 +459,9 @@ namespace PointOfSaleSystem
             this.cboUnits.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cboUnits.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboUnits.FormattingEnabled = true;
-            this.cboUnits.Location = new System.Drawing.Point(14, 183);
+            this.cboUnits.Location = new System.Drawing.Point(238, 24);
             this.cboUnits.Name = "cboUnits";
-            this.cboUnits.Size = new System.Drawing.Size(196, 25);
+            this.cboUnits.Size = new System.Drawing.Size(221, 25);
             this.cboUnits.TabIndex = 7;
             // 
             // cboCategory
@@ -476,7 +471,7 @@ namespace PointOfSaleSystem
             this.cboCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cboCategory.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(11, 76);
+            this.cboCategory.Location = new System.Drawing.Point(12, 74);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(199, 25);
             this.cboCategory.TabIndex = 3;
@@ -523,7 +518,7 @@ namespace PointOfSaleSystem
             this.txtRemarks.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRemarks.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtRemarks.HoverState.Parent = this.txtRemarks;
-            this.txtRemarks.Location = new System.Drawing.Point(238, 182);
+            this.txtRemarks.Location = new System.Drawing.Point(234, 74);
             this.txtRemarks.Margin = new System.Windows.Forms.Padding(4);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.PasswordChar = '\0';
@@ -532,32 +527,6 @@ namespace PointOfSaleSystem
             this.txtRemarks.ShadowDecoration.Parent = this.txtRemarks;
             this.txtRemarks.Size = new System.Drawing.Size(229, 27);
             this.txtRemarks.TabIndex = 6;
-            // 
-            // txtDiscountPercentage
-            // 
-            this.txtDiscountPercentage.AutoRoundedCorners = true;
-            this.txtDiscountPercentage.BorderRadius = 12;
-            this.txtDiscountPercentage.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDiscountPercentage.DefaultText = "";
-            this.txtDiscountPercentage.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtDiscountPercentage.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtDiscountPercentage.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDiscountPercentage.DisabledState.Parent = this.txtDiscountPercentage;
-            this.txtDiscountPercentage.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDiscountPercentage.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDiscountPercentage.FocusedState.Parent = this.txtDiscountPercentage;
-            this.txtDiscountPercentage.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiscountPercentage.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDiscountPercentage.HoverState.Parent = this.txtDiscountPercentage;
-            this.txtDiscountPercentage.Location = new System.Drawing.Point(242, 76);
-            this.txtDiscountPercentage.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDiscountPercentage.Name = "txtDiscountPercentage";
-            this.txtDiscountPercentage.PasswordChar = '\0';
-            this.txtDiscountPercentage.PlaceholderText = "";
-            this.txtDiscountPercentage.SelectedText = "";
-            this.txtDiscountPercentage.ShadowDecoration.Parent = this.txtDiscountPercentage;
-            this.txtDiscountPercentage.Size = new System.Drawing.Size(229, 27);
-            this.txtDiscountPercentage.TabIndex = 2;
             // 
             // txtCostPrice
             // 
@@ -575,7 +544,7 @@ namespace PointOfSaleSystem
             this.txtCostPrice.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCostPrice.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCostPrice.HoverState.Parent = this.txtCostPrice;
-            this.txtCostPrice.Location = new System.Drawing.Point(238, 130);
+            this.txtCostPrice.Location = new System.Drawing.Point(234, 130);
             this.txtCostPrice.Margin = new System.Windows.Forms.Padding(4);
             this.txtCostPrice.Name = "txtCostPrice";
             this.txtCostPrice.PasswordChar = '\0';
@@ -584,6 +553,7 @@ namespace PointOfSaleSystem
             this.txtCostPrice.ShadowDecoration.Parent = this.txtCostPrice;
             this.txtCostPrice.Size = new System.Drawing.Size(229, 27);
             this.txtCostPrice.TabIndex = 4;
+            this.txtCostPrice.TextChanged += new System.EventHandler(this.txtCostPrice_TextChanged);
             // 
             // txtProductName
             // 
@@ -627,7 +597,7 @@ namespace PointOfSaleSystem
             this.txtBarcode.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBarcode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtBarcode.HoverState.Parent = this.txtBarcode;
-            this.txtBarcode.Location = new System.Drawing.Point(238, 22);
+            this.txtBarcode.Location = new System.Drawing.Point(234, 178);
             this.txtBarcode.Margin = new System.Windows.Forms.Padding(4);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.PasswordChar = '\0';
@@ -636,13 +606,14 @@ namespace PointOfSaleSystem
             this.txtBarcode.ShadowDecoration.Parent = this.txtBarcode;
             this.txtBarcode.Size = new System.Drawing.Size(229, 27);
             this.txtBarcode.TabIndex = 0;
+            this.txtBarcode.TextChanged += new System.EventHandler(this.txtBarcode_TextChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(240, 164);
+            this.label11.Location = new System.Drawing.Point(234, 56);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(109, 19);
             this.label11.TabIndex = 2;
@@ -653,7 +624,7 @@ namespace PointOfSaleSystem
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(13, 160);
+            this.label13.Location = new System.Drawing.Point(237, 1);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(39, 19);
             this.label13.TabIndex = 2;
@@ -675,33 +646,23 @@ namespace PointOfSaleSystem
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(238, 111);
+            this.label6.Location = new System.Drawing.Point(229, 111);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(119, 19);
             this.label6.TabIndex = 2;
             this.label6.Text = "Enter Cost Price:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(11, 58);
+            this.label5.Location = new System.Drawing.Point(12, 56);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(124, 19);
             this.label5.TabIndex = 2;
             this.label5.Text = "Select Category:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(238, 58);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(153, 19);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Discount Percentage";
             // 
             // label3
             // 
@@ -719,7 +680,7 @@ namespace PointOfSaleSystem
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(238, 5);
+            this.label2.Location = new System.Drawing.Point(233, 161);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 19);
             this.label2.TabIndex = 2;
@@ -729,27 +690,26 @@ namespace PointOfSaleSystem
             // 
             this.DgvProducts.AllowUserToAddRows = false;
             this.DgvProducts.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DgvProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DgvProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DgvProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvProducts.BackgroundColor = System.Drawing.Color.White;
             this.DgvProducts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvProducts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DgvProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DgvProducts.ColumnHeadersHeight = 40;
             this.DgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProIDGV,
             this.BarcodeGV,
             this.ProductNameGV,
-            this.DiscountAvaiGV,
             this.CategoryGV,
             this.CostPriceGV,
             this.SalePriceGV,
@@ -761,14 +721,14 @@ namespace PointOfSaleSystem
             this.PackSaleGV,
             this.PackUnitGV});
             this.DgvProducts.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvProducts.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvProducts.DefaultCellStyle = dataGridViewCellStyle6;
             this.DgvProducts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvProducts.EnableHeadersVisualStyles = false;
             this.DgvProducts.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -802,6 +762,121 @@ namespace PointOfSaleSystem
             this.DgvProducts.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
             this.DgvProducts.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.contextMenuStrip1.Name = "CS1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 48);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuItem1.Text = "Edit";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuItem2.Text = "Delete";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // DGVSomeProducts
+            // 
+            this.DGVSomeProducts.AllowUserToAddRows = false;
+            this.DGVSomeProducts.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVSomeProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.DGVSomeProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVSomeProducts.BackgroundColor = System.Drawing.Color.White;
+            this.DGVSomeProducts.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DGVSomeProducts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.DGVSomeProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVSomeProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.DGVSomeProducts.ColumnHeadersHeight = 40;
+            this.DGVSomeProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ProSID,
+            this.BarcodeSID,
+            this.NameSID,
+            this.CategorySID,
+            this.CostSID,
+            this.SaleSID,
+            this.RemarksSID,
+            this.UnitSID});
+            this.DGVSomeProducts.ContextMenuStrip = this.CS1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVSomeProducts.DefaultCellStyle = dataGridViewCellStyle9;
+            this.DGVSomeProducts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVSomeProducts.EnableHeadersVisualStyles = false;
+            this.DGVSomeProducts.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
+            this.DGVSomeProducts.Location = new System.Drawing.Point(479, 94);
+            this.DGVSomeProducts.Name = "DGVSomeProducts";
+            this.DGVSomeProducts.ReadOnly = true;
+            this.DGVSomeProducts.RowHeadersVisible = false;
+            this.DGVSomeProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGVSomeProducts.Size = new System.Drawing.Size(891, 436);
+            this.DGVSomeProducts.TabIndex = 26;
+            this.DGVSomeProducts.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Emerald;
+            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.DGVSomeProducts.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.DGVSomeProducts.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
+            this.DGVSomeProducts.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.DGVSomeProducts.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.DGVSomeProducts.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.DGVSomeProducts.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.DGVSomeProducts.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.DGVSomeProducts.ThemeStyle.HeaderStyle.Height = 40;
+            this.DGVSomeProducts.ThemeStyle.ReadOnly = true;
+            this.DGVSomeProducts.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            this.DGVSomeProducts.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.DGVSomeProducts.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.DGVSomeProducts.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.DGVSomeProducts.ThemeStyle.RowsStyle.Height = 22;
+            this.DGVSomeProducts.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            this.DGVSomeProducts.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
+            // CS1
+            // 
+            this.CS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.CS1.Name = "CS1";
+            this.CS1.Size = new System.Drawing.Size(108, 48);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // ProIDGV
             // 
             this.ProIDGV.HeaderText = "ProductID";
@@ -820,12 +895,6 @@ namespace PointOfSaleSystem
             this.ProductNameGV.HeaderText = "Product";
             this.ProductNameGV.Name = "ProductNameGV";
             this.ProductNameGV.ReadOnly = true;
-            // 
-            // DiscountAvaiGV
-            // 
-            this.DiscountAvaiGV.HeaderText = "Discount %";
-            this.DiscountAvaiGV.Name = "DiscountAvaiGV";
-            this.DiscountAvaiGV.ReadOnly = true;
             // 
             // CategoryGV
             // 
@@ -887,100 +956,6 @@ namespace PointOfSaleSystem
             this.PackUnitGV.Name = "PackUnitGV";
             this.PackUnitGV.ReadOnly = true;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2});
-            this.contextMenuStrip1.Name = "CS1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 48);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
-            this.toolStripMenuItem1.Text = "Edit";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
-            this.toolStripMenuItem2.Text = "Delete";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // DGVSomeProducts
-            // 
-            this.DGVSomeProducts.AllowUserToAddRows = false;
-            this.DGVSomeProducts.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVSomeProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGVSomeProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGVSomeProducts.BackgroundColor = System.Drawing.Color.White;
-            this.DGVSomeProducts.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DGVSomeProducts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.DGVSomeProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVSomeProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DGVSomeProducts.ColumnHeadersHeight = 40;
-            this.DGVSomeProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProSID,
-            this.BarcodeSID,
-            this.NameSID,
-            this.DiscountPercentageGV,
-            this.CategorySID,
-            this.CostSID,
-            this.SaleSID,
-            this.RemarksSID,
-            this.UnitSID});
-            this.DGVSomeProducts.ContextMenuStrip = this.CS1;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVSomeProducts.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DGVSomeProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVSomeProducts.EnableHeadersVisualStyles = false;
-            this.DGVSomeProducts.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
-            this.DGVSomeProducts.Location = new System.Drawing.Point(479, 94);
-            this.DGVSomeProducts.Name = "DGVSomeProducts";
-            this.DGVSomeProducts.ReadOnly = true;
-            this.DGVSomeProducts.RowHeadersVisible = false;
-            this.DGVSomeProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVSomeProducts.Size = new System.Drawing.Size(891, 436);
-            this.DGVSomeProducts.TabIndex = 26;
-            this.DGVSomeProducts.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Emerald;
-            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.DGVSomeProducts.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.DGVSomeProducts.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.DGVSomeProducts.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
-            this.DGVSomeProducts.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.DGVSomeProducts.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.DGVSomeProducts.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.DGVSomeProducts.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.DGVSomeProducts.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.DGVSomeProducts.ThemeStyle.HeaderStyle.Height = 40;
-            this.DGVSomeProducts.ThemeStyle.ReadOnly = true;
-            this.DGVSomeProducts.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            this.DGVSomeProducts.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.DGVSomeProducts.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.DGVSomeProducts.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.DGVSomeProducts.ThemeStyle.RowsStyle.Height = 22;
-            this.DGVSomeProducts.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            this.DGVSomeProducts.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
             // ProSID
             // 
             this.ProSID.HeaderText = "ProductID";
@@ -993,18 +968,13 @@ namespace PointOfSaleSystem
             this.BarcodeSID.HeaderText = "Barcode";
             this.BarcodeSID.Name = "BarcodeSID";
             this.BarcodeSID.ReadOnly = true;
+            this.BarcodeSID.Visible = false;
             // 
             // NameSID
             // 
             this.NameSID.HeaderText = "Product";
             this.NameSID.Name = "NameSID";
             this.NameSID.ReadOnly = true;
-            // 
-            // DiscountPercentageGV
-            // 
-            this.DiscountPercentageGV.HeaderText = "Discount %";
-            this.DiscountPercentageGV.Name = "DiscountPercentageGV";
-            this.DiscountPercentageGV.ReadOnly = true;
             // 
             // CategorySID
             // 
@@ -1036,28 +1006,6 @@ namespace PointOfSaleSystem
             this.UnitSID.HeaderText = "Unit";
             this.UnitSID.Name = "UnitSID";
             this.UnitSID.ReadOnly = true;
-            // 
-            // CS1
-            // 
-            this.CS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem,
-            this.deleteToolStripMenuItem});
-            this.CS1.Name = "CS1";
-            this.CS1.Size = new System.Drawing.Size(108, 48);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // Products
             // 
@@ -1131,10 +1079,11 @@ namespace PointOfSaleSystem
         private System.Windows.Forms.ContextMenuStrip CS1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        public System.Windows.Forms.Label lblLoggedUser;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProIDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn BarcodeGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductNameGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DiscountAvaiGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostPriceGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn SalePriceGV;
@@ -1145,18 +1094,13 @@ namespace PointOfSaleSystem
         private System.Windows.Forms.DataGridViewTextBoxColumn PackCostGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn PackSaleGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn PackUnitGV;
-        private Guna.UI2.WinForms.Guna2TextBox txtDiscountPercentage;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProSID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BarcodeSID;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameSID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DiscountPercentageGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategorySID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostSID;
         private System.Windows.Forms.DataGridViewTextBoxColumn SaleSID;
         private System.Windows.Forms.DataGridViewTextBoxColumn RemarksSID;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitSID;
-        public System.Windows.Forms.Label lblLoggedUser;
-        private System.Windows.Forms.Label label8;
     }
 }

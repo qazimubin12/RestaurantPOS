@@ -21,7 +21,17 @@ namespace PointOfSaleSystem
 
         private void btnFinalize_Click(object sender, EventArgs e)
         {
-            this.Close();
+            float total = float.Parse(txtGrandTotal.Text);
+            float paying  = float.Parse(txtPaying.Text);
+            if (total > paying)
+            {
+                MessageBox.Show("Paying Amount is Incorrect");
+                return;
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void PaymentWindow_Load(object sender, EventArgs e)
@@ -32,14 +42,27 @@ namespace PointOfSaleSystem
 
         private void Calculate()
         {
+            float total = float.Parse(txtGrandTotal.Text);
+            float paying = float.Parse(txtPaying.Text);
+
+
+
             if (txtPaying.Text == "" || txtPaying.Text == "0")
             {
                 txtBalance.Text = txtGrandTotal.Text;
             }
             else
             {
-                txtBalance.Text = Convert.ToString(float.Parse(txtGrandTotal.Text) - float.Parse(txtPaying.Text));
+                if (paying > total)
+                {
+                    txtChange.Text =  Convert.ToString(float.Parse(txtPaying.Text) - float.Parse(txtGrandTotal.Text));
+                }
+                else
+                {
+                    txtBalance.Text = Convert.ToString(float.Parse(txtGrandTotal.Text) - float.Parse(txtPaying.Text));
+                }
             }
+            
         }
         private void txtPaying_TextChanged(object sender, EventArgs e)
         {

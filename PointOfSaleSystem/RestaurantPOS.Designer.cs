@@ -29,9 +29,9 @@ namespace PointOfSaleSystem
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblLoggedInUser = new System.Windows.Forms.Label();
@@ -44,13 +44,18 @@ namespace PointOfSaleSystem
             this.fpFoods = new System.Windows.Forms.FlowLayoutPanel();
             this.fpCategory = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.cboSelectCustomer = new System.Windows.Forms.ComboBox();
-            this.lblSelectCustomer = new System.Windows.Forms.Label();
+            this.txtTableSpace = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtTableName = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtDeliveryName = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblTable = new System.Windows.Forms.Label();
             this.btnTables = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cboOrderType = new System.Windows.Forms.ComboBox();
+            this.cboSelectCustomer = new System.Windows.Forms.ComboBox();
+            this.lblDeliveryAddress = new System.Windows.Forms.Label();
+            this.lblEntername = new System.Windows.Forms.Label();
+            this.lblSelectCustomer = new System.Windows.Forms.Label();
+            this.txtDeliveryAddress = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnViewAllProducts = new System.Windows.Forms.Button();
@@ -77,11 +82,6 @@ namespace PointOfSaleSystem
             this.txtDiscount = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnClearForm = new System.Windows.Forms.Button();
             this.cbGST = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.txtTableSpace = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblEntername = new System.Windows.Forms.Label();
-            this.txtDeliveryName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblDeliveryAddress = new System.Windows.Forms.Label();
-            this.txtDeliveryAddress = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.guna2GroupBox1.SuspendLayout();
@@ -112,6 +112,7 @@ namespace PointOfSaleSystem
             this.pictureBox1.Size = new System.Drawing.Size(75, 67);
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // lblLoggedInUser
             // 
@@ -172,6 +173,7 @@ namespace PointOfSaleSystem
             this.lblStore.Size = new System.Drawing.Size(61, 40);
             this.lblStore.TabIndex = 6;
             this.lblStore.Text = "cc";
+            this.lblStore.Visible = false;
             // 
             // button3
             // 
@@ -240,28 +242,33 @@ namespace PointOfSaleSystem
             this.guna2GroupBox1.Text = "ORDER DETAILS";
             this.guna2GroupBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cboSelectCustomer
+            // txtTableSpace
             // 
-            this.cboSelectCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboSelectCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboSelectCustomer.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSelectCustomer.FormattingEnabled = true;
-            this.cboSelectCustomer.Location = new System.Drawing.Point(152, 50);
-            this.cboSelectCustomer.Name = "cboSelectCustomer";
-            this.cboSelectCustomer.Size = new System.Drawing.Size(139, 25);
-            this.cboSelectCustomer.TabIndex = 7;
-            // 
-            // lblSelectCustomer
-            // 
-            this.lblSelectCustomer.AutoSize = true;
-            this.lblSelectCustomer.BackColor = System.Drawing.Color.White;
-            this.lblSelectCustomer.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectCustomer.ForeColor = System.Drawing.Color.Black;
-            this.lblSelectCustomer.Location = new System.Drawing.Point(149, 33);
-            this.lblSelectCustomer.Name = "lblSelectCustomer";
-            this.lblSelectCustomer.Size = new System.Drawing.Size(113, 17);
-            this.lblSelectCustomer.TabIndex = 6;
-            this.lblSelectCustomer.Text = "Select Customer";
+            this.txtTableSpace.AutoRoundedCorners = true;
+            this.txtTableSpace.BackColor = System.Drawing.Color.White;
+            this.txtTableSpace.BorderRadius = 12;
+            this.txtTableSpace.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTableSpace.DefaultText = "";
+            this.txtTableSpace.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTableSpace.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTableSpace.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTableSpace.DisabledState.Parent = this.txtTableSpace;
+            this.txtTableSpace.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTableSpace.Enabled = false;
+            this.txtTableSpace.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTableSpace.FocusedState.Parent = this.txtTableSpace;
+            this.txtTableSpace.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTableSpace.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTableSpace.HoverState.Parent = this.txtTableSpace;
+            this.txtTableSpace.Location = new System.Drawing.Point(253, 49);
+            this.txtTableSpace.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTableSpace.Name = "txtTableSpace";
+            this.txtTableSpace.PasswordChar = '\0';
+            this.txtTableSpace.PlaceholderText = "";
+            this.txtTableSpace.SelectedText = "";
+            this.txtTableSpace.ShadowDecoration.Parent = this.txtTableSpace;
+            this.txtTableSpace.Size = new System.Drawing.Size(38, 27);
+            this.txtTableSpace.TabIndex = 5;
             // 
             // txtTableName
             // 
@@ -290,6 +297,33 @@ namespace PointOfSaleSystem
             this.txtTableName.ShadowDecoration.Parent = this.txtTableName;
             this.txtTableName.Size = new System.Drawing.Size(104, 27);
             this.txtTableName.TabIndex = 5;
+            // 
+            // txtDeliveryName
+            // 
+            this.txtDeliveryName.AutoRoundedCorners = true;
+            this.txtDeliveryName.BorderRadius = 11;
+            this.txtDeliveryName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDeliveryName.DefaultText = "";
+            this.txtDeliveryName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDeliveryName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDeliveryName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDeliveryName.DisabledState.Parent = this.txtDeliveryName;
+            this.txtDeliveryName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDeliveryName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDeliveryName.FocusedState.Parent = this.txtDeliveryName;
+            this.txtDeliveryName.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDeliveryName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDeliveryName.HoverState.Parent = this.txtDeliveryName;
+            this.txtDeliveryName.Location = new System.Drawing.Point(297, 50);
+            this.txtDeliveryName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDeliveryName.Name = "txtDeliveryName";
+            this.txtDeliveryName.PasswordChar = '\0';
+            this.txtDeliveryName.PlaceholderText = "";
+            this.txtDeliveryName.SelectedText = "";
+            this.txtDeliveryName.ShadowDecoration.Parent = this.txtDeliveryName;
+            this.txtDeliveryName.Size = new System.Drawing.Size(179, 25);
+            this.txtDeliveryName.TabIndex = 33;
+            this.txtDeliveryName.Visible = false;
             // 
             // lblTable
             // 
@@ -344,6 +378,82 @@ namespace PointOfSaleSystem
             this.cboOrderType.Size = new System.Drawing.Size(128, 23);
             this.cboOrderType.TabIndex = 0;
             this.cboOrderType.SelectedIndexChanged += new System.EventHandler(this.cboOrderType_SelectedIndexChanged);
+            // 
+            // cboSelectCustomer
+            // 
+            this.cboSelectCustomer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboSelectCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboSelectCustomer.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSelectCustomer.FormattingEnabled = true;
+            this.cboSelectCustomer.Location = new System.Drawing.Point(152, 50);
+            this.cboSelectCustomer.Name = "cboSelectCustomer";
+            this.cboSelectCustomer.Size = new System.Drawing.Size(139, 25);
+            this.cboSelectCustomer.TabIndex = 7;
+            // 
+            // lblDeliveryAddress
+            // 
+            this.lblDeliveryAddress.AutoSize = true;
+            this.lblDeliveryAddress.BackColor = System.Drawing.Color.White;
+            this.lblDeliveryAddress.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeliveryAddress.ForeColor = System.Drawing.Color.Black;
+            this.lblDeliveryAddress.Location = new System.Drawing.Point(483, 32);
+            this.lblDeliveryAddress.Name = "lblDeliveryAddress";
+            this.lblDeliveryAddress.Size = new System.Drawing.Size(107, 17);
+            this.lblDeliveryAddress.TabIndex = 6;
+            this.lblDeliveryAddress.Text = "DeliveryAddress";
+            this.lblDeliveryAddress.Visible = false;
+            // 
+            // lblEntername
+            // 
+            this.lblEntername.AutoSize = true;
+            this.lblEntername.BackColor = System.Drawing.Color.White;
+            this.lblEntername.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEntername.ForeColor = System.Drawing.Color.Black;
+            this.lblEntername.Location = new System.Drawing.Point(296, 30);
+            this.lblEntername.Name = "lblEntername";
+            this.lblEntername.Size = new System.Drawing.Size(151, 17);
+            this.lblEntername.TabIndex = 6;
+            this.lblEntername.Text = "Enter Customer Name";
+            this.lblEntername.Visible = false;
+            // 
+            // lblSelectCustomer
+            // 
+            this.lblSelectCustomer.AutoSize = true;
+            this.lblSelectCustomer.BackColor = System.Drawing.Color.White;
+            this.lblSelectCustomer.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectCustomer.ForeColor = System.Drawing.Color.Black;
+            this.lblSelectCustomer.Location = new System.Drawing.Point(149, 33);
+            this.lblSelectCustomer.Name = "lblSelectCustomer";
+            this.lblSelectCustomer.Size = new System.Drawing.Size(113, 17);
+            this.lblSelectCustomer.TabIndex = 6;
+            this.lblSelectCustomer.Text = "Select Customer";
+            // 
+            // txtDeliveryAddress
+            // 
+            this.txtDeliveryAddress.AutoRoundedCorners = true;
+            this.txtDeliveryAddress.BorderRadius = 11;
+            this.txtDeliveryAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDeliveryAddress.DefaultText = "";
+            this.txtDeliveryAddress.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtDeliveryAddress.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtDeliveryAddress.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDeliveryAddress.DisabledState.Parent = this.txtDeliveryAddress;
+            this.txtDeliveryAddress.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtDeliveryAddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDeliveryAddress.FocusedState.Parent = this.txtDeliveryAddress;
+            this.txtDeliveryAddress.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDeliveryAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtDeliveryAddress.HoverState.Parent = this.txtDeliveryAddress;
+            this.txtDeliveryAddress.Location = new System.Drawing.Point(484, 50);
+            this.txtDeliveryAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDeliveryAddress.Name = "txtDeliveryAddress";
+            this.txtDeliveryAddress.PasswordChar = '\0';
+            this.txtDeliveryAddress.PlaceholderText = "";
+            this.txtDeliveryAddress.SelectedText = "";
+            this.txtDeliveryAddress.ShadowDecoration.Parent = this.txtDeliveryAddress;
+            this.txtDeliveryAddress.Size = new System.Drawing.Size(310, 25);
+            this.txtDeliveryAddress.TabIndex = 33;
+            this.txtDeliveryAddress.Visible = false;
             // 
             // txtSearch
             // 
@@ -403,21 +513,21 @@ namespace PointOfSaleSystem
             // 
             this.DGVCartProduct.AllowUserToAddRows = false;
             this.DGVCartProduct.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVCartProduct.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVCartProduct.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVCartProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVCartProduct.BackgroundColor = System.Drawing.Color.White;
             this.DGVCartProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVCartProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVCartProduct.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVCartProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVCartProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVCartProduct.ColumnHeadersHeight = 30;
             this.DGVCartProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SNo,
@@ -429,14 +539,14 @@ namespace PointOfSaleSystem
             this.TotalGV,
             this.btnAdd,
             this.btnRemove});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVCartProduct.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVCartProduct.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGVCartProduct.EnableHeadersVisualStyles = false;
             this.DGVCartProduct.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
             this.DGVCartProduct.Location = new System.Drawing.Point(815, 288);
@@ -750,114 +860,6 @@ namespace PointOfSaleSystem
             this.cbGST.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.cbGST.UseVisualStyleBackColor = true;
             this.cbGST.CheckedChanged += new System.EventHandler(this.cbGST_CheckedChanged);
-            // 
-            // txtTableSpace
-            // 
-            this.txtTableSpace.AutoRoundedCorners = true;
-            this.txtTableSpace.BackColor = System.Drawing.Color.White;
-            this.txtTableSpace.BorderRadius = 12;
-            this.txtTableSpace.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTableSpace.DefaultText = "";
-            this.txtTableSpace.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTableSpace.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTableSpace.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTableSpace.DisabledState.Parent = this.txtTableSpace;
-            this.txtTableSpace.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTableSpace.Enabled = false;
-            this.txtTableSpace.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTableSpace.FocusedState.Parent = this.txtTableSpace;
-            this.txtTableSpace.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTableSpace.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTableSpace.HoverState.Parent = this.txtTableSpace;
-            this.txtTableSpace.Location = new System.Drawing.Point(253, 49);
-            this.txtTableSpace.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTableSpace.Name = "txtTableSpace";
-            this.txtTableSpace.PasswordChar = '\0';
-            this.txtTableSpace.PlaceholderText = "";
-            this.txtTableSpace.SelectedText = "";
-            this.txtTableSpace.ShadowDecoration.Parent = this.txtTableSpace;
-            this.txtTableSpace.Size = new System.Drawing.Size(38, 27);
-            this.txtTableSpace.TabIndex = 5;
-            // 
-            // lblEntername
-            // 
-            this.lblEntername.AutoSize = true;
-            this.lblEntername.BackColor = System.Drawing.Color.White;
-            this.lblEntername.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEntername.ForeColor = System.Drawing.Color.Black;
-            this.lblEntername.Location = new System.Drawing.Point(296, 30);
-            this.lblEntername.Name = "lblEntername";
-            this.lblEntername.Size = new System.Drawing.Size(151, 17);
-            this.lblEntername.TabIndex = 6;
-            this.lblEntername.Text = "Enter Customer Name";
-            this.lblEntername.Visible = false;
-            // 
-            // txtDeliveryName
-            // 
-            this.txtDeliveryName.AutoRoundedCorners = true;
-            this.txtDeliveryName.BorderRadius = 11;
-            this.txtDeliveryName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDeliveryName.DefaultText = "";
-            this.txtDeliveryName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtDeliveryName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtDeliveryName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDeliveryName.DisabledState.Parent = this.txtDeliveryName;
-            this.txtDeliveryName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDeliveryName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDeliveryName.FocusedState.Parent = this.txtDeliveryName;
-            this.txtDeliveryName.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDeliveryName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDeliveryName.HoverState.Parent = this.txtDeliveryName;
-            this.txtDeliveryName.Location = new System.Drawing.Point(297, 50);
-            this.txtDeliveryName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDeliveryName.Name = "txtDeliveryName";
-            this.txtDeliveryName.PasswordChar = '\0';
-            this.txtDeliveryName.PlaceholderText = "";
-            this.txtDeliveryName.SelectedText = "";
-            this.txtDeliveryName.ShadowDecoration.Parent = this.txtDeliveryName;
-            this.txtDeliveryName.Size = new System.Drawing.Size(179, 25);
-            this.txtDeliveryName.TabIndex = 33;
-            this.txtDeliveryName.Visible = false;
-            // 
-            // lblDeliveryAddress
-            // 
-            this.lblDeliveryAddress.AutoSize = true;
-            this.lblDeliveryAddress.BackColor = System.Drawing.Color.White;
-            this.lblDeliveryAddress.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeliveryAddress.ForeColor = System.Drawing.Color.Black;
-            this.lblDeliveryAddress.Location = new System.Drawing.Point(483, 32);
-            this.lblDeliveryAddress.Name = "lblDeliveryAddress";
-            this.lblDeliveryAddress.Size = new System.Drawing.Size(107, 17);
-            this.lblDeliveryAddress.TabIndex = 6;
-            this.lblDeliveryAddress.Text = "DeliveryAddress";
-            this.lblDeliveryAddress.Visible = false;
-            // 
-            // txtDeliveryAddress
-            // 
-            this.txtDeliveryAddress.AutoRoundedCorners = true;
-            this.txtDeliveryAddress.BorderRadius = 11;
-            this.txtDeliveryAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDeliveryAddress.DefaultText = "";
-            this.txtDeliveryAddress.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtDeliveryAddress.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtDeliveryAddress.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDeliveryAddress.DisabledState.Parent = this.txtDeliveryAddress;
-            this.txtDeliveryAddress.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtDeliveryAddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDeliveryAddress.FocusedState.Parent = this.txtDeliveryAddress;
-            this.txtDeliveryAddress.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDeliveryAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtDeliveryAddress.HoverState.Parent = this.txtDeliveryAddress;
-            this.txtDeliveryAddress.Location = new System.Drawing.Point(484, 50);
-            this.txtDeliveryAddress.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDeliveryAddress.Name = "txtDeliveryAddress";
-            this.txtDeliveryAddress.PasswordChar = '\0';
-            this.txtDeliveryAddress.PlaceholderText = "";
-            this.txtDeliveryAddress.SelectedText = "";
-            this.txtDeliveryAddress.ShadowDecoration.Parent = this.txtDeliveryAddress;
-            this.txtDeliveryAddress.Size = new System.Drawing.Size(310, 25);
-            this.txtDeliveryAddress.TabIndex = 33;
-            this.txtDeliveryAddress.Visible = false;
             // 
             // RestaurantPOS
             // 

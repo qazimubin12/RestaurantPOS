@@ -567,7 +567,7 @@ namespace PointOfSaleSystem
                     cmd.ExecuteNonQuery();
 
 
-                    cmd = new SqlCommand("insert into SalesTable (CustomerInvoice_ID, Customer_ID,InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo) values (@CustomerInvoice_ID, @Customer_ID,@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo)", MainClass.con);
+                    cmd = new SqlCommand("insert into SalesTable (Paying,Change,CustomerInvoice_ID, Customer_ID,InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo) values (@Paying,@Change,@CustomerInvoice_ID, @Customer_ID,@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo)", MainClass.con);
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
                     cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
@@ -575,6 +575,8 @@ namespace PointOfSaleSystem
                     cmd.Parameters.AddWithValue("@StoreAddress", lblStoreAddress.Text);
                     cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
                     cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
+                    cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
                     cmd.Parameters.AddWithValue("@SaleTime", saletime);
                     cmd.Parameters.AddWithValue("@OrderStatus", "In Ledger");
                     cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
@@ -837,7 +839,7 @@ namespace PointOfSaleSystem
 
                 if (cboOrderType.Text == "Delivery")
                 {
-                    cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo,DeliveryName,DeliveryAddress) values (@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo,@DeliveryName,@DeliveryAddress)", MainClass.con);
+                    cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo,DeliveryName,DeliveryAddress,Paying,Change) values (@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo,@DeliveryName,@DeliveryAddress,@Paying,@Change)", MainClass.con);
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
                     cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
@@ -852,12 +854,22 @@ namespace PointOfSaleSystem
                     cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
                     cmd.Parameters.AddWithValue("@DeliveryName", txtDeliveryName.Text);
                     cmd.Parameters.AddWithValue("@DeliveryAddress", txtDeliveryAddress.Text);
+                    cmd.Parameters.AddWithValue("@Change", 0);
+                    cmd.Parameters.AddWithValue("@Paying", float.Parse(lblGrandTotal.Text));
                 }
                 else
                 {
-                    cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo) values (@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo)", MainClass.con);
+                    PaymentWindow pm = new PaymentWindow(this);
+                    pm.ShowDialog();
+
+                    cmd = new SqlCommand("insert into SalesTable (Paying,Change,InvoiceNo,Discount,GrandTotal,StoreName,StoreAddress,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,Logo) values (@Paying,@Change,@InvoiceNo,@Discount,@GrandTotal,@StoreName,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@Logo)", MainClass.con);
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
+
+                    cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
+                    cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
+
+
                     cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
                     cmd.Parameters.AddWithValue("@StoreName", lblStore.Text);
                     cmd.Parameters.AddWithValue("@StoreAddress", lblStoreAddress.Text);

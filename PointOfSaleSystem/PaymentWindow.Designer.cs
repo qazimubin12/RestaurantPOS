@@ -30,6 +30,7 @@ namespace PointOfSaleSystem
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtGrandTotal = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtPaying = new Guna.UI2.WinForms.Guna2TextBox();
@@ -38,7 +39,8 @@ namespace PointOfSaleSystem
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnFinalize = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtChange = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +54,18 @@ namespace PointOfSaleSystem
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(450, 52);
             this.panel1.TabIndex = 26;
+            // 
+            // button3
+            // 
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = global::PointOfSaleSystem.Properties.Resources.cancel__2_;
+            this.button3.Location = new System.Drawing.Point(409, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 36);
+            this.button3.TabIndex = 5;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -67,7 +81,7 @@ namespace PointOfSaleSystem
             // txtGrandTotal
             // 
             this.txtGrandTotal.AutoRoundedCorners = true;
-            this.txtGrandTotal.BorderRadius = 23;
+            this.txtGrandTotal.BorderRadius = 18;
             this.txtGrandTotal.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtGrandTotal.DefaultText = "0";
             this.txtGrandTotal.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -89,13 +103,13 @@ namespace PointOfSaleSystem
             this.txtGrandTotal.SelectedText = "";
             this.txtGrandTotal.SelectionStart = 1;
             this.txtGrandTotal.ShadowDecoration.Parent = this.txtGrandTotal;
-            this.txtGrandTotal.Size = new System.Drawing.Size(398, 49);
+            this.txtGrandTotal.Size = new System.Drawing.Size(398, 39);
             this.txtGrandTotal.TabIndex = 34;
             // 
             // txtPaying
             // 
             this.txtPaying.AutoRoundedCorners = true;
-            this.txtPaying.BorderRadius = 23;
+            this.txtPaying.BorderRadius = 18;
             this.txtPaying.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPaying.DefaultText = "0";
             this.txtPaying.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -108,7 +122,7 @@ namespace PointOfSaleSystem
             this.txtPaying.Font = new System.Drawing.Font("Century Gothic", 20F);
             this.txtPaying.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPaying.HoverState.Parent = this.txtPaying;
-            this.txtPaying.Location = new System.Drawing.Point(18, 210);
+            this.txtPaying.Location = new System.Drawing.Point(18, 182);
             this.txtPaying.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.txtPaying.Name = "txtPaying";
             this.txtPaying.PasswordChar = '\0';
@@ -116,14 +130,14 @@ namespace PointOfSaleSystem
             this.txtPaying.SelectedText = "";
             this.txtPaying.SelectionStart = 1;
             this.txtPaying.ShadowDecoration.Parent = this.txtPaying;
-            this.txtPaying.Size = new System.Drawing.Size(398, 49);
+            this.txtPaying.Size = new System.Drawing.Size(398, 39);
             this.txtPaying.TabIndex = 0;
             this.txtPaying.TextChanged += new System.EventHandler(this.txtPaying_TextChanged);
             // 
             // txtBalance
             // 
             this.txtBalance.AutoRoundedCorners = true;
-            this.txtBalance.BorderRadius = 23;
+            this.txtBalance.BorderRadius = 18;
             this.txtBalance.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtBalance.DefaultText = "0";
             this.txtBalance.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -137,7 +151,7 @@ namespace PointOfSaleSystem
             this.txtBalance.Font = new System.Drawing.Font("Century Gothic", 20F);
             this.txtBalance.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtBalance.HoverState.Parent = this.txtBalance;
-            this.txtBalance.Location = new System.Drawing.Point(18, 327);
+            this.txtBalance.Location = new System.Drawing.Point(18, 265);
             this.txtBalance.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.PasswordChar = '\0';
@@ -145,7 +159,7 @@ namespace PointOfSaleSystem
             this.txtBalance.SelectedText = "";
             this.txtBalance.SelectionStart = 1;
             this.txtBalance.ShadowDecoration.Parent = this.txtBalance;
-            this.txtBalance.Size = new System.Drawing.Size(398, 49);
+            this.txtBalance.Size = new System.Drawing.Size(398, 39);
             this.txtBalance.TabIndex = 34;
             // 
             // label2
@@ -166,7 +180,7 @@ namespace PointOfSaleSystem
             this.label3.BackColor = System.Drawing.Color.SeaGreen;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(18, 174);
+            this.label3.Location = new System.Drawing.Point(18, 146);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 28);
             this.label3.TabIndex = 2;
@@ -178,7 +192,7 @@ namespace PointOfSaleSystem
             this.label4.BackColor = System.Drawing.Color.SeaGreen;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(16, 291);
+            this.label4.Location = new System.Drawing.Point(16, 229);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 28);
             this.label4.TabIndex = 2;
@@ -190,7 +204,7 @@ namespace PointOfSaleSystem
             this.btnFinalize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinalize.Font = new System.Drawing.Font("Century Gothic", 15F);
             this.btnFinalize.ForeColor = System.Drawing.Color.White;
-            this.btnFinalize.Location = new System.Drawing.Point(23, 387);
+            this.btnFinalize.Location = new System.Drawing.Point(18, 411);
             this.btnFinalize.Name = "btnFinalize";
             this.btnFinalize.Size = new System.Drawing.Size(393, 77);
             this.btnFinalize.TabIndex = 35;
@@ -198,17 +212,45 @@ namespace PointOfSaleSystem
             this.btnFinalize.UseVisualStyleBackColor = false;
             this.btnFinalize.Click += new System.EventHandler(this.btnFinalize_Click);
             // 
-            // button3
+            // label5
             // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = global::PointOfSaleSystem.Properties.Resources.cancel__2_;
-            this.button3.Location = new System.Drawing.Point(409, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 36);
-            this.button3.TabIndex = 5;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.SeaGreen;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(16, 312);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 28);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Change";
+            // 
+            // txtChange
+            // 
+            this.txtChange.AutoRoundedCorners = true;
+            this.txtChange.BorderRadius = 18;
+            this.txtChange.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtChange.DefaultText = "0";
+            this.txtChange.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtChange.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtChange.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtChange.DisabledState.Parent = this.txtChange;
+            this.txtChange.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtChange.Enabled = false;
+            this.txtChange.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtChange.FocusedState.Parent = this.txtChange;
+            this.txtChange.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.txtChange.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtChange.HoverState.Parent = this.txtChange;
+            this.txtChange.Location = new System.Drawing.Point(18, 348);
+            this.txtChange.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.txtChange.Name = "txtChange";
+            this.txtChange.PasswordChar = '\0';
+            this.txtChange.PlaceholderText = "";
+            this.txtChange.SelectedText = "";
+            this.txtChange.SelectionStart = 1;
+            this.txtChange.ShadowDecoration.Parent = this.txtChange;
+            this.txtChange.Size = new System.Drawing.Size(398, 39);
+            this.txtChange.TabIndex = 34;
             // 
             // PaymentWindow
             // 
@@ -218,6 +260,8 @@ namespace PointOfSaleSystem
             this.ClientSize = new System.Drawing.Size(450, 500);
             this.ControlBox = false;
             this.Controls.Add(this.btnFinalize);
+            this.Controls.Add(this.txtChange);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtBalance);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -247,5 +291,7 @@ namespace PointOfSaleSystem
         public Guna.UI2.WinForms.Guna2TextBox txtGrandTotal;
         public Guna.UI2.WinForms.Guna2TextBox txtBalance;
         public Guna.UI2.WinForms.Guna2TextBox txtPaying;
+        private System.Windows.Forms.Label label5;
+        public Guna.UI2.WinForms.Guna2TextBox txtChange;
     }
 }

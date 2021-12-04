@@ -32,29 +32,23 @@ namespace PointOfSaleSystem
                 if (mode == 0)
                 {
                     label2.Visible = false;
-                    label4.Visible = false;
                     label6.Visible = false;
                     cbPackage.Visible = false;
-                    DGVSomeProducts.Columns["DiscountPercentageGV"].Visible = false;
                     DGVSomeProducts.Columns["CostSID"].Visible = false;
                     DGVSomeProducts.Columns["BarcodeSID"].Visible = false;
                     txtBarcode.Visible = false;
                     txtCostPrice.Visible = false;
-                    txtDiscountPercentage.Visible = false;
 
                 }
                 else
                 {
                     label2.Visible = true;
-                    label4.Visible = true;
                     label6.Visible = true;
                     cbPackage.Visible = true;
                     txtBarcode.Visible = true;
                     txtCostPrice.Visible = true;
-                    DGVSomeProducts.Columns["DiscountPercentageGV"].Visible = true;
                     DGVSomeProducts.Columns["CostSID"].Visible = true;
                     DGVSomeProducts.Columns["BarcodeSID"].Visible = true;
-                    txtDiscountPercentage.Visible = true;
 
 
                 }
@@ -69,7 +63,7 @@ namespace PointOfSaleSystem
         }
 
 
-        private void ShowProductSID(DataGridView dgv2, DataGridViewColumn ID, DataGridViewColumn Barcode, DataGridViewColumn Name, DataGridViewColumn Cat, DataGridViewColumn Discount, DataGridViewColumn Cost,
+        private void ShowProductSID(DataGridView dgv2, DataGridViewColumn ID, DataGridViewColumn Barcode, DataGridViewColumn Name, DataGridViewColumn Cat, DataGridViewColumn Cost,
             DataGridViewColumn Sale, DataGridViewColumn Remarks, DataGridViewColumn Unit,string data = null)
         {
             try
@@ -79,11 +73,11 @@ namespace PointOfSaleSystem
 
                 if (data != "")
                 {
-                    cmd = new SqlCommand("select p.ProductID,p.Barcode,p.ProductName,p.Discount,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks from ProductsTable p inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID  where p.ProductName like '%" + data + "%'", MainClass.con);
+                    cmd = new SqlCommand("select p.ProductID,p.Barcode,p.ProductName,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks from ProductsTable p inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID  where p.ProductName like '%" + data + "%'", MainClass.con);
                 }
                 else
                 {
-                    cmd = new SqlCommand("select p.ProductID,p.Barcode,p.ProductName,p.Discount,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks from ProductsTable p inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID  order by p.ProductName", MainClass.con);
+                    cmd = new SqlCommand("select p.ProductID,p.Barcode,p.ProductName,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks from ProductsTable p inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID  order by p.ProductName", MainClass.con);
                 }
            
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -94,7 +88,6 @@ namespace PointOfSaleSystem
                 Name.DataPropertyName = dt.Columns["ProductName"].ToString();
                 Barcode.DataPropertyName = dt.Columns["Barcode"].ToString();
                 Cat.DataPropertyName = dt.Columns["Category"].ToString();
-                Discount.DataPropertyName = dt.Columns["Discount"].ToString();
                 Cost.DataPropertyName = dt.Columns["CostPrice"].ToString();
                 Sale.DataPropertyName = dt.Columns["SalePrice"].ToString();
                 Remarks.DataPropertyName = dt.Columns["Remarks"].ToString();
@@ -110,7 +103,7 @@ namespace PointOfSaleSystem
         }
 
 
-        private void ShowProducts(DataGridView dgv, DataGridViewColumn ID, DataGridViewColumn Barcode, DataGridViewColumn Name, DataGridViewColumn Cat, DataGridViewColumn Discount, DataGridViewColumn Cost,
+        private void ShowProducts(DataGridView dgv, DataGridViewColumn ID, DataGridViewColumn Barcode, DataGridViewColumn Name, DataGridViewColumn Cat, DataGridViewColumn Cost,
             DataGridViewColumn Sale, DataGridViewColumn Remarks, DataGridViewColumn Unit, DataGridViewCheckBoxColumn Packing, DataGridViewColumn PackQty, DataGridViewColumn PackCost,
             DataGridViewColumn PackSale, DataGridViewColumn PackUnit, string data = null)
         {
@@ -121,11 +114,11 @@ namespace PointOfSaleSystem
 
                 if (data != "")
                 {
-                    cmd = new SqlCommand("select p.ProductID,p.Barcode,p.ProductName,p.Discount,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks,p.IsPackage,p.PackQty,p.PackCostPrice,p.PackSalePrice,up.Unit as 'Pack Unit' from ProductsTable p  inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID join UnitsTable up on up.UnitID = p.PackUnitID where p.ProductName like '%" + data + "%'", MainClass.con);
+                    cmd = new SqlCommand("select p.ProductID,p.Barcode,p.ProductName,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks,p.IsPackage,p.PackQty,p.PackCostPrice,p.PackSalePrice,up.Unit as 'Pack Unit' from ProductsTable p  inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID join UnitsTable up on up.UnitID = p.PackUnitID where p.ProductName like '%" + data + "%'", MainClass.con);
                 }
                 else
                 {
-                    cmd = new SqlCommand("select p.ProductID,p.Barcode,p.ProductName,p.Discount,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks,p.IsPackage,p.PackQty,p.PackCostPrice,p.PackSalePrice,up.Unit as 'Pack Unit' from ProductsTable p inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID join UnitsTable up on up.UnitID = p.PackUnitID order by p.ProductName", MainClass.con);
+                    cmd = new SqlCommand("select p.ProductID,p.Barcode,p.ProductName,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks,p.IsPackage,p.PackQty,p.PackCostPrice,p.PackSalePrice,up.Unit as 'Pack Unit' from ProductsTable p inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID join UnitsTable up on up.UnitID = p.PackUnitID order by p.ProductName", MainClass.con);
                 }
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -136,7 +129,6 @@ namespace PointOfSaleSystem
                 Name.DataPropertyName = dt.Columns["ProductName"].ToString();
                 Barcode.DataPropertyName = dt.Columns["Barcode"].ToString();
                 Cat.DataPropertyName = dt.Columns["Category"].ToString();
-                Discount.DataPropertyName = dt.Columns["Discount"].ToString();
                 Cost.DataPropertyName = dt.Columns["CostPrice"].ToString();
                 Sale.DataPropertyName = dt.Columns["SalePrice"].ToString();
                 Remarks.DataPropertyName = dt.Columns["Remarks"].ToString();
@@ -189,18 +181,18 @@ namespace PointOfSaleSystem
             MainClass.FillCategories(cboCategory);
             MainClass.FillUnits(cboPackUnit);
             MainClass.FillUnits(cboUnits);
-            ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, DiscountPercentageGV, CostSID, SaleSID, RemarksSID, UnitSID);
+            ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, CostSID, SaleSID, RemarksSID, UnitSID);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (show == 1)
             {
-                ShowProducts(DgvProducts, ProIDGV, BarcodeGV, ProductNameGV, CategoryGV, DiscountAvaiGV, CostPriceGV, SalePriceGV, RemarksGV, UnitGV, IsPackageGV, PackQtyGv, PackCostGV, PackSaleGV, PackUnitGV, txtSearch.Text.ToString());
+                ShowProducts(DgvProducts, ProIDGV, BarcodeGV, ProductNameGV, CategoryGV, CostPriceGV, SalePriceGV, RemarksGV, UnitGV, IsPackageGV, PackQtyGv, PackCostGV, PackSaleGV, PackUnitGV, txtSearch.Text.ToString());
             }
             else
             {
-                ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, DiscountPercentageGV, CostSID, SaleSID, RemarksSID, UnitSID,txtSearch.Text.ToString());
+                ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, CostSID, SaleSID, RemarksSID, UnitSID,txtSearch.Text.ToString());
             }
         }
 
@@ -210,12 +202,12 @@ namespace PointOfSaleSystem
             if (show == 1)
             {
                 DgvProducts.BringToFront();
-                ShowProducts(DgvProducts, ProIDGV, BarcodeGV, ProductNameGV, CategoryGV, DiscountAvaiGV, CostPriceGV, SalePriceGV, RemarksGV, UnitGV, IsPackageGV, PackQtyGv, PackCostGV, PackSaleGV, PackUnitGV, txtSearch.Text.ToString());
+                ShowProducts(DgvProducts, ProIDGV, BarcodeGV, ProductNameGV, CategoryGV,  CostPriceGV, SalePriceGV, RemarksGV, UnitGV, IsPackageGV, PackQtyGv, PackCostGV, PackSaleGV, PackUnitGV, txtSearch.Text.ToString());
             }
             else
             {
                 DGVSomeProducts.BringToFront();
-                ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, DiscountPercentageGV, CostSID, SaleSID, RemarksSID, UnitSID, txtSearch.Text.ToString());
+                ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID,  CostSID, SaleSID, RemarksSID, UnitSID, txtSearch.Text.ToString());
             }
         }
 
@@ -304,13 +296,28 @@ namespace PointOfSaleSystem
                     try
                     {
                         MainClass.con.Open();
-                        cmd = new SqlCommand("insert into ProductsTable (Barcode,ProductName,Discount,CatID,UnitID,CostPrice,SalePrice,Remarks,IsPackage,PackQty,PackCostPrice,PackSalePrice,PackUnitID) values(@Barcode,@ProductName,@Discount,@CatID,@UnitID,@CostPrice,@SalePrice,@Remarks,@IsPackage,@PackQty,@PackCostPrice,@PackSalePrice,@PackUnitID)", MainClass.con);
-                        cmd.Parameters.AddWithValue("@Barcode", txtBarcode.Text);
+                        cmd = new SqlCommand("insert into ProductsTable (Barcode,ProductName,CatID,UnitID,CostPrice,SalePrice,Remarks,IsPackage,PackQty,PackCostPrice,PackSalePrice,PackUnitID) values(@Barcode,@ProductName,@CatID,@UnitID,@CostPrice,@SalePrice,@Remarks,@IsPackage,@PackQty,@PackCostPrice,@PackSalePrice,@PackUnitID)", MainClass.con);
+                        if(txtBarcode.Text == "")
+                        {
+                            cmd.Parameters.AddWithValue("@Barcode", "00000");
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@Barcode", txtBarcode.Text);
+                        }
+                        
+                        if(txtCostPrice.Text == "")
+                        {
+                            cmd.Parameters.AddWithValue("@CostPrice", txtSalePrice.Text);
+                        }
+
+                        else 
+                        {
+                            cmd.Parameters.AddWithValue("@CostPrice", txtCostPrice.Text);
+                        }
                         cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text);
-                        cmd.Parameters.AddWithValue("@Discount", txtDiscountPercentage.Text);
                         cmd.Parameters.AddWithValue("@CatID", catId);
                         cmd.Parameters.AddWithValue("@UnitID", unitid);
-                        cmd.Parameters.AddWithValue("@CostPrice", txtCostPrice.Text);
                         cmd.Parameters.AddWithValue("@SalePrice", txtSalePrice.Text);
                         cmd.Parameters.AddWithValue("@Remarks", txtRemarks.Text);
                         cmd.Parameters.AddWithValue("@IsPackage", cbPackage.Checked);
@@ -329,7 +336,7 @@ namespace PointOfSaleSystem
                         MainClass.con.Close();
                         MessageBox.Show("Product Inserted Successfully.");
                         Clear();
-                        ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, DiscountPercentageGV, CostSID, SaleSID, RemarksSID, UnitSID);
+                        ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, CostSID, SaleSID, RemarksSID, UnitSID);
                     }
                     catch (Exception ex)
                     {
@@ -346,11 +353,9 @@ namespace PointOfSaleSystem
                     try
                     {
                         MainClass.con.Open();
-                        cmd = new SqlCommand("UPDATE ProductsTable SET Barcode =@Barcode,ProductName =@ProductName,Discount =@Discount,CatID =@CatID,UnitID =@UnitID,CostPrice =@CostPrice,SalePrice =@SalePrice, Remarks =@Remarks,IsPackage =@IsPackage,PackQty =@PackQty,PackCostPrice =@PackCostPrice,PackSalePrice =@PackSalePrice,PackUnitID =@PackUnitID where ProductID = @ProductID", MainClass.con);
+                        cmd = new SqlCommand("UPDATE ProductsTable SET Barcode =@Barcode,ProductName =@ProductName,CatID =@CatID,UnitID =@UnitID,CostPrice =@CostPrice,SalePrice =@SalePrice, Remarks =@Remarks,IsPackage =@IsPackage,PackQty =@PackQty,PackCostPrice =@PackCostPrice,PackSalePrice =@PackSalePrice,PackUnitID =@PackUnitID where ProductID = @ProductID", MainClass.con);
                         cmd.Parameters.AddWithValue("@ProductID", lblID.Text);
-                        cmd.Parameters.AddWithValue("@Barcode", txtBarcode.Text);
                         cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text);
-                        cmd.Parameters.AddWithValue("@Discount", txtDiscountPercentage.Text);
                         cmd.Parameters.AddWithValue("@CatID", catId);
                         cmd.Parameters.AddWithValue("@UnitID", unitid);
                         cmd.Parameters.AddWithValue("@CostPrice", txtCostPrice.Text);
@@ -358,6 +363,26 @@ namespace PointOfSaleSystem
                         cmd.Parameters.AddWithValue("@Remarks", txtRemarks.Text);
                         cmd.Parameters.AddWithValue("@IsPackage", cbPackage.Checked);
                         cmd.Parameters.AddWithValue("@PackQty", txtPackQty.Text);
+                        if (txtBarcode.Text == "")
+                        {
+                            cmd.Parameters.AddWithValue("@Barcode", "00000");
+                        }
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@Barcode", txtBarcode.Text);
+                        }
+
+                        if (txtCostPrice.Text == "")
+                        {
+                            cmd.Parameters.AddWithValue("@CostPrice", txtSalePrice.Text);
+                        }
+
+                        else
+                        {
+                            cmd.Parameters.AddWithValue("@CostPrice", txtCostPrice.Text);
+
+                        }
+
                         cmd.Parameters.AddWithValue("@PackCostPrice", txtPackCostPrice.Text);
                         cmd.Parameters.AddWithValue("@PackSalePrice", txtPackSalePrice.Text);
                         if (cboPackUnit.SelectedIndex == 0)
@@ -376,7 +401,7 @@ namespace PointOfSaleSystem
                         btnSave.Text = "SAVE";
                         btnSave.BackColor = Color.FromArgb(39, 174, 96);
                         Clear();
-                        ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, DiscountPercentageGV, CostSID, SaleSID, RemarksSID, UnitSID);
+                        ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID,  CostSID, SaleSID, RemarksSID, UnitSID);
                     }
                     catch (Exception ex)
                     {
@@ -396,17 +421,16 @@ namespace PointOfSaleSystem
             lblID.Text = DgvProducts.CurrentRow.Cells[0].Value.ToString();
             txtBarcode.Text = DgvProducts.CurrentRow.Cells[1].Value.ToString();
             txtProductName.Text = DgvProducts.CurrentRow.Cells[2].Value.ToString();
-            txtDiscountPercentage.Text = DgvProducts.CurrentRow.Cells[3].Value.ToString();
-            cboCategory.Text = DgvProducts.CurrentRow.Cells[4].Value.ToString();
-            cboUnits.Text = DgvProducts.CurrentRow.Cells[5].Value.ToString();
-            txtCostPrice.Text = DgvProducts.CurrentRow.Cells[6].Value.ToString();
-            txtSalePrice.Text = DgvProducts.CurrentRow.Cells[7].Value.ToString();
-            txtRemarks.Text = DgvProducts.CurrentRow.Cells[8].Value.ToString();
-            cbPackage.Checked = bool.Parse(DgvProducts.CurrentRow.Cells[9].Value.ToString());
-            txtPackQty.Text = DgvProducts.CurrentRow.Cells[10].Value.ToString();
-            txtPackCostPrice.Text = DgvProducts.CurrentRow.Cells[11].Value.ToString();
-            txtPackSalePrice.Text = DgvProducts.CurrentRow.Cells[12].Value.ToString();
-            cboPackUnit.Text = DgvProducts.CurrentRow.Cells[13].Value.ToString();
+            cboCategory.Text = DgvProducts.CurrentRow.Cells[3].Value.ToString();
+            cboUnits.Text = DgvProducts.CurrentRow.Cells[4].Value.ToString();
+            txtCostPrice.Text = DgvProducts.CurrentRow.Cells[5].Value.ToString();
+            txtSalePrice.Text = DgvProducts.CurrentRow.Cells[6].Value.ToString();
+            txtRemarks.Text = DgvProducts.CurrentRow.Cells[7].Value.ToString();
+            cbPackage.Checked = bool.Parse(DgvProducts.CurrentRow.Cells[8].Value.ToString());
+            txtPackQty.Text = DgvProducts.CurrentRow.Cells[9].Value.ToString();
+            txtPackCostPrice.Text = DgvProducts.CurrentRow.Cells[10].Value.ToString();
+            txtPackSalePrice.Text = DgvProducts.CurrentRow.Cells[11].Value.ToString();
+            cboPackUnit.Text = DgvProducts.CurrentRow.Cells[12].Value.ToString();
             btnSave.Text = "UPDATE";
             btnSave.BackColor = Color.Orange;
 
@@ -428,7 +452,7 @@ namespace PointOfSaleSystem
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("Record Deleted Successfully");
                             MainClass.con.Close();
-                            ShowProducts(DgvProducts, ProIDGV, BarcodeGV, ProductNameGV, CategoryGV, DiscountAvaiGV, CostPriceGV, SalePriceGV, RemarksGV, UnitGV, IsPackageGV, PackQtyGv, PackCostGV, PackSaleGV, PackUnitGV);
+                            ShowProducts(DgvProducts, ProIDGV, BarcodeGV, ProductNameGV, CategoryGV, CostPriceGV, SalePriceGV, RemarksGV, UnitGV, IsPackageGV, PackQtyGv, PackCostGV, PackSaleGV, PackUnitGV);
                         }
                         catch (Exception ex)
                         {
@@ -446,12 +470,11 @@ namespace PointOfSaleSystem
             lblID.Text = DGVSomeProducts.CurrentRow.Cells[0].Value.ToString();
             txtBarcode.Text = DGVSomeProducts.CurrentRow.Cells[1].Value.ToString();
             txtProductName.Text = DGVSomeProducts.CurrentRow.Cells[2].Value.ToString();
-            txtDiscountPercentage.Text = DGVSomeProducts.CurrentRow.Cells[3].Value.ToString();
-            cboCategory.Text = DGVSomeProducts.CurrentRow.Cells[4].Value.ToString();
-            cboUnits.Text = DGVSomeProducts.CurrentRow.Cells[5].Value.ToString();
-            txtCostPrice.Text = DGVSomeProducts.CurrentRow.Cells[6].Value.ToString();
-            txtSalePrice.Text = DGVSomeProducts.CurrentRow.Cells[7].Value.ToString();
-            txtRemarks.Text = DGVSomeProducts.CurrentRow.Cells[8].Value.ToString();
+            cboCategory.Text = DGVSomeProducts.CurrentRow.Cells[3].Value.ToString();
+            cboUnits.Text = DGVSomeProducts.CurrentRow.Cells[4].Value.ToString();
+            txtCostPrice.Text = DGVSomeProducts.CurrentRow.Cells[5].Value.ToString();
+            txtSalePrice.Text = DGVSomeProducts.CurrentRow.Cells[6].Value.ToString();
+            txtRemarks.Text = DGVSomeProducts.CurrentRow.Cells[7].Value.ToString();
            
             btnSave.Text = "UPDATE";
             btnSave.BackColor = Color.Orange;
@@ -473,7 +496,7 @@ namespace PointOfSaleSystem
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("Record Deleted Successfully");
                             MainClass.con.Close();
-                            ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, DiscountPercentageGV, CostSID, SaleSID, RemarksSID, UnitSID);
+                            ShowProductSID(DGVSomeProducts, ProSID, BarcodeSID, NameSID, CategorySID, CostSID, SaleSID, RemarksSID, UnitSID);
                         }
                         catch (Exception ex)
                         {
@@ -516,6 +539,26 @@ namespace PointOfSaleSystem
                     Clear();
                 }
             }
+        }
+
+        private void txtCostPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBarcode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
