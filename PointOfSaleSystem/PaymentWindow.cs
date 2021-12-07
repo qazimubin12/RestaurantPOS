@@ -37,6 +37,17 @@ namespace PointOfSaleSystem
         private void PaymentWindow_Load(object sender, EventArgs e)
         {
             txtGrandTotal.Text = rp.lblGrandTotal.Text;
+            if(rp.cboOrderType.Text == "Dine In" || rp.cboOrderType.Text == "Take Away" || rp.cboOrderType.Text == "Delivery")
+            {
+                label4.Visible = false;
+                txtBalance.Visible = false;
+            }
+            else
+            {
+                label4.Visible = true;
+                txtBalance.Visible = true;
+            }
+            
             Calculate();
         }
 
@@ -45,21 +56,22 @@ namespace PointOfSaleSystem
             float total = float.Parse(txtGrandTotal.Text);
             float paying = float.Parse(txtPaying.Text);
 
-
-
             if (txtPaying.Text == "" || txtPaying.Text == "0")
             {
                 txtBalance.Text = txtGrandTotal.Text;
+                txtChange.Text = "0";
             }
             else
             {
                 if (paying > total)
                 {
                     txtChange.Text =  Convert.ToString(float.Parse(txtPaying.Text) - float.Parse(txtGrandTotal.Text));
+                    txtBalance.Text = "0";
                 }
                 else
                 {
                     txtBalance.Text = Convert.ToString(float.Parse(txtGrandTotal.Text) - float.Parse(txtPaying.Text));
+                    txtChange.Text = "0";
                 }
             }
             

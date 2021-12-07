@@ -213,7 +213,7 @@ namespace PointOfSaleSystem
             this.fpCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fpCategory.Location = new System.Drawing.Point(12, 177);
             this.fpCategory.Name = "fpCategory";
-            this.fpCategory.Size = new System.Drawing.Size(797, 65);
+            this.fpCategory.Size = new System.Drawing.Size(797, 70);
             this.fpCategory.TabIndex = 27;
             // 
             // guna2GroupBox1
@@ -912,7 +912,6 @@ namespace PointOfSaleSystem
         private System.Windows.Forms.FlowLayoutPanel fpCategory;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cboOrderType;
         private System.Windows.Forms.Button btnTables;
         public Guna.UI2.WinForms.Guna2TextBox txtTableName;
         private System.Windows.Forms.Label lblTable;
@@ -955,5 +954,6 @@ namespace PointOfSaleSystem
         private System.Windows.Forms.Label lblEntername;
         private System.Windows.Forms.Label lblDeliveryAddress;
         private Guna.UI2.WinForms.Guna2TextBox txtDeliveryAddress;
+        public System.Windows.Forms.ComboBox cboOrderType;
     }
 }

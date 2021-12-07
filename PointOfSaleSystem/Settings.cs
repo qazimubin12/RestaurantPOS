@@ -261,6 +261,7 @@ namespace PointOfSaleSystem
         private void button3_Click(object sender, EventArgs e)
         {
             HomeScreen ds = new HomeScreen();
+            ds.lblLoggedUser.Text = "Admin";
             MainClass.showWindow(ds, this, MDI.ActiveForm);
         }
 

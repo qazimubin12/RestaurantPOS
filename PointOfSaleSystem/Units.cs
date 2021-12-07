@@ -100,6 +100,7 @@ namespace PointOfSaleSystem
                 if (txtUnit.Text == "")
                 {
                     HomeScreen hs = new HomeScreen();
+                    hs.lblLoggedUser.Text = "Admin";
                     MainClass.showWindow(hs, this, MDI.ActiveForm);
                 }
                 else
@@ -192,6 +193,7 @@ namespace PointOfSaleSystem
         {
 
             HomeScreen hs = new HomeScreen();
+            hs.lblLoggedUser.Text = "Admin";
             MainClass.showWindow(hs, this, MDI.ActiveForm);
         }
 
