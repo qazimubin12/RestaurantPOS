@@ -493,6 +493,12 @@ namespace RestaurantPOS
                 cmd = new SqlCommand("delete from UsersTable", MainClass.con);
                 cmd.ExecuteNonQuery();
 
+                cmd = new SqlCommand("delete from CategoriesTable dbcc checkident('CategoriesTable',reseed,0)", MainClass.con);
+                cmd.ExecuteNonQuery();
+
+                cmd = new SqlCommand("delete from TokenNumber dbcc checkident('TokenNumber',reseed,0)", MainClass.con);
+                cmd.ExecuteNonQuery();
+
                 cmd = new SqlCommand("insert into UsersTable values('admin','admin','Admin','Admin')", MainClass.con);
                 cmd.ExecuteNonQuery();
 

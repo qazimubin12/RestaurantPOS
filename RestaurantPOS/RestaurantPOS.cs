@@ -12,6 +12,8 @@ namespace RestaurantPOS
         private Button foodbutton;
         private Label foodprice;
         private Button categoryButton;
+        private Label foodname;
+        int tokengeneration = 0;
         public RestaurantPOS()
         {
             InitializeComponent();
@@ -195,28 +197,45 @@ namespace RestaurantPOS
                 {
                     if (catID == "" || catID == null)
                     {
-                        cmd = new SqlCommand("select ProductID,ProductName,SalePrice from ProductsTable", MainClass.con);
+                        cmd = new SqlCommand("select Image,ProductID,ProductName,SalePrice from ProductsTable", MainClass.con);
                     }
                     else
                     {
-                        cmd = new SqlCommand("select ProductID,ProductName,SalePrice from ProductsTable where CatID = '"+catID+"'", MainClass.con);
+                        cmd = new SqlCommand("select Image,ProductID,ProductName,SalePrice from ProductsTable where CatID = '"+catID+"'", MainClass.con);
                     }
                 }
                 else
                 {
-                    cmd = new SqlCommand("select ProductID,ProductName,SalePrice from ProductsTable where ProductName like '%" + search + "%'", MainClass.con);
+                    cmd = new SqlCommand("select Image,ProductID,ProductName,SalePrice from ProductsTable where ProductName like '%" + search + "%'", MainClass.con);
                 }
                 dr = cmd.ExecuteReader();
                 while(dr.Read())
                 {
+                    long len = dr.GetBytes(0, 0, null, 0, 0);
+                    byte[] array = new byte[Convert.ToInt32(len) + 1];
+                    dr.GetBytes(0, 0, array, 0, Convert.ToInt32(len));
+                    MemoryStream ms = new MemoryStream(array);
+                    Bitmap bitmap = new Bitmap(ms);
+
                     foodbutton = new Button();
-                    foodbutton.Width = 100;
-                    foodbutton.Height = 100;
+                    foodbutton.Width = 130;
+                    foodbutton.Height = 130;
                     foodbutton.Font = new Font("Arial", 10);
                     foodbutton.FlatStyle = FlatStyle.Flat;
                     foodbutton.BackColor = Color.FromArgb(39, 174, 96);
                     foodbutton.BackgroundImageLayout = ImageLayout.Stretch;
-                    foodbutton.Text = dr["ProductName"].ToString();
+
+                   
+                    foodbutton.BackgroundImage = bitmap;
+
+                    foodname = new Label();
+                    foodname.Text = dr["ProductName"].ToString();
+                    foodname.BackColor = Color.DarkGreen;
+                    foodname.TextAlign = ContentAlignment.MiddleCenter;
+                    foodname.ForeColor = Color.White;
+                    foodname.Dock = DockStyle.Top;
+
+
                     foodbutton.ForeColor = Color.White;
                     foodbutton.Tag = dr["ProductID"].ToString();
                     fpFoods.Controls.Add(foodbutton);
@@ -232,10 +251,9 @@ namespace RestaurantPOS
 
 
                     foodbutton.Controls.Add(foodprice);
-
+                    foodbutton.Controls.Add(foodname);
                     foodbutton.Click += new EventHandler(OnProductButtonClick);
                     foodprice.Click += new EventHandler(OnProductButtonClick);
-
 
                 }
                 dr.Close();
@@ -250,6 +268,8 @@ namespace RestaurantPOS
 
          
         }
+
+      
 
         private string CurrencyRetrival()
         {
@@ -282,6 +302,8 @@ namespace RestaurantPOS
             GetProductData();
             ShowStore();
             GetCategoryData();
+            int Number = GenerateTokenNumber();
+            txtTokenNumber.Text = Number.ToString();
             string currency = CurrencyRetrival();
             lblGrandTotal.Text = "0.00 " + currency;
         }
@@ -429,6 +451,50 @@ namespace RestaurantPOS
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private int GenerateTokenNumber()
+        {
+            int ID = 0;
+            int Number = 0;
+            SqlCommand cmd = null;
+            try
+            {
+                MainClass.con.Open();
+                cmd = new SqlCommand("select TOP 1 * from TokenNumber ORDER BY ID DESC", MainClass.con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        ID = int.Parse(dr["ID"].ToString());
+                        Number = int.Parse(dr["Number"].ToString());
+                    }
+                }
+                else
+                {
+                    dr.Close();
+                    SqlCommand cmd1 = new SqlCommand("insert into TokenNumber (Number,StartDate) values ('" + 1 + "','" + DateTime.Now.ToShortDateString() + "')", MainClass.con);
+                    cmd1.ExecuteNonQuery();
+
+                }
+
+                MainClass.con.Close();
+                if (tokengeneration == 1)
+                {
+                    Number++;
+                    MainClass.con.Open();
+                    cmd = new SqlCommand("update TokenNumber set Number = '" + Number + "' where ID = '" + ID + "' ", MainClass.con);
+                    cmd.ExecuteNonQuery();
+                    MainClass.con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MainClass.con.Close();
+                MessageBox.Show(ex.Message);
+            }
+            return Number;
+        }
         private void cboOrderType_SelectedIndexChanged(object sender, EventArgs e)
         {
             CHECKORDERTYPE();
@@ -562,112 +628,118 @@ namespace RestaurantPOS
 
                 try
                 {
-                    MainClass.con.Open();
 
                     PaymentWindow pm = new PaymentWindow(this);
                     pm.ShowDialog();
-                    cmd = new SqlCommand("SELECT CONVERT(varchar(15),  CAST(GETDATE() AS TIME), 100) as SaleTime", MainClass.con);
-                    saletime = cmd.ExecuteScalar().ToString();
-
-                    cmd = new SqlCommand("insert into CustomerInvoicesTable (Customer_ID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,RemainingBalance) values (@Customer_ID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@RemainingBalance)", MainClass.con);
-                    cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
-                    cmd.Parameters.AddWithValue("@PaymentType", cboOrderType.Text);
-                    cmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
-                    cmd.Parameters.AddWithValue("@PaidAmount", float.Parse(pm.txtPaying.Text));
-                    cmd.Parameters.AddWithValue("@RemainingBalance", float.Parse(pm.txtBalance.Text));
-                    cmd.ExecuteNonQuery();
-
-                    string CustomerInvoiceID = Convert.ToString(MainClass.Retrieve("select MAX(CustomerInvoiceID) from CustomerInvoicesTable").Rows[0][0]);
-                    if (string.IsNullOrEmpty(CustomerInvoiceID))
+                    if (pm.txtPaying.Text != "")
                     {
-                        MessageBox.Show("Please Check The Error or Try Again");
-                        return;
-                    }
+                        MainClass.con.Open();
+                        cmd = new SqlCommand("SELECT CONVERT(varchar(15),  CAST(GETDATE() AS TIME), 100) as SaleTime", MainClass.con);
+                        saletime = cmd.ExecuteScalar().ToString();
 
-
-                    cmd = new SqlCommand("insert into CustomerLedgersTable (CustomerInvoice_ID,Customer_ID,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,Balance) values (@CustomerInvoice_ID,@Customer_ID,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@Balance)", MainClass.con);
-                    cmd.Parameters.AddWithValue("@CustomerInvoice_ID", CustomerInvoiceID);
-                    cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
-                    cmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
-                    cmd.Parameters.AddWithValue("@PaidAmount",float.Parse(pm.txtPaying.Text));
-                    cmd.Parameters.AddWithValue("@Balance", float.Parse(pm.txtBalance.Text));
-                    cmd.ExecuteNonQuery();
-
-                    string CustomerLedgerID = Convert.ToString(MainClass.Retrieve("select MAX(CustomerLedgerID) from CustomerLedgersTable").Rows[0][0]);
-                    if (string.IsNullOrEmpty(CustomerLedgerID))
-                    {
-                        MessageBox.Show("Please Check The Error or Try Again");
-                        return;
-                    }
-
-                    cmd = new SqlCommand("insert into CustomerLedgersInfoTable (CustomerLedger_ID,Customer_ID,PayingDate,InvoiceNo,TotalAmount,PreviousPaid,TodayPaid,NewBalance) values (@CustomerLedger_ID,@Customer_ID,@PayingDate,@InvoiceNo,@TotalAmount,@PreviousPaid,@TodayPaid,@NewBalance)", MainClass.con);
-                    cmd.Parameters.AddWithValue("@CustomerLedger_ID", CustomerLedgerID);
-                    cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
-                    cmd.Parameters.AddWithValue("@PayingDate", DateTime.Now.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@PreviousPaid", float.Parse(pm.txtPaying.Text));
-                    cmd.Parameters.AddWithValue("@TodayPaid", 0);
-                    cmd.Parameters.AddWithValue("@NewBalance", float.Parse(pm.txtBalance.Text));
-                    cmd.ExecuteNonQuery();
-
-
-                    cmd = new SqlCommand("insert into SalesTable (Paying,Change,CustomerInvoice_ID, Customer_ID,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST) values (@Paying,@Change,@CustomerInvoice_ID, @Customer_ID,@InvoiceNo,@Discount,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST)", MainClass.con);
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
-                    cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
-        
-                    cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
-                    cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
-                    cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
-                    cmd.Parameters.AddWithValue("@SaleTime", saletime);
-                    cmd.Parameters.AddWithValue("@OrderStatus", "In Ledger");
-                    cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
-                    cmd.Parameters.AddWithValue("@BillGST", billgst);
-                    cmd.Parameters.AddWithValue("@CustomerInvoice_ID", CustomerInvoiceID);
-                    cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue.ToString());
-
-
-                    cmd.ExecuteNonQuery();
-
-                    string SaleID = Convert.ToString(MainClass.Retrieve("select MAX(SaleID) from SalesTable").Rows[0][0]);
-                    if (string.IsNullOrEmpty(SaleID))
-                    {
-                        MessageBox.Show("Please Check The Error or Try Again");
-                        return;
-                    }
-
-
-                    foreach (DataGridViewRow item in DGVCartProduct.Rows)
-                    {
-                        int unitID;
-                        cmd = new SqlCommand("select UnitID from UnitsTable where Unit = '" + item.Cells["UnitGV"].Value.ToString() + "'", MainClass.con);
-                        unitID = int.Parse(cmd.ExecuteScalar().ToString());
-
-                        cmd = new SqlCommand("insert into SalesInfo (Sales_ID,ProductID,Quantity,Unit,SalePrice,TotalOfProduct) values (@Sales_ID,@ProductID,@Quantity,@Unit,@SalePrice,@TotalOfProduct)", MainClass.con);
-                        cmd.Parameters.AddWithValue("@Sales_ID", int.Parse(SaleID.ToString()));
-                        cmd.Parameters.AddWithValue("@ProductID", item.Cells["ProductID"].Value.ToString());
-                        cmd.Parameters.AddWithValue("@Quantity", item.Cells["QTYGV"].Value.ToString());
-                        cmd.Parameters.AddWithValue("@Unit", unitID);
-                        cmd.Parameters.AddWithValue("@SalePrice", float.Parse(item.Cells["PriceGV"].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@TotalOfProduct", float.Parse(item.Cells["TotalGV"].Value.ToString()));
+                        cmd = new SqlCommand("insert into CustomerInvoicesTable (Customer_ID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,RemainingBalance) values (@Customer_ID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@RemainingBalance)", MainClass.con);
+                        cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
+                        cmd.Parameters.AddWithValue("@PaymentType", cboOrderType.Text);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
+                        cmd.Parameters.AddWithValue("@PaidAmount", float.Parse(pm.txtPaying.Text));
+                        cmd.Parameters.AddWithValue("@RemainingBalance", float.Parse(pm.txtBalance.Text));
                         cmd.ExecuteNonQuery();
+
+                        string CustomerInvoiceID = Convert.ToString(MainClass.Retrieve("select MAX(CustomerInvoiceID) from CustomerInvoicesTable").Rows[0][0]);
+                        if (string.IsNullOrEmpty(CustomerInvoiceID))
+                        {
+                            MessageBox.Show("Please Check The Error or Try Again");
+                            return;
+                        }
+
+
+                        cmd = new SqlCommand("insert into CustomerLedgersTable (CustomerInvoice_ID,Customer_ID,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,Balance) values (@CustomerInvoice_ID,@Customer_ID,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@Balance)", MainClass.con);
+                        cmd.Parameters.AddWithValue("@CustomerInvoice_ID", CustomerInvoiceID);
+                        cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
+                        cmd.Parameters.AddWithValue("@PaidAmount", float.Parse(pm.txtPaying.Text));
+                        cmd.Parameters.AddWithValue("@Balance", float.Parse(pm.txtBalance.Text));
+                        cmd.ExecuteNonQuery();
+
+                        string CustomerLedgerID = Convert.ToString(MainClass.Retrieve("select MAX(CustomerLedgerID) from CustomerLedgersTable").Rows[0][0]);
+                        if (string.IsNullOrEmpty(CustomerLedgerID))
+                        {
+                            MessageBox.Show("Please Check The Error or Try Again");
+                            return;
+                        }
+
+                        cmd = new SqlCommand("insert into CustomerLedgersInfoTable (CustomerLedger_ID,Customer_ID,PayingDate,InvoiceNo,TotalAmount,PreviousPaid,TodayPaid,NewBalance) values (@CustomerLedger_ID,@Customer_ID,@PayingDate,@InvoiceNo,@TotalAmount,@PreviousPaid,@TodayPaid,@NewBalance)", MainClass.con);
+                        cmd.Parameters.AddWithValue("@CustomerLedger_ID", CustomerLedgerID);
+                        cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
+                        cmd.Parameters.AddWithValue("@PayingDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@PreviousPaid", float.Parse(pm.txtPaying.Text));
+                        cmd.Parameters.AddWithValue("@TodayPaid", 0);
+                        cmd.Parameters.AddWithValue("@NewBalance", float.Parse(pm.txtBalance.Text));
+                        cmd.ExecuteNonQuery();
+
+
+                        cmd = new SqlCommand("insert into SalesTable (Paying,Change,CustomerInvoice_ID, Customer_ID,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST) values (@Paying,@Change,@CustomerInvoice_ID, @Customer_ID,@InvoiceNo,@Discount,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST)", MainClass.con);
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
+                        cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
+
+                        cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
+                        cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
+                        cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
+                        cmd.Parameters.AddWithValue("@SaleTime", saletime);
+                        cmd.Parameters.AddWithValue("@OrderStatus", "In Ledger");
+                        cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@BillGST", billgst);
+                        cmd.Parameters.AddWithValue("@CustomerInvoice_ID", CustomerInvoiceID);
+                        cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue.ToString());
+
+
+                        cmd.ExecuteNonQuery();
+
+                        string SaleID = Convert.ToString(MainClass.Retrieve("select MAX(SaleID) from SalesTable").Rows[0][0]);
+                        if (string.IsNullOrEmpty(SaleID))
+                        {
+                            MessageBox.Show("Please Check The Error or Try Again");
+                            return;
+                        }
+
+
+                        foreach (DataGridViewRow item in DGVCartProduct.Rows)
+                        {
+                            int unitID;
+                            cmd = new SqlCommand("select UnitID from UnitsTable where Unit = '" + item.Cells["UnitGV"].Value.ToString() + "'", MainClass.con);
+                            unitID = int.Parse(cmd.ExecuteScalar().ToString());
+
+                            cmd = new SqlCommand("insert into SalesInfo (Sales_ID,ProductID,Quantity,Unit,SalePrice,TotalOfProduct) values (@Sales_ID,@ProductID,@Quantity,@Unit,@SalePrice,@TotalOfProduct)", MainClass.con);
+                            cmd.Parameters.AddWithValue("@Sales_ID", int.Parse(SaleID.ToString()));
+                            cmd.Parameters.AddWithValue("@ProductID", item.Cells["ProductID"].Value.ToString());
+                            cmd.Parameters.AddWithValue("@Quantity", item.Cells["QTYGV"].Value.ToString());
+                            cmd.Parameters.AddWithValue("@Unit", unitID);
+                            cmd.Parameters.AddWithValue("@SalePrice", float.Parse(item.Cells["PriceGV"].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@TotalOfProduct", float.Parse(item.Cells["TotalGV"].Value.ToString()));
+                            cmd.ExecuteNonQuery();
+                        }
+
+
+                        MainClass.con.Close();
+                        btnGenerate_Click(sender, e);
+                        LedgerSaleID = int.Parse(SaleID);
+                        MessageBox.Show("Sale Saved");
+                        BillForm bill = new BillForm();
+                        bill.Show();
+                        ClearForm();
                     }
-
-
-                    MainClass.con.Close();
-                    btnGenerate_Click(sender, e);
-                    LedgerSaleID = int.Parse(SaleID);
-                    MessageBox.Show("Sale Saved");
-                    BillForm bill = new BillForm();
-                    bill.Show();
-                    ClearForm();
-
+                    else
+                    {
+                        return;
+                    }
 
                 }
                 catch (Exception ex)
@@ -806,6 +878,9 @@ namespace RestaurantPOS
 
                         MainClass.con.Close();
                         btnGenerate_Click(sender, e);
+                        tokengeneration = 1;
+                        TOKENID = GenerateTokenNumber();
+                        tokengeneration = 0;
                         MessageBox.Show("Sale Saved");
                         ClearForm();
 
@@ -824,6 +899,7 @@ namespace RestaurantPOS
             } //DINE IN
         }
 
+        public static int TOKENID = 0;
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
             if (txtDiscount.Text != "" && txtDiscount.Text != "0")
@@ -881,10 +957,11 @@ namespace RestaurantPOS
                 MainClass.con.Open();
                 cmd = new SqlCommand("SELECT CONVERT(varchar(15),  CAST(GETDATE() AS TIME), 100) as SaleTime", MainClass.con);
                 saletime = cmd.ExecuteScalar().ToString();
-
+                MainClass.con.Close();
 
                 if (cboOrderType.Text == "Delivery")
                 {
+                    MainClass.con.Open();
                     cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,DeliveryName,DeliveryAddress,Paying,Change) values (@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@DeliveryName,@DeliveryAddress,@Paying,@Change)", MainClass.con);
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
@@ -899,75 +976,91 @@ namespace RestaurantPOS
                     cmd.Parameters.AddWithValue("@DeliveryAddress", txtDeliveryAddress.Text);
                     cmd.Parameters.AddWithValue("@Change", 0);
                     cmd.Parameters.AddWithValue("@Paying", float.Parse(lblGrandTotal.Text));
+                    cmd.ExecuteNonQuery();
+                    MainClass.con.Close();
                 }
                 else
                 {
+                    MainClass.con.Open();
                     PaymentWindow pm = new PaymentWindow(this);
                     pm.ShowDialog();
+                    if (pm.txtPaying.Text != "" && pm.txtPaying.Text != "0")
+                    {
+                        cmd = new SqlCommand("insert into SalesTable (Paying,Change,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST) values (@Paying,@Change,@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST)", MainClass.con);
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
 
-                    cmd = new SqlCommand("insert into SalesTable (Paying,Change,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST) values (@Paying,@Change,@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST)", MainClass.con);
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
+                        cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
+                        cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
 
-                    cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
-                    cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
+                        cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
+                        cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
+                        cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@SaleTime", saletime);
+                        cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
+                        cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@BillGST", billgst);
+                        cmd.ExecuteNonQuery();
 
-
-                    cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
-                    cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
-                    cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@SaleTime", saletime);
-                    cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
-                    cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
-                    cmd.Parameters.AddWithValue("@BillGST", billgst);
+                    }
+                    else
+                    {
+                        MainClass.con.Close();
+                        return;
+                    }
                 }
+
+
+                    string SaleID = Convert.ToString(MainClass.Retrieve("select MAX(SaleID) from SalesTable").Rows[0][0]);
+                    if (string.IsNullOrEmpty(SaleID))
+                    {
+                        MessageBox.Show("Please Check The Error or Try Again");
+                        return;
+                    }
+
+
+                    foreach (DataGridViewRow item in DGVCartProduct.Rows)
+                    {
+                        int unitID;
+                        cmd = new SqlCommand("select UnitID from UnitsTable where Unit = '" + item.Cells["UnitGV"].Value.ToString() + "'", MainClass.con);
+                        unitID = int.Parse(cmd.ExecuteScalar().ToString());
+
+                        cmd = new SqlCommand("insert into SalesInfo (Sales_ID,ProductID,Quantity,Unit,SalePrice,TotalOfProduct) values (@Sales_ID,@ProductID,@Quantity,@Unit,@SalePrice,@TotalOfProduct)", MainClass.con);
+                        cmd.Parameters.AddWithValue("@Sales_ID", int.Parse(SaleID.ToString()));
+                        cmd.Parameters.AddWithValue("@ProductID", item.Cells["ProductID"].Value.ToString());
+                        cmd.Parameters.AddWithValue("@Quantity", item.Cells["QTYGV"].Value.ToString());
+                        cmd.Parameters.AddWithValue("@Unit", unitID);
+                        cmd.Parameters.AddWithValue("@SalePrice", float.Parse(item.Cells["PriceGV"].Value.ToString()));
+                        cmd.Parameters.AddWithValue("@TotalOfProduct", float.Parse(item.Cells["TotalGV"].Value.ToString()));
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    if (cboOrderType.Text == "Take Away")
+                    {
+                        TakeAwaySaleID = int.Parse(SaleID);
+                    }
+                    else
+                    {
+                        DeliverySaleID = int.Parse(SaleID);
+                    }
+                    MainClass.con.Close();
+                    btnGenerate_Click(sender, e);
+                tokengeneration = 1;
+                TOKENID = GenerateTokenNumber();
                
-                cmd.ExecuteNonQuery();
-
-                string SaleID = Convert.ToString(MainClass.Retrieve("select MAX(SaleID) from SalesTable").Rows[0][0]);
-                if (string.IsNullOrEmpty(SaleID))
-                {
-                    MessageBox.Show("Please Check The Error or Try Again");
-                    return;
-                }
-
-
-                foreach (DataGridViewRow item in DGVCartProduct.Rows)
-                {
-                    int unitID;
-                    cmd = new SqlCommand("select UnitID from UnitsTable where Unit = '" + item.Cells["UnitGV"].Value.ToString() + "'", MainClass.con);
-                    unitID = int.Parse(cmd.ExecuteScalar().ToString());
-
-                    cmd = new SqlCommand("insert into SalesInfo (Sales_ID,ProductID,Quantity,Unit,SalePrice,TotalOfProduct) values (@Sales_ID,@ProductID,@Quantity,@Unit,@SalePrice,@TotalOfProduct)", MainClass.con);
-                    cmd.Parameters.AddWithValue("@Sales_ID", int.Parse(SaleID.ToString()));
-                    cmd.Parameters.AddWithValue("@ProductID", item.Cells["ProductID"].Value.ToString());
-                    cmd.Parameters.AddWithValue("@Quantity", item.Cells["QTYGV"].Value.ToString());
-                    cmd.Parameters.AddWithValue("@Unit", unitID);
-                    cmd.Parameters.AddWithValue("@SalePrice", float.Parse(item.Cells["PriceGV"].Value.ToString()));
-                    cmd.Parameters.AddWithValue("@TotalOfProduct", float.Parse(item.Cells["TotalGV"].Value.ToString()));
-                    cmd.ExecuteNonQuery();
-                }
-
-                if(cboOrderType.Text == "Take Away")
-                {
-                    TakeAwaySaleID = int.Parse(SaleID);
-                }
-                else
-                {
-                    DeliverySaleID = int.Parse(SaleID);
-                }
-                MainClass.con.Close();
-                btnGenerate_Click(sender, e);
+                tokengeneration = 0;
                 MessageBox.Show("Sale Finalized");
 
 
 
 
-                //RECEIPT GENERATE
-                BillForm bf = new BillForm();
-                bf.Show();
-                ClearForm();
-                //
+                    //RECEIPT GENERATE
+                    BillForm bf = new BillForm();
+                    bf.Show();
+                    ClearForm();
+                    //
+
+                
             }
             catch (Exception ex)
             {
@@ -998,26 +1091,32 @@ namespace RestaurantPOS
                 PaymentWindow pm = new PaymentWindow(this);
                 pm.ShowDialog();
                 pm.txtGrandTotal.Text = lblGrandTotal.Text;
+                if (pm.txtPaying.Text != "" && pm.txtPaying.Text != "0")
+                {
+                    MainClass.con.Open();
+                    cmd = new SqlCommand("update SalesTable set OrderStatus = @OrderStatus,Paying=@Paying,Change=@Change where SaleID = '" + lblOrderID.Text + "' ", MainClass.con);
+                    cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
+                    cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
+                    cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
+                    cmd.ExecuteNonQuery();
 
-                MainClass.con.Open();
-                cmd = new SqlCommand("update SalesTable set OrderStatus = @OrderStatus,Paying=@Paying,Change=@Change where SaleID = '" + lblOrderID.Text + "' ", MainClass.con);
-                cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
-                cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
-                cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
-                cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand("update Tables set Availability = 1 where TableName = '" + txtTableName.Text + "'", MainClass.con);
+                    cmd.ExecuteNonQuery();
+                    DINEINID = int.Parse(lblOrderID.Text);
+                    MessageBox.Show("Sale Finalized");
+                    MainClass.con.Close();
 
-                cmd = new SqlCommand("update Tables set Availability = 1 where TableName = '" + txtTableName.Text + "'", MainClass.con);
-                cmd.ExecuteNonQuery();
-                DINEINID = int.Parse(lblOrderID.Text);
-                MessageBox.Show("Sale Finalized");
-                MainClass.con.Close();
+                    //RECEIPT GENERATE
 
-                //RECEIPT GENERATE
-
-                BillForm bf = new BillForm();
-                bf.Show();
-                ClearForm();
-                GenerateInvoiceNo();
+                    BillForm bf = new BillForm();
+                    bf.Show();
+                    ClearForm();
+                    GenerateInvoiceNo();
+                }
+                else
+                {
+                    return;
+                }
                 //
 
 

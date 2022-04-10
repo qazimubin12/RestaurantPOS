@@ -47,11 +47,11 @@ namespace RestaurantPOS
             this.fpFoods = new System.Windows.Forms.FlowLayoutPanel();
             this.fpCategory = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.btnTables = new System.Windows.Forms.Button();
             this.txtTableSpace = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtTableName = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtDeliveryName = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblTable = new System.Windows.Forms.Label();
-            this.btnTables = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cboOrderType = new System.Windows.Forms.ComboBox();
             this.cboSelectCustomer = new System.Windows.Forms.ComboBox();
@@ -83,6 +83,8 @@ namespace RestaurantPOS
             this.btnClearForm = new System.Windows.Forms.Button();
             this.cbGST = new Guna.UI2.WinForms.Guna2CheckBox();
             this.btnRecentSales = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTokenNumber = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.guna2GroupBox1.SuspendLayout();
@@ -97,8 +99,10 @@ namespace RestaurantPOS
             this.panel1.Controls.Add(this.lblLoggedInUser);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.lblOrderID);
+            this.panel1.Controls.Add(this.txtTokenNumber);
             this.panel1.Controls.Add(this.txtInvoiceNo);
             this.panel1.Controls.Add(this.lblStoreAddress);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.lblStore);
             this.panel1.Controls.Add(this.button3);
@@ -196,7 +200,7 @@ namespace RestaurantPOS
             this.txtInvoiceNo.PlaceholderText = "";
             this.txtInvoiceNo.SelectedText = "";
             this.txtInvoiceNo.ShadowDecoration.Parent = this.txtInvoiceNo;
-            this.txtInvoiceNo.Size = new System.Drawing.Size(139, 25);
+            this.txtInvoiceNo.Size = new System.Drawing.Size(91, 25);
             this.txtInvoiceNo.TabIndex = 33;
             // 
             // lblStoreAddress
@@ -262,6 +266,7 @@ namespace RestaurantPOS
             // 
             this.fpFoods.AutoScroll = true;
             this.fpFoods.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fpFoods.Cursor = System.Windows.Forms.Cursors.Hand;
             this.fpFoods.Location = new System.Drawing.Point(12, 288);
             this.fpFoods.Name = "fpFoods";
             this.fpFoods.Size = new System.Drawing.Size(476, 317);
@@ -279,11 +284,11 @@ namespace RestaurantPOS
             // 
             // guna2GroupBox1
             // 
+            this.guna2GroupBox1.Controls.Add(this.btnTables);
             this.guna2GroupBox1.Controls.Add(this.txtTableSpace);
             this.guna2GroupBox1.Controls.Add(this.txtTableName);
             this.guna2GroupBox1.Controls.Add(this.txtDeliveryName);
             this.guna2GroupBox1.Controls.Add(this.lblTable);
-            this.guna2GroupBox1.Controls.Add(this.btnTables);
             this.guna2GroupBox1.Controls.Add(this.label2);
             this.guna2GroupBox1.Controls.Add(this.cboOrderType);
             this.guna2GroupBox1.Controls.Add(this.cboSelectCustomer);
@@ -298,10 +303,23 @@ namespace RestaurantPOS
             this.guna2GroupBox1.Location = new System.Drawing.Point(12, 87);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
             this.guna2GroupBox1.ShadowDecoration.Parent = this.guna2GroupBox1;
-            this.guna2GroupBox1.Size = new System.Drawing.Size(797, 84);
+            this.guna2GroupBox1.Size = new System.Drawing.Size(436, 84);
             this.guna2GroupBox1.TabIndex = 28;
             this.guna2GroupBox1.Text = "ORDER DETAILS";
             this.guna2GroupBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnTables
+            // 
+            this.btnTables.BackColor = System.Drawing.Color.SeaGreen;
+            this.btnTables.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTables.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnTables.Location = new System.Drawing.Point(296, 35);
+            this.btnTables.Name = "btnTables";
+            this.btnTables.Size = new System.Drawing.Size(134, 40);
+            this.btnTables.TabIndex = 2;
+            this.btnTables.Text = "TABLES";
+            this.btnTables.UseVisualStyleBackColor = false;
+            this.btnTables.Click += new System.EventHandler(this.btnTables_Click);
             // 
             // txtTableSpace
             // 
@@ -398,19 +416,6 @@ namespace RestaurantPOS
             this.lblTable.TabIndex = 4;
             this.lblTable.Text = "TABLE NAME + SPACE";
             // 
-            // btnTables
-            // 
-            this.btnTables.BackColor = System.Drawing.Color.SeaGreen;
-            this.btnTables.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTables.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnTables.Location = new System.Drawing.Point(660, 38);
-            this.btnTables.Name = "btnTables";
-            this.btnTables.Size = new System.Drawing.Size(134, 40);
-            this.btnTables.TabIndex = 2;
-            this.btnTables.Text = "TABLES";
-            this.btnTables.UseVisualStyleBackColor = false;
-            this.btnTables.Click += new System.EventHandler(this.btnTables_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -431,9 +436,7 @@ namespace RestaurantPOS
             this.cboOrderType.FormattingEnabled = true;
             this.cboOrderType.Items.AddRange(new object[] {
             "Dine In",
-            "Take Away",
-            "Delivery",
-            "Credit"});
+            "Take Away"});
             this.cboOrderType.Location = new System.Drawing.Point(7, 50);
             this.cboOrderType.Name = "cboOrderType";
             this.cboOrderType.Size = new System.Drawing.Size(128, 23);
@@ -839,9 +842,9 @@ namespace RestaurantPOS
             this.btnClearForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearForm.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearForm.ForeColor = System.Drawing.Color.White;
-            this.btnClearForm.Location = new System.Drawing.Point(915, 94);
+            this.btnClearForm.Location = new System.Drawing.Point(813, 94);
             this.btnClearForm.Name = "btnClearForm";
-            this.btnClearForm.Size = new System.Drawing.Size(73, 43);
+            this.btnClearForm.Size = new System.Drawing.Size(100, 77);
             this.btnClearForm.TabIndex = 30;
             this.btnClearForm.Text = "RESET";
             this.btnClearForm.UseVisualStyleBackColor = false;
@@ -873,13 +876,51 @@ namespace RestaurantPOS
             this.btnRecentSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecentSales.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecentSales.ForeColor = System.Drawing.Color.White;
-            this.btnRecentSales.Location = new System.Drawing.Point(813, 94);
+            this.btnRecentSales.Location = new System.Drawing.Point(707, 94);
             this.btnRecentSales.Name = "btnRecentSales";
             this.btnRecentSales.Size = new System.Drawing.Size(100, 77);
             this.btnRecentSales.TabIndex = 30;
             this.btnRecentSales.Text = "RECENT SALES";
             this.btnRecentSales.UseVisualStyleBackColor = false;
             this.btnRecentSales.Click += new System.EventHandler(this.btnRecentSales_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(792, 48);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 19);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "Token No:";
+            // 
+            // txtTokenNumber
+            // 
+            this.txtTokenNumber.AutoRoundedCorners = true;
+            this.txtTokenNumber.BorderRadius = 11;
+            this.txtTokenNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTokenNumber.DefaultText = "";
+            this.txtTokenNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTokenNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTokenNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTokenNumber.DisabledState.Parent = this.txtTokenNumber;
+            this.txtTokenNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTokenNumber.Enabled = false;
+            this.txtTokenNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTokenNumber.FocusedState.Parent = this.txtTokenNumber;
+            this.txtTokenNumber.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTokenNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTokenNumber.HoverState.Parent = this.txtTokenNumber;
+            this.txtTokenNumber.Location = new System.Drawing.Point(874, 45);
+            this.txtTokenNumber.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTokenNumber.Name = "txtTokenNumber";
+            this.txtTokenNumber.PasswordChar = '\0';
+            this.txtTokenNumber.PlaceholderText = "";
+            this.txtTokenNumber.SelectedText = "";
+            this.txtTokenNumber.ShadowDecoration.Parent = this.txtTokenNumber;
+            this.txtTokenNumber.Size = new System.Drawing.Size(66, 25);
+            this.txtTokenNumber.TabIndex = 33;
             // 
             // RestaurantPOS
             // 
@@ -974,5 +1015,7 @@ namespace RestaurantPOS
         private Guna.UI2.WinForms.Guna2TextBox txtDeliveryAddress;
         public System.Windows.Forms.ComboBox cboOrderType;
         private System.Windows.Forms.Button btnRecentSales;
+        public Guna.UI2.WinForms.Guna2TextBox txtTokenNumber;
+        private System.Windows.Forms.Label label7;
     }
 }

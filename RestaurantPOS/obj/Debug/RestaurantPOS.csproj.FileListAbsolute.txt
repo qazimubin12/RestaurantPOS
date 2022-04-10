@@ -59,3 +59,4 @@ D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.csproj.CopyComplete
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.exe
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.pdb
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.RecentSales.resources
+D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.TokenForm.resources
