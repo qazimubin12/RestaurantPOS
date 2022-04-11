@@ -105,22 +105,22 @@ namespace RestaurantPOS
             }
         }
 
-        private void FindCustomerBalance()
-        {
-            try
-            {
-                MainClass.con.Open();
-                SqlCommand cmd = new SqlCommand("select sum(Round(Balance,0)) from CustomerLedgersTable", MainClass.con);
-                lblTotalCustomerLedger.Text = cmd.ExecuteScalar().ToString();
-                MainClass.con.Close();
+        //private void FindCustomerBalance()
+        //{
+        //    try
+        //    {
+        //        MainClass.con.Open();
+        //        SqlCommand cmd = new SqlCommand("select sum(Round(Balance,0)) from CustomerLedgersTable", MainClass.con);
+        //        lblCashInHand.Text = cmd.ExecuteScalar().ToString();
+        //        MainClass.con.Close();
 
-            }
-            catch (Exception ex)
-            {
-                MainClass.con.Close();
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MainClass.con.Close();
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
 
 
@@ -175,11 +175,30 @@ namespace RestaurantPOS
             lblExpense.Text = Expense.ToString();
         }
 
+        private Double CashInHand()
+        {
+
+            float cash = 0;
+            try
+            {
+                MainClass.con.Open();
+                SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
+                cash = float.Parse(cmd.ExecuteScalar().ToString());
+                MainClass.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MainClass.con.Close();
+                MessageBox.Show(ex.Message);
+            }
+            return cash;
+        }
+
         private void HomeScreen_Load(object sender, EventArgs e)
         {
             FindDailySales();
             FindTodayExpense();
-            FindCustomerBalance();
+            lblCashInHand.Text = CashInHand().ToString();
             FindLowStocks();
         }
 
@@ -196,9 +215,16 @@ namespace RestaurantPOS
 
         }
 
+        
         private void btnReports_Click(object sender, EventArgs e)
         {
             Reports r = new Reports();
+            MainClass.showWindow(r, this, MDI.ActiveForm);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Expenses r = new Expenses();
             MainClass.showWindow(r, this, MDI.ActiveForm);
         }
     }

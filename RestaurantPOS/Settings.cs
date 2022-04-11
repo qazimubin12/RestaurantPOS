@@ -49,7 +49,30 @@ namespace RestaurantPOS
 
 
 
-
+        private void LoadLogo()
+        {
+            MainClass.con.Open();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("select Logo from StoreTable", MainClass.con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                if (dr.HasRows)
+                {
+                    pictureBox1.Image = ConvertByteArraytoImage((byte[])dr["Logo"]);
+                }
+                else
+                {
+                    pictureBox1.Image = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MainClass.con.Close();
+                MessageBox.Show(ex.Message);
+            }
+            MainClass.con.Close();
+        }
         private void ShowStore()
         {
             MainClass.con.Open();
@@ -63,7 +86,7 @@ namespace RestaurantPOS
                 txtStoreAddress.Text = dr["StoreAddress"].ToString();
                 txtLowStockQty.Text = dr["LowStockQty"].ToString();
                 txtGst.Text = dr["GST"].ToString();
-                
+                txtCashInHand.Text = dr["CashInHand"].ToString();
                 txtCurrency.Text = dr["Currency"].ToString();
               
             }
@@ -74,11 +97,12 @@ namespace RestaurantPOS
                 txtLowStockQty.Text = "";
                 txtGst.Text = "";
                 txtCurrency.Text = "";
+                txtCashInHand.Text = "";
             }
            
             dr.Close();
             MainClass.con.Close();
-
+            LoadLogo();
            
         }
 
@@ -362,11 +386,11 @@ namespace RestaurantPOS
             SqlCommand cmd = null;
             if (pictureBox1.Image == null)
             {
-                cmd = new SqlCommand("INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "','" +null + "' ,'" + txtCurrency.Text + "')", MainClass.con);
+                cmd = new SqlCommand("INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "','" +null + "' ,'" + txtCurrency.Text + "','"+float.Parse(txtCashInHand.Text)+"'", MainClass.con);
             }
             else
             {
-                cmd = new SqlCommand("INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "','" + ConvertImageToBytes(pictureBox1.Image) + "' ,'" + txtCurrency.Text + "')", MainClass.con);
+                cmd = new SqlCommand("INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "','" + ConvertImageToBytes(pictureBox1.Image) + "' ,'" + txtCurrency.Text + "','" + float.Parse(txtCashInHand.Text) + "'", MainClass.con);
             }
            
             cmd.ExecuteNonQuery();
@@ -394,13 +418,13 @@ namespace RestaurantPOS
         private void btnUpdateStore_Click(object sender, EventArgs e)
         {
             MainClass.con.Open();
-            SqlCommand cmd = new SqlCommand("update StoreTable set StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty, GST = @GST, Logo = @Logo ", MainClass.con);
+            SqlCommand cmd = new SqlCommand("update StoreTable set StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty,CashInHand=@CashInHand, GST = @GST, Logo = @Logo ", MainClass.con);
             cmd.Parameters.AddWithValue("@StoreName", txtStoreName.Text);
             cmd.Parameters.AddWithValue("@StoreAddress", txtStoreAddress.Text);
             cmd.Parameters.AddWithValue("@LowStockQty", txtLowStockQty.Text);
             cmd.Parameters.AddWithValue("@GST", float.Parse(txtGst.Text));
             cmd.Parameters.AddWithValue("@Currency", txtCurrency.Text);
-
+            cmd.Parameters.AddWithValue("@CashInHand", float.Parse(txtCashInHand.Text));
             cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
             cmd.ExecuteNonQuery();
             MessageBox.Show("Store Updated Successfully");

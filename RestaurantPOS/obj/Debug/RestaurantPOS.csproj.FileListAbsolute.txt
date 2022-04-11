@@ -46,7 +46,6 @@ D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.PurchaseInvoice.resou
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.QuantityForm.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.Reports.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.RestaurantPOS.resources
-D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.SaleReceiptForm.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.SearchProducts.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.Settings.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.Tables.resources
@@ -60,3 +59,4 @@ D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.exe
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.pdb
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.RecentSales.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.TokenForm.resources
+D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.PurchaseReceiptForm.resources

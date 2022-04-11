@@ -1,7 +1,7 @@
 ﻿
 namespace RestaurantPOS
 {
-    partial class SaleReceiptForm
+    partial class PurchaseReceiptForm
     {
         /// <summary>
         /// Required designer variable.
@@ -48,20 +48,21 @@ namespace RestaurantPOS
             this.crystalReportViewer1.ShowParameterPanelButton = false;
             this.crystalReportViewer1.ShowRefreshButton = false;
             this.crystalReportViewer1.ShowTextSearchButton = false;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(453, 450);
+            this.crystalReportViewer1.Size = new System.Drawing.Size(835, 450);
             this.crystalReportViewer1.TabIndex = 0;
             this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
-            // SaleReceiptForm
+            // PurchaseReceiptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 450);
+            this.ClientSize = new System.Drawing.Size(835, 450);
             this.Controls.Add(this.crystalReportViewer1);
-            this.Name = "SaleReceiptForm";
-            this.Text = "SaleReceipt";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaleReceiptForm_FormClosing);
-            this.Load += new System.EventHandler(this.SaleReceiptForm_Load);
+            this.Name = "PurchaseReceiptForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Purchase Receipt";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PurchaseReceiptForm_FormClosing);
+            this.Load += new System.EventHandler(this.PurchaseReceiptForm_Load);
             this.ResumeLayout(false);
 
         }

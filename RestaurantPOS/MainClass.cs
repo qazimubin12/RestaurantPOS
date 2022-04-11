@@ -418,6 +418,93 @@ namespace RestaurantPOS
             }
         }
 
+        public static void FillProductsForPurchase(ComboBox cmb)
+        {
+            DataTable dgProducts = new DataTable();
+            dgProducts.Columns.Add("ProductID");
+            dgProducts.Columns.Add("ProductName");
+            dgProducts.Rows.Add("0", "-----Select-----");
+            try
+            {
+                DataTable dt = Retrieve("select ProductID, ProductName from ProductsTable where StockControl = 1");
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow products in dt.Rows)
+                        {
+                            dgProducts.Rows.Add(products["ProductID"], products["ProductName"]);
+                        }
+                    }
+
+                }
+                cmb.DisplayMember = "ProductName";
+                cmb.ValueMember = "ProductID";
+                cmb.DataSource = dgProducts;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                cmb.DataSource = dgProducts;
+            }
+        }
+
+        public static void ShowPurchaseReceipt(ReportDocument rd, CrystalReportViewer crv, string proc, string param1 = "", object val1 = null)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(proc, MainClass.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (param1 != "")
+                {
+                    cmd.Parameters.AddWithValue(param1, val1);
+                }
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                
+                rd.Load(Application.StartupPath + "\\Reports\\PurchaseReciept.rpt");
+                 rd.SetDataSource(dt);
+                crv.ReportSource = rd;
+                crv.RefreshReport();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        public static DataTable FillProductsInTextBox()
+        {
+            DataTable dgProducts = new DataTable();
+            dgProducts.Columns.Add("ProductID");
+            dgProducts.Columns.Add("ProductName");
+            dgProducts.Rows.Add("0", "-----Select-----");
+            try
+            {
+                DataTable dt = Retrieve("select ProductID, ProductName from ProductsTable");
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow products in dt.Rows)
+                        {
+                            dgProducts.Rows.Add(products["ProductID"], products["ProductName"]);
+                        }
+                    }
+
+                }
+           
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return dgProducts;
+        }
+
         public static void FillProductsPOS(ComboBox cmb)
         {
             DataTable dgProducts = new DataTable();

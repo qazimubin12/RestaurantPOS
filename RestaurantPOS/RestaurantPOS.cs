@@ -310,6 +310,7 @@ namespace RestaurantPOS
 
         private void RestaurantPOS_Load(object sender, EventArgs e)
         {
+            MainClass.FillProducts(cboProducts);
             cboOrderType.SelectedIndex = 0;
             fpCategory.WrapContents = false;
             GenerateInvoiceNo();
@@ -541,13 +542,11 @@ namespace RestaurantPOS
 
 
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            GetProductData(txtSearch.Text);
-        }
+        
 
         private void btnViewAllProducts_Click(object sender, EventArgs e)
         {
+            cboProducts.SelectedIndex = 0;
             GetProductData();
         }
 
@@ -906,6 +905,25 @@ namespace RestaurantPOS
                         btnGenerate_Click(sender, e);
                         TOKENID = GenerateTokenNumber();
                         MessageBox.Show("Sale Saved");
+
+                        try
+                        {
+                            float handcash = CashInHand();
+                            float cash = handcash + float.Parse(lblGrandTotal.Text);
+
+                            MainClass.con.Open();
+                            cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
+                            cmd.Parameters.AddWithValue("@CashInHand", cash);
+                            cmd.ExecuteNonQuery();
+                            MainClass.con.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MainClass.con.Close();
+                            MessageBox.Show(ex.Message);
+                        } //UpdateCash Flow
+
+
                         TokenForm bf = new TokenForm();
                         bf.Show();
                         tokengeneration = 1;
@@ -958,6 +976,26 @@ namespace RestaurantPOS
 
         public static int TakeAwaySaleID = 0;
         public static int DeliverySaleID = 0;
+
+        private float CashInHand()
+        {
+
+            float cash = 0;
+            try
+            {
+                MainClass.con.Open();
+                SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
+                cash = float.Parse(cmd.ExecuteScalar().ToString());
+                MainClass.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MainClass.con.Close();
+                MessageBox.Show(ex.Message);
+            }
+            return cash;
+        }
+
         private void btnSaveandPrintOrder_Click(object sender, EventArgs e)
         {
             if (DGVCartProduct.Rows.Count == 0)
@@ -1078,6 +1116,22 @@ namespace RestaurantPOS
 
                 MainClass.con.Close();
                 btnGenerate_Click(sender, e);
+                try
+                {
+                    float handcash = CashInHand();
+                    float cash = handcash + float.Parse(lblGrandTotal.Text);
+
+                    MainClass.con.Open();
+                    cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
+                    cmd.Parameters.AddWithValue("@CashInHand", cash);
+                    cmd.ExecuteNonQuery();
+                    MainClass.con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MainClass.con.Close();
+                    MessageBox.Show(ex.Message);
+                } //UpdateCash Flow
 
                 MessageBox.Show("Sale Finalized");
 
@@ -1261,6 +1315,12 @@ namespace RestaurantPOS
         {
             RecentSales sales = new RecentSales();
             sales.Show();
+        }
+
+        private void cboProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetProductData(cboProducts.Text);
+
         }
     }
 }

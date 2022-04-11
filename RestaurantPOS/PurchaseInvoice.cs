@@ -74,7 +74,7 @@ namespace RestaurantPOS
         {
             GenerateInvoiceNo();
             MainClass.FillSupplier(cboSupplier);
-            MainClass.FillProducts(cboProducts);
+            MainClass.FillProductsForPurchase(cboProducts);
             cboUnit.Text = "";
         }
             
@@ -417,6 +417,25 @@ namespace RestaurantPOS
             FullClear();
         }
 
+        public static int PURCHASE_ID = 0;
+        private float CashInHand()
+        {
+
+            float cash = 0;
+            try
+            {
+                MainClass.con.Open();
+                SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
+                cash = float.Parse(cmd.ExecuteScalar().ToString());
+                MainClass.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MainClass.con.Close();
+                MessageBox.Show(ex.Message);
+            }
+            return cash;
+        }
         private void btnFinalize_Click(object sender, EventArgs e)
         {
             if (cboType.Text == "" || cboSupplier.SelectedIndex == 0 || DGVPurchaseCart.Rows.Count == 0)
@@ -436,15 +455,17 @@ namespace RestaurantPOS
                 try
                 {
                     MainClass.con.Open();
-                    cmd = new SqlCommand("insert into SupplierInvoicesTable (SupplierID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,RemainingBalance) values (" +
-                        "@SupplierID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@RemainingBalance)", MainClass.con);
+                    cmd = new SqlCommand("insert into SupplierInvoicesTable (SupplierID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,RemainingBalance) values (" +
+                        "@SupplierID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@RemainingBalance)", MainClass.con);
 
                     cmd.Parameters.AddWithValue("@SupplierID", cboSupplier.SelectedValue.ToString());
                     cmd.Parameters.AddWithValue("@PaymentType", cboType.Text);
                     cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@TotalAmount", grantotal);
+                    cmd.Parameters.AddWithValue("@PaidAmount", txtPaying.Text);
                     cmd.Parameters.AddWithValue("@RemainingBalance", txtBalance.Text);
+
                     cmd.ExecuteNonQuery();
                     MainClass.con.Close();
                 }
@@ -472,12 +493,13 @@ namespace RestaurantPOS
                 try
                 {
                     MainClass.con.Open();
-                    cmd = new SqlCommand("insert into PurchasesTable (InvoiceNo,SupplierInvoice_ID,Supplier_ID,GrandTotal) values (" +
-                        "@InvoiceNo,@SupplierInvoice_ID,@Supplier_ID,@GrandTotal)", MainClass.con);
+                    cmd = new SqlCommand("insert into PurchasesTable (InvoiceNo,SupplierInvoice_ID,Supplier_ID,GrandTotal,PurchaseDate) values (" +
+                        "@InvoiceNo,@SupplierInvoice_ID,@Supplier_ID,@GrandTotal,@PurchaseDate)", MainClass.con);
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@SupplierInvoice_ID", SupplierInvoiceID);
                     cmd.Parameters.AddWithValue("@Supplier_ID", SupplierID);
                     cmd.Parameters.AddWithValue("@GrandTotal", grantotal);
+                    cmd.Parameters.AddWithValue("@PurchaseDate", dtInvoiceDate.Value.ToShortDateString());
                     cmd.ExecuteNonQuery();
                     MainClass.con.Close();
                 }
@@ -488,6 +510,22 @@ namespace RestaurantPOS
                 } // Inserting into Purchases
                 try
                 {
+                    float handcash = CashInHand();
+                    float cash = handcash - grantotal;
+
+                    MainClass.con.Open();
+                    cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
+                    cmd.Parameters.AddWithValue("@CashInHand", cash);
+                    cmd.ExecuteNonQuery();
+                    MainClass.con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MainClass.con.Close();
+                    MessageBox.Show(ex.Message);
+                } //UpdateCash Flow
+                try
+                {
                     MainClass.con.Open();
                     PurchaseID = Convert.ToString(MainClass.Retrieve("select MAX(PurchaseID) from PurchasesTable").Rows[0][0]);
                     if (string.IsNullOrEmpty(PurchaseID))
@@ -495,6 +533,7 @@ namespace RestaurantPOS
                         MessageBox.Show("Please Check The Error or Try Again");
                         return;
                     }
+                    PURCHASE_ID = int.Parse(PurchaseID);
                     MainClass.con.Close();
                 }
                 catch (Exception ex)
@@ -636,6 +675,7 @@ namespace RestaurantPOS
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    
                     MainClass.con.Close();
                 } // Inserting and Updating Inventory
                 try
@@ -660,8 +700,10 @@ namespace RestaurantPOS
                     MessageBox.Show(ex.Message);
                 } //Inserting Ledgers
             }
-            btnGenerate.PerformClick();
+            btnGenerate_Click(sender,e);
             MessageBox.Show("Purchase Successfuly");
+            PurchaseReceiptForm pr = new PurchaseReceiptForm();
+            pr.Show();
             FullClear();
         }
     }

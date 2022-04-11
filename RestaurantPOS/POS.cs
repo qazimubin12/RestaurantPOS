@@ -1143,7 +1143,7 @@ namespace RestaurantPOS
             {
                 savedcustomercheck = true;
             }
-            SaleReceiptForm s = new SaleReceiptForm();
+            PurchaseReceiptForm s = new PurchaseReceiptForm();
             s.ShowDialog();
             FullClear();
 

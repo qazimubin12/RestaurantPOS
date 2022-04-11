@@ -67,11 +67,13 @@ namespace RestaurantPOS
             this.PasswordGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RoleGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtRestore = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtBackup = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnRestoreBrowse = new System.Windows.Forms.Button();
+            this.btnWipeAllOutData = new System.Windows.Forms.Button();
             this.btnRestore = new System.Windows.Forms.Button();
             this.btnBackupBrowse = new System.Windows.Forms.Button();
             this.btnBackup = new System.Windows.Forms.Button();
@@ -96,8 +98,8 @@ namespace RestaurantPOS
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.modetoggle = new Guna.UI2.WinForms.Guna2ToggleSwitch();
-            this.label20 = new System.Windows.Forms.Label();
-            this.btnWipeAllOutData = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtCashInHand = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -629,6 +631,17 @@ namespace RestaurantPOS
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
+            this.label20.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label20.Location = new System.Drawing.Point(14, 314);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(239, 40);
+            this.label20.TabIndex = 33;
+            this.label20.Text = "Wipe All Data";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -713,6 +726,22 @@ namespace RestaurantPOS
             this.btnRestoreBrowse.UseVisualStyleBackColor = false;
             this.btnRestoreBrowse.Click += new System.EventHandler(this.btnRestoreBrowse_Click);
             // 
+            // btnWipeAllOutData
+            // 
+            this.btnWipeAllOutData.BackColor = System.Drawing.Color.White;
+            this.btnWipeAllOutData.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnWipeAllOutData.FlatAppearance.BorderSize = 2;
+            this.btnWipeAllOutData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWipeAllOutData.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnWipeAllOutData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnWipeAllOutData.Location = new System.Drawing.Point(21, 357);
+            this.btnWipeAllOutData.Name = "btnWipeAllOutData";
+            this.btnWipeAllOutData.Size = new System.Drawing.Size(212, 42);
+            this.btnWipeAllOutData.TabIndex = 31;
+            this.btnWipeAllOutData.Text = "WIPE";
+            this.btnWipeAllOutData.UseVisualStyleBackColor = false;
+            this.btnWipeAllOutData.Click += new System.EventHandler(this.btnWipeAllOutData_Click);
+            // 
             // btnRestore
             // 
             this.btnRestore.BackColor = System.Drawing.Color.White;
@@ -767,12 +796,14 @@ namespace RestaurantPOS
             this.tabPage3.Controls.Add(this.pictureBox1);
             this.tabPage3.Controls.Add(this.btnUpdateStore);
             this.tabPage3.Controls.Add(this.btnSaveStore);
+            this.tabPage3.Controls.Add(this.txtCashInHand);
             this.tabPage3.Controls.Add(this.txtCurrency);
             this.tabPage3.Controls.Add(this.txtGst);
             this.tabPage3.Controls.Add(this.txtLowStockQty);
             this.tabPage3.Controls.Add(this.txtStoreAddress);
             this.tabPage3.Controls.Add(this.txtStoreName);
             this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.label21);
             this.tabPage3.Controls.Add(this.btnSaveMode);
             this.tabPage3.Controls.Add(this.label19);
             this.tabPage3.Controls.Add(this.label12);
@@ -806,9 +837,9 @@ namespace RestaurantPOS
             this.btnUpdateStore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnUpdateStore.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnUpdateStore.Location = new System.Drawing.Point(461, 407);
+            this.btnUpdateStore.Location = new System.Drawing.Point(741, 321);
             this.btnUpdateStore.Name = "btnUpdateStore";
-            this.btnUpdateStore.Size = new System.Drawing.Size(114, 42);
+            this.btnUpdateStore.Size = new System.Drawing.Size(209, 42);
             this.btnUpdateStore.TabIndex = 6;
             this.btnUpdateStore.Text = "UPDATE";
             this.btnUpdateStore.UseVisualStyleBackColor = false;
@@ -822,9 +853,9 @@ namespace RestaurantPOS
             this.btnSaveStore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnSaveStore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnSaveStore.Location = new System.Drawing.Point(581, 407);
+            this.btnSaveStore.Location = new System.Drawing.Point(741, 369);
             this.btnSaveStore.Name = "btnSaveStore";
-            this.btnSaveStore.Size = new System.Drawing.Size(114, 42);
+            this.btnSaveStore.Size = new System.Drawing.Size(209, 42);
             this.btnSaveStore.TabIndex = 5;
             this.btnSaveStore.Text = "SAVE";
             this.btnSaveStore.UseVisualStyleBackColor = false;
@@ -1114,32 +1145,42 @@ namespace RestaurantPOS
             this.modetoggle.UncheckedState.Parent = this.modetoggle;
             this.modetoggle.Visible = false;
             // 
-            // label20
+            // label21
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
-            this.label20.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label20.Location = new System.Drawing.Point(14, 314);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(239, 40);
-            this.label20.TabIndex = 33;
-            this.label20.Text = "Wipe All Data";
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
+            this.label21.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label21.Location = new System.Drawing.Point(377, 394);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(142, 23);
+            this.label21.TabIndex = 34;
+            this.label21.Text = "Cash In Hand";
             // 
-            // btnWipeAllOutData
+            // txtCashInHand
             // 
-            this.btnWipeAllOutData.BackColor = System.Drawing.Color.White;
-            this.btnWipeAllOutData.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnWipeAllOutData.FlatAppearance.BorderSize = 2;
-            this.btnWipeAllOutData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWipeAllOutData.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnWipeAllOutData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnWipeAllOutData.Location = new System.Drawing.Point(21, 357);
-            this.btnWipeAllOutData.Name = "btnWipeAllOutData";
-            this.btnWipeAllOutData.Size = new System.Drawing.Size(212, 42);
-            this.btnWipeAllOutData.TabIndex = 31;
-            this.btnWipeAllOutData.Text = "WIPE";
-            this.btnWipeAllOutData.UseVisualStyleBackColor = false;
-            this.btnWipeAllOutData.Click += new System.EventHandler(this.btnWipeAllOutData_Click);
+            this.txtCashInHand.AutoRoundedCorners = true;
+            this.txtCashInHand.BorderRadius = 12;
+            this.txtCashInHand.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCashInHand.DefaultText = "";
+            this.txtCashInHand.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtCashInHand.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtCashInHand.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCashInHand.DisabledState.Parent = this.txtCashInHand;
+            this.txtCashInHand.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCashInHand.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCashInHand.FocusedState.Parent = this.txtCashInHand;
+            this.txtCashInHand.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCashInHand.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCashInHand.HoverState.Parent = this.txtCashInHand;
+            this.txtCashInHand.Location = new System.Drawing.Point(381, 421);
+            this.txtCashInHand.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCashInHand.Name = "txtCashInHand";
+            this.txtCashInHand.PasswordChar = '\0';
+            this.txtCashInHand.PlaceholderText = "";
+            this.txtCashInHand.SelectedText = "";
+            this.txtCashInHand.ShadowDecoration.Parent = this.txtCashInHand;
+            this.txtCashInHand.Size = new System.Drawing.Size(314, 27);
+            this.txtCashInHand.TabIndex = 4;
             // 
             // Settings
             // 
@@ -1243,5 +1284,7 @@ namespace RestaurantPOS
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button btnWipeAllOutData;
+        private Guna.UI2.WinForms.Guna2TextBox txtCashInHand;
+        private System.Windows.Forms.Label label21;
     }
 }

@@ -38,12 +38,14 @@ namespace RestaurantPOS
             this.lblLoggedInUser = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblOrderID = new System.Windows.Forms.Label();
-            this.txtInvoiceNo = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblStoreAddress = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.lblStore = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtTokenNumber = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtInvoiceNo = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.fpFoods = new System.Windows.Forms.FlowLayoutPanel();
             this.fpCategory = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
@@ -59,19 +61,9 @@ namespace RestaurantPOS
             this.lblEntername = new System.Windows.Forms.Label();
             this.lblSelectCustomer = new System.Windows.Forms.Label();
             this.txtDeliveryAddress = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnViewAllProducts = new System.Windows.Forms.Button();
             this.DGVCartProduct = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductNameGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QTYGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnSaveOrder = new System.Windows.Forms.Button();
             this.btnSaveandPrintOrder = new System.Windows.Forms.Button();
             this.btnPaymentOrder = new System.Windows.Forms.Button();
@@ -83,8 +75,16 @@ namespace RestaurantPOS
             this.btnClearForm = new System.Windows.Forms.Button();
             this.cbGST = new Guna.UI2.WinForms.Guna2CheckBox();
             this.btnRecentSales = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtTokenNumber = new Guna.UI2.WinForms.Guna2TextBox();
+            this.cboProducts = new System.Windows.Forms.ComboBox();
+            this.SNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductNameGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QTYGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAdd = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnRemove = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.guna2GroupBox1.SuspendLayout();
@@ -99,11 +99,7 @@ namespace RestaurantPOS
             this.panel1.Controls.Add(this.lblLoggedInUser);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.lblOrderID);
-            this.panel1.Controls.Add(this.txtTokenNumber);
-            this.panel1.Controls.Add(this.txtInvoiceNo);
             this.panel1.Controls.Add(this.lblStoreAddress);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.lblStore);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label1);
@@ -176,33 +172,6 @@ namespace RestaurantPOS
             this.lblOrderID.Visible = false;
             this.lblOrderID.TextChanged += new System.EventHandler(this.lblOrderID_TextChanged);
             // 
-            // txtInvoiceNo
-            // 
-            this.txtInvoiceNo.AutoRoundedCorners = true;
-            this.txtInvoiceNo.BorderRadius = 11;
-            this.txtInvoiceNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtInvoiceNo.DefaultText = "";
-            this.txtInvoiceNo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtInvoiceNo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtInvoiceNo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtInvoiceNo.DisabledState.Parent = this.txtInvoiceNo;
-            this.txtInvoiceNo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtInvoiceNo.Enabled = false;
-            this.txtInvoiceNo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtInvoiceNo.FocusedState.Parent = this.txtInvoiceNo;
-            this.txtInvoiceNo.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvoiceNo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtInvoiceNo.HoverState.Parent = this.txtInvoiceNo;
-            this.txtInvoiceNo.Location = new System.Drawing.Point(683, 45);
-            this.txtInvoiceNo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtInvoiceNo.Name = "txtInvoiceNo";
-            this.txtInvoiceNo.PasswordChar = '\0';
-            this.txtInvoiceNo.PlaceholderText = "";
-            this.txtInvoiceNo.SelectedText = "";
-            this.txtInvoiceNo.ShadowDecoration.Parent = this.txtInvoiceNo;
-            this.txtInvoiceNo.Size = new System.Drawing.Size(91, 25);
-            this.txtInvoiceNo.TabIndex = 33;
-            // 
             // lblStoreAddress
             // 
             this.lblStoreAddress.AutoSize = true;
@@ -214,17 +183,6 @@ namespace RestaurantPOS
             this.lblStoreAddress.TabIndex = 6;
             this.lblStoreAddress.Text = "cc";
             this.lblStoreAddress.Visible = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(590, 48);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(86, 19);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "Invoice No:";
             // 
             // lblStore
             // 
@@ -261,6 +219,82 @@ namespace RestaurantPOS
             this.label1.Size = new System.Drawing.Size(265, 40);
             this.label1.TabIndex = 2;
             this.label1.Text = "Restaurant POS";
+            // 
+            // txtTokenNumber
+            // 
+            this.txtTokenNumber.AutoRoundedCorners = true;
+            this.txtTokenNumber.BorderRadius = 11;
+            this.txtTokenNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTokenNumber.DefaultText = "";
+            this.txtTokenNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTokenNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTokenNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTokenNumber.DisabledState.Parent = this.txtTokenNumber;
+            this.txtTokenNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTokenNumber.Enabled = false;
+            this.txtTokenNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTokenNumber.FocusedState.Parent = this.txtTokenNumber;
+            this.txtTokenNumber.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTokenNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTokenNumber.HoverState.Parent = this.txtTokenNumber;
+            this.txtTokenNumber.Location = new System.Drawing.Point(898, 94);
+            this.txtTokenNumber.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTokenNumber.Name = "txtTokenNumber";
+            this.txtTokenNumber.PasswordChar = '\0';
+            this.txtTokenNumber.PlaceholderText = "";
+            this.txtTokenNumber.SelectedText = "";
+            this.txtTokenNumber.ShadowDecoration.Parent = this.txtTokenNumber;
+            this.txtTokenNumber.Size = new System.Drawing.Size(91, 25);
+            this.txtTokenNumber.TabIndex = 33;
+            // 
+            // txtInvoiceNo
+            // 
+            this.txtInvoiceNo.AutoRoundedCorners = true;
+            this.txtInvoiceNo.BorderRadius = 11;
+            this.txtInvoiceNo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtInvoiceNo.DefaultText = "";
+            this.txtInvoiceNo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtInvoiceNo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtInvoiceNo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtInvoiceNo.DisabledState.Parent = this.txtInvoiceNo;
+            this.txtInvoiceNo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtInvoiceNo.Enabled = false;
+            this.txtInvoiceNo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtInvoiceNo.FocusedState.Parent = this.txtInvoiceNo;
+            this.txtInvoiceNo.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvoiceNo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtInvoiceNo.HoverState.Parent = this.txtInvoiceNo;
+            this.txtInvoiceNo.Location = new System.Drawing.Point(898, 123);
+            this.txtInvoiceNo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtInvoiceNo.Name = "txtInvoiceNo";
+            this.txtInvoiceNo.PasswordChar = '\0';
+            this.txtInvoiceNo.PlaceholderText = "";
+            this.txtInvoiceNo.SelectedText = "";
+            this.txtInvoiceNo.ShadowDecoration.Parent = this.txtInvoiceNo;
+            this.txtInvoiceNo.Size = new System.Drawing.Size(91, 25);
+            this.txtInvoiceNo.TabIndex = 33;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(822, 97);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 19);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "Token No:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(811, 126);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(86, 19);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Invoice No:";
             // 
             // fpFoods
             // 
@@ -519,34 +553,6 @@ namespace RestaurantPOS
             this.txtDeliveryAddress.TabIndex = 33;
             this.txtDeliveryAddress.Visible = false;
             // 
-            // txtSearch
-            // 
-            this.txtSearch.AutoRoundedCorners = true;
-            this.txtSearch.BackColor = System.Drawing.Color.White;
-            this.txtSearch.BorderRadius = 12;
-            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearch.DefaultText = "";
-            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.DisabledState.Parent = this.txtSearch;
-            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.FocusedState.Parent = this.txtSearch;
-            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.HoverState.Parent = this.txtSearch;
-            this.txtSearch.Location = new System.Drawing.Point(81, 254);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PasswordChar = '\0';
-            this.txtSearch.PlaceholderText = "";
-            this.txtSearch.SelectedText = "";
-            this.txtSearch.ShadowDecoration.Parent = this.txtSearch;
-            this.txtSearch.Size = new System.Drawing.Size(257, 27);
-            this.txtSearch.TabIndex = 5;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -644,88 +650,13 @@ namespace RestaurantPOS
             this.DGVCartProduct.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.DGVCartProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCartProduct_CellClick);
             // 
-            // SNo
-            // 
-            this.SNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.SNo.HeaderText = "#";
-            this.SNo.Name = "SNo";
-            this.SNo.ReadOnly = true;
-            this.SNo.Width = 40;
-            // 
-            // ProductID
-            // 
-            this.ProductID.HeaderText = "ProductID";
-            this.ProductID.Name = "ProductID";
-            this.ProductID.ReadOnly = true;
-            this.ProductID.Visible = false;
-            // 
-            // ProductNameGV
-            // 
-            this.ProductNameGV.FillWeight = 308.806F;
-            this.ProductNameGV.HeaderText = "Product";
-            this.ProductNameGV.Name = "ProductNameGV";
-            this.ProductNameGV.ReadOnly = true;
-            // 
-            // UnitGV
-            // 
-            this.UnitGV.FillWeight = 84.35168F;
-            this.UnitGV.HeaderText = "Unit";
-            this.UnitGV.Name = "UnitGV";
-            this.UnitGV.ReadOnly = true;
-            // 
-            // PriceGV
-            // 
-            this.PriceGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PriceGV.FillWeight = 77.35382F;
-            this.PriceGV.HeaderText = "Price";
-            this.PriceGV.Name = "PriceGV";
-            this.PriceGV.ReadOnly = true;
-            // 
-            // QTYGV
-            // 
-            this.QTYGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.QTYGV.FillWeight = 69.88316F;
-            this.QTYGV.HeaderText = "Qty";
-            this.QTYGV.Name = "QTYGV";
-            this.QTYGV.ReadOnly = true;
-            // 
-            // TotalGV
-            // 
-            this.TotalGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TotalGV.FillWeight = 61.90771F;
-            this.TotalGV.HeaderText = "Total";
-            this.TotalGV.Name = "TotalGV";
-            this.TotalGV.ReadOnly = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.FillWeight = 53.39339F;
-            this.btnAdd.HeaderText = "";
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.ReadOnly = true;
-            this.btnAdd.Text = "+";
-            this.btnAdd.ToolTipText = "+";
-            this.btnAdd.UseColumnTextForButtonValue = true;
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.FillWeight = 44.30377F;
-            this.btnRemove.HeaderText = "";
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.ReadOnly = true;
-            this.btnRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnRemove.Text = "-";
-            this.btnRemove.ToolTipText = "-";
-            this.btnRemove.UseColumnTextForButtonValue = true;
-            // 
             // btnSaveOrder
             // 
             this.btnSaveOrder.BackColor = System.Drawing.Color.SlateBlue;
             this.btnSaveOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveOrder.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveOrder.ForeColor = System.Drawing.Color.White;
-            this.btnSaveOrder.Location = new System.Drawing.Point(494, 177);
+            this.btnSaveOrder.Location = new System.Drawing.Point(493, 94);
             this.btnSaveOrder.Name = "btnSaveOrder";
             this.btnSaveOrder.Size = new System.Drawing.Size(100, 77);
             this.btnSaveOrder.TabIndex = 30;
@@ -739,7 +670,7 @@ namespace RestaurantPOS
             this.btnSaveandPrintOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveandPrintOrder.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveandPrintOrder.ForeColor = System.Drawing.Color.White;
-            this.btnSaveandPrintOrder.Location = new System.Drawing.Point(600, 177);
+            this.btnSaveandPrintOrder.Location = new System.Drawing.Point(493, 177);
             this.btnSaveandPrintOrder.Name = "btnSaveandPrintOrder";
             this.btnSaveandPrintOrder.Size = new System.Drawing.Size(100, 77);
             this.btnSaveandPrintOrder.TabIndex = 30;
@@ -753,7 +684,7 @@ namespace RestaurantPOS
             this.btnPaymentOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaymentOrder.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPaymentOrder.ForeColor = System.Drawing.Color.White;
-            this.btnPaymentOrder.Location = new System.Drawing.Point(706, 177);
+            this.btnPaymentOrder.Location = new System.Drawing.Point(599, 177);
             this.btnPaymentOrder.Name = "btnPaymentOrder";
             this.btnPaymentOrder.Size = new System.Drawing.Size(100, 77);
             this.btnPaymentOrder.TabIndex = 30;
@@ -767,7 +698,7 @@ namespace RestaurantPOS
             this.btnViewOrders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewOrders.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewOrders.ForeColor = System.Drawing.Color.White;
-            this.btnViewOrders.Location = new System.Drawing.Point(813, 177);
+            this.btnViewOrders.Location = new System.Drawing.Point(706, 177);
             this.btnViewOrders.Name = "btnViewOrders";
             this.btnViewOrders.Size = new System.Drawing.Size(100, 77);
             this.btnViewOrders.TabIndex = 30;
@@ -842,7 +773,7 @@ namespace RestaurantPOS
             this.btnClearForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearForm.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearForm.ForeColor = System.Drawing.Color.White;
-            this.btnClearForm.Location = new System.Drawing.Point(813, 94);
+            this.btnClearForm.Location = new System.Drawing.Point(706, 94);
             this.btnClearForm.Name = "btnClearForm";
             this.btnClearForm.Size = new System.Drawing.Size(100, 77);
             this.btnClearForm.TabIndex = 30;
@@ -876,7 +807,7 @@ namespace RestaurantPOS
             this.btnRecentSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecentSales.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecentSales.ForeColor = System.Drawing.Color.White;
-            this.btnRecentSales.Location = new System.Drawing.Point(707, 94);
+            this.btnRecentSales.Location = new System.Drawing.Point(600, 94);
             this.btnRecentSales.Name = "btnRecentSales";
             this.btnRecentSales.Size = new System.Drawing.Size(100, 77);
             this.btnRecentSales.TabIndex = 30;
@@ -884,43 +815,97 @@ namespace RestaurantPOS
             this.btnRecentSales.UseVisualStyleBackColor = false;
             this.btnRecentSales.Click += new System.EventHandler(this.btnRecentSales_Click);
             // 
-            // label7
+            // cboProducts
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(792, 48);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 19);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "Token No:";
+            this.cboProducts.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboProducts.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboProducts.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboProducts.FormattingEnabled = true;
+            this.cboProducts.Location = new System.Drawing.Point(80, 256);
+            this.cboProducts.Name = "cboProducts";
+            this.cboProducts.Size = new System.Drawing.Size(259, 25);
+            this.cboProducts.TabIndex = 36;
+            this.cboProducts.SelectedIndexChanged += new System.EventHandler(this.cboProducts_SelectedIndexChanged);
             // 
-            // txtTokenNumber
+            // SNo
             // 
-            this.txtTokenNumber.AutoRoundedCorners = true;
-            this.txtTokenNumber.BorderRadius = 11;
-            this.txtTokenNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTokenNumber.DefaultText = "";
-            this.txtTokenNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTokenNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTokenNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTokenNumber.DisabledState.Parent = this.txtTokenNumber;
-            this.txtTokenNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTokenNumber.Enabled = false;
-            this.txtTokenNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTokenNumber.FocusedState.Parent = this.txtTokenNumber;
-            this.txtTokenNumber.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTokenNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTokenNumber.HoverState.Parent = this.txtTokenNumber;
-            this.txtTokenNumber.Location = new System.Drawing.Point(874, 45);
-            this.txtTokenNumber.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTokenNumber.Name = "txtTokenNumber";
-            this.txtTokenNumber.PasswordChar = '\0';
-            this.txtTokenNumber.PlaceholderText = "";
-            this.txtTokenNumber.SelectedText = "";
-            this.txtTokenNumber.ShadowDecoration.Parent = this.txtTokenNumber;
-            this.txtTokenNumber.Size = new System.Drawing.Size(66, 25);
-            this.txtTokenNumber.TabIndex = 33;
+            this.SNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.SNo.HeaderText = "#";
+            this.SNo.Name = "SNo";
+            this.SNo.ReadOnly = true;
+            this.SNo.Width = 40;
+            // 
+            // ProductID
+            // 
+            this.ProductID.HeaderText = "ProductID";
+            this.ProductID.Name = "ProductID";
+            this.ProductID.ReadOnly = true;
+            this.ProductID.Visible = false;
+            // 
+            // ProductNameGV
+            // 
+            this.ProductNameGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ProductNameGV.FillWeight = 308.806F;
+            this.ProductNameGV.HeaderText = "Product";
+            this.ProductNameGV.Name = "ProductNameGV";
+            this.ProductNameGV.ReadOnly = true;
+            this.ProductNameGV.Width = 80;
+            // 
+            // UnitGV
+            // 
+            this.UnitGV.FillWeight = 84.35168F;
+            this.UnitGV.HeaderText = "Unit";
+            this.UnitGV.Name = "UnitGV";
+            this.UnitGV.ReadOnly = true;
+            // 
+            // PriceGV
+            // 
+            this.PriceGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.PriceGV.FillWeight = 77.35382F;
+            this.PriceGV.HeaderText = "Price";
+            this.PriceGV.Name = "PriceGV";
+            this.PriceGV.ReadOnly = true;
+            this.PriceGV.Width = 61;
+            // 
+            // QTYGV
+            // 
+            this.QTYGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.QTYGV.FillWeight = 69.88316F;
+            this.QTYGV.HeaderText = "Qty";
+            this.QTYGV.Name = "QTYGV";
+            this.QTYGV.ReadOnly = true;
+            this.QTYGV.Width = 55;
+            // 
+            // TotalGV
+            // 
+            this.TotalGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TotalGV.FillWeight = 61.90771F;
+            this.TotalGV.HeaderText = "Total";
+            this.TotalGV.Name = "TotalGV";
+            this.TotalGV.ReadOnly = true;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.FillWeight = 53.39339F;
+            this.btnAdd.HeaderText = "";
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.ReadOnly = true;
+            this.btnAdd.Text = "+";
+            this.btnAdd.ToolTipText = "+";
+            this.btnAdd.UseColumnTextForButtonValue = true;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.FillWeight = 44.30377F;
+            this.btnRemove.HeaderText = "";
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.ReadOnly = true;
+            this.btnRemove.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnRemove.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnRemove.Text = "-";
+            this.btnRemove.ToolTipText = "-";
+            this.btnRemove.UseColumnTextForButtonValue = true;
             // 
             // RestaurantPOS
             // 
@@ -929,19 +914,23 @@ namespace RestaurantPOS
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(992, 617);
             this.ControlBox = false;
+            this.Controls.Add(this.cboProducts);
             this.Controls.Add(this.cbGST);
             this.Controls.Add(this.txtDiscount);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblGrandTotal);
+            this.Controls.Add(this.txtInvoiceNo);
+            this.Controls.Add(this.txtTokenNumber);
             this.Controls.Add(this.btnRecentSales);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.btnClearForm);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnViewOrders);
             this.Controls.Add(this.btnPaymentOrder);
             this.Controls.Add(this.btnSaveandPrintOrder);
             this.Controls.Add(this.btnSaveOrder);
             this.Controls.Add(this.DGVCartProduct);
-            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnViewAllProducts);
             this.Controls.Add(this.guna2GroupBox1);
@@ -974,18 +963,8 @@ namespace RestaurantPOS
         private System.Windows.Forms.Button btnTables;
         public Guna.UI2.WinForms.Guna2TextBox txtTableName;
         private System.Windows.Forms.Label lblTable;
-        public Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnViewAllProducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductNameGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PriceGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QTYGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalGV;
-        private System.Windows.Forms.DataGridViewButtonColumn btnAdd;
-        private System.Windows.Forms.DataGridViewButtonColumn btnRemove;
         private System.Windows.Forms.Button btnPaymentOrder;
         private System.Windows.Forms.Button btnViewOrders;
         private System.Windows.Forms.Label label5;
@@ -1017,5 +996,15 @@ namespace RestaurantPOS
         private System.Windows.Forms.Button btnRecentSales;
         public Guna.UI2.WinForms.Guna2TextBox txtTokenNumber;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cboProducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductNameGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PriceGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QTYGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalGV;
+        private System.Windows.Forms.DataGridViewButtonColumn btnAdd;
+        private System.Windows.Forms.DataGridViewButtonColumn btnRemove;
     }
 }

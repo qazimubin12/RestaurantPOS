@@ -11,30 +11,26 @@ using System.Windows.Forms;
 
 namespace RestaurantPOS
 {
-    public partial class SaleReceiptForm : Form
+    public partial class PurchaseReceiptForm : Form
     {
         POS p = new POS();
         ReportDocument rd = new ReportDocument();
 
-        public SaleReceiptForm()
+        public PurchaseReceiptForm()
         {
             InitializeComponent();
         }
 
-        private void SaleReceiptForm_Load(object sender, EventArgs e)
+    
+        private void PurchaseReceiptForm_Load(object sender, EventArgs e)
         {
-            if (POS.savedcustomercheck == true)
+            if (PurchaseInvoice.PURCHASE_ID != 0)
             {
-                MainClass.ShowSaleRecieptSavedCustomer(rd, crystalReportViewer1, "SaleRecieptOfSavedCustomer");
-            }
-            else
-            {
-                
-                MainClass.ShowSaleReciept(rd, crystalReportViewer1, "SaleRecieptOfWalkingCustomer");
+                MainClass.ShowPurchaseReceipt(rd, crystalReportViewer1, "PurchaseReceipt", "@PurchaseID", PurchaseInvoice.PURCHASE_ID);
             }
         }
 
-        private void SaleReceiptForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void PurchaseReceiptForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (rd != null)
             {

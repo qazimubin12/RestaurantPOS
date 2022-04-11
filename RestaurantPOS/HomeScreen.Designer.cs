@@ -46,7 +46,7 @@ namespace RestaurantPOS
             this.btnPurchase = new System.Windows.Forms.Button();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.lblTotalCustomerLedger = new System.Windows.Forms.Label();
+            this.lblCashInHand = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblExpense = new System.Windows.Forms.Label();
@@ -57,6 +57,7 @@ namespace RestaurantPOS
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDailySales = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.guna2GradientPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
@@ -133,6 +134,7 @@ namespace RestaurantPOS
             this.tableLayoutPanel1.Controls.Add(this.btnSettings, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnReports, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnPurchase, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 2, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 79);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -334,25 +336,25 @@ namespace RestaurantPOS
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.MediumPurple;
-            this.panel4.Controls.Add(this.lblTotalCustomerLedger);
+            this.panel4.Controls.Add(this.lblCashInHand);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Location = new System.Drawing.Point(9, 247);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(358, 94);
             this.panel4.TabIndex = 0;
             // 
-            // lblTotalCustomerLedger
+            // lblCashInHand
             // 
-            this.lblTotalCustomerLedger.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblCashInHand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotalCustomerLedger.AutoSize = true;
-            this.lblTotalCustomerLedger.BackColor = System.Drawing.Color.Transparent;
-            this.lblTotalCustomerLedger.ForeColor = System.Drawing.Color.White;
-            this.lblTotalCustomerLedger.Location = new System.Drawing.Point(161, 55);
-            this.lblTotalCustomerLedger.Name = "lblTotalCustomerLedger";
-            this.lblTotalCustomerLedger.Size = new System.Drawing.Size(59, 30);
-            this.lblTotalCustomerLedger.TabIndex = 0;
-            this.lblTotalCustomerLedger.Text = "0.00";
+            this.lblCashInHand.AutoSize = true;
+            this.lblCashInHand.BackColor = System.Drawing.Color.Transparent;
+            this.lblCashInHand.ForeColor = System.Drawing.Color.White;
+            this.lblCashInHand.Location = new System.Drawing.Point(161, 55);
+            this.lblCashInHand.Name = "lblCashInHand";
+            this.lblCashInHand.Size = new System.Drawing.Size(59, 30);
+            this.lblCashInHand.TabIndex = 0;
+            this.lblCashInHand.Text = "0.00";
             // 
             // label7
             // 
@@ -361,9 +363,9 @@ namespace RestaurantPOS
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(3, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(320, 30);
+            this.label7.Size = new System.Drawing.Size(185, 30);
             this.label7.TabIndex = 0;
-            this.label7.Text = "TOTAL CUSTOMER LEDGER";
+            this.label7.Text = "CASH IN HAND";
             // 
             // panel2
             // 
@@ -467,6 +469,23 @@ namespace RestaurantPOS
             this.label2.TabIndex = 0;
             this.label2.Text = "DAILY SALES";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.button1.ForeColor = System.Drawing.SystemColors.Window;
+            this.button1.Image = global::RestaurantPOS.Properties.Resources.expenses;
+            this.button1.Location = new System.Drawing.Point(313, 271);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(149, 128);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "EXPENSES";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // HomeScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -518,7 +537,7 @@ namespace RestaurantPOS
         private System.Windows.Forms.Label lblExpense;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lblTotalCustomerLedger;
+        private System.Windows.Forms.Label lblCashInHand;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel lowStocksPanel;
         private System.Windows.Forms.Label lblLowStocks;
@@ -527,5 +546,6 @@ namespace RestaurantPOS
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label lblLoggedUser;
+        private System.Windows.Forms.Button button1;
     }
 }
