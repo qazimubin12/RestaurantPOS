@@ -22,6 +22,10 @@ namespace RestaurantPOS
         private void TokenForm_Load(object sender, EventArgs e)
         {
             rd = new ReportDocument();
+            if (RestaurantPOS.TOKENID != 0)
+            {
+                MainClass.ShowTokenNumber(rd, crystalReportViewer1, "TokenData", "@Number", RestaurantPOS.TOKENID);
+            }
         }
     }
 }

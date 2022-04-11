@@ -178,6 +178,31 @@ namespace RestaurantPOS
             }
         }
 
+        public static void ShowTokenNumber(ReportDocument rd, CrystalReportViewer crv, string proc, string param1 = "", object val1 = null)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(proc, MainClass.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (param1 != "")
+                {
+                    cmd.Parameters.AddWithValue(param1, val1);
+                }
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                rd.Load(Application.StartupPath + "\\Reports\\TokenNumber.rpt");
+                rd.SetDataSource(dt);
+                crv.ReportSource = rd;
+                crv.RefreshReport();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
 
 
         public static void ShowDineInBill(ReportDocument rd, CrystalReportViewer crv, string proc, string param1 = "", object val1 = null)
