@@ -37,12 +37,13 @@ namespace RestaurantPOS
             lblLoggedUser.Text = "Admin";
 
             tabControl1.SelectedIndex = 1;
+            MainClass.FillSupplier(cboSupplierLedger);
             ShowLedgersInfo(DGVLedgersReports, CustomerGV, PayingDateGV, LedgerInvoiceNoGV, LedgerTotalGv, PreviousPaidGV, TodaysPaidGV, NewBalanceGV);
-            MainClass.FillCustomer(CboCustomerLedger);
             MainClass.HideAllTabsOnTabControl(tabControl1);
             ShowPurchases(DGVPurchases, SupplierInvoiceIDGV, PaymentTypeGV, InvoiceNoGv, InvoiceDateGV, SupplierNameGV, GrandTotalGV);
             //    ShowSales(DGVSales, CustomerInvoiceIDGV, PaymentGVC, InvoiceNoGVC, InvoiceDateGVC, CustomerGVC, GrandTotalGVC);
             ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTypeGV, OrderTimeGV, SaleGrandTotalGV);
+            ShowReturnData(DGVReturnDetails, ReturnIDGV, ReturnSupplierGV, ReturnProductGV, ReturnUnitGV, ReturnRateGV, ReturnQtyGV, ReturnTotalGV, ReturnDateGV, ReturnInvoiceNoGV, ReturnRemarksGV);
         }
 
         private void ShowPurchases(DataGridView dgv, DataGridViewColumn SupplierInvoiceID,DataGridViewColumn PaymentType, DataGridViewColumn InvoiceNo, DataGridViewColumn InvoiceDate, DataGridViewColumn PersonName, DataGridViewColumn GrandTotal )
@@ -56,7 +57,7 @@ namespace RestaurantPOS
             else
             {
                 cmd = new SqlCommand("select st.SupplierInvoiceID,st.PaymentType,pp.InvoiceNo,format(st.InvoiceDate, 'dd/MM/yyyy') as 'Date',pt.Name,pp.GrandTotal from PurchasesInfo p inner join PurchasesTable pp on pp.PurchaseID = p.Purchase_ID  inner join PersonsTable pt on pt.PersonID = pp.Supplier_ID inner join SupplierInvoicesTable st on st.SupplierInvoiceID = pp.SupplierInvoice_ID", MainClass.con);
-            }
+            }   
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -71,8 +72,33 @@ namespace RestaurantPOS
         }
 
 
+        private void ShowReturnData(DataGridView dgv, DataGridViewColumn ID, DataGridViewColumn Name, DataGridViewColumn Product, DataGridViewColumn Unit, DataGridViewColumn Rate, DataGridViewColumn Quantity, DataGridViewColumn Total, DataGridViewColumn Date, DataGridViewColumn InvoiceNo, DataGridViewColumn Remarks)
+        {
+            MainClass.con.Open();
+            SqlCommand cmd = null;
+            
+                cmd = new SqlCommand("selecT st.ID,pt.Name,p.ProductName,u.Unit,st.Rate,st.Quantity,st.GrandTotal,st.ReturnDate,st.InvoiceNo,st.Remarks from StockReturnTable st inner join ProductsTable p on p.ProductID = st.ProductID inner join UnitsTable u on u.UnitID = st.UnitID inner join PersonsTable pt on pt.PersonID = st.SupplierID", MainClass.con);
+            
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            ID.DataPropertyName = dt.Columns["ID"].ToString();
+            Name.DataPropertyName = dt.Columns["Name"].ToString();
+            InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
+            Date.DataPropertyName = dt.Columns["ReturnDate"].ToString();
+            Product.DataPropertyName = dt.Columns["ProductName"].ToString();
+            Total.DataPropertyName = dt.Columns["GrandTotal"].ToString();
+            Rate.DataPropertyName = dt.Columns["Rate"].ToString();
+            Unit.DataPropertyName = dt.Columns["Unit"].ToString();
+            Quantity.DataPropertyName = dt.Columns["Quantity"].ToString();
+            Remarks.DataPropertyName = dt.Columns["Remarks"].ToString();
+            dgv.DataSource = dt;
+            MainClass.con.Close();
+        }
 
-        private void ShowLedgersInfo(DataGridView dgv, DataGridViewColumn Customer, DataGridViewColumn PayingDate, DataGridViewColumn InvoiceNo,
+
+
+        private void ShowLedgersInfo(DataGridView dgv, DataGridViewColumn Supplier, DataGridViewColumn PayingDate, DataGridViewColumn InvoiceNo,
             DataGridViewColumn TotalAmount, DataGridViewColumn PreviousPaid, DataGridViewColumn TodayPaid, DataGridViewColumn NewBalance, string search = null)
         {
             try
@@ -81,17 +107,17 @@ namespace RestaurantPOS
                 MainClass.con.Open();
                 if (search == "0" || search == null)
                 {
-                    cmd = new SqlCommand("select p.Name,ct.PayingDate,ct.InvoiceNo,ct.TotalAmount,ct.PreviousPaid,ct.TodayPaid,ct.NewBalance  from CustomerLedgersInfoTable ct inner join PersonsTable p on p.PersonID = ct.Customer_ID", MainClass.con);
+                    cmd = new SqlCommand("select p.Name,ct.PayingDate,ct.InvoiceNo,ct.TotalAmount,ct.PreviousPaid,ct.TodayPaid,ct.NewBalance  from SupplierLedgersInfoTable ct inner join PersonsTable p on p.PersonID = ct.Supplier_ID", MainClass.con);
                 }
                 else
                 {
-                    cmd = new SqlCommand("select p.Name,ct.PayingDate,ct.InvoiceNo,ct.TotalAmount,ct.PreviousPaid,ct.TodayPaid,ct.NewBalance  from CustomerLedgersInfoTable ct inner join PersonsTable p on p.PersonID = ct.Customer_ID where ct.Customer_ID = '" + search + "'", MainClass.con);
+                    cmd = new SqlCommand("select p.Name,ct.PayingDate,ct.InvoiceNo,ct.TotalAmount,ct.PreviousPaid,ct.TodayPaid,ct.NewBalance  from SupplierLedgersInfoTable ct inner join PersonsTable p on p.PersonID = ct.Supplier_ID where ct.Supplier_ID = '" + search + "'", MainClass.con);
                 }
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                Customer.DataPropertyName = dt.Columns["Name"].ToString();
+                Supplier.DataPropertyName = dt.Columns["Name"].ToString();
                 PayingDate.DataPropertyName = dt.Columns["PayingDate"].ToString();
                 InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
                 TotalAmount.DataPropertyName = dt.Columns["TotalAmount"].ToString();
@@ -408,20 +434,20 @@ namespace RestaurantPOS
 
         private void CboCustomerLedger_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowLedgersInfo(DGVLedgersReports, CustomerGV, PayingDateGV, LedgerInvoiceNoGV, LedgerTotalGv, PreviousPaidGV, TodaysPaidGV, NewBalanceGV, CboCustomerLedger.SelectedValue.ToString());
+            ShowLedgersInfo(DGVLedgersReports, CustomerGV, PayingDateGV, LedgerInvoiceNoGV, LedgerTotalGv, PreviousPaidGV, TodaysPaidGV, NewBalanceGV, cboSupplierLedger.SelectedValue.ToString());
         }
 
         private void btnExportPdF_Click(object sender, EventArgs e)
         {
             DGVPrinter printer = new DGVPrinter();
             printer.Title = "TFC - LEDGER REPORTS";
-            if(CboCustomerLedger.SelectedIndex == 0)
+            if(cboSupplierLedger.SelectedIndex == 0)
             {
                 printer.SubTitle = "Customer : ALL CUSTOMERS";
             }
             else
             {
-                printer.SubTitle = "Customer : " + CboCustomerLedger.Text;
+                printer.SubTitle = "Customer : " + cboSupplierLedger.Text;
             }
             
             printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;

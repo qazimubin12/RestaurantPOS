@@ -692,6 +692,28 @@ namespace RestaurantPOS
                     cmd.Parameters.AddWithValue("@PaidAmount", txtPaying.Text);
                     cmd.Parameters.AddWithValue("@Balance", txtBalance.Text);
                     cmd.ExecuteNonQuery();
+
+                    string SupplerLedgerID = Convert.ToString(MainClass.Retrieve("select MAX(SupplerLedgerID) from SupplierLedgersTable").Rows[0][0]);
+                    if (string.IsNullOrEmpty(SupplerLedgerID))
+                    {
+                        MessageBox.Show("Please Check The Error or Try Again");
+                        return;
+                    }
+
+
+                    string InsertLedgerInfo = "insert into SupplierLedgersInfoTable (SupplierLedger_ID,Supplier_ID,PayingDate,InvoiceNo,TotalAmount,PreviousPaid,TodayPaid,NewBalance,InvoiceDate) values(@SupplierLedger_ID,@Supplier_ID,@PayingDate,@InvoiceNo,@TotalAmount,@PreviousPaid,@TodayPaid,@NewBalance,@InvoiceDate)";
+                    cmd = new SqlCommand(InsertLedgerInfo, MainClass.con);
+                    cmd.Parameters.AddWithValue("@SupplierLedger_ID", SupplerLedgerID);
+                    cmd.Parameters.AddWithValue("@Supplier_ID", cboSupplier.SelectedValue.ToString());
+                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                    cmd.Parameters.AddWithValue("@PayingDate", dtInvoiceDate.Value.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@TotalAmount", txtGrossTotal.Text);
+                    cmd.Parameters.AddWithValue("@PreviousPaid", txtPaying.Text);
+                    cmd.Parameters.AddWithValue("@TodayPaid", 0);
+                    cmd.Parameters.AddWithValue("@NewBalance", txtBalance.Text);
+                    cmd.ExecuteNonQuery();
+
                     MainClass.con.Close();
                 }
                 catch (Exception ex)

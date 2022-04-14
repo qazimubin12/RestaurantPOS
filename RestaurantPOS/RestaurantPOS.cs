@@ -278,7 +278,14 @@ namespace RestaurantPOS
             {
                 MainClass.con.Open();
                 SqlCommand cmd = new SqlCommand("select Currency from StoreTable", MainClass.con);
-                Currency = cmd.ExecuteScalar().ToString();
+                object curr = cmd.ExecuteScalar();
+                if (curr != null)
+                {
+                    if (curr.ToString() != "")
+                    {
+                        Currency = curr.ToString();
+                    }
+                }
                 MainClass.con.Close();
 
             }
@@ -314,13 +321,13 @@ namespace RestaurantPOS
             cboOrderType.SelectedIndex = 0;
             fpCategory.WrapContents = false;
             GenerateInvoiceNo();
-            CheckTokenDate();
             fpFoods.WrapContents = true;
             CHECKORDERTYPE();
             GetProductData();
             ShowStore();
             GetCategoryData();
             int Number = GenerateTokenNumber();
+            CheckTokenDate();
             txtTokenNumber.Text = Number.ToString();
             string currency = CurrencyRetrival();
             lblGrandTotal.Text = "0.00 " + currency;

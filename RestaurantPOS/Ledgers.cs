@@ -199,8 +199,11 @@ namespace RestaurantPOS
                         cmd = new SqlCommand("select PersonID from PersonsTable where Name = '" + txtName.Text + "' ", MainClass.con);
                         int SupplierID = int.Parse(cmd.ExecuteScalar().ToString());
 
+                        cmd = new SqlCommand("selecT PurchaseDate from PurchasesTable where InvoiceNo = '"+ txtInvoiceNo.Text + "' ", MainClass.con);
+                        DateTime invoiceDate = DateTime.Parse(cmd.ExecuteScalar().ToString());
 
-                        cmd = new SqlCommand("insert into SupplierLedgersInfoTable (SupplierLedger_ID,Supplier_ID,PayingDate,InvoiceNo,TotalAmount,PreviousPaid,TodayPaid,NewBalance) values (@SupplierLedger_ID,@Supplier_ID,@PayingDate,@InvoiceNo,@TotalAmount,@PreviousPaid,@TodayPaid,@NewBalance)", MainClass.con);
+
+                        cmd = new SqlCommand("insert into SupplierLedgersInfoTable (SupplierLedger_ID,Supplier_ID,PayingDate,InvoiceNo,TotalAmount,PreviousPaid,TodayPaid,NewBalance,InvoiceDate) values (@SupplierLedger_ID,@Supplier_ID,@PayingDate,@InvoiceNo,@TotalAmount,@PreviousPaid,@TodayPaid,@NewBalance,@InvoiceDate)", MainClass.con);
                         cmd.Parameters.AddWithValue("@SupplierLedger_ID", lblID.Text);
                         cmd.Parameters.AddWithValue("@Supplier_ID", SupplierID);
                         cmd.Parameters.AddWithValue("@PayingDate", TodaysDate);
@@ -209,6 +212,7 @@ namespace RestaurantPOS
                         cmd.Parameters.AddWithValue("@PreviousPaid", txtPaidAmount.Text);
                         cmd.Parameters.AddWithValue("@TodayPaid", txtPayingNow.Text);
                         cmd.Parameters.AddWithValue("@NewBalance", txtBalance.Text);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", invoiceDate);
                         cmd.ExecuteNonQuery();
 
 

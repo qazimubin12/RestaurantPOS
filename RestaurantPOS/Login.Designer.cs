@@ -61,7 +61,7 @@ namespace RestaurantPOS
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 641);
+            this.label4.Location = new System.Drawing.Point(3, 588);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(160, 23);
             this.label4.TabIndex = 3;
@@ -72,7 +72,7 @@ namespace RestaurantPOS
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(3, 609);
+            this.label3.Location = new System.Drawing.Point(3, 556);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(341, 23);
             this.label3.TabIndex = 2;

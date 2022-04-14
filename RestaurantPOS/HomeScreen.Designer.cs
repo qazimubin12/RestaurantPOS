@@ -34,16 +34,6 @@ namespace RestaurantPOS
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnProducts = new System.Windows.Forms.Button();
-            this.btnUnits = new System.Windows.Forms.Button();
-            this.btnCategories = new System.Windows.Forms.Button();
-            this.btnPersons = new System.Windows.Forms.Button();
-            this.btnLedgers = new System.Windows.Forms.Button();
-            this.btnPos = new System.Windows.Forms.Button();
-            this.btnInventory = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.btnReports = new System.Windows.Forms.Button();
-            this.btnPurchase = new System.Windows.Forms.Button();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblCashInHand = new System.Windows.Forms.Label();
@@ -57,7 +47,18 @@ namespace RestaurantPOS
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDailySales = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnProducts = new System.Windows.Forms.Button();
+            this.btnUnits = new System.Windows.Forms.Button();
+            this.btnCategories = new System.Windows.Forms.Button();
+            this.btnPersons = new System.Windows.Forms.Button();
+            this.btnLedgers = new System.Windows.Forms.Button();
+            this.btnPos = new System.Windows.Forms.Button();
+            this.btnInventory = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnReports = new System.Windows.Forms.Button();
+            this.btnPurchase = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.guna2GradientPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
@@ -135,6 +136,7 @@ namespace RestaurantPOS
             this.tableLayoutPanel1.Controls.Add(this.btnReports, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnPurchase, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.button1, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.button2, 3, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 79);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -145,6 +147,159 @@ namespace RestaurantPOS
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(622, 538);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // guna2GroupBox1
+            // 
+            this.guna2GroupBox1.Controls.Add(this.panel4);
+            this.guna2GroupBox1.Controls.Add(this.panel2);
+            this.guna2GroupBox1.Controls.Add(this.lowStocksPanel);
+            this.guna2GroupBox1.Controls.Add(this.panel1);
+            this.guna2GroupBox1.CustomBorderColor = System.Drawing.Color.MediumSeaGreen;
+            this.guna2GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2GroupBox1.Font = new System.Drawing.Font("Century Gothic", 18F);
+            this.guna2GroupBox1.ForeColor = System.Drawing.Color.White;
+            this.guna2GroupBox1.Location = new System.Drawing.Point(622, 79);
+            this.guna2GroupBox1.Name = "guna2GroupBox1";
+            this.guna2GroupBox1.ShadowDecoration.Parent = this.guna2GroupBox1;
+            this.guna2GroupBox1.Size = new System.Drawing.Size(370, 538);
+            this.guna2GroupBox1.TabIndex = 2;
+            this.guna2GroupBox1.Text = "DASHBOARD";
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel4.Controls.Add(this.lblCashInHand);
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Location = new System.Drawing.Point(9, 247);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(358, 94);
+            this.panel4.TabIndex = 0;
+            // 
+            // lblCashInHand
+            // 
+            this.lblCashInHand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCashInHand.AutoSize = true;
+            this.lblCashInHand.BackColor = System.Drawing.Color.Transparent;
+            this.lblCashInHand.ForeColor = System.Drawing.Color.White;
+            this.lblCashInHand.Location = new System.Drawing.Point(161, 55);
+            this.lblCashInHand.Name = "lblCashInHand";
+            this.lblCashInHand.Size = new System.Drawing.Size(59, 30);
+            this.lblCashInHand.TabIndex = 0;
+            this.lblCashInHand.Text = "0.00";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(185, 30);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "CASH IN HAND";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.IndianRed;
+            this.panel2.Controls.Add(this.lblExpense);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Location = new System.Drawing.Point(9, 147);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(358, 94);
+            this.panel2.TabIndex = 0;
+            // 
+            // lblExpense
+            // 
+            this.lblExpense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExpense.AutoSize = true;
+            this.lblExpense.BackColor = System.Drawing.Color.Transparent;
+            this.lblExpense.ForeColor = System.Drawing.Color.White;
+            this.lblExpense.Location = new System.Drawing.Point(161, 55);
+            this.lblExpense.Name = "lblExpense";
+            this.lblExpense.Size = new System.Drawing.Size(59, 30);
+            this.lblExpense.TabIndex = 0;
+            this.lblExpense.Text = "0.00";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(186, 30);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "DAILY EXPENSE";
+            // 
+            // lowStocksPanel
+            // 
+            this.lowStocksPanel.BackColor = System.Drawing.Color.SeaGreen;
+            this.lowStocksPanel.Controls.Add(this.lblLowStocks);
+            this.lowStocksPanel.Controls.Add(this.label5);
+            this.lowStocksPanel.Location = new System.Drawing.Point(12, 347);
+            this.lowStocksPanel.Name = "lowStocksPanel";
+            this.lowStocksPanel.Size = new System.Drawing.Size(358, 94);
+            this.lowStocksPanel.TabIndex = 0;
+            // 
+            // lblLowStocks
+            // 
+            this.lblLowStocks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLowStocks.AutoSize = true;
+            this.lblLowStocks.BackColor = System.Drawing.Color.Transparent;
+            this.lblLowStocks.ForeColor = System.Drawing.Color.White;
+            this.lblLowStocks.Location = new System.Drawing.Point(158, 52);
+            this.lblLowStocks.Name = "lblLowStocks";
+            this.lblLowStocks.Size = new System.Drawing.Size(59, 30);
+            this.lblLowStocks.TabIndex = 0;
+            this.lblLowStocks.Text = "0.00";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(165, 30);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "LOW STOCKS";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel1.Controls.Add(this.lblDailySales);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(6, 47);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(358, 94);
+            this.panel1.TabIndex = 0;
+            // 
+            // lblDailySales
+            // 
+            this.lblDailySales.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDailySales.AutoSize = true;
+            this.lblDailySales.BackColor = System.Drawing.Color.Transparent;
+            this.lblDailySales.ForeColor = System.Drawing.Color.White;
+            this.lblDailySales.Location = new System.Drawing.Point(164, 54);
+            this.lblDailySales.Name = "lblDailySales";
+            this.lblDailySales.Size = new System.Drawing.Size(59, 30);
+            this.lblDailySales.TabIndex = 0;
+            this.lblDailySales.Text = "0.00";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(153, 30);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "DAILY SALES";
             // 
             // btnProducts
             // 
@@ -316,159 +471,6 @@ namespace RestaurantPOS
             this.btnPurchase.UseVisualStyleBackColor = false;
             this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
             // 
-            // guna2GroupBox1
-            // 
-            this.guna2GroupBox1.Controls.Add(this.panel4);
-            this.guna2GroupBox1.Controls.Add(this.panel2);
-            this.guna2GroupBox1.Controls.Add(this.lowStocksPanel);
-            this.guna2GroupBox1.Controls.Add(this.panel1);
-            this.guna2GroupBox1.CustomBorderColor = System.Drawing.Color.MediumSeaGreen;
-            this.guna2GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2GroupBox1.Font = new System.Drawing.Font("Century Gothic", 18F);
-            this.guna2GroupBox1.ForeColor = System.Drawing.Color.White;
-            this.guna2GroupBox1.Location = new System.Drawing.Point(622, 79);
-            this.guna2GroupBox1.Name = "guna2GroupBox1";
-            this.guna2GroupBox1.ShadowDecoration.Parent = this.guna2GroupBox1;
-            this.guna2GroupBox1.Size = new System.Drawing.Size(370, 538);
-            this.guna2GroupBox1.TabIndex = 2;
-            this.guna2GroupBox1.Text = "DASHBOARD";
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.MediumPurple;
-            this.panel4.Controls.Add(this.lblCashInHand);
-            this.panel4.Controls.Add(this.label7);
-            this.panel4.Location = new System.Drawing.Point(9, 247);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(358, 94);
-            this.panel4.TabIndex = 0;
-            // 
-            // lblCashInHand
-            // 
-            this.lblCashInHand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCashInHand.AutoSize = true;
-            this.lblCashInHand.BackColor = System.Drawing.Color.Transparent;
-            this.lblCashInHand.ForeColor = System.Drawing.Color.White;
-            this.lblCashInHand.Location = new System.Drawing.Point(161, 55);
-            this.lblCashInHand.Name = "lblCashInHand";
-            this.lblCashInHand.Size = new System.Drawing.Size(59, 30);
-            this.lblCashInHand.TabIndex = 0;
-            this.lblCashInHand.Text = "0.00";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(3, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(185, 30);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "CASH IN HAND";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.IndianRed;
-            this.panel2.Controls.Add(this.lblExpense);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(9, 147);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(358, 94);
-            this.panel2.TabIndex = 0;
-            // 
-            // lblExpense
-            // 
-            this.lblExpense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblExpense.AutoSize = true;
-            this.lblExpense.BackColor = System.Drawing.Color.Transparent;
-            this.lblExpense.ForeColor = System.Drawing.Color.White;
-            this.lblExpense.Location = new System.Drawing.Point(161, 55);
-            this.lblExpense.Name = "lblExpense";
-            this.lblExpense.Size = new System.Drawing.Size(59, 30);
-            this.lblExpense.TabIndex = 0;
-            this.lblExpense.Text = "0.00";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(186, 30);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "DAILY EXPENSE";
-            // 
-            // lowStocksPanel
-            // 
-            this.lowStocksPanel.BackColor = System.Drawing.Color.SeaGreen;
-            this.lowStocksPanel.Controls.Add(this.lblLowStocks);
-            this.lowStocksPanel.Controls.Add(this.label5);
-            this.lowStocksPanel.Location = new System.Drawing.Point(12, 347);
-            this.lowStocksPanel.Name = "lowStocksPanel";
-            this.lowStocksPanel.Size = new System.Drawing.Size(358, 94);
-            this.lowStocksPanel.TabIndex = 0;
-            // 
-            // lblLowStocks
-            // 
-            this.lblLowStocks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblLowStocks.AutoSize = true;
-            this.lblLowStocks.BackColor = System.Drawing.Color.Transparent;
-            this.lblLowStocks.ForeColor = System.Drawing.Color.White;
-            this.lblLowStocks.Location = new System.Drawing.Point(158, 52);
-            this.lblLowStocks.Name = "lblLowStocks";
-            this.lblLowStocks.Size = new System.Drawing.Size(59, 30);
-            this.lblLowStocks.TabIndex = 0;
-            this.lblLowStocks.Text = "0.00";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(3, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 30);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "LOW STOCKS";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.panel1.Controls.Add(this.lblDailySales);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(6, 47);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(358, 94);
-            this.panel1.TabIndex = 0;
-            // 
-            // lblDailySales
-            // 
-            this.lblDailySales.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDailySales.AutoSize = true;
-            this.lblDailySales.BackColor = System.Drawing.Color.Transparent;
-            this.lblDailySales.ForeColor = System.Drawing.Color.White;
-            this.lblDailySales.Location = new System.Drawing.Point(164, 54);
-            this.lblDailySales.Name = "lblDailySales";
-            this.lblDailySales.Size = new System.Drawing.Size(59, 30);
-            this.lblDailySales.TabIndex = 0;
-            this.lblDailySales.Text = "0.00";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(153, 30);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "DAILY SALES";
-            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
@@ -485,6 +487,23 @@ namespace RestaurantPOS
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.button2.ForeColor = System.Drawing.SystemColors.Window;
+            this.button2.Image = global::RestaurantPOS.Properties.Resources.exchange;
+            this.button2.Location = new System.Drawing.Point(468, 271);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(151, 128);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "STOCK RETURN ";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // HomeScreen
             // 
@@ -547,5 +566,6 @@ namespace RestaurantPOS
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label lblLoggedUser;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

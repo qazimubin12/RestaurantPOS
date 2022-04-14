@@ -55,16 +55,27 @@ namespace RestaurantPOS
             try
             {
                 SqlCommand cmd = new SqlCommand("select Logo from StoreTable", MainClass.con);
-                SqlDataReader dr = cmd.ExecuteReader();
-                dr.Read();
-                if (dr.HasRows)
+                object ob = cmd.ExecuteScalar();
+                if (ob != null)
                 {
-                    pictureBox1.Image = ConvertByteArraytoImage((byte[])dr["Logo"]);
+                    if (ob.ToString() != "")
+                    {
+                        pictureBox1.Image = ConvertByteArraytoImage((byte[])ob);
+                    }
+                    else
+                    {
+                        pictureBox1.Image = null;
+                    }
                 }
-                else
-                {
-                    pictureBox1.Image = null;
-                }
+                //dr.Read();
+                //if (dr.HasRows)
+                //{
+                //    pictureBox1.Image = ConvertByteArraytoImage((byte[])dr["Logo"]);
+                //}
+                //else
+                //{
+                //    pictureBox1.Image = null;
+                //}
             }
             catch (Exception ex)
             {
@@ -386,11 +397,13 @@ namespace RestaurantPOS
             SqlCommand cmd = null;
             if (pictureBox1.Image == null)
             {
-                cmd = new SqlCommand("INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "','" +null + "' ,'" + txtCurrency.Text + "','"+float.Parse(txtCashInHand.Text)+"'", MainClass.con);
+                string query = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "' ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ")";
+                cmd = new SqlCommand(query, MainClass.con);
             }
             else
             {
-                cmd = new SqlCommand("INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "','" + ConvertImageToBytes(pictureBox1.Image) + "' ,'" + txtCurrency.Text + "','" + float.Parse(txtCashInHand.Text) + "'", MainClass.con);
+                string query2 = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "','" + ConvertImageToBytes(pictureBox1.Image) + "' ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ")";
+                cmd = new SqlCommand(query2, MainClass.con);
             }
            
             cmd.ExecuteNonQuery();
@@ -449,91 +462,98 @@ namespace RestaurantPOS
 
         private void btnWipeAllOutData_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = null;
-            try
+            //if(MessageBox.Show("Are you sure want to delete all data??", "Are you Sure", MessageBoxButtons.YesNo)
+            if (MessageBox.Show("Are you srue want to delete all data??", "Are you Sure", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MainClass.con.Open();
-                cmd = new SqlCommand("delete from CustomerLedgersInfoTable dbcc checkident('CustomerLedgersInfoTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
+                SqlCommand cmd = null;
+                try
+                {
+                    MainClass.con.Open();
+                    cmd = new SqlCommand("delete from CustomerLedgersInfoTable dbcc checkident('CustomerLedgersInfoTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
-                cmd = new SqlCommand("delete from CustomerLedgersTable dbcc checkident('CustomerLedgersTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand("delete from CustomerLedgersTable dbcc checkident('CustomerLedgersTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
-                cmd = new SqlCommand("delete from SalesInfo dbcc checkident('SalesInfo',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-
-                cmd = new SqlCommand("delete from SalesTable dbcc checkident('SalesTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-
-                cmd = new SqlCommand("delete from CustomerInvoicesTable dbcc checkident('CustomerInvoicesTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from SaleInvoiceNo dbcc checkident('SaleInvoiceNo',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-                /////////////////////////////////
-
-                cmd = new SqlCommand("delete from SupplierLedgersInfoTable dbcc checkident('SupplierLedgersInfoTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from SupplierLedgersTable dbcc checkident('SupplierLedgersTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from PurchasesInfo dbcc checkident('PurchasesInfo',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand("delete from SalesInfo dbcc checkident('SalesInfo',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
 
-                cmd = new SqlCommand("delete from PurchasesTable dbcc checkident('PurchasesTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand("delete from SalesTable dbcc checkident('SalesTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
 
-                cmd = new SqlCommand("delete from SupplierInvoicesTable dbcc checkident('SupplierInvoicesTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand("delete from CustomerInvoicesTable dbcc checkident('CustomerInvoicesTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from SaleInvoiceNo dbcc checkident('SaleInvoiceNo',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+                    /////////////////////////////////
+
+                    cmd = new SqlCommand("delete from SupplierLedgersInfoTable dbcc checkident('SupplierLedgersInfoTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from SupplierLedgersTable dbcc checkident('SupplierLedgersTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from PurchasesInfo dbcc checkident('PurchasesInfo',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
 
-                cmd = new SqlCommand("delete from InvoiceNo dbcc checkident('InvoiceNo',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-              
-                cmd = new SqlCommand("delete from Inventory", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from ExpensesTable dbcc checkident('ExpensesTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from ProductsTable dbcc checkident('ProductsTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from StoreTable", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from Tables dbcc checkident('Tables',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from UnitsTable dbcc checkident('UnitsTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from UsersTable", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from CategoriesTable dbcc checkident('CategoriesTable',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("delete from TokenNumber dbcc checkident('TokenNumber',reseed,0)", MainClass.con);
-                cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("insert into UsersTable values('admin','admin','Admin','Admin')", MainClass.con);
-                cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand("delete from PurchasesTable dbcc checkident('PurchasesTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
 
-                MainClass.con.Close();
-                MessageBox.Show("All Data Wiped Successfully");
-            }
-            catch (Exception ex)
-            {
+                    cmd = new SqlCommand("delete from SupplierInvoicesTable dbcc checkident('SupplierInvoicesTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
-                throw;
+
+                    cmd = new SqlCommand("delete from InvoiceNo dbcc checkident('InvoiceNo',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+
+                    cmd = new SqlCommand("delete from Inventory", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from ExpensesTable dbcc checkident('ExpensesTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from ProductsTable dbcc checkident('ProductsTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from StoreTable", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from Tables dbcc checkident('Tables',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from UnitsTable dbcc checkident('UnitsTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from UsersTable", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from CategoriesTable dbcc checkident('CategoriesTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from PersonsTable dbcc checkident('PersonsTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("delete from TokenNumber dbcc checkident('TokenNumber',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("insert into UsersTable values('admin','admin','Admin','Admin')", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+
+                    MainClass.con.Close();
+                    MessageBox.Show("All Data Wiped Successfully");
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
             }
         }
     }

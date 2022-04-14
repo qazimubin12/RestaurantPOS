@@ -177,13 +177,19 @@ namespace RestaurantPOS
 
         private Double CashInHand()
         {
-
-            float cash = 0;
+            float finalcash = 0;
             try
             {
                 MainClass.con.Open();
                 SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
-                cash = float.Parse(cmd.ExecuteScalar().ToString());
+                object cash = cmd.ExecuteScalar();
+                if (cash != null)
+                {
+                    finalcash = float.Parse(cash.ToString());
+                }
+                else{
+                    finalcash = 0;
+                }
                 MainClass.con.Close();
             }
             catch (Exception ex)
@@ -191,7 +197,7 @@ namespace RestaurantPOS
                 MainClass.con.Close();
                 MessageBox.Show(ex.Message);
             }
-            return cash;
+            return finalcash;
         }
 
         private void HomeScreen_Load(object sender, EventArgs e)
@@ -226,6 +232,13 @@ namespace RestaurantPOS
         {
             Expenses r = new Expenses();
             MainClass.showWindow(r, this, MDI.ActiveForm);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PurchaseReturn r = new PurchaseReturn();
+            MainClass.showWindow(r, this, MDI.ActiveForm);
+
         }
     }
 }

@@ -60,3 +60,4 @@ D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.pdb
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.RecentSales.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.TokenForm.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.PurchaseReceiptForm.resources
+D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.PurchaseReturn.resources

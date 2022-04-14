@@ -169,6 +169,12 @@
     <Compile Include="PurchaseInvoice.Designer.cs">
       <DependentUpon>PurchaseInvoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchaseReturn.Designer.cs">
+      <DependentUpon>PurchaseReturn.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuantityForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     </Compile>
     <EmbeddedResource Include="PurchaseInvoice.resx">
       <DependentUpon>PurchaseInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PurchaseReturn.resx">
+      <DependentUpon>PurchaseReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuantityForm.resx">
       <DependentUpon>QuantityForm.cs</DependentUpon>
@@ -474,6 +483,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\placeholder-200x200.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exchange.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
