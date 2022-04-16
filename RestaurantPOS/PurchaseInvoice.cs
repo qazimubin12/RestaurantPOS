@@ -418,25 +418,7 @@ namespace RestaurantPOS
         }
 
         public static int PURCHASE_ID = 0;
-        private float CashInHand()
-        {
-
-            float cash = 0;
-            try
-            {
-                MainClass.con.Open();
-                SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
-                cash = float.Parse(cmd.ExecuteScalar().ToString());
-                MainClass.con.Close();
-            }
-            catch (Exception ex)
-            {
-                MainClass.con.Close();
-                MessageBox.Show(ex.Message);
-            }
-            return cash;
-        }
-
+      
         public static int Purchase_ID = 0;
 
         private void btnFinalize_Click(object sender, EventArgs e)
@@ -454,6 +436,30 @@ namespace RestaurantPOS
                 {
                     MainClass.con.Open();
                     SqlCommand cmd = null;
+
+
+                    cmd = new SqlCommand("selecT TotalAmount from SupplierLedgersInfoTable where InvoiceNo = '" + lblInvoiceNo.Text + "'", MainClass.con);
+                    float totalamount = float.Parse(cmd.ExecuteScalar().ToString());
+
+                    try
+                    {
+                        float handcash = MainClass.CashInHand();
+                        float cash = handcash + totalamount;
+
+                        MainClass.con.Open();
+                        cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
+                        cmd.Parameters.AddWithValue("@CashInHand", cash);
+                        cmd.ExecuteNonQuery();
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } //UpdateCash Flow
+
+
+
                     cmd = new SqlCommand("delete from SupplierLedgersInfoTable where InvoiceNo = '" + lblInvoiceNo.Text + "'", MainClass.con);
                     cmd.ExecuteNonQuery();
 
@@ -739,7 +745,7 @@ namespace RestaurantPOS
                     try
                     {
                         MainClass.con.Open();
-                        SupplierLedgerID = int.Parse(MainClass.Retrieve("select MAX(SupplerLedgerID) from SupplierLedgersTable").Rows[0][0].ToString());
+                        SupplierLedgerID = int.Parse(MainClass.Retrieve("select SupplerLedgerID from SupplierLedgersTable where InvoiceNo  = '"+lblInvoiceNo.Text+"'").Rows[0][0].ToString());
                         if (SupplierLedgerID == 0)
                         {
                             MessageBox.Show("Please Check The Error or Try Again");
@@ -768,6 +774,24 @@ namespace RestaurantPOS
                         cmd.Parameters.AddWithValue("@Remarks", "Purcahse Done");
                         cmd.ExecuteNonQuery();
                         MainClass.con.Close();
+
+                        try
+                        {
+                            float handcash = MainClass.CashInHand();
+                            float cash = handcash - float.Parse(txtGrossTotal.Text);
+
+                            MainClass.con.Open();
+                            cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
+                            cmd.Parameters.AddWithValue("@CashInHand", cash);
+                            cmd.ExecuteNonQuery();
+                            MainClass.con.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MainClass.con.Close();
+                            MessageBox.Show(ex.Message);
+                        } //UpdateCash Flow
+
                     }
                     catch (Exception ex)
                     {
@@ -844,7 +868,7 @@ namespace RestaurantPOS
                     } // Inserting into Purchases
                     try
                     {
-                        float handcash = CashInHand();
+                        float handcash = MainClass.CashInHand();
                         float cash = handcash - grantotal;
 
                         MainClass.con.Open();

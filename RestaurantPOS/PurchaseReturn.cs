@@ -350,22 +350,6 @@ namespace RestaurantPOS
 
         }
 
-        private float CashInHand()
-        {
-
-            float cash = 0;
-            try
-            {
-                SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
-                cash = float.Parse(cmd.ExecuteScalar().ToString());
-            }
-            catch (Exception ex)
-            {
-                MainClass.con.Close();
-                MessageBox.Show(ex.Message);
-            }
-            return cash;
-        }
 
         private void DGVStockReturn_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -511,7 +495,7 @@ namespace RestaurantPOS
 
                     try
                     {
-                        float handcash = CashInHand();
+                        float handcash = MainClass.CashInHand();
                         float cash = handcash + float.Parse(txtGrossTotal.Text);
 
                         cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);

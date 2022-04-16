@@ -915,7 +915,7 @@ namespace RestaurantPOS
 
                         try
                         {
-                            float handcash = CashInHand();
+                            float handcash = MainClass.CashInHand();
                             float cash = handcash + float.Parse(lblGrandTotal.Text);
 
                             MainClass.con.Open();
@@ -984,24 +984,6 @@ namespace RestaurantPOS
         public static int TakeAwaySaleID = 0;
         public static int DeliverySaleID = 0;
 
-        private float CashInHand()
-        {
-
-            float cash = 0;
-            try
-            {
-                MainClass.con.Open();
-                SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
-                cash = float.Parse(cmd.ExecuteScalar().ToString());
-                MainClass.con.Close();
-            }
-            catch (Exception ex)
-            {
-                MainClass.con.Close();
-                MessageBox.Show(ex.Message);
-            }
-            return cash;
-        }
 
         private void btnSaveandPrintOrder_Click(object sender, EventArgs e)
         {
@@ -1127,7 +1109,7 @@ namespace RestaurantPOS
                 btnGenerate_Click(sender, e);
                 try
                 {
-                    float handcash = CashInHand();
+                    float handcash = MainClass.CashInHand();
                     float cash = handcash + float.Parse(lblGrandTotal.Text);
 
                     MainClass.con.Open();

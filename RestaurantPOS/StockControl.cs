@@ -102,7 +102,9 @@ namespace RestaurantPOS
                          finalqty = stockqty + float.Parse(txtQuantity.Text);
                     }
                     MainClass.UpdateInventory(int.Parse(lblID.Text), finalqty);
+                    MessageBox.Show("Stock Updated Successfully");
                     MainClass.con.Close();
+                    ShowStocks(DgvCategory, ID, Product, Unit, Quantity, txtSearch.Text);
                 }
                 catch (Exception ex)
                 {
@@ -115,6 +117,12 @@ namespace RestaurantPOS
                 MessageBox.Show("Please Select and Fill Details");
                 return;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HomeScreen hs = new HomeScreen();
+            MainClass.showWindow(hs, this, MDI.ActiveForm);
         }
     }
 }

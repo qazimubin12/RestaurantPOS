@@ -175,36 +175,13 @@ namespace RestaurantPOS
             lblExpense.Text = Expense.ToString();
         }
 
-        private Double CashInHand()
-        {
-            float finalcash = 0;
-            try
-            {
-                MainClass.con.Open();
-                SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
-                object cash = cmd.ExecuteScalar();
-                if (cash != null)
-                {
-                    finalcash = float.Parse(cash.ToString());
-                }
-                else{
-                    finalcash = 0;
-                }
-                MainClass.con.Close();
-            }
-            catch (Exception ex)
-            {
-                MainClass.con.Close();
-                MessageBox.Show(ex.Message);
-            }
-            return finalcash;
-        }
+      
 
         private void HomeScreen_Load(object sender, EventArgs e)
         {
             FindDailySales();
             FindTodayExpense();
-            lblCashInHand.Text = CashInHand().ToString();
+            lblCashInHand.Text = MainClass.CashInHand().ToString();
             FindLowStocks();
         }
 

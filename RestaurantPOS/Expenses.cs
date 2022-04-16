@@ -65,24 +65,6 @@ namespace RestaurantPOS
             dt1.Value = Convert.ToDateTime(DGVExpenses.CurrentRow.Cells[3].Value);
         }
 
-        private float CashInHand()
-        {
-
-            float cash = 0;
-            try
-            {
-                MainClass.con.Open();
-                SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
-                cash = float.Parse(cmd.ExecuteScalar().ToString());
-                MainClass.con.Close();
-            }
-            catch (Exception ex)
-            {
-                MainClass.con.Close();
-                MessageBox.Show(ex.Message);
-            }
-            return cash;
-        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -111,7 +93,7 @@ namespace RestaurantPOS
                     }
                     try
                     {
-                        float handcash = CashInHand();
+                        float handcash = MainClass.CashInHand();
                         float cash = handcash - float.Parse(txtPrice.Text);
 
                         MainClass.con.Open();
@@ -150,7 +132,7 @@ namespace RestaurantPOS
 
                             try
                             {
-                                float handcash = CashInHand();
+                                float handcash = MainClass.CashInHand();
                                 float cash = handcash + lastexpenseminusfromcashflow; 
                                 cash -= float.Parse(txtPrice.Text);
 

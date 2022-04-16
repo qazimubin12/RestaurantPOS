@@ -82,6 +82,7 @@ namespace RestaurantPOS
             SqlCommand cmd = null;
             string customerInvoiceID;
             string customerLedgerID;
+            float grandtotaltobeupdatedincashflow = 0;
             if (DGVSales.SelectedRows.Count == 1)
             {
                 try
@@ -90,6 +91,9 @@ namespace RestaurantPOS
 
                     if (DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Dine In" || DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Take Away")
                     {
+                        cmd = new SqlCommand("select GrandTotal from SalesTable where SaleID = '"+ DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
+                        grandtotaltobeupdatedincashflow = float.Parse(cmd.ExecuteScalar().ToString());
+
                         cmd = new SqlCommand("delete from SalesInfo where Sales_ID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
                         cmd.ExecuteNonQuery();
 

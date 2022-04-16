@@ -21,6 +21,25 @@ namespace RestaurantPOS
 
 
 
+        public static float CashInHand()
+        {
+
+            float cash = 0;
+            try
+            {
+                MainClass.con.Open();
+                SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
+                cash = float.Parse(cmd.ExecuteScalar().ToString());
+                MainClass.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MainClass.con.Close();
+                MessageBox.Show(ex.Message);
+            }
+            return cash;
+        }
+
         public static void HideAllTabsOnTabControl(TabControl theTabControl)
         {
             theTabControl.Appearance = TabAppearance.FlatButtons;
