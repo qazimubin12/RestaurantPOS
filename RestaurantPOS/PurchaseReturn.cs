@@ -458,14 +458,14 @@ namespace RestaurantPOS
 
 
                                 float newbalance = previousbalance - float.Parse(txtGrossTotal.Text);
-                                cmd = new SqlCommand("update SupplierLedgersTable set Balance = @Balance, Remarks = @Remarks where InvoiceNo = '" + cboInvoiceNo.Text + "' and Customer_ID = '" + cboSupplier.SelectedValue.ToString() + "'", MainClass.con);
+                                cmd = new SqlCommand("update SupplierLedgersTable set Balance = @Balance, Remarks = @Remarks where InvoiceNo = '" + cboInvoiceNo.Text + "' and Supplier_ID = '" + cboSupplier.SelectedValue.ToString() + "'", MainClass.con);
                                 cmd.Parameters.AddWithValue("@Balance", newbalance);
                                 cmd.Parameters.AddWithValue("@Remarks", "Stocks Returned");
                                 cmd.ExecuteNonQuery();
 
 
                                 float invoicenewbalance = invoicepreviousbalance - float.Parse(txtGrossTotal.Text);
-                                cmd = new SqlCommand("update SupplierInvoicesTable set RemainingBalance = @RemainingBalance where InvoiceNo = '" + cboInvoiceNo.Text + "' and Customer_ID = '" + cboSupplier.SelectedValue.ToString() + "'", MainClass.con);
+                                cmd = new SqlCommand("update SupplierInvoicesTable set RemainingBalance = @RemainingBalance where InvoiceNo = '" + cboInvoiceNo.Text + "' and SupplierID = '" + cboSupplier.SelectedValue.ToString() + "'", MainClass.con);
                                 cmd.Parameters.AddWithValue("@RemainingBalance", invoicenewbalance);
                                 cmd.ExecuteNonQuery();
 
@@ -485,6 +485,7 @@ namespace RestaurantPOS
                             }
 
                             MessageBox.Show("Stocks Returned Successfully");
+                            MainClass.con.Close();
                         }
                         catch (Exception ex)
                         {
@@ -497,10 +498,11 @@ namespace RestaurantPOS
                     {
                         float handcash = MainClass.CashInHand();
                         float cash = handcash + float.Parse(txtGrossTotal.Text);
-
+                        MainClass.con.Open();
                         cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
                         cmd.Parameters.AddWithValue("@CashInHand", cash);
                         cmd.ExecuteNonQuery();
+                        MainClass.con.Close();
                     }
                     catch (Exception ex)
                     {
@@ -509,7 +511,6 @@ namespace RestaurantPOS
                     } //UpdateCash Flow
 
 
-                    MainClass.con.Close();
                 }
                 catch (Exception ex)
                 {

@@ -29,7 +29,14 @@ namespace RestaurantPOS
             {
                 MainClass.con.Open();
                 SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
-                cash = float.Parse(cmd.ExecuteScalar().ToString());
+                object ob = cmd.ExecuteScalar();
+                if(ob!= null)
+                {
+                    if(ob.ToString() != "")
+                    {
+                        cash = float.Parse(ob.ToString());
+                    }
+                }
                 MainClass.con.Close();
             }
             catch (Exception ex)

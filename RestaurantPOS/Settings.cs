@@ -470,6 +470,10 @@ namespace RestaurantPOS
                 {
                     MainClass.con.Open();
 
+
+                    cmd = new SqlCommand("delete from StockControl dbcc checkident('StockControl',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
                     cmd = new SqlCommand("delete from StockReturnTable dbcc checkident('StockReturnTable',reseed,0)", MainClass.con);
                     cmd.ExecuteNonQuery();
 
