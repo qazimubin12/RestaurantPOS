@@ -1062,10 +1062,12 @@ namespace RestaurantPOS
                     pm.ShowDialog();
                     if (pm.txtPaying.Text != "" && pm.txtPaying.Text != "0")
                     {
-                        cmd = new SqlCommand("insert into SalesTable (Paying,Change,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,TokenNumber) values (@Paying,@Change,@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@TokenNumber)", MainClass.con);
+                        cmd = new SqlCommand("insert into SalesTable (Paying,Change,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,TokenNumber,PaymentMethod) values (@Paying,@Change,@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@TokenNumber,@PaymentMethod)", MainClass.con);
                         cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                         cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
+                        cmd.Parameters.AddWithValue("@PaymentMethod", pm.cboPaymentMethod.Text);
 
+                        
                         cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
                         cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
                         cmd.Parameters.AddWithValue("@TokenNumber", int.Parse(txtTokenNumber.Text));
@@ -1194,10 +1196,11 @@ namespace RestaurantPOS
                 if (pm.txtPaying.Text != "" && pm.txtPaying.Text != "0")
                 {
                     MainClass.con.Open();
-                    cmd = new SqlCommand("update SalesTable set OrderStatus = @OrderStatus,Paying=@Paying,Change=@Change where SaleID = '" + lblOrderID.Text + "' ", MainClass.con);
+                    cmd = new SqlCommand("update SalesTable set OrderStatus = @OrderStatus,Paying=@Paying,Change=@Change,PaymentMethod=@PaymentMethod where SaleID = '" + lblOrderID.Text + "' ", MainClass.con);
                     cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
                     cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
                     cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
+                    cmd.Parameters.AddWithValue("@PaymentMethod", pm.cboPaymentMethod.Text);
                     cmd.ExecuteNonQuery();
 
                     cmd = new SqlCommand("update Tables set Availability = 1 where TableName = '" + txtTableName.Text + "'", MainClass.con);

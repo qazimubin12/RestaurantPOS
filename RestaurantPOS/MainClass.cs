@@ -28,6 +28,23 @@ namespace RestaurantPOS
             theTabControl.SizeMode = TabSizeMode.Fixed;
         }
 
+
+        public static void ShowRecentPurchases(DataGridView dgv, DataGridViewColumn SupplierInvoiceID,DataGridViewColumn PurchaseID, DataGridViewColumn InvoiceNo, DataGridViewColumn SupplierName, DataGridViewColumn PurchaseDate, DataGridViewColumn GrandTotal)
+        {
+
+            SqlCommand cmd = new SqlCommand("select st.SupplierInvoice_ID,st.PurchaseID,st.InvoiceNo,pt.Name,st.PurchaseDate,st.GrandTotal from PurchasesTable st inner join PersonsTable pt on pt.PersonID = st.Supplier_ID", MainClass.con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            PurchaseID.DataPropertyName = dt.Columns["SupplierInvoice_ID"].ToString();
+            PurchaseID.DataPropertyName = dt.Columns["PurchaseID"].ToString();
+            InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
+            SupplierName.DataPropertyName = dt.Columns["Name"].ToString();
+            PurchaseDate.DataPropertyName = dt.Columns["PurchaseDate"].ToString();
+            GrandTotal.DataPropertyName = dt.Columns["GrandTotal"].ToString();
+            dgv.DataSource = dt;
+
+        }
         public static DataTable Retrieve(string query)
         {
             try
@@ -126,6 +143,13 @@ namespace RestaurantPOS
             }
         }
 
+        public static string ShowPurchaseType(string InvoiceNo)
+        {
+            SqlCommand cmd = new SqlCommand("select PaymentType from SupplierInvoicesTable where InvoiceNo = '" + InvoiceNo + "' ", MainClass.con);
+            string method = cmd.ExecuteScalar().ToString();
+
+            return method;
+        }
 
         public static void ShowBill(ReportDocument rd, CrystalReportViewer crv, string proc, string param1 = "", object val1 = null)
         {

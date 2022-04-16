@@ -469,6 +469,10 @@ namespace RestaurantPOS
                 try
                 {
                     MainClass.con.Open();
+
+                    cmd = new SqlCommand("delete from StockReturnTable dbcc checkident('StockReturnTable',reseed,0)", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
                     cmd = new SqlCommand("delete from CustomerLedgersInfoTable dbcc checkident('CustomerLedgersInfoTable',reseed,0)", MainClass.con);
                     cmd.ExecuteNonQuery();
 

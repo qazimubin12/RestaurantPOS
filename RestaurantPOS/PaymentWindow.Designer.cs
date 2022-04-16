@@ -41,6 +41,8 @@ namespace RestaurantPOS
             this.btnFinalize = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtChange = new Guna.UI2.WinForms.Guna2TextBox();
+            this.cboPaymentMethod = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,17 +54,18 @@ namespace RestaurantPOS
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(450, 52);
+            this.panel1.Size = new System.Drawing.Size(639, 52);
             this.panel1.TabIndex = 26;
             // 
             // button3
             // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Right;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = global::RestaurantPOS.Properties.Resources.cancel__2_;
-            this.button3.Location = new System.Drawing.Point(409, 3);
+            this.button3.Location = new System.Drawing.Point(594, 0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 36);
+            this.button3.Size = new System.Drawing.Size(45, 52);
             this.button3.TabIndex = 5;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -252,19 +255,47 @@ namespace RestaurantPOS
             this.txtChange.Size = new System.Drawing.Size(398, 39);
             this.txtChange.TabIndex = 34;
             // 
+            // cboPaymentMethod
+            // 
+            this.cboPaymentMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPaymentMethod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboPaymentMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.cboPaymentMethod.FormattingEnabled = true;
+            this.cboPaymentMethod.Items.AddRange(new object[] {
+            "Cash",
+            "Card"});
+            this.cboPaymentMethod.Location = new System.Drawing.Point(448, 99);
+            this.cboPaymentMethod.Name = "cboPaymentMethod";
+            this.cboPaymentMethod.Size = new System.Drawing.Size(179, 33);
+            this.cboPaymentMethod.TabIndex = 36;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.SeaGreen;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(443, 68);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(108, 28);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Method:";
+            // 
             // PaymentWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(450, 500);
+            this.ClientSize = new System.Drawing.Size(639, 500);
             this.ControlBox = false;
+            this.Controls.Add(this.cboPaymentMethod);
             this.Controls.Add(this.btnFinalize);
             this.Controls.Add(this.txtChange);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtBalance);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPaying);
             this.Controls.Add(this.txtGrandTotal);
@@ -293,5 +324,7 @@ namespace RestaurantPOS
         public Guna.UI2.WinForms.Guna2TextBox txtPaying;
         private System.Windows.Forms.Label label5;
         public Guna.UI2.WinForms.Guna2TextBox txtChange;
+        private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.ComboBox cboPaymentMethod;
     }
 }

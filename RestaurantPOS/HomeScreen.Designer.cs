@@ -47,6 +47,7 @@ namespace RestaurantPOS
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDailySales = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnStockControl = new System.Windows.Forms.Button();
             this.btnProducts = new System.Windows.Forms.Button();
             this.btnUnits = new System.Windows.Forms.Button();
             this.btnCategories = new System.Windows.Forms.Button();
@@ -125,6 +126,7 @@ namespace RestaurantPOS
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.btnStockControl, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnProducts, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnUnits, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCategories, 0, 0);
@@ -300,6 +302,23 @@ namespace RestaurantPOS
             this.label2.Size = new System.Drawing.Size(153, 30);
             this.label2.TabIndex = 0;
             this.label2.Text = "DAILY SALES";
+            // 
+            // btnStockControl
+            // 
+            this.btnStockControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnStockControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnStockControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockControl.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnStockControl.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnStockControl.Image = global::RestaurantPOS.Properties.Resources.warehouse__2_;
+            this.btnStockControl.Location = new System.Drawing.Point(3, 405);
+            this.btnStockControl.Name = "btnStockControl";
+            this.btnStockControl.Size = new System.Drawing.Size(149, 130);
+            this.btnStockControl.TabIndex = 15;
+            this.btnStockControl.Text = "STOCK CONTROL";
+            this.btnStockControl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnStockControl.UseVisualStyleBackColor = false;
+            this.btnStockControl.Click += new System.EventHandler(this.btnStockControl_Click);
             // 
             // btnProducts
             // 
@@ -567,5 +586,6 @@ namespace RestaurantPOS
         public System.Windows.Forms.Label lblLoggedUser;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnStockControl;
     }
 }

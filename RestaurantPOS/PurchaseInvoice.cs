@@ -436,8 +436,13 @@ namespace RestaurantPOS
             }
             return cash;
         }
+
+        public static int Purchase_ID = 0;
+
         private void btnFinalize_Click(object sender, EventArgs e)
         {
+            string[] PurchaseInfos = new string[4];
+
             if (cboType.Text == "" || cboSupplier.SelectedIndex == 0 || DGVPurchaseCart.Rows.Count == 0)
             {
                 MessageBox.Show("Please Check Info");
@@ -445,288 +450,626 @@ namespace RestaurantPOS
             }
             else
             {
-                SqlCommand cmd = null;
-                string invoiceno = "PUR" + txtInvoiceNo.Text.ToString();
-                float grantotal = float.Parse(txtGrossTotal.Text.ToString());
-                string SupplierInvoiceID = "";
-                string PurchaseID = "";
-                string SupplierID = cboSupplier.SelectedValue.ToString();
-                
-                try
+                if (btnFinalize.Text == "UPDATE")
                 {
                     MainClass.con.Open();
-                    cmd = new SqlCommand("insert into SupplierInvoicesTable (SupplierID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,RemainingBalance) values (" +
-                        "@SupplierID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@RemainingBalance)", MainClass.con);
-
-                    cmd.Parameters.AddWithValue("@SupplierID", cboSupplier.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@PaymentType", cboType.Text);
-                    cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@TotalAmount", grantotal);
-                    cmd.Parameters.AddWithValue("@PaidAmount", txtPaying.Text);
-                    cmd.Parameters.AddWithValue("@RemainingBalance", txtBalance.Text);
-
+                    SqlCommand cmd = null;
+                    cmd = new SqlCommand("delete from SupplierLedgersInfoTable where InvoiceNo = '" + lblInvoiceNo.Text + "'", MainClass.con);
                     cmd.ExecuteNonQuery();
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                } // Inserting Supplier Invoices
-                try
-                {
-                    MainClass.con.Open();
-                    SupplierInvoiceID = Convert.ToString(MainClass.Retrieve("select MAX(SupplierInvoiceID) from SupplierInvoicesTable").Rows[0][0]);
-                    if (string.IsNullOrEmpty(SupplierInvoiceID))
+
+                    cmd = new SqlCommand("delete from SupplierLedgersTable where InvoiceNo = '" + lblInvoiceNo.Text + "'", MainClass.con);
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("select si.Product_ID,si.Unit,si.Quantity,si.CostPrice from PurchasesInfo si inner join ProductsTable p on p.ProductID = si.Product_ID where Purchase_ID =  '" + lblPurchaseID.Text + "' ", MainClass.con);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
                     {
-                        MessageBox.Show("Please Check The Error or Try Again");
-                        return;
+                        while (dr.Read())
+                        {
+                            PurchaseInfos[0] = dr[0].ToString();    //ID
+                            PurchaseInfos[1] = dr[1].ToString();    //Unit
+                            PurchaseInfos[2] = dr[2].ToString();    //Qty
+                            PurchaseInfos[3] = dr[3].ToString();    //Cost
+                        }
                     }
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                } // Get Supplier InvoiceID
-                try
-                {
-                    MainClass.con.Open();
-                    cmd = new SqlCommand("insert into PurchasesTable (InvoiceNo,SupplierInvoice_ID,Supplier_ID,GrandTotal,PurchaseDate) values (" +
-                        "@InvoiceNo,@SupplierInvoice_ID,@Supplier_ID,@GrandTotal,@PurchaseDate)", MainClass.con);
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@SupplierInvoice_ID", SupplierInvoiceID);
-                    cmd.Parameters.AddWithValue("@Supplier_ID", SupplierID);
-                    cmd.Parameters.AddWithValue("@GrandTotal", grantotal);
-                    cmd.Parameters.AddWithValue("@PurchaseDate", dtInvoiceDate.Value.ToShortDateString());
-                    cmd.ExecuteNonQuery();
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                } // Inserting into Purchases
-                try
-                {
-                    float handcash = CashInHand();
-                    float cash = handcash - grantotal;
+                    dr.Close();
 
-                    MainClass.con.Open();
-                    cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
-                    cmd.Parameters.AddWithValue("@CashInHand", cash);
-                    cmd.ExecuteNonQuery();
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                } //UpdateCash Flow
-                try
-                {
-                    MainClass.con.Open();
-                    PurchaseID = Convert.ToString(MainClass.Retrieve("select MAX(PurchaseID) from PurchasesTable").Rows[0][0]);
-                    if (string.IsNullOrEmpty(PurchaseID))
-                    {
-                        MessageBox.Show("Please Check The Error or Try Again");
-                        return;
-                    }
-                    PURCHASE_ID = int.Parse(PurchaseID);
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                } // Get Purchase ID
-                try
-                {
-                    MainClass.con.Open();
                     foreach (DataGridViewRow item in DGVPurchaseCart.Rows)
                     {
-                        int ProductID = 0;
-                        int UnitID = 0;
-                        try
+                        cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + item.Cells["PcodeGV"].Value.ToString() + "'", MainClass.con);
+                        object ob = cmd.ExecuteScalar();
+
+                        if (ob == null)
                         {
-                            cmd = new SqlCommand("select ProductID from ProductsTable where ProductName = '" + item.Cells[1].Value.ToString() + "'", MainClass.con);
-                            ProductID = int.Parse(cmd.ExecuteScalar().ToString());
+                            cmd = new SqlCommand("select UnitID from UnitsTable where Unit = '" + item.Cells["UnitGV"].Value.ToString() + "'", MainClass.con);
+                            int unit = int.Parse(cmd.ExecuteScalar().ToString());
+
+
+                            cmd = new SqlCommand("insert into Inventory (ProductID,Unit,Qty,CostPrice) values (@ProductID,@Unit,@Qty,@CostPrice)", MainClass.con);
+                            cmd.Parameters.AddWithValue("@ProductID", item.Cells["PcodeGV"].Value.ToString());
+                            cmd.Parameters.AddWithValue("@Unit", unit);
+                            cmd.Parameters.AddWithValue("@Qty", item.Cells["QuantityGV"].Value.ToString());
+                            cmd.Parameters.AddWithValue("@CostPrice", item.Cells["PurchasePriceGV"].Value.ToString());
+                            cmd.ExecuteNonQuery();
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            MessageBox.Show(ex.Message);
-                            MainClass.con.Close();
-                        } // ProductID
-                        try
-                        {
-                            cmd = new SqlCommand("select UnitID from UnitsTable where Unit = '" + item.Cells[2].Value.ToString() + "'", MainClass.con);
-                            UnitID = int.Parse(cmd.ExecuteScalar().ToString());
+                            float quantity = float.Parse(item.Cells["QuantityGV"].Value.ToString());
+                            if (float.Parse(PurchaseInfos[2]) == quantity)
+                            {
+                                quantity = float.Parse(item.Cells["QuantityGV"].Value.ToString());
+                            }
+                            else
+                            {
+                                quantity = float.Parse(PurchaseInfos[2]) - float.Parse(PurchaseInfos[2]);
+                            }
+                            float cost = float.Parse(item.Cells["PurchasePriceGV"].Value.ToString());
+                            int ProductID = int.Parse(item.Cells["PcodeGV"].Value.ToString());
+                            MainClass.UpdateInventory(ProductID, quantity);
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            MainClass.con.Close();
-                        } // UnitID
+                    } //Inventory Insert / Update
 
-                        float qty = float.Parse(item.Cells[5].Value.ToString());
-                        float cost = float.Parse(item.Cells[3].Value.ToString());
-                        float sale = float.Parse(item.Cells[4].Value.ToString());
-                        float discount = float.Parse(item.Cells[6].Value.ToString());
-                        float totofprodcut = float.Parse(item.Cells[7].Value.ToString());
+                    cmd = new SqlCommand("delete from PurchasesInfo where Purchase_ID = '" + lblPurchaseID.Text + "'", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
+                    cmd = new SqlCommand("delete from PurchasesTable where InvoiceNo = '" + lblInvoiceNo.Text + "'", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
-                        string insertPurchaseInfo = "insert into PurchasesInfo (Purchase_ID,Supplier_InvoiceID,Product_ID,Quantity,Unit,CostPrice,SalePrice,Discount,TotalOfProduct) values (@Purchase_ID,@Supplier_InvoiceID,@Product_ID,@Quantity,@Unit,@CostPrice,@SalePrice,@Discount,@TotalOfProduct)";
-                        cmd = new SqlCommand(insertPurchaseInfo, MainClass.con);
-                        cmd.Parameters.AddWithValue("@Purchase_ID", PurchaseID);
-                        cmd.Parameters.AddWithValue("@Supplier_InvoiceID", SupplierInvoiceID);
-                        cmd.Parameters.AddWithValue("@Product_ID", ProductID);
-                        cmd.Parameters.AddWithValue("@Quantity", qty);
-                        cmd.Parameters.AddWithValue("@Unit", UnitID);
-                        cmd.Parameters.AddWithValue("@CostPrice", cost);
-                        cmd.Parameters.AddWithValue("@SalePrice", sale);
-                        cmd.Parameters.AddWithValue("@Discount", discount);
-                        cmd.Parameters.AddWithValue("@TotalOfProduct", totofprodcut);
+                    MainClass.con.Close();
+
+                    string invoiceno = lblInvoiceNo.Text;
+                    float grantotal = float.Parse(txtGrossTotal.Text.ToString());
+                    string SupplierInvoiceID = "";
+                    string PurchaseID = "";
+                    string SupplierID = cboSupplier.SelectedValue.ToString();
+
+                    try
+                    {
+                        MainClass.con.Open();
+                        cmd = new SqlCommand("insert into SupplierInvoicesTable (SupplierID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,RemainingBalance) values (" +
+                            "@SupplierID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@RemainingBalance)", MainClass.con);
+
+                        cmd.Parameters.AddWithValue("@SupplierID", cboSupplier.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@PaymentType", cboType.Text);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@PaidAmount", float.Parse(txtPaying.Text));
+                        cmd.Parameters.AddWithValue("@TotalAmount", grantotal);
+                        cmd.Parameters.AddWithValue("@RemainingBalance", txtBalance.Text);
                         cmd.ExecuteNonQuery();
+                        MainClass.con.Close();
                     }
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                } // Inserting Purchase Info
-                try
-                {
-               
-                    int productId = 0;
-                    int unitId = 0;
-                    object stockqty = null;
-                    
-                    MainClass.con.Open();
-                    foreach (DataGridViewRow item in DGVPurchaseCart.Rows)
+                    catch (Exception ex)
                     {
-                        try
-                        {
-                            cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + item.Cells[0].Value.ToString() + "'", MainClass.con);
-                            stockqty = cmd.ExecuteScalar();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            MainClass.con.Close();
-                        }
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Inserting Supplier Invoices
+                    try
+                    {
+                        SupplierInvoiceID = lblSupplierInvoiceID.Text;
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Get Supplier InvoiceID
+                    try
+                    {
+                        MainClass.con.Open();
 
-                       
-                        try
-                        {
-                            cmd = new SqlCommand("select ProductID from ProductsTable where ProductName = '" + item.Cells[1].Value.ToString() + "' ", MainClass.con);
-                            productId = int.Parse(cmd.ExecuteScalar().ToString());
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            MainClass.con.Close();
-                        } // Product ID
 
-                      
-
-                        try
-                        {
-                            cmd = new SqlCommand("select UnitID from ProductsTable where ProductID = '" + item.Cells[0].Value.ToString() + "' ", MainClass.con);
-                            unitId = int.Parse(cmd.ExecuteScalar().ToString());
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            MainClass.con.Close();
-                        } // Unit ID
-                        float costprice = 0;
-                        float finalqty = 0;
-                        if (stockqty == null)
-                        {
+                        cmd = new SqlCommand("insert into PurchasesTable (InvoiceNo,SupplierInvoice_ID,Supplier_ID,GrandTotal,PurchaseDate) values (" +
+                            "@InvoiceNo,@SupplierInvoice_ID,@Supplier_ID,@GrandTotal,@PurchaseDate)", MainClass.con);
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@SupplierInvoice_ID", SupplierInvoiceID);
+                        cmd.Parameters.AddWithValue("@Supplier_ID", SupplierID);
+                        cmd.Parameters.AddWithValue("@GrandTotal", grantotal);
+                        cmd.Parameters.AddWithValue("@PurchaseDate", dtInvoiceDate.Value.ToShortDateString());
+                        cmd.ExecuteNonQuery();
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Inserting into Purchases
+                    try
+                    {
                         
+                        PurchaseID = lblPurchaseID.Text;
+                        Purchase_ID = int.Parse(PurchaseID.ToString());
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Get Purchase ID
+                    try
+                    {
+                        MainClass.con.Open();
+                        foreach (DataGridViewRow item in DGVPurchaseCart.Rows)
+                        {
+                            int ProductID = 0;
+                            int UnitID = 0;
+                            try
+                            {
+                                cmd = new SqlCommand("select ProductID from ProductsTable where ProductName = '" + item.Cells[1].Value.ToString() + "'", MainClass.con);
+                                ProductID = int.Parse(cmd.ExecuteScalar().ToString());
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            } // ProductID
+                            try
+                            {
+                                cmd = new SqlCommand("select UnitID from UnitsTable where Unit = '" + item.Cells[2].Value.ToString() + "'", MainClass.con);
+                                UnitID = int.Parse(cmd.ExecuteScalar().ToString());
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            } // UnitID
 
-                            cmd = new SqlCommand("select CostPrice from ProductsTable where ProductID = '" + productId + "'", MainClass.con);
-                            costprice = float.Parse(cmd.ExecuteScalar().ToString());
+                            float qty = float.Parse(item.Cells[5].Value.ToString());
+                            float cost = float.Parse(item.Cells[3].Value.ToString());
+                            float sale = float.Parse(item.Cells[4].Value.ToString());
+                            float discount = float.Parse(item.Cells[6].Value.ToString());
+                            float totofprodcut = float.Parse(item.Cells[7].Value.ToString());
 
-                            cmd = new SqlCommand("insert into Inventory (ProductID,Unit,Qty,Rate) values (@ProductID,@Unit,@Qty,@Rate)", MainClass.con);
-                            
+
+                            string insertPurchaseInfo = "insert into PurchasesInfo (Purchase_ID,Supplier_InvoiceID,Product_ID,Quantity,Unit,CostPrice,SalePrice,Discount,TotalOfProduct) values (@Purchase_ID,@Supplier_InvoiceID,@Product_ID,@Quantity,@Unit,@CostPrice,@SalePrice,@Discount,@TotalOfProduct)";
+                            cmd = new SqlCommand(insertPurchaseInfo, MainClass.con);
+                            cmd.Parameters.AddWithValue("@Purchase_ID", PurchaseID);
+                            cmd.Parameters.AddWithValue("@Supplier_InvoiceID", SupplierInvoiceID);
+                            cmd.Parameters.AddWithValue("@Product_ID", ProductID);
+                            cmd.Parameters.AddWithValue("@Quantity", qty);
+                            cmd.Parameters.AddWithValue("@Unit", UnitID);
+                            cmd.Parameters.AddWithValue("@CostPrice", cost);
+                            cmd.Parameters.AddWithValue("@SalePrice", sale);
+                            cmd.Parameters.AddWithValue("@Discount", discount);
+                            cmd.Parameters.AddWithValue("@TotalOfProduct", totofprodcut);
+                            cmd.ExecuteNonQuery();
+                        }
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Inserting Purchase Info
+                    try
+                    {
+
+                        int productId = 0;
+                        int unitId = 0;
+                        object stockqty = null;
+
+                        MainClass.con.Open();
+                        foreach (DataGridViewRow item in DGVPurchaseCart.Rows)
+                        {
+                            try
+                            {
+                                cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + item.Cells[0].Value.ToString() + "'", MainClass.con);
+                                stockqty = cmd.ExecuteScalar();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            }
+
+
+                            try
+                            {
+                                cmd = new SqlCommand("select ProductID from ProductsTable where ProductName = '" + item.Cells[1].Value.ToString() + "' ", MainClass.con);
+                                productId = int.Parse(cmd.ExecuteScalar().ToString());
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            } // Product ID
+                            try
+                            {
+                                cmd = new SqlCommand("select UnitID from ProductsTable where ProductID = '" + item.Cells[0].Value.ToString() + "' ", MainClass.con);
+                                unitId = int.Parse(cmd.ExecuteScalar().ToString());
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            } // Unit ID
+
+                            float finalqty = 0;
+                            float costprice = float.Parse(item.Cells[3].Value.ToString());
+                            if (stockqty == null)
+                            {
+
+                                cmd = new SqlCommand("insert into Inventory (ProductID,Unit,Qty,CostPrice) values (@ProductID,@Unit,@Qty,@CostPrice)", MainClass.con);
+
+                                cmd.Parameters.AddWithValue("@ProductID", productId);
+                                cmd.Parameters.AddWithValue("@Unit", unitId);
+                                cmd.Parameters.AddWithValue("@Qty", item.Cells[5].Value.ToString());
+                                cmd.Parameters.AddWithValue("@CostPrice", costprice);
+                                cmd.ExecuteNonQuery();
+
+                            } // Inserting 
+                            else
+                            {
+                                float qty = 0;
+                                float.TryParse(stockqty.ToString(), out qty);
+                                qty += float.Parse(item.Cells[5].Value.ToString());
+                                MainClass.UpdateInventory(productId, qty);
+
+                            } //Updating
+                        }
+                        MainClass.con.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        MainClass.con.Close();
+                    } // Inserting and Updating Inventory
+                    try
+                    {
+                        MainClass.con.Open();
+                        string InsertPayment = "insert into SupplierLedgersTable (SupplierInvoice_ID,Supplier_ID,InvoiceType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,Balance) values(@SupplierInvoice_ID,@Supplier_ID,@InvoiceType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@Balance)";
+                        cmd = new SqlCommand(InsertPayment, MainClass.con);
+                        cmd.Parameters.AddWithValue("@SupplierInvoice_ID", SupplierInvoiceID);
+                        cmd.Parameters.AddWithValue("@Supplier_ID", cboSupplier.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@InvoiceType", cboType.Text);
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@TotalAmount", txtPaymentTotal.Text);
+                        cmd.Parameters.AddWithValue("@PaidAmount", txtPaying.Text);
+                        cmd.Parameters.AddWithValue("@Balance", txtBalance.Text);
+                        cmd.ExecuteNonQuery();
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } //Inserting Ledgers
+                    int SupplierLedgerID = 0;
+                    try
+                    {
+                        MainClass.con.Open();
+                        SupplierLedgerID = int.Parse(MainClass.Retrieve("select MAX(SupplerLedgerID) from SupplierLedgersTable").Rows[0][0].ToString());
+                        if (SupplierLedgerID == 0)
+                        {
+                            MessageBox.Show("Please Check The Error or Try Again");
+                            return;
+                        }
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Get Ledger ID
+                    try
+                    {
+                        MainClass.con.Open();
+                        string InsertLedgerInfo = "insert into SupplierLedgersInfoTable (SupplierLedger_ID,Supplier_ID,PayingDate,InvoiceNo,TotalAmount,PreviousPaid,TodayPaid,NewBalance,Remarks) values(@SupplierLedger_ID,@Supplier_ID,@PayingDate,@InvoiceNo,@TotalAmount,@PreviousPaid,@TodayPaid,@NewBalance,@Remarks)";
+                        cmd = new SqlCommand(InsertLedgerInfo, MainClass.con);
+                        cmd.Parameters.AddWithValue("@SupplierLedger_ID", SupplierLedgerID);
+                        cmd.Parameters.AddWithValue("@Supplier_ID", cboSupplier.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@PayingDate", dtInvoiceDate.Value.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@TotalAmount", txtGrossTotal.Text);
+                        cmd.Parameters.AddWithValue("@PreviousPaid", txtPaying.Text);
+                        cmd.Parameters.AddWithValue("@TodayPaid", 0);
+                        cmd.Parameters.AddWithValue("@NewBalance", txtBalance.Text);
+                        cmd.Parameters.AddWithValue("@Remarks", "Purcahse Done");
+                        cmd.ExecuteNonQuery();
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Inserting Ledgers Info
+
+                }
+                
+                
+                else{
+                    SqlCommand cmd = null;
+                    string invoiceno = "PUR" + txtInvoiceNo.Text.ToString();
+                    float grantotal = float.Parse(txtGrossTotal.Text.ToString());
+                    string SupplierInvoiceID = "";
+                    string PurchaseID = "";
+                    string SupplierID = cboSupplier.SelectedValue.ToString();
+
+                    try
+                    {
+                        MainClass.con.Open();
+                        cmd = new SqlCommand("insert into SupplierInvoicesTable (SupplierID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,RemainingBalance) values (" +
+                            "@SupplierID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@RemainingBalance)", MainClass.con);
+
+                        cmd.Parameters.AddWithValue("@SupplierID", cboSupplier.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@PaymentType", cboType.Text);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@TotalAmount", grantotal);
+                        cmd.Parameters.AddWithValue("@PaidAmount", txtPaying.Text);
+                        cmd.Parameters.AddWithValue("@RemainingBalance", txtBalance.Text);
+
+                        cmd.ExecuteNonQuery();
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Inserting Supplier Invoices
+                    try
+                    {
+                        MainClass.con.Open();
+                        SupplierInvoiceID = Convert.ToString(MainClass.Retrieve("select MAX(SupplierInvoiceID) from SupplierInvoicesTable").Rows[0][0]);
+                        if (string.IsNullOrEmpty(SupplierInvoiceID))
+                        {
+                            MessageBox.Show("Please Check The Error or Try Again");
+                            return;
+                        }
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Get Supplier InvoiceID
+                    try
+                    {
+                        MainClass.con.Open();
+                        cmd = new SqlCommand("insert into PurchasesTable (InvoiceNo,SupplierInvoice_ID,Supplier_ID,GrandTotal,PurchaseDate) values (" +
+                            "@InvoiceNo,@SupplierInvoice_ID,@Supplier_ID,@GrandTotal,@PurchaseDate)", MainClass.con);
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@SupplierInvoice_ID", SupplierInvoiceID);
+                        cmd.Parameters.AddWithValue("@Supplier_ID", SupplierID);
+                        cmd.Parameters.AddWithValue("@GrandTotal", grantotal);
+                        cmd.Parameters.AddWithValue("@PurchaseDate", dtInvoiceDate.Value.ToShortDateString());
+                        cmd.ExecuteNonQuery();
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Inserting into Purchases
+                    try
+                    {
+                        float handcash = CashInHand();
+                        float cash = handcash - grantotal;
+
+                        MainClass.con.Open();
+                        cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
+                        cmd.Parameters.AddWithValue("@CashInHand", cash);
+                        cmd.ExecuteNonQuery();
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } //UpdateCash Flow
+                    try
+                    {
+                        MainClass.con.Open();
+                        PurchaseID = Convert.ToString(MainClass.Retrieve("select MAX(PurchaseID) from PurchasesTable").Rows[0][0]);
+                        if (string.IsNullOrEmpty(PurchaseID))
+                        {
+                            MessageBox.Show("Please Check The Error or Try Again");
+                            return;
+                        }
+                        PURCHASE_ID = int.Parse(PurchaseID);
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Get Purchase ID
+                    try
+                    {
+                        MainClass.con.Open();
+                        foreach (DataGridViewRow item in DGVPurchaseCart.Rows)
+                        {
+                            int ProductID = 0;
+                            int UnitID = 0;
+                            try
+                            {
+                                cmd = new SqlCommand("select ProductID from ProductsTable where ProductName = '" + item.Cells[1].Value.ToString() + "'", MainClass.con);
+                                ProductID = int.Parse(cmd.ExecuteScalar().ToString());
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            } // ProductID
+                            try
+                            {
+                                cmd = new SqlCommand("select UnitID from UnitsTable where Unit = '" + item.Cells[2].Value.ToString() + "'", MainClass.con);
+                                UnitID = int.Parse(cmd.ExecuteScalar().ToString());
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            } // UnitID
+
+                            float qty = float.Parse(item.Cells[5].Value.ToString());
+                            float cost = float.Parse(item.Cells[3].Value.ToString());
+                            float sale = float.Parse(item.Cells[4].Value.ToString());
+                            float discount = float.Parse(item.Cells[6].Value.ToString());
+                            float totofprodcut = float.Parse(item.Cells[7].Value.ToString());
+
+
+                            string insertPurchaseInfo = "insert into PurchasesInfo (Purchase_ID,Supplier_InvoiceID,Product_ID,Quantity,Unit,CostPrice,SalePrice,Discount,TotalOfProduct) values (@Purchase_ID,@Supplier_InvoiceID,@Product_ID,@Quantity,@Unit,@CostPrice,@SalePrice,@Discount,@TotalOfProduct)";
+                            cmd = new SqlCommand(insertPurchaseInfo, MainClass.con);
+                            cmd.Parameters.AddWithValue("@Purchase_ID", PurchaseID);
+                            cmd.Parameters.AddWithValue("@Supplier_InvoiceID", SupplierInvoiceID);
+                            cmd.Parameters.AddWithValue("@Product_ID", ProductID);
+                            cmd.Parameters.AddWithValue("@Quantity", qty);
+                            cmd.Parameters.AddWithValue("@Unit", UnitID);
+                            cmd.Parameters.AddWithValue("@CostPrice", cost);
+                            cmd.Parameters.AddWithValue("@SalePrice", sale);
+                            cmd.Parameters.AddWithValue("@Discount", discount);
+                            cmd.Parameters.AddWithValue("@TotalOfProduct", totofprodcut);
+                            cmd.ExecuteNonQuery();
+                        }
+                        MainClass.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } // Inserting Purchase Info
+                    try
+                    {
+
+                        int productId = 0;
+                        int unitId = 0;
+                        object stockqty = null;
+
+                        MainClass.con.Open();
+                        foreach (DataGridViewRow item in DGVPurchaseCart.Rows)
+                        {
+                            try
+                            {
+                                cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + item.Cells[0].Value.ToString() + "'", MainClass.con);
+                                stockqty = cmd.ExecuteScalar();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            }
+
+
+                            try
+                            {
+                                cmd = new SqlCommand("select ProductID from ProductsTable where ProductName = '" + item.Cells[1].Value.ToString() + "' ", MainClass.con);
+                                productId = int.Parse(cmd.ExecuteScalar().ToString());
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            } // Product ID
+
+
+
+                            try
+                            {
+                                cmd = new SqlCommand("select UnitID from ProductsTable where ProductID = '" + item.Cells[0].Value.ToString() + "' ", MainClass.con);
+                                unitId = int.Parse(cmd.ExecuteScalar().ToString());
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                                MainClass.con.Close();
+                            } // Unit ID
+                            float costprice = 0;
+                            float finalqty = 0;
+                            if (stockqty == null)
+                            {
+
+
+                                cmd = new SqlCommand("select CostPrice from ProductsTable where ProductID = '" + productId + "'", MainClass.con);
+                                costprice = float.Parse(cmd.ExecuteScalar().ToString());
+
+                                cmd = new SqlCommand("insert into Inventory (ProductID,Unit,Qty,Rate) values (@ProductID,@Unit,@Qty,@Rate)", MainClass.con);
+
                                 cmd.Parameters.AddWithValue("@ProductID", productId);
                                 cmd.Parameters.AddWithValue("@Unit", unitId);
                                 cmd.Parameters.AddWithValue("@Qty", item.Cells[5].Value.ToString());
                                 cmd.Parameters.AddWithValue("@Rate", costprice);
                                 cmd.ExecuteNonQuery();
-                           
-                        } // Inserting 
-                        else
-                        {
-                            
+
+                            } // Inserting 
+                            else
+                            {
+
                                 float qty = 0;
                                 float.TryParse(stockqty.ToString(), out qty);
                                 qty += float.Parse(item.Cells[5].Value.ToString());
                                 MainClass.UpdateInventory(productId, qty);
-                            
-                        } //Updating
+
+                            } //Updating
+                        }
+                        MainClass.con.Close();
+
                     }
-                    MainClass.con.Close();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    
-                    MainClass.con.Close();
-                } // Inserting and Updating Inventory
-                try
-                {
-                    MainClass.con.Open();
-                    string InsertPayment = "insert into SupplierLedgersTable (SupplierInvoice_ID,Supplier_ID,InvoiceType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,Balance) values(@SupplierInvoice_ID,@Supplier_ID,@InvoiceType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@Balance)";
-                    cmd = new SqlCommand(InsertPayment, MainClass.con);
-                    cmd.Parameters.AddWithValue("@SupplierInvoice_ID", SupplierInvoiceID);
-                    cmd.Parameters.AddWithValue("@Supplier_ID", cboSupplier.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@InvoiceType", cboType.Text);
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@TotalAmount", txtPaymentTotal.Text);
-                    cmd.Parameters.AddWithValue("@PaidAmount", txtPaying.Text);
-                    cmd.Parameters.AddWithValue("@Balance", txtBalance.Text);
-                    cmd.ExecuteNonQuery();
-
-                    string SupplerLedgerID = Convert.ToString(MainClass.Retrieve("select MAX(SupplerLedgerID) from SupplierLedgersTable").Rows[0][0]);
-                    if (string.IsNullOrEmpty(SupplerLedgerID))
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Please Check The Error or Try Again");
-                        return;
+                        MessageBox.Show(ex.Message);
+
+                        MainClass.con.Close();
+                    } // Inserting and Updating Inventory
+                    try
+                    {
+                        MainClass.con.Open();
+                        string InsertPayment = "insert into SupplierLedgersTable (SupplierInvoice_ID,Supplier_ID,InvoiceType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,Balance) values(@SupplierInvoice_ID,@Supplier_ID,@InvoiceType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@Balance)";
+                        cmd = new SqlCommand(InsertPayment, MainClass.con);
+                        cmd.Parameters.AddWithValue("@SupplierInvoice_ID", SupplierInvoiceID);
+                        cmd.Parameters.AddWithValue("@Supplier_ID", cboSupplier.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@InvoiceType", cboType.Text);
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@TotalAmount", txtPaymentTotal.Text);
+                        cmd.Parameters.AddWithValue("@PaidAmount", txtPaying.Text);
+                        cmd.Parameters.AddWithValue("@Balance", txtBalance.Text);
+                        cmd.ExecuteNonQuery();
+
+                        string SupplerLedgerID = Convert.ToString(MainClass.Retrieve("select MAX(SupplerLedgerID) from SupplierLedgersTable").Rows[0][0]);
+                        if (string.IsNullOrEmpty(SupplerLedgerID))
+                        {
+                            MessageBox.Show("Please Check The Error or Try Again");
+                            return;
+                        }
+
+
+                        string InsertLedgerInfo = "insert into SupplierLedgersInfoTable (SupplierLedger_ID,Supplier_ID,PayingDate,InvoiceNo,TotalAmount,PreviousPaid,TodayPaid,NewBalance,InvoiceDate) values(@SupplierLedger_ID,@Supplier_ID,@PayingDate,@InvoiceNo,@TotalAmount,@PreviousPaid,@TodayPaid,@NewBalance,@InvoiceDate)";
+                        cmd = new SqlCommand(InsertLedgerInfo, MainClass.con);
+                        cmd.Parameters.AddWithValue("@SupplierLedger_ID", SupplerLedgerID);
+                        cmd.Parameters.AddWithValue("@Supplier_ID", cboSupplier.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
+                        cmd.Parameters.AddWithValue("@PayingDate", dtInvoiceDate.Value.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@TotalAmount", txtGrossTotal.Text);
+                        cmd.Parameters.AddWithValue("@PreviousPaid", txtPaying.Text);
+                        cmd.Parameters.AddWithValue("@TodayPaid", 0);
+                        cmd.Parameters.AddWithValue("@NewBalance", txtBalance.Text);
+                        cmd.ExecuteNonQuery();
+
+                        MainClass.con.Close();
                     }
-
-
-                    string InsertLedgerInfo = "insert into SupplierLedgersInfoTable (SupplierLedger_ID,Supplier_ID,PayingDate,InvoiceNo,TotalAmount,PreviousPaid,TodayPaid,NewBalance,InvoiceDate) values(@SupplierLedger_ID,@Supplier_ID,@PayingDate,@InvoiceNo,@TotalAmount,@PreviousPaid,@TodayPaid,@NewBalance,@InvoiceDate)";
-                    cmd = new SqlCommand(InsertLedgerInfo, MainClass.con);
-                    cmd.Parameters.AddWithValue("@SupplierLedger_ID", SupplerLedgerID);
-                    cmd.Parameters.AddWithValue("@Supplier_ID", cboSupplier.SelectedValue.ToString());
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@PayingDate", dtInvoiceDate.Value.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@TotalAmount", txtGrossTotal.Text);
-                    cmd.Parameters.AddWithValue("@PreviousPaid", txtPaying.Text);
-                    cmd.Parameters.AddWithValue("@TodayPaid", 0);
-                    cmd.Parameters.AddWithValue("@NewBalance", txtBalance.Text);
-                    cmd.ExecuteNonQuery();
-
-                    MainClass.con.Close();
+                    catch (Exception ex)
+                    {
+                        MainClass.con.Close();
+                        MessageBox.Show(ex.Message);
+                    } //Inserting Ledgers
                 }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                } //Inserting Ledgers
+                btnGenerate_Click(sender, e);
+                MessageBox.Show("Purchase Successfuly");
+                PurchaseReceiptForm pr = new PurchaseReceiptForm();
+                pr.Show();
             }
-            btnGenerate_Click(sender,e);
-            MessageBox.Show("Purchase Successfuly");
-            PurchaseReceiptForm pr = new PurchaseReceiptForm();
-            pr.Show();
+            
+         
             FullClear();
+        }
+
+        private void btnRecentPurchases_Click(object sender, EventArgs e)
+        {
+            RecentPurchases rec = new RecentPurchases(this);
+            rec.Show();
         }
     }
 }

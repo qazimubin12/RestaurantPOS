@@ -240,5 +240,13 @@ namespace RestaurantPOS
             MainClass.showWindow(r, this, MDI.ActiveForm);
 
         }
+
+        private void btnStockControl_Click(object sender, EventArgs e)
+        {
+            StockControl s = new StockControl();
+            MainClass.showWindow(s, this, MDI.ActiveForm);
+
+
+        }
     }
 }
