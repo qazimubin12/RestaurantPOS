@@ -30,9 +30,9 @@ namespace RestaurantPOS
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLoggedUser = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -81,12 +81,14 @@ namespace RestaurantPOS
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUpdateStore = new System.Windows.Forms.Button();
             this.btnSaveStore = new System.Windows.Forms.Button();
+            this.txtCashInHand = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtCurrency = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtGst = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtLowStockQty = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtStoreAddress = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtStoreName = new Guna.UI2.WinForms.Guna2TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
             this.btnSaveMode = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -98,8 +100,6 @@ namespace RestaurantPOS
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.modetoggle = new Guna.UI2.WinForms.Guna2ToggleSwitch();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtCashInHand = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -523,21 +523,21 @@ namespace RestaurantPOS
             // 
             this.DgvUsers.AllowUserToAddRows = false;
             this.DgvUsers.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvUsers.BackgroundColor = System.Drawing.Color.White;
             this.DgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DgvUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DgvUsers.ColumnHeadersHeight = 30;
             this.DgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserNameGV,
@@ -545,14 +545,14 @@ namespace RestaurantPOS
             this.PasswordGV,
             this.RoleGV});
             this.DgvUsers.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvUsers.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvUsers.DefaultCellStyle = dataGridViewCellStyle6;
             this.DgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvUsers.EnableHeadersVisualStyles = false;
             this.DgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -861,6 +861,32 @@ namespace RestaurantPOS
             this.btnSaveStore.UseVisualStyleBackColor = false;
             this.btnSaveStore.Click += new System.EventHandler(this.btnSaveStore_Click);
             // 
+            // txtCashInHand
+            // 
+            this.txtCashInHand.AutoRoundedCorners = true;
+            this.txtCashInHand.BorderRadius = 12;
+            this.txtCashInHand.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCashInHand.DefaultText = "";
+            this.txtCashInHand.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtCashInHand.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtCashInHand.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCashInHand.DisabledState.Parent = this.txtCashInHand;
+            this.txtCashInHand.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtCashInHand.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCashInHand.FocusedState.Parent = this.txtCashInHand;
+            this.txtCashInHand.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCashInHand.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtCashInHand.HoverState.Parent = this.txtCashInHand;
+            this.txtCashInHand.Location = new System.Drawing.Point(381, 421);
+            this.txtCashInHand.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCashInHand.Name = "txtCashInHand";
+            this.txtCashInHand.PasswordChar = '\0';
+            this.txtCashInHand.PlaceholderText = "";
+            this.txtCashInHand.SelectedText = "";
+            this.txtCashInHand.ShadowDecoration.Parent = this.txtCashInHand;
+            this.txtCashInHand.Size = new System.Drawing.Size(314, 27);
+            this.txtCashInHand.TabIndex = 4;
+            // 
             // txtCurrency
             // 
             this.txtCurrency.AutoRoundedCorners = true;
@@ -1007,6 +1033,17 @@ namespace RestaurantPOS
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
+            this.label21.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label21.Location = new System.Drawing.Point(377, 394);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(142, 23);
+            this.label21.TabIndex = 34;
+            this.label21.Text = "Cash In Hand";
+            // 
             // btnSaveMode
             // 
             this.btnSaveMode.BackColor = System.Drawing.Color.White;
@@ -1054,9 +1091,9 @@ namespace RestaurantPOS
             this.label16.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.label16.Location = new System.Drawing.Point(377, 267);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(45, 23);
+            this.label16.Size = new System.Drawing.Size(93, 23);
             this.label16.TabIndex = 34;
-            this.label16.Text = "GST";
+            this.label16.Text = "VAT/TAX";
             // 
             // label15
             // 
@@ -1144,43 +1181,6 @@ namespace RestaurantPOS
             this.modetoggle.UncheckedState.InnerColor = System.Drawing.Color.White;
             this.modetoggle.UncheckedState.Parent = this.modetoggle;
             this.modetoggle.Visible = false;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
-            this.label21.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label21.Location = new System.Drawing.Point(377, 394);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(142, 23);
-            this.label21.TabIndex = 34;
-            this.label21.Text = "Cash In Hand";
-            // 
-            // txtCashInHand
-            // 
-            this.txtCashInHand.AutoRoundedCorners = true;
-            this.txtCashInHand.BorderRadius = 12;
-            this.txtCashInHand.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCashInHand.DefaultText = "";
-            this.txtCashInHand.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtCashInHand.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtCashInHand.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCashInHand.DisabledState.Parent = this.txtCashInHand;
-            this.txtCashInHand.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCashInHand.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCashInHand.FocusedState.Parent = this.txtCashInHand;
-            this.txtCashInHand.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCashInHand.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCashInHand.HoverState.Parent = this.txtCashInHand;
-            this.txtCashInHand.Location = new System.Drawing.Point(381, 421);
-            this.txtCashInHand.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCashInHand.Name = "txtCashInHand";
-            this.txtCashInHand.PasswordChar = '\0';
-            this.txtCashInHand.PlaceholderText = "";
-            this.txtCashInHand.SelectedText = "";
-            this.txtCashInHand.ShadowDecoration.Parent = this.txtCashInHand;
-            this.txtCashInHand.Size = new System.Drawing.Size(314, 27);
-            this.txtCashInHand.TabIndex = 4;
             // 
             // Settings
             // 

@@ -106,6 +106,7 @@ namespace RestaurantPOS
             cboUnits.SelectedIndex = 0;
             pedit = 0;
             cboCategory.SelectedIndex = 0;
+            pictureBox1.Image = Properties.Resources.placeholder_200x200;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

@@ -21,16 +21,27 @@ namespace RestaurantPOS
 
         private void btnFinalize_Click(object sender, EventArgs e)
         {
-            float total = float.Parse(txtGrandTotal.Text);
-            float paying  = float.Parse(txtPaying.Text);
-            if (total > paying)
+            if (rp.cboOrderType.Text == "Dine In" || rp.cboOrderType.Text == "Take Away")
             {
-                MessageBox.Show("Paying Amount is Incorrect");
-                return;
-            }
-            else
-            {
-                this.Close();
+                if (txtPaying.Text != "")
+                {
+                    float total = float.Parse(txtGrandTotal.Text);
+                    float paying = float.Parse(txtPaying.Text);
+                    if (total > paying)
+                    {
+                        MessageBox.Show("Paying Amount is Incorrect");
+                        return;
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Paying Amount cannot be Empty");
+                    return;
+                }
             }
         }
 
@@ -53,16 +64,21 @@ namespace RestaurantPOS
 
         private void Calculate()
         {
-            float total = float.Parse(txtGrandTotal.Text);
-            float paying = float.Parse(txtPaying.Text);
+            float total = 0;
+            float paying = 0;
+            
 
             if (txtPaying.Text == "" || txtPaying.Text == "0")
             {
                 txtBalance.Text = txtGrandTotal.Text;
                 txtChange.Text = "0";
+                total = float.Parse(txtGrandTotal.Text);
+                paying = 0;
             }
             else
             {
+                total = float.Parse(txtGrandTotal.Text);
+                paying = float.Parse(txtPaying.Text);
                 if (paying > total)
                 {
                     txtChange.Text =  Convert.ToString(float.Parse(txtPaying.Text) - float.Parse(txtGrandTotal.Text));
@@ -84,6 +100,11 @@ namespace RestaurantPOS
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtBalance_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

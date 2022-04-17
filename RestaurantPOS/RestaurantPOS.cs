@@ -330,7 +330,8 @@ namespace RestaurantPOS
             CheckTokenDate();
             txtTokenNumber.Text = Number.ToString();
             string currency = CurrencyRetrival();
-            lblGrandTotal.Text = "0.00 " + currency;
+            lblGrandTotal.Text = "0.00 ";
+            lblCurrencyRetriveal.Text = currency;
         }
 
         public Image ConvertByteArraytoImage(byte[] data)

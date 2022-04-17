@@ -402,8 +402,9 @@ namespace RestaurantPOS
             }
             else
             {
-                string query2 = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "','" + ConvertImageToBytes(pictureBox1.Image) + "' ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ")";
+                string query2 = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "',@Logo ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ")";
                 cmd = new SqlCommand(query2, MainClass.con);
+                cmd.Parameters.Add("@Logo", SqlDbType.VarBinary).Value = ConvertImageToBytes(pictureBox1.Image);
             }
            
             cmd.ExecuteNonQuery();

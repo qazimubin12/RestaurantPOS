@@ -164,6 +164,7 @@ namespace RestaurantPOS
             this.txtBalance.ShadowDecoration.Parent = this.txtBalance;
             this.txtBalance.Size = new System.Drawing.Size(398, 39);
             this.txtBalance.TabIndex = 34;
+            this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
             // 
             // label2
             // 
