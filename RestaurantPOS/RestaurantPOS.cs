@@ -305,10 +305,10 @@ namespace RestaurantPOS
             cmd = new SqlCommand("select CAST(StartDate AS DATE) as 'StartDate' from TokenNumber order by ID DESC", MainClass.con);
             DateTime date = DateTime.Parse(cmd.ExecuteScalar().ToString());
             
-            string today = DateTime.Now.ToShortDateString();
+            string today =  dateTimePicker1.Value.ToShortDateString();
             if (date.ToShortDateString() != today)
             {
-                cmd = new SqlCommand("insert into TokenNumber (Number,StartDate) values ('" + 1 + "','" + DateTime.Now.ToShortDateString() + "')", MainClass.con);
+                cmd = new SqlCommand("insert into TokenNumber (Number,StartDate) values ('" + 1 + "','" +  dateTimePicker1.Value.ToShortDateString() + "')", MainClass.con);
                 cmd.ExecuteNonQuery();
             }
           
@@ -317,6 +317,7 @@ namespace RestaurantPOS
 
         private void RestaurantPOS_Load(object sender, EventArgs e)
         {
+            lblLoggedInUser.Text = Login.User_NAME.ToString();
             MainClass.FillProducts(cboProducts);
             cboOrderType.SelectedIndex = 0;
             fpCategory.WrapContents = false;
@@ -499,7 +500,7 @@ namespace RestaurantPOS
                 else
                 {
                     dr.Close();
-                    SqlCommand cmd1 = new SqlCommand("insert into TokenNumber (Number,StartDate) values ('" + 1 + "','" + DateTime.Now.ToShortDateString() + "')", MainClass.con);
+                    SqlCommand cmd1 = new SqlCommand("insert into TokenNumber (Number,StartDate) values ('" + 1 + "','" +  dateTimePicker1.Value.ToShortDateString() + "')", MainClass.con);
                     cmd1.ExecuteNonQuery();
 
                 }
@@ -671,7 +672,7 @@ namespace RestaurantPOS
                         cmd = new SqlCommand("insert into CustomerInvoicesTable (Customer_ID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,RemainingBalance) values (@Customer_ID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@RemainingBalance)", MainClass.con);
                         cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
                         cmd.Parameters.AddWithValue("@PaymentType", cboOrderType.Text);
-                        cmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@InvoiceDate",  dateTimePicker1.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                         cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
                         cmd.Parameters.AddWithValue("@PaidAmount", float.Parse(pm.txtPaying.Text));
@@ -689,7 +690,7 @@ namespace RestaurantPOS
                         cmd = new SqlCommand("insert into CustomerLedgersTable (CustomerInvoice_ID,Customer_ID,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,Balance) values (@CustomerInvoice_ID,@Customer_ID,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@Balance)", MainClass.con);
                         cmd.Parameters.AddWithValue("@CustomerInvoice_ID", CustomerInvoiceID);
                         cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
-                        cmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@InvoiceDate",  dateTimePicker1.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                         cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
                         cmd.Parameters.AddWithValue("@PaidAmount", float.Parse(pm.txtPaying.Text));
@@ -706,7 +707,7 @@ namespace RestaurantPOS
                         cmd = new SqlCommand("insert into CustomerLedgersInfoTable (CustomerLedger_ID,Customer_ID,PayingDate,InvoiceNo,TotalAmount,PreviousPaid,TodayPaid,NewBalance) values (@CustomerLedger_ID,@Customer_ID,@PayingDate,@InvoiceNo,@TotalAmount,@PreviousPaid,@TodayPaid,@NewBalance)", MainClass.con);
                         cmd.Parameters.AddWithValue("@CustomerLedger_ID", CustomerLedgerID);
                         cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue);
-                        cmd.Parameters.AddWithValue("@PayingDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@PayingDate",  dateTimePicker1.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@TotalAmount", float.Parse(lblGrandTotal.Text));
                         cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                         cmd.Parameters.AddWithValue("@PreviousPaid", float.Parse(pm.txtPaying.Text));
@@ -715,14 +716,14 @@ namespace RestaurantPOS
                         cmd.ExecuteNonQuery();
 
 
-                        cmd = new SqlCommand("insert into SalesTable (Paying,Change,CustomerInvoice_ID, Customer_ID,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,TokenNumber) values (@Paying,@Change,@CustomerInvoice_ID, @Customer_ID,@InvoiceNo,@Discount,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@TokenNumber)", MainClass.con);
+                        cmd = new SqlCommand("insert into SalesTable (Cashier,Paying,Change,CustomerInvoice_ID, Customer_ID,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,TokenNumber,ContactNumber) values (@Cashier,@Paying,@Change,@CustomerInvoice_ID, @Customer_ID,@InvoiceNo,@Discount,@StoreAddress,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@TokenNumber,@ContactNumber)", MainClass.con);
                         cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                         cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
                         cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
                         cmd.Parameters.AddWithValue("@TokenNumber", int.Parse(txtTokenNumber.Text));
-
+                        cmd.Parameters.AddWithValue("@Cashier", lblLoggedInUser.Text);
                         cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
-                        cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@SaleDate",  dateTimePicker1.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
                         cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
                         cmd.Parameters.AddWithValue("@SaleTime", saletime);
@@ -731,8 +732,8 @@ namespace RestaurantPOS
                         cmd.Parameters.AddWithValue("@BillGST", billgst);
                         cmd.Parameters.AddWithValue("@CustomerInvoice_ID", CustomerInvoiceID);
                         cmd.Parameters.AddWithValue("@Customer_ID", cboSelectCustomer.SelectedValue.ToString());
-
-
+                     
+                        cmd.Parameters.AddWithValue("@ContactNumber", pm.txtContactNumber.Text);
                         cmd.ExecuteNonQuery();
 
                         string SaleID = Convert.ToString(MainClass.Retrieve("select MAX(SaleID) from SalesTable").Rows[0][0]);
@@ -796,7 +797,7 @@ namespace RestaurantPOS
                         cmd2 = new SqlCommand("update SalesTable set Discount = @Discount, GrandTotal = @GrandTotal, SaleDate =@SaleDate, SaleTime = @SaleTime where SaleID = '" + lblOrderID.Text + "' ", MainClass.con);
                         cmd2.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
                         cmd2.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
-                        cmd2.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                        cmd2.Parameters.AddWithValue("@SaleDate",  dateTimePicker1.Value.ToShortDateString());
                         cmd2.Parameters.AddWithValue("@SaleTime", saletime2);
                         cmd2.ExecuteNonQuery();
 
@@ -859,14 +860,15 @@ namespace RestaurantPOS
                         saletime = cmd.ExecuteScalar().ToString();
 
 
-                        cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,TokenNumber) values (@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@TokenNumber)", MainClass.con);
+                        cmd = new SqlCommand("insert into SalesTable (Cashier,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,TokenNumber) values (@Cashier,@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@TokenNumber)", MainClass.con);
                         cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                         cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
                         cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
                         cmd.Parameters.AddWithValue("@TokenNumber", int.Parse(txtTokenNumber.Text));
+                        cmd.Parameters.AddWithValue("@Cashier", lblLoggedInUser.Text);
 
                         cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
-                        cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@SaleDate",  dateTimePicker1.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@SaleTime", saletime);
 
                         cmd.Parameters.AddWithValue("@BillGST", billgst);
@@ -1021,14 +1023,16 @@ namespace RestaurantPOS
                 if (cboOrderType.Text == "Delivery")
                 {
                     MainClass.con.Open();
-                    cmd = new SqlCommand("insert into SalesTable (InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,DeliveryName,DeliveryAddress,Paying,Change) values (@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@DeliveryName,@DeliveryAddress,@Paying,@Change)", MainClass.con);
+                    cmd = new SqlCommand("insert into SalesTable (Cashier,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,DeliveryName,DeliveryAddress,Paying,Change) values (@Cashier,@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@DeliveryName,@DeliveryAddress,@Paying,@Change)", MainClass.con);
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
                     cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
                     cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
-                    cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@SaleDate", dateTimePicker1.Value.ToShortDateString());
                     cmd.Parameters.AddWithValue("@SaleTime", saletime);
                     cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
+                    cmd.Parameters.AddWithValue("@Cashier", lblLoggedInUser.Text);
+
                     cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
                     cmd.Parameters.AddWithValue("@BillGST", billgst);
                     cmd.Parameters.AddWithValue("@DeliveryName", txtDeliveryName.Text);
@@ -1045,22 +1049,24 @@ namespace RestaurantPOS
                     pm.ShowDialog();
                     if (pm.txtPaying.Text != "" && pm.txtPaying.Text != "0")
                     {
-                        cmd = new SqlCommand("insert into SalesTable (Paying,Change,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,TokenNumber,PaymentMethod) values (@Paying,@Change,@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@TokenNumber,@PaymentMethod)", MainClass.con);
+                        cmd = new SqlCommand("insert into SalesTable (Cashier,Paying,Change,InvoiceNo,Discount,GrandTotal,OrderType,TableData,SaleDate,SaleTime,OrderStatus,BillGST,TokenNumber,PaymentMethod,ContactNumber) values (@Cashier,@Paying,@Change,@InvoiceNo,@Discount,@GrandTotal,@OrderType,@TableData,@SaleDate,@SaleTime,@OrderStatus,@BillGST,@TokenNumber,@PaymentMethod,@ContactNumber)", MainClass.con);
                         cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                         cmd.Parameters.AddWithValue("@Discount", float.Parse(txtDiscount.Text));
                         cmd.Parameters.AddWithValue("@PaymentMethod", pm.cboPaymentMethod.Text);
+                        cmd.Parameters.AddWithValue("@Cashier", lblLoggedInUser.Text);
 
-                        
+
                         cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
                         cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
                         cmd.Parameters.AddWithValue("@TokenNumber", int.Parse(txtTokenNumber.Text));
                         cmd.Parameters.AddWithValue("@GrandTotal", float.Parse(lblGrandTotal.Text));
                         cmd.Parameters.AddWithValue("@OrderType", cboOrderType.Text);
-                        cmd.Parameters.AddWithValue("@SaleDate", DateTime.Now.ToShortDateString());
+                        cmd.Parameters.AddWithValue("@SaleDate",  dateTimePicker1.Value.ToShortDateString());
                         cmd.Parameters.AddWithValue("@SaleTime", saletime);
                         cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
                         cmd.Parameters.AddWithValue("@TableData", DBNull.Value);
                         cmd.Parameters.AddWithValue("@BillGST", billgst);
+                        cmd.Parameters.AddWithValue("@ContactNumber", pm.txtContactNumber.Text);
                         cmd.ExecuteNonQuery();
 
                     }
@@ -1179,11 +1185,12 @@ namespace RestaurantPOS
                 if (pm.txtPaying.Text != "" && pm.txtPaying.Text != "0")
                 {
                     MainClass.con.Open();
-                    cmd = new SqlCommand("update SalesTable set OrderStatus = @OrderStatus,Paying=@Paying,Change=@Change,PaymentMethod=@PaymentMethod where SaleID = '" + lblOrderID.Text + "' ", MainClass.con);
+                    cmd = new SqlCommand("update SalesTable set OrderStatus = @OrderStatus,ContactNumber=@ContactNumber,Paying=@Paying,Change=@Change,PaymentMethod=@PaymentMethod where SaleID = '" + lblOrderID.Text + "' ", MainClass.con);
                     cmd.Parameters.AddWithValue("@OrderStatus", "Completed");
                     cmd.Parameters.AddWithValue("@Paying", float.Parse(pm.txtPaying.Text));
                     cmd.Parameters.AddWithValue("@Change", float.Parse(pm.txtChange.Text));
                     cmd.Parameters.AddWithValue("@PaymentMethod", pm.cboPaymentMethod.Text);
+                    cmd.Parameters.AddWithValue("@ContactNumber", pm.txtContactNumber.Text);
                     cmd.ExecuteNonQuery();
 
                     cmd = new SqlCommand("update Tables set Availability = 1 where TableName = '" + txtTableName.Text + "'", MainClass.con);

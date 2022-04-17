@@ -268,6 +268,17 @@ namespace RestaurantPOS
             {
                 cbStockControl.Checked = false;
             }
+
+            cmd = new SqlCommand("select Image from ProductsTable where ProductID  = '" + lblID.Text + "'", MainClass.con);
+            object ob = cmd.ExecuteScalar();
+            if(ob != null)
+            {
+                pictureBox1.Image = ConvertByteArraytoImage((byte[])ob);
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.placeholder_200x200;
+            }
             MainClass.con.Close();
             btnSave.Text = "UPDATE";
             btnSave.BackColor = Color.Orange;

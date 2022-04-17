@@ -87,6 +87,7 @@ namespace RestaurantPOS
                     rsp.txtTableName.Text = DGVOrders.CurrentRow.Cells["TableDataGV"].Value.ToString();
                     rsp.lblGrandTotal.Text = DGVOrders.CurrentRow.Cells["AmountGV"].Value.ToString();
                     rsp.txtInvoiceNo.Text = DGVOrders.CurrentRow.Cells["InvoiceNoGV"].Value.ToString();
+                    rsp.dateTimePicker1.Value = Convert.ToDateTime(DGVOrders.CurrentRow.Cells["OrderDateGV"].Value);
                     rsp.btnSaveOrder.Text = "UPDATE";
                     rsp.btnSaveandPrintOrder.Enabled = false;
                     this.Close();

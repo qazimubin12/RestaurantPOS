@@ -23,7 +23,7 @@ namespace RestaurantPOS
         {
             if (rp.cboOrderType.Text == "Dine In" || rp.cboOrderType.Text == "Take Away")
             {
-                if (txtPaying.Text != "")
+                if (txtPaying.Text != "" && cboPaymentMethod.Text != "")
                 {
                     float total = float.Parse(txtGrandTotal.Text);
                     float paying = float.Parse(txtPaying.Text);

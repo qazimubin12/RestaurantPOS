@@ -43,6 +43,8 @@ namespace RestaurantPOS
             this.txtChange = new Guna.UI2.WinForms.Guna2TextBox();
             this.cboPaymentMethod = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtContactNumber = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,7 +108,7 @@ namespace RestaurantPOS
             this.txtGrandTotal.SelectedText = "";
             this.txtGrandTotal.SelectionStart = 1;
             this.txtGrandTotal.ShadowDecoration.Parent = this.txtGrandTotal;
-            this.txtGrandTotal.Size = new System.Drawing.Size(398, 39);
+            this.txtGrandTotal.Size = new System.Drawing.Size(335, 39);
             this.txtGrandTotal.TabIndex = 34;
             // 
             // txtPaying
@@ -133,7 +135,7 @@ namespace RestaurantPOS
             this.txtPaying.SelectedText = "";
             this.txtPaying.SelectionStart = 1;
             this.txtPaying.ShadowDecoration.Parent = this.txtPaying;
-            this.txtPaying.Size = new System.Drawing.Size(398, 39);
+            this.txtPaying.Size = new System.Drawing.Size(335, 39);
             this.txtPaying.TabIndex = 0;
             this.txtPaying.TextChanged += new System.EventHandler(this.txtPaying_TextChanged);
             // 
@@ -162,7 +164,7 @@ namespace RestaurantPOS
             this.txtBalance.SelectedText = "";
             this.txtBalance.SelectionStart = 1;
             this.txtBalance.ShadowDecoration.Parent = this.txtBalance;
-            this.txtBalance.Size = new System.Drawing.Size(398, 39);
+            this.txtBalance.Size = new System.Drawing.Size(335, 39);
             this.txtBalance.TabIndex = 34;
             this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
             // 
@@ -210,7 +212,7 @@ namespace RestaurantPOS
             this.btnFinalize.ForeColor = System.Drawing.Color.White;
             this.btnFinalize.Location = new System.Drawing.Point(18, 411);
             this.btnFinalize.Name = "btnFinalize";
-            this.btnFinalize.Size = new System.Drawing.Size(393, 77);
+            this.btnFinalize.Size = new System.Drawing.Size(330, 77);
             this.btnFinalize.TabIndex = 35;
             this.btnFinalize.Text = "&FINALIZE";
             this.btnFinalize.UseVisualStyleBackColor = false;
@@ -253,7 +255,7 @@ namespace RestaurantPOS
             this.txtChange.SelectedText = "";
             this.txtChange.SelectionStart = 1;
             this.txtChange.ShadowDecoration.Parent = this.txtChange;
-            this.txtChange.Size = new System.Drawing.Size(398, 39);
+            this.txtChange.Size = new System.Drawing.Size(335, 39);
             this.txtChange.TabIndex = 34;
             // 
             // cboPaymentMethod
@@ -265,9 +267,9 @@ namespace RestaurantPOS
             this.cboPaymentMethod.Items.AddRange(new object[] {
             "Cash",
             "Card"});
-            this.cboPaymentMethod.Location = new System.Drawing.Point(448, 99);
+            this.cboPaymentMethod.Location = new System.Drawing.Point(382, 99);
             this.cboPaymentMethod.Name = "cboPaymentMethod";
-            this.cboPaymentMethod.Size = new System.Drawing.Size(179, 33);
+            this.cboPaymentMethod.Size = new System.Drawing.Size(245, 33);
             this.cboPaymentMethod.TabIndex = 36;
             // 
             // label6
@@ -276,11 +278,49 @@ namespace RestaurantPOS
             this.label6.BackColor = System.Drawing.Color.SeaGreen;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(443, 68);
+            this.label6.Location = new System.Drawing.Point(377, 68);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 28);
             this.label6.TabIndex = 2;
             this.label6.Text = "Method:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.SeaGreen;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(377, 146);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(213, 28);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Contact Number:";
+            // 
+            // txtContactNumber
+            // 
+            this.txtContactNumber.AutoRoundedCorners = true;
+            this.txtContactNumber.BorderRadius = 18;
+            this.txtContactNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtContactNumber.DefaultText = "";
+            this.txtContactNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtContactNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtContactNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtContactNumber.DisabledState.Parent = this.txtContactNumber;
+            this.txtContactNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtContactNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtContactNumber.FocusedState.Parent = this.txtContactNumber;
+            this.txtContactNumber.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.txtContactNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtContactNumber.HoverState.Parent = this.txtContactNumber;
+            this.txtContactNumber.Location = new System.Drawing.Point(371, 182);
+            this.txtContactNumber.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.txtContactNumber.Name = "txtContactNumber";
+            this.txtContactNumber.PasswordChar = '\0';
+            this.txtContactNumber.PlaceholderText = "";
+            this.txtContactNumber.SelectedText = "";
+            this.txtContactNumber.ShadowDecoration.Parent = this.txtContactNumber;
+            this.txtContactNumber.Size = new System.Drawing.Size(256, 39);
+            this.txtContactNumber.TabIndex = 0;
             // 
             // PaymentWindow
             // 
@@ -296,8 +336,10 @@ namespace RestaurantPOS
             this.Controls.Add(this.txtBalance);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtContactNumber);
             this.Controls.Add(this.txtPaying);
             this.Controls.Add(this.txtGrandTotal);
             this.Controls.Add(this.panel1);
@@ -327,5 +369,7 @@ namespace RestaurantPOS
         public Guna.UI2.WinForms.Guna2TextBox txtChange;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.ComboBox cboPaymentMethod;
+        private System.Windows.Forms.Label label7;
+        public Guna.UI2.WinForms.Guna2TextBox txtContactNumber;
     }
 }
