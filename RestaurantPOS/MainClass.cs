@@ -62,11 +62,12 @@ namespace RestaurantPOS
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            PurchaseID.DataPropertyName = dt.Columns["SupplierInvoice_ID"].ToString();
+            SupplierInvoiceID.DataPropertyName = dt.Columns["SupplierInvoice_ID"].ToString();
             PurchaseID.DataPropertyName = dt.Columns["PurchaseID"].ToString();
             InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
             SupplierName.DataPropertyName = dt.Columns["Name"].ToString();
             PurchaseDate.DataPropertyName = dt.Columns["PurchaseDate"].ToString();
+
             GrandTotal.DataPropertyName = dt.Columns["GrandTotal"].ToString();
             dgv.DataSource = dt;
 

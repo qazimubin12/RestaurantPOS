@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using iTextSharp.text;
+using System.IO;
+using iTextSharp.text.pdf;
+using DGVPrinterHelper;
+
 namespace RestaurantPOS
 {
     public partial class Expenses : Form
@@ -275,6 +280,56 @@ namespace RestaurantPOS
         private void Expenses_FormClosed(object sender, FormClosedEventArgs e)
         {
            
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+            // creating new WorkBook within Excel application  
+            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            // creating new Excelsheet in workbook  
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            // see the excel sheet behind the program  
+            app.Visible = true;
+            // get the reference of first sheet. By default its name is Sheet1.  
+            // store its reference to worksheet  
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            // changing the name of active sheet  
+            worksheet.Name = "Exported from gridview";
+            // storing header part in Excel  
+            for (int i = 1; i < DGVExpenses.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = DGVExpenses.Columns[i - 1].HeaderText;
+            }
+            // storing Each row and column value to excel sheet  
+            for (int i = 0; i < DGVExpenses.Rows.Count; i++)
+            {
+                for (int j = 0; j < DGVExpenses.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = DGVExpenses.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "EXPENSES REPORTS";
+            
+
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            printer.PageNumbers = true;
+            printer.PorportionalColumns = true;
+            printer.PageNumberInHeader = false;
+            printer.HeaderCellAlignment = StringAlignment.Center;
+            printer.Footer = "Developed by Cyber Soft Services  Contact: +92 300 9259266";
+            printer.FooterSpacing = 15;
+            printer.PrintDataGridView(DGVExpenses);
+
+
+            MessageBox.Show("PDF SAVED SUCCESSFULLY");
         }
     }
 }

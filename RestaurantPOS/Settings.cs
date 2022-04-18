@@ -397,12 +397,12 @@ namespace RestaurantPOS
             SqlCommand cmd = null;
             if (pictureBox1.Image == null)
             {
-                string query = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "' ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ")";
+                string query = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST ,Currency,CashInHand,FooterLine ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "' ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ",'"+txtFooterLine.Text+"')";
                 cmd = new SqlCommand(query, MainClass.con);
             }
             else
             {
-                string query2 = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "',@Logo ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ")";
+                string query2 = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand,FooterLine ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "',@Logo ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ",'"+txtFooterLine.Text+"')";
                 cmd = new SqlCommand(query2, MainClass.con);
                 cmd.Parameters.Add("@Logo", SqlDbType.VarBinary).Value = ConvertImageToBytes(pictureBox1.Image);
             }
@@ -432,9 +432,10 @@ namespace RestaurantPOS
         private void btnUpdateStore_Click(object sender, EventArgs e)
         {
             MainClass.con.Open();
-            SqlCommand cmd = new SqlCommand("update StoreTable set StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty,CashInHand=@CashInHand, GST = @GST, Logo = @Logo ", MainClass.con);
+            SqlCommand cmd = new SqlCommand("update StoreTable set FooterLine=@FooterLine, StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty,CashInHand=@CashInHand, GST = @GST, Logo = @Logo ", MainClass.con);
             cmd.Parameters.AddWithValue("@StoreName", txtStoreName.Text);
             cmd.Parameters.AddWithValue("@StoreAddress", txtStoreAddress.Text);
+            cmd.Parameters.AddWithValue("@FooterLine", txtFooterLine.Text);
             cmd.Parameters.AddWithValue("@LowStockQty", txtLowStockQty.Text);
             cmd.Parameters.AddWithValue("@GST", float.Parse(txtGst.Text));
             cmd.Parameters.AddWithValue("@Currency", txtCurrency.Text);

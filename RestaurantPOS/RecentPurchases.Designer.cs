@@ -33,13 +33,13 @@ namespace RestaurantPOS
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.DGVRecentPurchases = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.SupplierInvoiceIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchaseIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceNoGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupplierInvoiceIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SupplierGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchaseDateGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrandTotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +59,19 @@ namespace RestaurantPOS
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 73);
             this.panel1.TabIndex = 29;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::RestaurantPOS.Properties.Resources.cancel__2_;
+            this.button1.Location = new System.Drawing.Point(755, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(45, 73);
+            this.button1.TabIndex = 4;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -92,9 +105,9 @@ namespace RestaurantPOS
             this.DGVRecentPurchases.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVRecentPurchases.ColumnHeadersHeight = 40;
             this.DGVRecentPurchases.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SupplierInvoiceIDGV,
             this.PurchaseIDGV,
             this.InvoiceNoGV,
-            this.SupplierInvoiceIDGV,
             this.SupplierGV,
             this.PurchaseDateGV,
             this.GrandTotalGV,
@@ -141,19 +154,6 @@ namespace RestaurantPOS
             this.DGVRecentPurchases.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.DGVRecentPurchases.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVRecentPurchases_CellClick);
             // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::RestaurantPOS.Properties.Resources.cancel__2_;
-            this.button1.Location = new System.Drawing.Point(755, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 73);
-            this.button1.TabIndex = 4;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.DGVRecentPurchases);
@@ -162,6 +162,13 @@ namespace RestaurantPOS
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(800, 377);
             this.panel2.TabIndex = 31;
+            // 
+            // SupplierInvoiceIDGV
+            // 
+            this.SupplierInvoiceIDGV.HeaderText = "SupplierInvoiceID";
+            this.SupplierInvoiceIDGV.Name = "SupplierInvoiceIDGV";
+            this.SupplierInvoiceIDGV.ReadOnly = true;
+            this.SupplierInvoiceIDGV.Visible = false;
             // 
             // PurchaseIDGV
             // 
@@ -175,13 +182,6 @@ namespace RestaurantPOS
             this.InvoiceNoGV.HeaderText = "Invoice No";
             this.InvoiceNoGV.Name = "InvoiceNoGV";
             this.InvoiceNoGV.ReadOnly = true;
-            // 
-            // SupplierInvoiceIDGV
-            // 
-            this.SupplierInvoiceIDGV.HeaderText = "SupplierInvoiceID";
-            this.SupplierInvoiceIDGV.Name = "SupplierInvoiceIDGV";
-            this.SupplierInvoiceIDGV.ReadOnly = true;
-            this.SupplierInvoiceIDGV.Visible = false;
             // 
             // SupplierGV
             // 
@@ -237,9 +237,9 @@ namespace RestaurantPOS
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2DataGridView DGVRecentPurchases;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierInvoiceIDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchaseIDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNoGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierInvoiceIDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn SupplierGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchaseDateGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn GrandTotalGV;

@@ -61,6 +61,8 @@ namespace RestaurantPOS
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVExpenses)).BeginInit();
@@ -204,6 +206,8 @@ namespace RestaurantPOS
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.btnCancel);
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.btnSave);
             this.panel2.Controls.Add(this.lblID);
             this.panel2.Controls.Add(this.txtPrice);
@@ -491,6 +495,38 @@ namespace RestaurantPOS
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.button2.FlatAppearance.BorderSize = 2;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(24, 295);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(307, 42);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "&PRINT REPORTS EXCEL";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SeaGreen;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.button3.FlatAppearance.BorderSize = 2;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(25, 343);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(307, 42);
+            this.button3.TabIndex = 29;
+            this.button3.Text = "&PRINT REPORTS PDF";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Expenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -545,5 +581,7 @@ namespace RestaurantPOS
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         public System.Windows.Forms.Label lblLoggedUser;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -496,5 +496,198 @@ namespace RestaurantPOS
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+            // creating new WorkBook within Excel application  
+            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            // creating new Excelsheet in workbook  
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            // see the excel sheet behind the program  
+            app.Visible = true;
+            // get the reference of first sheet. By default its name is Sheet1.  
+            // store its reference to worksheet  
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            // changing the name of active sheet  
+            worksheet.Name = "Exported from gridview";
+            // storing header part in Excel  
+            for (int i = 1; i < DGVPurchases.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = DGVPurchases.Columns[i - 1].HeaderText;
+            }
+            // storing Each row and column value to excel sheet  
+            for (int i = 0; i < DGVPurchases.Rows.Count; i++)
+            {
+                for (int j = 0; j < DGVPurchases.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = DGVPurchases.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+            // creating new WorkBook within Excel application  
+            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            // creating new Excelsheet in workbook  
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            // see the excel sheet behind the program  
+            app.Visible = true;
+            // get the reference of first sheet. By default its name is Sheet1.  
+            // store its reference to worksheet  
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            // changing the name of active sheet  
+            worksheet.Name = "Exported from gridview";
+            // storing header part in Excel  
+            for (int i = 1; i < DGVSales.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = DGVSales.Columns[i - 1].HeaderText;
+            }
+            // storing Each row and column value to excel sheet  
+            for (int i = 0; i < DGVSales.Rows.Count; i++)
+            {
+                for (int j = 0; j < DGVSales.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = DGVSales.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+            // creating new WorkBook within Excel application  
+            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            // creating new Excelsheet in workbook  
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            // see the excel sheet behind the program  
+            app.Visible = true;
+            // get the reference of first sheet. By default its name is Sheet1.  
+            // store its reference to worksheet  
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            // changing the name of active sheet  
+            worksheet.Name = "Exported from gridview";
+            // storing header part in Excel  
+            for (int i = 1; i < DGVLedgersReports.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = DGVLedgersReports.Columns[i - 1].HeaderText;
+            }
+            // storing Each row and column value to excel sheet  
+            for (int i = 0; i < DGVLedgersReports.Rows.Count; i++)
+            {
+                for (int j = 0; j < DGVLedgersReports.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = DGVLedgersReports.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+        }
+
+      
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+            // creating new WorkBook within Excel application  
+            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            // creating new Excelsheet in workbook  
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            // see the excel sheet behind the program  
+            app.Visible = true;
+            // get the reference of first sheet. By default its name is Sheet1.  
+            // store its reference to worksheet  
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            // changing the name of active sheet  
+            worksheet.Name = "Exported from gridview";
+            // storing header part in Excel  
+            for (int i = 1; i < DGVReturnDetails.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = DGVReturnDetails.Columns[i - 1].HeaderText;
+            }
+            // storing Each row and column value to excel sheet  
+            for (int i = 0; i < DGVReturnDetails.Rows.Count; i++)
+            {
+                for (int j = 0; j < DGVReturnDetails.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = DGVReturnDetails.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+        }
+
+        private void btnIncomeReports_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 4;
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmd = null;
+            try
+            {
+                MainClass.con.Open();
+                cmd = new SqlCommand("select sum(GrandTotal) from SalesTable where SaleDate between '" + dateTimePicker2.Value.ToShortDateString() + "' and '" + dateTimePicker1.Value.ToShortDateString() + "'", MainClass.con);
+                object salegrandtotal = cmd.ExecuteScalar();
+                if (salegrandtotal != null)
+                {
+                    if (salegrandtotal.ToString() != "")
+                    {
+                        txtSalesAll.Text = salegrandtotal.ToString();
+                    }
+                    else
+                    {
+                        txtSalesAll.Text = "0";
+                    }
+                }
+
+
+                cmd = new SqlCommand("select sum(GrandTotal) from PurchasesTable where PurchaseDate between '" + dateTimePicker2.Value.ToShortDateString() + "' and '" + dateTimePicker1.Value.ToShortDateString() + "'", MainClass.con);
+                object purchasetotal = cmd.ExecuteScalar();
+                if (purchasetotal != null)
+                {
+                    if (purchasetotal.ToString() != "")
+                    {
+                        txtPurchasesAll.Text = purchasetotal.ToString();
+                    }
+                    else
+                    {
+                        txtPurchasesAll.Text = "0";
+                    }
+                }
+
+                cmd = new SqlCommand("select sum(ExpensePrice) from ExpensesTable where ExpenseDate between '" + dateTimePicker2.Value.ToShortDateString() + "' and '" + dateTimePicker1.Value.ToShortDateString() + "'", MainClass.con);
+                object expenseall = cmd.ExecuteScalar();
+                if (expenseall != null)
+                {
+                    if (expenseall.ToString() != "")
+                    {
+                        txtExpensesAll.Text = expenseall.ToString();
+                    }
+                    else
+                    {
+                        txtExpensesAll.Text = "0";
+                    }
+                }
+
+                float income = float.Parse(txtPurchasesAll.Text) + float.Parse(txtExpensesAll.Text);
+                income = float.Parse(txtSalesAll.Text) - income;
+               
+                txtIncomeAll.Text = income.ToString();
+
+                
+
+                MainClass.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MainClass.con.Close();
+            }
+        }
     }
 }

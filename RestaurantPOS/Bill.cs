@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PointOfSaleSystem {
+namespace RestaurantPOS {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace PointOfSaleSystem {
         
         public override string FullResourceName {
             get {
-                return "PointOfSaleSystem.Bill.rpt";
+                return "RestaurantPOS.Bill.rpt";
             }
             set {
                 // Do nothing

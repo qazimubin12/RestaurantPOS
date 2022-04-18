@@ -47,6 +47,7 @@ namespace RestaurantPOS
 
         private void PaymentWindow_Load(object sender, EventArgs e)
         {
+            cboPaymentMethod.SelectedIndex = 0;
             txtGrandTotal.Text = rp.lblGrandTotal.Text;
             if(rp.cboOrderType.Text == "Dine In" || rp.cboOrderType.Text == "Take Away" || rp.cboOrderType.Text == "Delivery")
             {

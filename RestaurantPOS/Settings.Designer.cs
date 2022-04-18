@@ -30,9 +30,9 @@ namespace RestaurantPOS
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLoggedUser = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -100,6 +100,8 @@ namespace RestaurantPOS
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.modetoggle = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtFooterLine = new Guna.UI2.WinForms.Guna2TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -523,21 +525,21 @@ namespace RestaurantPOS
             // 
             this.DgvUsers.AllowUserToAddRows = false;
             this.DgvUsers.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvUsers.BackgroundColor = System.Drawing.Color.White;
             this.DgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DgvUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DgvUsers.ColumnHeadersHeight = 30;
             this.DgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserNameGV,
@@ -545,14 +547,14 @@ namespace RestaurantPOS
             this.PasswordGV,
             this.RoleGV});
             this.DgvUsers.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvUsers.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvUsers.DefaultCellStyle = dataGridViewCellStyle6;
             this.DgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvUsers.EnableHeadersVisualStyles = false;
             this.DgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -796,12 +798,14 @@ namespace RestaurantPOS
             this.tabPage3.Controls.Add(this.pictureBox1);
             this.tabPage3.Controls.Add(this.btnUpdateStore);
             this.tabPage3.Controls.Add(this.btnSaveStore);
+            this.tabPage3.Controls.Add(this.txtFooterLine);
             this.tabPage3.Controls.Add(this.txtCashInHand);
             this.tabPage3.Controls.Add(this.txtCurrency);
             this.tabPage3.Controls.Add(this.txtGst);
             this.tabPage3.Controls.Add(this.txtLowStockQty);
             this.tabPage3.Controls.Add(this.txtStoreAddress);
             this.tabPage3.Controls.Add(this.txtStoreName);
+            this.tabPage3.Controls.Add(this.label22);
             this.tabPage3.Controls.Add(this.button2);
             this.tabPage3.Controls.Add(this.label21);
             this.tabPage3.Controls.Add(this.btnSaveMode);
@@ -840,7 +844,7 @@ namespace RestaurantPOS
             this.btnUpdateStore.Location = new System.Drawing.Point(741, 321);
             this.btnUpdateStore.Name = "btnUpdateStore";
             this.btnUpdateStore.Size = new System.Drawing.Size(209, 42);
-            this.btnUpdateStore.TabIndex = 6;
+            this.btnUpdateStore.TabIndex = 8;
             this.btnUpdateStore.Text = "UPDATE";
             this.btnUpdateStore.UseVisualStyleBackColor = false;
             this.btnUpdateStore.Click += new System.EventHandler(this.btnUpdateStore_Click);
@@ -856,7 +860,7 @@ namespace RestaurantPOS
             this.btnSaveStore.Location = new System.Drawing.Point(741, 369);
             this.btnSaveStore.Name = "btnSaveStore";
             this.btnSaveStore.Size = new System.Drawing.Size(209, 42);
-            this.btnSaveStore.TabIndex = 5;
+            this.btnSaveStore.TabIndex = 7;
             this.btnSaveStore.Text = "SAVE";
             this.btnSaveStore.UseVisualStyleBackColor = false;
             this.btnSaveStore.Click += new System.EventHandler(this.btnSaveStore_Click);
@@ -877,7 +881,7 @@ namespace RestaurantPOS
             this.txtCashInHand.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCashInHand.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCashInHand.HoverState.Parent = this.txtCashInHand;
-            this.txtCashInHand.Location = new System.Drawing.Point(381, 421);
+            this.txtCashInHand.Location = new System.Drawing.Point(381, 373);
             this.txtCashInHand.Margin = new System.Windows.Forms.Padding(4);
             this.txtCashInHand.Name = "txtCashInHand";
             this.txtCashInHand.PasswordChar = '\0';
@@ -885,7 +889,7 @@ namespace RestaurantPOS
             this.txtCashInHand.SelectedText = "";
             this.txtCashInHand.ShadowDecoration.Parent = this.txtCashInHand;
             this.txtCashInHand.Size = new System.Drawing.Size(314, 27);
-            this.txtCashInHand.TabIndex = 4;
+            this.txtCashInHand.TabIndex = 5;
             // 
             // txtCurrency
             // 
@@ -903,7 +907,7 @@ namespace RestaurantPOS
             this.txtCurrency.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCurrency.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCurrency.HoverState.Parent = this.txtCurrency;
-            this.txtCurrency.Location = new System.Drawing.Point(381, 355);
+            this.txtCurrency.Location = new System.Drawing.Point(381, 307);
             this.txtCurrency.Margin = new System.Windows.Forms.Padding(4);
             this.txtCurrency.Name = "txtCurrency";
             this.txtCurrency.PasswordChar = '\0';
@@ -929,7 +933,7 @@ namespace RestaurantPOS
             this.txtGst.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGst.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtGst.HoverState.Parent = this.txtGst;
-            this.txtGst.Location = new System.Drawing.Point(381, 294);
+            this.txtGst.Location = new System.Drawing.Point(381, 246);
             this.txtGst.Margin = new System.Windows.Forms.Padding(4);
             this.txtGst.Name = "txtGst";
             this.txtGst.PasswordChar = '\0';
@@ -955,7 +959,7 @@ namespace RestaurantPOS
             this.txtLowStockQty.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLowStockQty.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtLowStockQty.HoverState.Parent = this.txtLowStockQty;
-            this.txtLowStockQty.Location = new System.Drawing.Point(378, 230);
+            this.txtLowStockQty.Location = new System.Drawing.Point(378, 182);
             this.txtLowStockQty.Margin = new System.Windows.Forms.Padding(4);
             this.txtLowStockQty.Name = "txtLowStockQty";
             this.txtLowStockQty.PasswordChar = '\0';
@@ -981,7 +985,7 @@ namespace RestaurantPOS
             this.txtStoreAddress.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStoreAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtStoreAddress.HoverState.Parent = this.txtStoreAddress;
-            this.txtStoreAddress.Location = new System.Drawing.Point(378, 163);
+            this.txtStoreAddress.Location = new System.Drawing.Point(378, 115);
             this.txtStoreAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtStoreAddress.Name = "txtStoreAddress";
             this.txtStoreAddress.PasswordChar = '\0';
@@ -1007,7 +1011,7 @@ namespace RestaurantPOS
             this.txtStoreName.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStoreName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtStoreName.HoverState.Parent = this.txtStoreName;
-            this.txtStoreName.Location = new System.Drawing.Point(378, 93);
+            this.txtStoreName.Location = new System.Drawing.Point(378, 45);
             this.txtStoreName.Margin = new System.Windows.Forms.Padding(4);
             this.txtStoreName.Name = "txtStoreName";
             this.txtStoreName.PasswordChar = '\0';
@@ -1028,7 +1032,7 @@ namespace RestaurantPOS
             this.button2.Location = new System.Drawing.Point(741, 260);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(209, 42);
-            this.button2.TabIndex = 35;
+            this.button2.TabIndex = 9;
             this.button2.Text = "BROWSE";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -1038,7 +1042,7 @@ namespace RestaurantPOS
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.label21.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label21.Location = new System.Drawing.Point(377, 394);
+            this.label21.Location = new System.Drawing.Point(377, 346);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(142, 23);
             this.label21.TabIndex = 34;
@@ -1066,7 +1070,7 @@ namespace RestaurantPOS
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.label19.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label19.Location = new System.Drawing.Point(377, 328);
+            this.label19.Location = new System.Drawing.Point(377, 280);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(100, 23);
             this.label19.TabIndex = 34;
@@ -1089,7 +1093,7 @@ namespace RestaurantPOS
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.label16.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label16.Location = new System.Drawing.Point(377, 267);
+            this.label16.Location = new System.Drawing.Point(377, 219);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(93, 23);
             this.label16.TabIndex = 34;
@@ -1100,7 +1104,7 @@ namespace RestaurantPOS
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.label15.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label15.Location = new System.Drawing.Point(374, 203);
+            this.label15.Location = new System.Drawing.Point(374, 155);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(149, 23);
             this.label15.TabIndex = 34;
@@ -1111,7 +1115,7 @@ namespace RestaurantPOS
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
             this.label14.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label14.Location = new System.Drawing.Point(374, 136);
+            this.label14.Location = new System.Drawing.Point(374, 88);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(142, 23);
             this.label14.TabIndex = 34;
@@ -1145,7 +1149,7 @@ namespace RestaurantPOS
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
             this.label13.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.label13.Location = new System.Drawing.Point(371, 50);
+            this.label13.Location = new System.Drawing.Point(371, 2);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(211, 40);
             this.label13.TabIndex = 34;
@@ -1181,6 +1185,43 @@ namespace RestaurantPOS
             this.modetoggle.UncheckedState.InnerColor = System.Drawing.Color.White;
             this.modetoggle.UncheckedState.Parent = this.modetoggle;
             this.modetoggle.Visible = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
+            this.label22.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.label22.Location = new System.Drawing.Point(377, 406);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(116, 23);
+            this.label22.TabIndex = 34;
+            this.label22.Text = "Footer Line";
+            // 
+            // txtFooterLine
+            // 
+            this.txtFooterLine.AutoRoundedCorners = true;
+            this.txtFooterLine.BorderRadius = 12;
+            this.txtFooterLine.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtFooterLine.DefaultText = "";
+            this.txtFooterLine.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtFooterLine.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtFooterLine.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtFooterLine.DisabledState.Parent = this.txtFooterLine;
+            this.txtFooterLine.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtFooterLine.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtFooterLine.FocusedState.Parent = this.txtFooterLine;
+            this.txtFooterLine.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFooterLine.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtFooterLine.HoverState.Parent = this.txtFooterLine;
+            this.txtFooterLine.Location = new System.Drawing.Point(381, 433);
+            this.txtFooterLine.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFooterLine.Name = "txtFooterLine";
+            this.txtFooterLine.PasswordChar = '\0';
+            this.txtFooterLine.PlaceholderText = "";
+            this.txtFooterLine.SelectedText = "";
+            this.txtFooterLine.ShadowDecoration.Parent = this.txtFooterLine;
+            this.txtFooterLine.Size = new System.Drawing.Size(314, 27);
+            this.txtFooterLine.TabIndex = 6;
             // 
             // Settings
             // 
@@ -1286,5 +1327,7 @@ namespace RestaurantPOS
         private System.Windows.Forms.Button btnWipeAllOutData;
         private Guna.UI2.WinForms.Guna2TextBox txtCashInHand;
         private System.Windows.Forms.Label label21;
+        private Guna.UI2.WinForms.Guna2TextBox txtFooterLine;
+        private System.Windows.Forms.Label label22;
     }
 }
