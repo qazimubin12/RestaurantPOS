@@ -20,8 +20,8 @@ namespace RestaurantPOS
         {
             InitializeComponent();
         }
-        private void ShowProductSID(DataGridView dgv2, DataGridViewColumn ID, DataGridViewColumn Name, DataGridViewColumn Cat, DataGridViewColumn Cost,
-            DataGridViewColumn Sale, DataGridViewColumn Remarks, DataGridViewColumn Unit,string data = null)
+        private void ShowProductSID(DataGridView dgv2, DataGridViewColumn ID, DataGridViewColumn Name,
+            DataGridViewColumn Sale, DataGridViewColumn Remarks,DataGridViewColumn Barcode,string data = null)
         {
             try
             {
@@ -30,11 +30,11 @@ namespace RestaurantPOS
 
                 if (data != "")
                 {
-                    cmd = new SqlCommand("select p.ProductID,p.ProductName,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks from ProductsTable p inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID  where p.ProductName like '%" + data + "%'", MainClass.con);
+                    cmd = new SqlCommand("select p.ProductID,p.ProductName,p.SalePrice,p.Remarks,p.Barcode from ProductsTable p   where p.ProductName like '%" + data + "%'", MainClass.con);
                 }
                 else
                 {
-                    cmd = new SqlCommand("select p.ProductID,p.ProductName,c.Category,u.Unit,p.CostPrice,p.SalePrice,p.Remarks from ProductsTable p inner join CategoriesTable c on c.CategoryID = p.CatID  join UnitsTable u on u.UnitID = p.UnitID  order by p.ProductName", MainClass.con);
+                    cmd = new SqlCommand("select p.ProductID,p.ProductName,p.SalePrice,p.Remarks,p.Barocde from ProductsTable p   order by p.ProductName", MainClass.con);
                 }
            
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -43,11 +43,9 @@ namespace RestaurantPOS
 
                 ID.DataPropertyName = dt.Columns["ProductID"].ToString();
                 Name.DataPropertyName = dt.Columns["ProductName"].ToString();
-                Cat.DataPropertyName = dt.Columns["Category"].ToString();
-                Cost.DataPropertyName = dt.Columns["CostPrice"].ToString();
+                Barcode.DataPropertyName = dt.Columns["Barcode"].ToString();
                 Sale.DataPropertyName = dt.Columns["SalePrice"].ToString();
                 Remarks.DataPropertyName = dt.Columns["Remarks"].ToString();
-                Unit.DataPropertyName = dt.Columns["Unit"].ToString();
                 dgv2.DataSource = dt;
                 MainClass.con.Close();
             }
@@ -58,35 +56,17 @@ namespace RestaurantPOS
             }
         }
 
-        byte[] ConvertImageToBytes(Image img)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                return ms.ToArray();
-            }
-        }
-
-        public Image ConvertByteArraytoImage(byte[] data)
-        {
-            using (MemoryStream ms = new MemoryStream(data))
-            {
-                return Image.FromStream(ms);
-            }
-        }
-
+        
         private void Products_Load(object sender, EventArgs e)
         {
             lblLoggedUser.Text = "Admin";
-            MainClass.FillCategories(cboCategory);
-            MainClass.FillUnits(cboUnits);
-            ShowProductSID(DGVSomeProducts, ProSID, NameSID, CategorySID, CostSID, SaleSID, RemarksSID, UnitSID);
+            ShowProductSID(DGVSomeProducts, ProSID, NameSID, SaleSID, RemarksSID, BarcodeGV);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-          
-                ShowProductSID(DGVSomeProducts, ProSID, NameSID, CategorySID, CostSID, SaleSID, RemarksSID, UnitSID,txtSearch.Text.ToString());
+
+            ShowProductSID(DGVSomeProducts, ProSID, NameSID, SaleSID, RemarksSID,BarcodeGV,txtSearch.Text);
         }
 
 
@@ -100,13 +80,9 @@ namespace RestaurantPOS
         private void Clear()
         {
             txtProductName.Text = "";
-            txtCostPrice.Text = "";
             txtSalePrice.Text = "";
             txtRemarks.Text = "";
-            cboUnits.SelectedIndex = 0;
             pedit = 0;
-            cboCategory.SelectedIndex = 0;
-            pictureBox1.Image = Properties.Resources.placeholder_200x200;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -114,35 +90,13 @@ namespace RestaurantPOS
             SqlCommand cmd = null;
             SqlDataReader dr;
 
-            string catId = "";
-            string unitid = "";
+            
 
             MainClass.con.Open();
 
-            //CatUnit
-            cmd = new SqlCommand("select CategoryID from CategoriesTable where Category like '" + cboCategory.Text + "'", MainClass.con);
-            dr = cmd.ExecuteReader();
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    catId = dr[0].ToString();
-                }
-            }
-            dr.Close();
+          
 
-            
-            //Unit
-            cmd = new SqlCommand("select UnitID from UnitsTable where Unit like '" + cboUnits.Text + "'", MainClass.con);
-            dr = cmd.ExecuteReader();
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    unitid = dr[0].ToString();
-                }
-            }
-            dr.Close();
+   
             
           
             
@@ -150,8 +104,7 @@ namespace RestaurantPOS
 
             if (pedit == 0)
             {
-                if (txtProductName.Text == "" || txtSalePrice.Text == "" ||
-                    cboCategory.SelectedIndex == 0 || cboUnits.SelectedIndex == 0)
+                if (txtProductName.Text == "" || txtSalePrice.Text == "" )
                 {
                     MessageBox.Show("Please Input Details");
                 }
@@ -160,30 +113,20 @@ namespace RestaurantPOS
                     try
                     {
                         MainClass.con.Open();
-                        cmd = new SqlCommand("insert into ProductsTable (ProductName,CatID,UnitID,CostPrice,SalePrice,Remarks,StockControl,Image) values(@ProductName,@CatID,@UnitID,@CostPrice,@SalePrice,@Remarks,@StockControl,@Image)", MainClass.con);
+                        cmd = new SqlCommand("insert into ProductsTable (ProductName,SalePrice,Remarks,Barcode) values(@ProductName,@SalePrice,@Remarks,@Barcode)", MainClass.con);
                        
                         
-                        if(txtCostPrice.Text == "")
-                        {
-                            cmd.Parameters.AddWithValue("@CostPrice", txtSalePrice.Text);
-                        }
-
-                        else 
-                        {
-                            cmd.Parameters.AddWithValue("@CostPrice", txtCostPrice.Text);
-                        }
+                      
                         cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text);
-                        cmd.Parameters.AddWithValue("@CatID", catId);
-                        cmd.Parameters.AddWithValue("@UnitID", unitid);
+                        cmd.Parameters.AddWithValue("@Barcode", txtBarcode.Text);
                         cmd.Parameters.AddWithValue("@SalePrice", txtSalePrice.Text);
                         cmd.Parameters.AddWithValue("@Remarks", txtRemarks.Text);
-                        cmd.Parameters.AddWithValue("@StockControl", cbStockControl.Checked);
-                        cmd.Parameters.AddWithValue("Image", ConvertImageToBytes(pictureBox1.Image));
+                   
                         cmd.ExecuteNonQuery();
                         MainClass.con.Close();
                         MessageBox.Show("Product Inserted Successfully.");
                         Clear();
-                        ShowProductSID(DGVSomeProducts, ProSID, NameSID, CategorySID, CostSID, SaleSID, RemarksSID, UnitSID);
+                        ShowProductSID(DGVSomeProducts, ProSID, NameSID, SaleSID, RemarksSID, BarcodeGV);
                     }
                     catch (Exception ex)
                     {
@@ -200,28 +143,16 @@ namespace RestaurantPOS
                     try
                     {
                         MainClass.con.Open();
-                        cmd = new SqlCommand("UPDATE ProductsTable SET ProductName =@ProductName,Image=@Image,CatID =@CatID,UnitID =@UnitID,CostPrice =@CostPrice,SalePrice =@SalePrice, Remarks =@Remarks,StockControl =@StockControl where ProductID = @ProductID", MainClass.con);
+                        cmd = new SqlCommand("UPDATE ProductsTable SET ProductName =@ProductName,SalePrice =@SalePrice,Barcode=@Barcode, Remarks =@Remarks where ProductID = @ProductID", MainClass.con);
                         cmd.Parameters.AddWithValue("@ProductID", lblID.Text);
                         cmd.Parameters.AddWithValue("@ProductName", txtProductName.Text);
-                        cmd.Parameters.AddWithValue("@CatID", catId);
-                        cmd.Parameters.AddWithValue("@UnitID", unitid);
+                        cmd.Parameters.AddWithValue("@Barcode", txtBarcode.Text);
                         cmd.Parameters.AddWithValue("@SalePrice", txtSalePrice.Text);
                         cmd.Parameters.AddWithValue("@Remarks", txtRemarks.Text);
-                        cmd.Parameters.AddWithValue("@StockControl", cbStockControl.Checked);
-                        cmd.Parameters.AddWithValue("Image", ConvertImageToBytes(pictureBox1.Image));
+   
 
 
-                        if (txtCostPrice.Text == "")
-                        {
-                            cmd.Parameters.AddWithValue("@CostPrice", txtSalePrice.Text);
-                        }
-
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@CostPrice", txtCostPrice.Text);
-
-                        }
-
+                    
                         
 
                         
@@ -231,7 +162,7 @@ namespace RestaurantPOS
                         btnSave.Text = "SAVE";
                         btnSave.BackColor = Color.FromArgb(39, 174, 96);
                         Clear();
-                        ShowProductSID(DGVSomeProducts, ProSID, NameSID, CategorySID,  CostSID, SaleSID, RemarksSID, UnitSID);
+                        ShowProductSID(DGVSomeProducts, ProSID, NameSID, SaleSID, RemarksSID, BarcodeGV);
                     }
                     catch (Exception ex)
                     {
@@ -252,34 +183,10 @@ namespace RestaurantPOS
             pedit = 1;
             lblID.Text = DGVSomeProducts.CurrentRow.Cells[0].Value.ToString();
             txtProductName.Text = DGVSomeProducts.CurrentRow.Cells[1].Value.ToString();
-            cboCategory.Text = DGVSomeProducts.CurrentRow.Cells[2].Value.ToString();
-            cboUnits.Text = DGVSomeProducts.CurrentRow.Cells[3].Value.ToString();
-            txtCostPrice.Text = DGVSomeProducts.CurrentRow.Cells[4].Value.ToString();
-            txtSalePrice.Text = DGVSomeProducts.CurrentRow.Cells[5].Value.ToString();
-            txtRemarks.Text = DGVSomeProducts.CurrentRow.Cells[6].Value.ToString();
-            MainClass.con.Open();
-            SqlCommand cmd = new SqlCommand("select StockControl from ProductsTable where ProductID = '" + lblID.Text + "'", MainClass.con);
-            bool cheched = bool.Parse(cmd.ExecuteScalar().ToString());
-            if(cheched == true)
-            {
-                cbStockControl.Checked = true;
-            }
-            else
-            {
-                cbStockControl.Checked = false;
-            }
-
-            cmd = new SqlCommand("select Image from ProductsTable where ProductID  = '" + lblID.Text + "'", MainClass.con);
-            object ob = cmd.ExecuteScalar();
-            if(ob != null)
-            {
-                pictureBox1.Image = ConvertByteArraytoImage((byte[])ob);
-            }
-            else
-            {
-                pictureBox1.Image = Properties.Resources.placeholder_200x200;
-            }
-            MainClass.con.Close();
+           
+            txtSalePrice.Text = DGVSomeProducts.CurrentRow.Cells[2].Value.ToString();
+            txtRemarks.Text = DGVSomeProducts.CurrentRow.Cells[3].Value.ToString();
+           txtBarcode.Text = DGVSomeProducts.CurrentRow.Cells[4].Value.ToString();
             btnSave.Text = "UPDATE";
             btnSave.BackColor = Color.Orange;
         }
@@ -300,7 +207,7 @@ namespace RestaurantPOS
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("Record Deleted Successfully");
                             MainClass.con.Close();
-                            ShowProductSID(DGVSomeProducts, ProSID, NameSID, CategorySID, CostSID, SaleSID, RemarksSID, UnitSID);
+                            ShowProductSID(DGVSomeProducts, ProSID, NameSID, SaleSID, RemarksSID, BarcodeGV);
                         }
                         catch (Exception ex)
                         {
@@ -324,11 +231,8 @@ namespace RestaurantPOS
             else
             {
                 if (txtProductName.Text == "" &&
-                txtCostPrice.Text == "" &&
                 txtSalePrice.Text == "" &&               
-                txtRemarks.Text == "" &&
-                cboUnits.SelectedIndex == 0 &&
-                cboCategory.SelectedIndex == 0 )
+                txtRemarks.Text == ""  )
                 {
                     HomeScreen hs = new HomeScreen();
                     hs.lblLoggedUser.Text = "Admin";
@@ -358,14 +262,7 @@ namespace RestaurantPOS
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog odf = new OpenFileDialog() { Filter = "Image files(*.jpg;*.jpeg)|*.jpg;*jpeg", Multiselect = false })
-                if (odf.ShowDialog() == DialogResult.OK)
-                {
-                    pictureBox1.Image = Image.FromFile(odf.FileName);
-                }
-        }
+   
 
         private void DGVSomeProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -373,30 +270,6 @@ namespace RestaurantPOS
 
         private void DGVSomeProducts_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (DGVSomeProducts.SelectedRows.Count == 1)
-            {
-                try
-                {
-                    MainClass.con.Open();
-                    SqlCommand cmd = new SqlCommand("select Image from ProductsTable where ProductID = '" + DGVSomeProducts.CurrentRow.Cells[0].Value.ToString() + "'", MainClass.con);
-                    object ob = cmd.ExecuteScalar();
-                    if (ob.ToString() != "")
-                    {
-                        pictureBox1.Image = ConvertByteArraytoImage((byte[])ob);
-                    }
-                    else
-                    {
-                        pictureBox1.Image = null;
-                        MessageBox.Show("No Picture Found");
-                    }
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                }
-            }
 
         }
     }

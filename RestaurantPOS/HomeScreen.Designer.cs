@@ -34,19 +34,6 @@ namespace RestaurantPOS
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lblCashInHand = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lblExpense = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lowStocksPanel = new System.Windows.Forms.Panel();
-            this.lblLowStocks = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblDailySales = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnStockControl = new System.Windows.Forms.Button();
             this.btnProducts = new System.Windows.Forms.Button();
             this.btnUnits = new System.Windows.Forms.Button();
@@ -60,11 +47,16 @@ namespace RestaurantPOS
             this.btnPurchase = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.lowStocksPanel = new System.Windows.Forms.Panel();
+            this.lblLowStocks = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDailySales = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.guna2GradientPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.lowStocksPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -127,18 +119,18 @@ namespace RestaurantPOS
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.btnStockControl, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnProducts, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnUnits, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCategories, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnPersons, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnLedgers, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnPos, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnInventory, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnReports, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnPurchase, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.button1, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.button2, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnCategories, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnUnits, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnProducts, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnPos, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnReports, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnPurchase, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnInventory, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnPersons, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnLedgers, 3, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 79);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -150,10 +142,229 @@ namespace RestaurantPOS
             this.tableLayoutPanel1.Size = new System.Drawing.Size(622, 538);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
+            // btnStockControl
+            // 
+            this.btnStockControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnStockControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockControl.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnStockControl.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnStockControl.Image = global::RestaurantPOS.Properties.Resources.warehouse__2_;
+            this.btnStockControl.Location = new System.Drawing.Point(3, 405);
+            this.btnStockControl.Name = "btnStockControl";
+            this.btnStockControl.Size = new System.Drawing.Size(149, 130);
+            this.btnStockControl.TabIndex = 15;
+            this.btnStockControl.Text = "STOCK CONTROL";
+            this.btnStockControl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnStockControl.UseVisualStyleBackColor = false;
+            this.btnStockControl.Visible = false;
+            this.btnStockControl.Click += new System.EventHandler(this.btnStockControl_Click);
+            // 
+            // btnProducts
+            // 
+            this.btnProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnProducts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProducts.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnProducts.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnProducts.Image = global::RestaurantPOS.Properties.Resources.product;
+            this.btnProducts.Location = new System.Drawing.Point(3, 3);
+            this.btnProducts.Name = "btnProducts";
+            this.btnProducts.Size = new System.Drawing.Size(149, 128);
+            this.btnProducts.TabIndex = 2;
+            this.btnProducts.Text = "PRODUCTS";
+            this.btnProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnProducts.UseVisualStyleBackColor = false;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
+            // 
+            // btnUnits
+            // 
+            this.btnUnits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnUnits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUnits.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnUnits.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnUnits.Image = global::RestaurantPOS.Properties.Resources.weighing_machine__1_;
+            this.btnUnits.Location = new System.Drawing.Point(313, 405);
+            this.btnUnits.Name = "btnUnits";
+            this.btnUnits.Size = new System.Drawing.Size(149, 128);
+            this.btnUnits.TabIndex = 1;
+            this.btnUnits.Text = "UNITS";
+            this.btnUnits.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUnits.UseVisualStyleBackColor = false;
+            this.btnUnits.Visible = false;
+            this.btnUnits.Click += new System.EventHandler(this.btnUnits_Click);
+            // 
+            // btnCategories
+            // 
+            this.btnCategories.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCategories.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnCategories.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnCategories.Image = global::RestaurantPOS.Properties.Resources.categories__2_;
+            this.btnCategories.Location = new System.Drawing.Point(158, 405);
+            this.btnCategories.Name = "btnCategories";
+            this.btnCategories.Size = new System.Drawing.Size(149, 128);
+            this.btnCategories.TabIndex = 3;
+            this.btnCategories.Text = "CATEGORIES";
+            this.btnCategories.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCategories.UseVisualStyleBackColor = false;
+            this.btnCategories.Visible = false;
+            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
+            // 
+            // btnPersons
+            // 
+            this.btnPersons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPersons.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnPersons.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnPersons.Image = global::RestaurantPOS.Properties.Resources.team;
+            this.btnPersons.Location = new System.Drawing.Point(158, 271);
+            this.btnPersons.Name = "btnPersons";
+            this.btnPersons.Size = new System.Drawing.Size(149, 128);
+            this.btnPersons.TabIndex = 8;
+            this.btnPersons.Text = "PERSONS";
+            this.btnPersons.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPersons.UseVisualStyleBackColor = false;
+            this.btnPersons.Visible = false;
+            this.btnPersons.Click += new System.EventHandler(this.btnPersons_Click);
+            // 
+            // btnLedgers
+            // 
+            this.btnLedgers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnLedgers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLedgers.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnLedgers.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnLedgers.Image = global::RestaurantPOS.Properties.Resources.ledger;
+            this.btnLedgers.Location = new System.Drawing.Point(468, 405);
+            this.btnLedgers.Name = "btnLedgers";
+            this.btnLedgers.Size = new System.Drawing.Size(149, 128);
+            this.btnLedgers.TabIndex = 6;
+            this.btnLedgers.Text = "LEDGERS";
+            this.btnLedgers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnLedgers.UseVisualStyleBackColor = false;
+            this.btnLedgers.Visible = false;
+            this.btnLedgers.Click += new System.EventHandler(this.btnLedgers_Click);
+            // 
+            // btnPos
+            // 
+            this.btnPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnPos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPos.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnPos.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnPos.Image = global::RestaurantPOS.Properties.Resources.pos_terminal;
+            this.btnPos.Location = new System.Drawing.Point(158, 3);
+            this.btnPos.Name = "btnPos";
+            this.btnPos.Size = new System.Drawing.Size(149, 128);
+            this.btnPos.TabIndex = 9;
+            this.btnPos.Text = "POS";
+            this.btnPos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPos.UseVisualStyleBackColor = false;
+            this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
+            // 
+            // btnInventory
+            // 
+            this.btnInventory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventory.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnInventory.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnInventory.Image = global::RestaurantPOS.Properties.Resources.box;
+            this.btnInventory.Location = new System.Drawing.Point(3, 137);
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Size = new System.Drawing.Size(149, 128);
+            this.btnInventory.TabIndex = 4;
+            this.btnInventory.Text = "INVENTORY";
+            this.btnInventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnInventory.UseVisualStyleBackColor = false;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnSettings.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnSettings.Image = global::RestaurantPOS.Properties.Resources.settings__1_;
+            this.btnSettings.Location = new System.Drawing.Point(158, 137);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(149, 128);
+            this.btnSettings.TabIndex = 7;
+            this.btnSettings.Text = "SETTINGS";
+            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnReports
+            // 
+            this.btnReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnReports.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReports.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnReports.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnReports.Image = global::RestaurantPOS.Properties.Resources.report;
+            this.btnReports.Location = new System.Drawing.Point(313, 3);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(149, 128);
+            this.btnReports.TabIndex = 12;
+            this.btnReports.Text = "REPORTS";
+            this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnReports.UseVisualStyleBackColor = false;
+            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
+            // 
+            // btnPurchase
+            // 
+            this.btnPurchase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnPurchase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPurchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPurchase.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnPurchase.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnPurchase.Image = global::RestaurantPOS.Properties.Resources.order;
+            this.btnPurchase.Location = new System.Drawing.Point(468, 3);
+            this.btnPurchase.Name = "btnPurchase";
+            this.btnPurchase.Size = new System.Drawing.Size(151, 128);
+            this.btnPurchase.TabIndex = 5;
+            this.btnPurchase.Text = "PURCHASE";
+            this.btnPurchase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPurchase.UseVisualStyleBackColor = false;
+            this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.button1.ForeColor = System.Drawing.SystemColors.Window;
+            this.button1.Image = global::RestaurantPOS.Properties.Resources.expenses;
+            this.button1.Location = new System.Drawing.Point(313, 271);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(149, 128);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "EXPENSES";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.button2.ForeColor = System.Drawing.SystemColors.Window;
+            this.button2.Image = global::RestaurantPOS.Properties.Resources.exchange;
+            this.button2.Location = new System.Drawing.Point(468, 271);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(151, 128);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "STOCK RETURN ";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // guna2GroupBox1
             // 
-            this.guna2GroupBox1.Controls.Add(this.panel4);
-            this.guna2GroupBox1.Controls.Add(this.panel2);
             this.guna2GroupBox1.Controls.Add(this.lowStocksPanel);
             this.guna2GroupBox1.Controls.Add(this.panel1);
             this.guna2GroupBox1.CustomBorderColor = System.Drawing.Color.MediumSeaGreen;
@@ -167,80 +378,12 @@ namespace RestaurantPOS
             this.guna2GroupBox1.TabIndex = 2;
             this.guna2GroupBox1.Text = "DASHBOARD";
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.MediumPurple;
-            this.panel4.Controls.Add(this.lblCashInHand);
-            this.panel4.Controls.Add(this.label7);
-            this.panel4.Location = new System.Drawing.Point(9, 247);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(358, 94);
-            this.panel4.TabIndex = 0;
-            // 
-            // lblCashInHand
-            // 
-            this.lblCashInHand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCashInHand.AutoSize = true;
-            this.lblCashInHand.BackColor = System.Drawing.Color.Transparent;
-            this.lblCashInHand.ForeColor = System.Drawing.Color.White;
-            this.lblCashInHand.Location = new System.Drawing.Point(161, 55);
-            this.lblCashInHand.Name = "lblCashInHand";
-            this.lblCashInHand.Size = new System.Drawing.Size(59, 30);
-            this.lblCashInHand.TabIndex = 0;
-            this.lblCashInHand.Text = "0.00";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(3, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(185, 30);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "CASH IN HAND";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.IndianRed;
-            this.panel2.Controls.Add(this.lblExpense);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(9, 147);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(358, 94);
-            this.panel2.TabIndex = 0;
-            // 
-            // lblExpense
-            // 
-            this.lblExpense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblExpense.AutoSize = true;
-            this.lblExpense.BackColor = System.Drawing.Color.Transparent;
-            this.lblExpense.ForeColor = System.Drawing.Color.White;
-            this.lblExpense.Location = new System.Drawing.Point(161, 55);
-            this.lblExpense.Name = "lblExpense";
-            this.lblExpense.Size = new System.Drawing.Size(59, 30);
-            this.lblExpense.TabIndex = 0;
-            this.lblExpense.Text = "0.00";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(186, 30);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "DAILY EXPENSE";
-            // 
             // lowStocksPanel
             // 
             this.lowStocksPanel.BackColor = System.Drawing.Color.SeaGreen;
             this.lowStocksPanel.Controls.Add(this.lblLowStocks);
             this.lowStocksPanel.Controls.Add(this.label5);
-            this.lowStocksPanel.Location = new System.Drawing.Point(12, 347);
+            this.lowStocksPanel.Location = new System.Drawing.Point(6, 147);
             this.lowStocksPanel.Name = "lowStocksPanel";
             this.lowStocksPanel.Size = new System.Drawing.Size(358, 94);
             this.lowStocksPanel.TabIndex = 0;
@@ -303,227 +446,6 @@ namespace RestaurantPOS
             this.label2.TabIndex = 0;
             this.label2.Text = "DAILY SALES";
             // 
-            // btnStockControl
-            // 
-            this.btnStockControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnStockControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnStockControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStockControl.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnStockControl.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnStockControl.Image = global::RestaurantPOS.Properties.Resources.warehouse__2_;
-            this.btnStockControl.Location = new System.Drawing.Point(3, 405);
-            this.btnStockControl.Name = "btnStockControl";
-            this.btnStockControl.Size = new System.Drawing.Size(149, 130);
-            this.btnStockControl.TabIndex = 15;
-            this.btnStockControl.Text = "STOCK CONTROL";
-            this.btnStockControl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnStockControl.UseVisualStyleBackColor = false;
-            this.btnStockControl.Click += new System.EventHandler(this.btnStockControl_Click);
-            // 
-            // btnProducts
-            // 
-            this.btnProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProducts.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnProducts.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnProducts.Image = global::RestaurantPOS.Properties.Resources.product;
-            this.btnProducts.Location = new System.Drawing.Point(313, 3);
-            this.btnProducts.Name = "btnProducts";
-            this.btnProducts.Size = new System.Drawing.Size(149, 128);
-            this.btnProducts.TabIndex = 2;
-            this.btnProducts.Text = "PRODUCTS";
-            this.btnProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnProducts.UseVisualStyleBackColor = false;
-            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
-            // 
-            // btnUnits
-            // 
-            this.btnUnits.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnUnits.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUnits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUnits.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnUnits.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnUnits.Image = global::RestaurantPOS.Properties.Resources.weighing_machine__1_;
-            this.btnUnits.Location = new System.Drawing.Point(158, 3);
-            this.btnUnits.Name = "btnUnits";
-            this.btnUnits.Size = new System.Drawing.Size(149, 128);
-            this.btnUnits.TabIndex = 1;
-            this.btnUnits.Text = "UNITS";
-            this.btnUnits.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnUnits.UseVisualStyleBackColor = false;
-            this.btnUnits.Click += new System.EventHandler(this.btnUnits_Click);
-            // 
-            // btnCategories
-            // 
-            this.btnCategories.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnCategories.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCategories.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnCategories.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnCategories.Image = global::RestaurantPOS.Properties.Resources.categories__2_;
-            this.btnCategories.Location = new System.Drawing.Point(3, 3);
-            this.btnCategories.Name = "btnCategories";
-            this.btnCategories.Size = new System.Drawing.Size(149, 128);
-            this.btnCategories.TabIndex = 3;
-            this.btnCategories.Text = "CATEGORIES";
-            this.btnCategories.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCategories.UseVisualStyleBackColor = false;
-            this.btnCategories.Click += new System.EventHandler(this.btnCategories_Click);
-            // 
-            // btnPersons
-            // 
-            this.btnPersons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnPersons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPersons.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnPersons.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPersons.Image = global::RestaurantPOS.Properties.Resources.team;
-            this.btnPersons.Location = new System.Drawing.Point(468, 3);
-            this.btnPersons.Name = "btnPersons";
-            this.btnPersons.Size = new System.Drawing.Size(151, 128);
-            this.btnPersons.TabIndex = 8;
-            this.btnPersons.Text = "PERSONS";
-            this.btnPersons.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPersons.UseVisualStyleBackColor = false;
-            this.btnPersons.Click += new System.EventHandler(this.btnPersons_Click);
-            // 
-            // btnLedgers
-            // 
-            this.btnLedgers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnLedgers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLedgers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLedgers.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnLedgers.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnLedgers.Image = global::RestaurantPOS.Properties.Resources.ledger;
-            this.btnLedgers.Location = new System.Drawing.Point(3, 137);
-            this.btnLedgers.Name = "btnLedgers";
-            this.btnLedgers.Size = new System.Drawing.Size(149, 128);
-            this.btnLedgers.TabIndex = 6;
-            this.btnLedgers.Text = "LEDGERS";
-            this.btnLedgers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnLedgers.UseVisualStyleBackColor = false;
-            this.btnLedgers.Click += new System.EventHandler(this.btnLedgers_Click);
-            // 
-            // btnPos
-            // 
-            this.btnPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnPos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPos.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnPos.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPos.Image = global::RestaurantPOS.Properties.Resources.pos_terminal;
-            this.btnPos.Location = new System.Drawing.Point(158, 137);
-            this.btnPos.Name = "btnPos";
-            this.btnPos.Size = new System.Drawing.Size(149, 128);
-            this.btnPos.TabIndex = 9;
-            this.btnPos.Text = "POS";
-            this.btnPos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPos.UseVisualStyleBackColor = false;
-            this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
-            // 
-            // btnInventory
-            // 
-            this.btnInventory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventory.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnInventory.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnInventory.Image = global::RestaurantPOS.Properties.Resources.box;
-            this.btnInventory.Location = new System.Drawing.Point(3, 271);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(149, 128);
-            this.btnInventory.TabIndex = 4;
-            this.btnInventory.Text = "INVENTORY";
-            this.btnInventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnInventory.UseVisualStyleBackColor = false;
-            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnSettings.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnSettings.Image = global::RestaurantPOS.Properties.Resources.settings__1_;
-            this.btnSettings.Location = new System.Drawing.Point(468, 137);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(151, 128);
-            this.btnSettings.TabIndex = 7;
-            this.btnSettings.Text = "SETTINGS";
-            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // btnReports
-            // 
-            this.btnReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnReports.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReports.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnReports.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnReports.Image = global::RestaurantPOS.Properties.Resources.report;
-            this.btnReports.Location = new System.Drawing.Point(313, 137);
-            this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(149, 128);
-            this.btnReports.TabIndex = 12;
-            this.btnReports.Text = "REPORTS";
-            this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnReports.UseVisualStyleBackColor = false;
-            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
-            // 
-            // btnPurchase
-            // 
-            this.btnPurchase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnPurchase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPurchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPurchase.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnPurchase.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnPurchase.Image = global::RestaurantPOS.Properties.Resources.order;
-            this.btnPurchase.Location = new System.Drawing.Point(158, 271);
-            this.btnPurchase.Name = "btnPurchase";
-            this.btnPurchase.Size = new System.Drawing.Size(149, 128);
-            this.btnPurchase.TabIndex = 5;
-            this.btnPurchase.Text = "PURCHASE";
-            this.btnPurchase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnPurchase.UseVisualStyleBackColor = false;
-            this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.button1.ForeColor = System.Drawing.SystemColors.Window;
-            this.button1.Image = global::RestaurantPOS.Properties.Resources.expenses;
-            this.button1.Location = new System.Drawing.Point(313, 271);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 128);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "EXPENSES";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.button2.ForeColor = System.Drawing.SystemColors.Window;
-            this.button2.Image = global::RestaurantPOS.Properties.Resources.exchange;
-            this.button2.Location = new System.Drawing.Point(468, 271);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 128);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "STOCK RETURN ";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // HomeScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -542,10 +464,6 @@ namespace RestaurantPOS
             this.guna2GradientPanel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.guna2GroupBox1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.lowStocksPanel.ResumeLayout(false);
             this.lowStocksPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -571,12 +489,6 @@ namespace RestaurantPOS
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblDailySales;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label lblExpense;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lblCashInHand;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel lowStocksPanel;
         private System.Windows.Forms.Label lblLowStocks;
         private System.Windows.Forms.Label label5;

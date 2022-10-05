@@ -76,7 +76,7 @@ namespace RestaurantPOS
 
         private void btnPos_Click(object sender, EventArgs e)
         {
-            RestaurantPOS p = new RestaurantPOS();
+            POS p = new POS();
             if(lblLoggedUser.Text == "Admin")
             {
                 p.lblLoggedInUser.Text = "Admin";
@@ -155,33 +155,12 @@ namespace RestaurantPOS
             }
         }
 
-        private void FindTodayExpense()
-        {
-            object Expense = null;
-            string sdate = DateTime.Now.ToShortDateString();
-
-            try
-            {
-                MainClass.con.Open();
-                SqlCommand cmd = new SqlCommand("select sum(ExpensePrice) from ExpensesTable  where ExpenseDate between '" + sdate + "' and '" + sdate + "'", MainClass.con);
-                Expense = cmd.ExecuteScalar();
-                MainClass.con.Close();
-            }
-            catch (Exception ex)
-            {
-                MainClass.con.Close();
-                MessageBox.Show(ex.Message);
-            }
-            lblExpense.Text = Expense.ToString();
-        }
 
       
 
         private void HomeScreen_Load(object sender, EventArgs e)
         {
             FindDailySales();
-            FindTodayExpense();
-            lblCashInHand.Text = MainClass.CashInHand().ToString();
             FindLowStocks();
         }
 

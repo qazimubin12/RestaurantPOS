@@ -99,6 +99,7 @@ namespace RestaurantPOS
                 txtGst.Text = dr["GST"].ToString();
                 txtCashInHand.Text = dr["CashInHand"].ToString();
                 txtCurrency.Text = dr["Currency"].ToString();
+                txtFooterLine.Text = dr["FooterLine"].ToString();
               
             }
             else
@@ -109,6 +110,7 @@ namespace RestaurantPOS
                 txtGst.Text = "";
                 txtCurrency.Text = "";
                 txtCashInHand.Text = "";
+                txtFooterLine.Text = "";
             }
            
             dr.Close();

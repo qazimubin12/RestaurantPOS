@@ -30,51 +30,40 @@ namespace RestaurantPOS
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLoggedUser = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cbStockControl = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.cboUnits = new System.Windows.Forms.ComboBox();
-            this.cboCategory = new System.Windows.Forms.ComboBox();
             this.txtSalePrice = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtRemarks = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtCostPrice = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtProductName = new Guna.UI2.WinForms.Guna2TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.DGVSomeProducts = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.ProSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategorySID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CostSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaleSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RemarksSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CS1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtBarcode = new Guna.UI2.WinForms.Guna2TextBox();
+            this.ProSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemarksSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BarcodeGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVSomeProducts)).BeginInit();
             this.CS1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -103,6 +92,19 @@ namespace RestaurantPOS
             this.lblLoggedUser.Size = new System.Drawing.Size(0, 20);
             this.lblLoggedUser.TabIndex = 27;
             // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = global::RestaurantPOS.Properties.Resources.cancel__2_;
+            this.button3.Location = new System.Drawing.Point(947, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 94);
+            this.button3.TabIndex = 5;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -114,6 +116,34 @@ namespace RestaurantPOS
             this.label8.Size = new System.Drawing.Size(88, 20);
             this.label8.TabIndex = 28;
             this.label8.Text = "Logged In:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.AutoRoundedCorners = true;
+            this.txtSearch.BorderRadius = 17;
+            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSearch.DefaultText = "";
+            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.DisabledState.Parent = this.txtSearch;
+            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.FocusedState.Parent = this.txtSearch;
+            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.HoverState.Parent = this.txtSearch;
+            this.txtSearch.IconLeft = global::RestaurantPOS.Properties.Resources.icons8_search_50px;
+            this.txtSearch.IconLeftOffset = new System.Drawing.Point(5, 0);
+            this.txtSearch.Location = new System.Drawing.Point(479, 47);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(12);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PasswordChar = '\0';
+            this.txtSearch.PlaceholderText = "Search Products";
+            this.txtSearch.SelectedText = "";
+            this.txtSearch.ShadowDecoration.Parent = this.txtSearch;
+            this.txtSearch.Size = new System.Drawing.Size(485, 36);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label1
             // 
@@ -138,23 +168,15 @@ namespace RestaurantPOS
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnSave);
-            this.panel2.Controls.Add(this.cbStockControl);
-            this.panel2.Controls.Add(this.cboUnits);
-            this.panel2.Controls.Add(this.cboCategory);
+            this.panel2.Controls.Add(this.txtBarcode);
             this.panel2.Controls.Add(this.txtSalePrice);
             this.panel2.Controls.Add(this.txtRemarks);
-            this.panel2.Controls.Add(this.txtCostPrice);
             this.panel2.Controls.Add(this.txtProductName);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 94);
@@ -172,7 +194,7 @@ namespace RestaurantPOS
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(234, 259);
+            this.btnCancel.Location = new System.Drawing.Point(216, 189);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(225, 42);
             this.btnCancel.TabIndex = 8;
@@ -188,57 +210,13 @@ namespace RestaurantPOS
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(234, 211);
+            this.btnSave.Location = new System.Drawing.Point(216, 141);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(225, 42);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "&SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // cbStockControl
-            // 
-            this.cbStockControl.AutoSize = true;
-            this.cbStockControl.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbStockControl.CheckedState.BorderRadius = 2;
-            this.cbStockControl.CheckedState.BorderThickness = 0;
-            this.cbStockControl.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbStockControl.CheckMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.cbStockControl.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbStockControl.Location = new System.Drawing.Point(16, 164);
-            this.cbStockControl.Name = "cbStockControl";
-            this.cbStockControl.Size = new System.Drawing.Size(111, 21);
-            this.cbStockControl.TabIndex = 6;
-            this.cbStockControl.Text = "StockControl";
-            this.cbStockControl.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.cbStockControl.UncheckedState.BorderRadius = 2;
-            this.cbStockControl.UncheckedState.BorderThickness = 0;
-            this.cbStockControl.UncheckedState.FillColor = System.Drawing.Color.Silver;
-            this.cbStockControl.UseVisualStyleBackColor = true;
-            // 
-            // cboUnits
-            // 
-            this.cboUnits.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboUnits.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboUnits.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboUnits.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboUnits.FormattingEnabled = true;
-            this.cboUnits.Location = new System.Drawing.Point(238, 24);
-            this.cboUnits.Name = "cboUnits";
-            this.cboUnits.Size = new System.Drawing.Size(221, 25);
-            this.cboUnits.TabIndex = 1;
-            // 
-            // cboCategory
-            // 
-            this.cboCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboCategory.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(12, 74);
-            this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(199, 25);
-            this.cboCategory.TabIndex = 2;
             // 
             // txtSalePrice
             // 
@@ -256,7 +234,7 @@ namespace RestaurantPOS
             this.txtSalePrice.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSalePrice.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSalePrice.HoverState.Parent = this.txtSalePrice;
-            this.txtSalePrice.Location = new System.Drawing.Point(10, 130);
+            this.txtSalePrice.Location = new System.Drawing.Point(11, 72);
             this.txtSalePrice.Margin = new System.Windows.Forms.Padding(4);
             this.txtSalePrice.Name = "txtSalePrice";
             this.txtSalePrice.PasswordChar = '\0';
@@ -282,7 +260,7 @@ namespace RestaurantPOS
             this.txtRemarks.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRemarks.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtRemarks.HoverState.Parent = this.txtRemarks;
-            this.txtRemarks.Location = new System.Drawing.Point(234, 74);
+            this.txtRemarks.Location = new System.Drawing.Point(233, 22);
             this.txtRemarks.Margin = new System.Windows.Forms.Padding(4);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.PasswordChar = '\0';
@@ -291,33 +269,6 @@ namespace RestaurantPOS
             this.txtRemarks.ShadowDecoration.Parent = this.txtRemarks;
             this.txtRemarks.Size = new System.Drawing.Size(229, 27);
             this.txtRemarks.TabIndex = 3;
-            // 
-            // txtCostPrice
-            // 
-            this.txtCostPrice.AutoRoundedCorners = true;
-            this.txtCostPrice.BorderRadius = 12;
-            this.txtCostPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCostPrice.DefaultText = "";
-            this.txtCostPrice.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtCostPrice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtCostPrice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCostPrice.DisabledState.Parent = this.txtCostPrice;
-            this.txtCostPrice.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtCostPrice.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCostPrice.FocusedState.Parent = this.txtCostPrice;
-            this.txtCostPrice.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCostPrice.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtCostPrice.HoverState.Parent = this.txtCostPrice;
-            this.txtCostPrice.Location = new System.Drawing.Point(234, 130);
-            this.txtCostPrice.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCostPrice.Name = "txtCostPrice";
-            this.txtCostPrice.PasswordChar = '\0';
-            this.txtCostPrice.PlaceholderText = "";
-            this.txtCostPrice.SelectedText = "";
-            this.txtCostPrice.ShadowDecoration.Parent = this.txtCostPrice;
-            this.txtCostPrice.Size = new System.Drawing.Size(229, 27);
-            this.txtCostPrice.TabIndex = 5;
-            this.txtCostPrice.TextChanged += new System.EventHandler(this.txtCostPrice_TextChanged);
             // 
             // txtProductName
             // 
@@ -350,56 +301,22 @@ namespace RestaurantPOS
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(234, 56);
+            this.label11.Location = new System.Drawing.Point(233, 4);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(109, 19);
             this.label11.TabIndex = 2;
             this.label11.Text = "Enter Remarks:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(237, 1);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(39, 19);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Unit:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(11, 111);
+            this.label7.Location = new System.Drawing.Point(12, 53);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(118, 19);
             this.label7.TabIndex = 2;
             this.label7.Text = "Enter Sale Price:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(229, 111);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(119, 19);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Enter Cost Price:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(12, 56);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(124, 19);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Select Category:";
             // 
             // label3
             // 
@@ -416,39 +333,37 @@ namespace RestaurantPOS
             // 
             this.DGVSomeProducts.AllowUserToAddRows = false;
             this.DGVSomeProducts.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVSomeProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVSomeProducts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVSomeProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVSomeProducts.BackgroundColor = System.Drawing.Color.White;
             this.DGVSomeProducts.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVSomeProducts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVSomeProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVSomeProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVSomeProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVSomeProducts.ColumnHeadersHeight = 40;
             this.DGVSomeProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProSID,
             this.NameSID,
-            this.CategorySID,
-            this.CostSID,
             this.SaleSID,
             this.RemarksSID,
-            this.UnitSID});
+            this.BarcodeGV});
             this.DGVSomeProducts.ContextMenuStrip = this.CS1;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVSomeProducts.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVSomeProducts.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGVSomeProducts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVSomeProducts.EnableHeadersVisualStyles = false;
             this.DGVSomeProducts.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -482,51 +397,6 @@ namespace RestaurantPOS
             this.DGVSomeProducts.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
             this.DGVSomeProducts.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.DGVSomeProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVSomeProducts_CellClick);
-            this.DGVSomeProducts.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVSomeProducts_CellContentDoubleClick);
-            // 
-            // ProSID
-            // 
-            this.ProSID.HeaderText = "ProductID";
-            this.ProSID.Name = "ProSID";
-            this.ProSID.ReadOnly = true;
-            this.ProSID.Visible = false;
-            // 
-            // NameSID
-            // 
-            this.NameSID.HeaderText = "Product";
-            this.NameSID.Name = "NameSID";
-            this.NameSID.ReadOnly = true;
-            // 
-            // CategorySID
-            // 
-            this.CategorySID.HeaderText = "Category";
-            this.CategorySID.Name = "CategorySID";
-            this.CategorySID.ReadOnly = true;
-            // 
-            // CostSID
-            // 
-            this.CostSID.HeaderText = "Cost Price";
-            this.CostSID.Name = "CostSID";
-            this.CostSID.ReadOnly = true;
-            this.CostSID.Visible = false;
-            // 
-            // SaleSID
-            // 
-            this.SaleSID.HeaderText = "Sale Price";
-            this.SaleSID.Name = "SaleSID";
-            this.SaleSID.ReadOnly = true;
-            // 
-            // RemarksSID
-            // 
-            this.RemarksSID.HeaderText = "Remarks";
-            this.RemarksSID.Name = "RemarksSID";
-            this.RemarksSID.ReadOnly = true;
-            // 
-            // UnitSID
-            // 
-            this.UnitSID.HeaderText = "Unit";
-            this.UnitSID.Name = "UnitSID";
-            this.UnitSID.ReadOnly = true;
             // 
             // CS1
             // 
@@ -550,84 +420,73 @@ namespace RestaurantPOS
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.button2.FlatAppearance.BorderSize = 2;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.button2.Location = new System.Drawing.Point(16, 378);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(209, 42);
-            this.button2.TabIndex = 40;
-            this.button2.Text = "BROWSE";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(12, 189);
+            this.label2.Location = new System.Drawing.Point(238, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(444, 19);
+            this.label2.Size = new System.Drawing.Size(111, 19);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Product Image: (Double Click on Product to View Picture if any)";
-            this.label2.Click += new System.EventHandler(this.label6_Click);
+            this.label2.Text = "Enter Barcode:";
             // 
-            // pictureBox1
+            // txtBarcode
             // 
-            this.pictureBox1.Image = global::RestaurantPOS.Properties.Resources.placeholder_200x200;
-            this.pictureBox1.Location = new System.Drawing.Point(16, 211);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(209, 164);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 41;
-            this.pictureBox1.TabStop = false;
+            this.txtBarcode.AutoRoundedCorners = true;
+            this.txtBarcode.BorderRadius = 12;
+            this.txtBarcode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBarcode.DefaultText = "";
+            this.txtBarcode.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtBarcode.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtBarcode.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtBarcode.DisabledState.Parent = this.txtBarcode;
+            this.txtBarcode.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtBarcode.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtBarcode.FocusedState.Parent = this.txtBarcode;
+            this.txtBarcode.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBarcode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtBarcode.HoverState.Parent = this.txtBarcode;
+            this.txtBarcode.Location = new System.Drawing.Point(237, 72);
+            this.txtBarcode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.PasswordChar = '\0';
+            this.txtBarcode.PlaceholderText = "";
+            this.txtBarcode.SelectedText = "";
+            this.txtBarcode.ShadowDecoration.Parent = this.txtBarcode;
+            this.txtBarcode.Size = new System.Drawing.Size(214, 27);
+            this.txtBarcode.TabIndex = 4;
             // 
-            // button3
+            // ProSID
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = global::RestaurantPOS.Properties.Resources.cancel__2_;
-            this.button3.Location = new System.Drawing.Point(947, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 94);
-            this.button3.TabIndex = 5;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.ProSID.HeaderText = "ProductID";
+            this.ProSID.Name = "ProSID";
+            this.ProSID.ReadOnly = true;
+            this.ProSID.Visible = false;
             // 
-            // txtSearch
+            // NameSID
             // 
-            this.txtSearch.AutoRoundedCorners = true;
-            this.txtSearch.BorderRadius = 17;
-            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearch.DefaultText = "";
-            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.DisabledState.Parent = this.txtSearch;
-            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.FocusedState.Parent = this.txtSearch;
-            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.HoverState.Parent = this.txtSearch;
-            this.txtSearch.IconLeft = global::RestaurantPOS.Properties.Resources.icons8_search_50px;
-            this.txtSearch.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.txtSearch.Location = new System.Drawing.Point(479, 47);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(12);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PasswordChar = '\0';
-            this.txtSearch.PlaceholderText = "Search Products";
-            this.txtSearch.SelectedText = "";
-            this.txtSearch.ShadowDecoration.Parent = this.txtSearch;
-            this.txtSearch.Size = new System.Drawing.Size(485, 36);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.NameSID.HeaderText = "Product";
+            this.NameSID.Name = "NameSID";
+            this.NameSID.ReadOnly = true;
+            // 
+            // SaleSID
+            // 
+            this.SaleSID.HeaderText = "Sale Price";
+            this.SaleSID.Name = "SaleSID";
+            this.SaleSID.ReadOnly = true;
+            // 
+            // RemarksSID
+            // 
+            this.RemarksSID.HeaderText = "Remarks";
+            this.RemarksSID.Name = "RemarksSID";
+            this.RemarksSID.ReadOnly = true;
+            // 
+            // BarcodeGV
+            // 
+            this.BarcodeGV.HeaderText = "Barocde";
+            this.BarcodeGV.Name = "BarcodeGV";
+            this.BarcodeGV.ReadOnly = true;
             // 
             // Products
             // 
@@ -650,7 +509,6 @@ namespace RestaurantPOS
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVSomeProducts)).EndInit();
             this.CS1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -661,20 +519,13 @@ namespace RestaurantPOS
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.ComboBox cboUnits;
-        public System.Windows.Forms.ComboBox cboCategory;
         private System.Windows.Forms.Label lblID;
         private Guna.UI2.WinForms.Guna2TextBox txtSalePrice;
         private Guna.UI2.WinForms.Guna2TextBox txtRemarks;
-        private Guna.UI2.WinForms.Guna2TextBox txtCostPrice;
         private Guna.UI2.WinForms.Guna2TextBox txtProductName;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private Guna.UI2.WinForms.Guna2CheckBox cbStockControl;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button button3;
@@ -684,15 +535,12 @@ namespace RestaurantPOS
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         public System.Windows.Forms.Label lblLoggedUser;
         private System.Windows.Forms.Label label8;
+        private Guna.UI2.WinForms.Guna2TextBox txtBarcode;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProSID;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameSID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CategorySID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CostSID;
         private System.Windows.Forms.DataGridViewTextBoxColumn SaleSID;
         private System.Windows.Forms.DataGridViewTextBoxColumn RemarksSID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitSID;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BarcodeGV;
     }
 }

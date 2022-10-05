@@ -31,8 +31,6 @@ namespace RestaurantPOS
         private void POS_Load(object sender, EventArgs e)
         {
             MainClass.FillProductsPOS(cboProducts);
-            MainClass.FillCustomer(cboCustomer);
-            GBCustomer.Visible = false;
             GenerateInvoiceNo();
             ShowStore();
         }
@@ -47,7 +45,7 @@ namespace RestaurantPOS
             {
 
                 lblStore.Text = dr["StoreName"].ToString();
-               // lblStoreAddress.Text = dr["StoreAddress"].ToString();
+                // lblStoreAddress.Text = dr["StoreAddress"].ToString();
             }
             else
             {
@@ -110,11 +108,11 @@ namespace RestaurantPOS
                         return;
                     }
                 }
-               
+
             }
         }
 
-       
+
 
         private string[] ProductsData = new string[5];
         float fqty = 0;
@@ -149,7 +147,7 @@ namespace RestaurantPOS
                 try
                 {
                     MainClass.con.Open();
-                    cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + cboProducts.SelectedValue.ToString()+ "'", MainClass.con);
+                    cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + cboProducts.SelectedValue.ToString() + "'", MainClass.con);
                     object ob = cmd.ExecuteScalar();
                     if (ob != null)
                     {
@@ -468,14 +466,12 @@ namespace RestaurantPOS
                     gross += float.Parse(item.Cells[6].Value.ToString());
                 }
                 txtGrandTotal.Text = gross.ToString();
-                txtPaying.Enabled = true;
                 txtWPaying.Enabled = true;
             }
             else
             {
                 gross = 0;
                 txtGrandTotal.Text = gross.ToString();
-                txtPaying.Enabled = false;
                 txtWPaying.Enabled = false;
             }
         }
@@ -541,7 +537,7 @@ namespace RestaurantPOS
 
         private void txtSearhBarcode_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 SqlCommand cmd = null;
                 SqlDataReader dr = null;
@@ -552,7 +548,7 @@ namespace RestaurantPOS
                         MainClass.con.Open();
                         cmd = new SqlCommand("select * from ProductsTable where Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
                         dr = cmd.ExecuteReader();
-                        if(dr.HasRows)
+                        if (dr.HasRows)
                         {
                             MainClass.con.Close();
                             try
@@ -610,80 +606,9 @@ namespace RestaurantPOS
             }
         }
 
-        private void CustomerToggle_CheckedChanged(object sender, EventArgs e)
-        {
-            if(CustomerToggle.Checked == true)
-            {
-                GBCustomer.Visible = true;
-                GBWalking.Visible = false;
-                txtWChange.Text = "";
-                txtWPaying.Text = "";
-            }
-            else
-            {
-                GBCustomer.Visible = false;
-                GBWalking.Visible = true;
-                cboCustomer.SelectedIndex = 0;
-                txtContactNo.Text = "";
-                txtPaying.Text = "";
-                txtBalance.Text = "";
-            }
-               
-        }
+
 
         private void txtWPaying_TextChanged(object sender, EventArgs e)
-        {
-            float gross;
-            if(txtGrandTotal.Text == "")
-            {
-                gross = 0;
-            }
-            else
-            {
-                gross = float.Parse(txtGrandTotal.Text.ToString());
-
-            }
-            if (CustomerToggle.Checked == false)
-            {
-                if (txtWPaying.Text == "" || txtWPaying.Text == "0")
-                {
-                    txtWChange.Text = gross.ToString();
-                }
-                else
-                {
-                    float paying = 0;
-                    float change = 0;
-                    paying = float.Parse(txtWPaying.Text);
-                    change = gross - paying;
-                    txtWChange.Text = change.ToString();
-                }
-            }
-        }
-
-        private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboCustomer.SelectedIndex != 0)
-            {
-                try
-                {
-                    MainClass.con.Open();
-                    SqlCommand cmd = new SqlCommand("select Contact from PersonsTable where PersonID = '" + cboCustomer.SelectedValue + "'", MainClass.con);
-                    txtContactNo.Text = cmd.ExecuteScalar().ToString();
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    MainClass.con.Close();
-                }
-            }
-            else
-            {
-                txtContactNo.Text = "";
-            }
-        }
-
-        private void txtPaying_TextChanged(object sender, EventArgs e)
         {
             float gross;
             if (txtGrandTotal.Text == "")
@@ -693,30 +618,25 @@ namespace RestaurantPOS
             else
             {
                 gross = float.Parse(txtGrandTotal.Text.ToString());
+
             }
-            if (CustomerToggle.Checked == true)
+
+            if (txtWPaying.Text == "" || txtWPaying.Text == "0")
             {
-                if (txtPaying.Text == "" || txtPaying.Text == "0")
-                {
-                    txtBalance.Text = gross.ToString();
-                }
-                else
-                {
-                    float paying = 0;
-                    float balance = 0;
-                    if(txtPaying.Text == "")
-                    {
-                        paying = 0;
-                    }
-                    else
-                    {
-                        paying = float.Parse(txtPaying.Text);
-                    }
-                    balance = gross - paying;
-                    txtBalance.Text = balance.ToString();
-                }
+                txtWChange.Text = gross.ToString();
             }
+            else
+            {
+                float paying = 0;
+                float change = 0;
+                paying = float.Parse(txtWPaying.Text);
+                change = gross - paying;
+                txtWChange.Text = change.ToString();
+            }
+
         }
+
+
 
         private void DGVSaleCart_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -758,7 +678,7 @@ namespace RestaurantPOS
                         DGVSaleCart.CurrentRow.Cells[6].Value = ptot.ToString();
                     }
                 }
-                
+
             }
             FindGrossTotal();
 
@@ -790,7 +710,7 @@ namespace RestaurantPOS
             }
         }
 
-        
+
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             try
@@ -808,21 +728,17 @@ namespace RestaurantPOS
             }
         }
 
-    
+
 
         private void FullClear()
         {
             txtGrandTotal.Text = "";
-            txtPaying.Text = "";
             txtWPaying.Text = "";
             txtWChange.Text = "";
-            txtBalance.Text = "";
-            cboCustomer.SelectedIndex = 0;
             dtInvoiceDate.Value = DateTime.Now;
             DGVSaleCart.Rows.Clear();
             txtDiscount.Text = "";
             cboProducts.SelectedIndex = 0;
-            CustomerToggle.Checked = false;
         }
 
 
@@ -840,94 +756,20 @@ namespace RestaurantPOS
                 float grantotal = float.Parse(txtGrandTotal.Text.ToString());
                 string CustomerInvoiceID = "";
                 string SaleID = "";
-                int CustomerID = int.Parse(cboCustomer.SelectedValue.ToString());
-                int WalkingCustomerID = 0; 
+                int WalkingCustomerID = 0;
 
 
-                if (CustomerToggle.Checked == true)
-                {
-                    try
-                    {
-                        MainClass.con.Open();
-                        cmd = new SqlCommand("insert into CustomerInvoicesTable (Customer_ID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,RemainingBalance)" +
-                            "values (@Customer_ID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@RemainingBalance)", MainClass.con);
-                        cmd.Parameters.AddWithValue("@Customer_ID", CustomerID);
-                        if(txtBalance.Text == "" || txtBalance.Text == "0")
-                        {
-                            cmd.Parameters.AddWithValue("@PaymentType", "Cash");
-                        }
-                        else
-                        {
-                            cmd.Parameters.AddWithValue("@PaymentType", "Credit");
-                        }
-                        cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
-                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                        cmd.Parameters.AddWithValue("@TotalAmount", txtGrandTotal.Text);
-                        cmd.Parameters.AddWithValue("@RemainingBalance", txtBalance.Text);
-                        cmd.ExecuteNonQuery();
-                        MainClass.con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MainClass.con.Close();
-                        MessageBox.Show(ex.Message);
-                    } //Inserting Customer Invoice ID
-                    
-                }
-                else
-                {
-                    MainClass.con.Open();
-                    cmd = new SqlCommand("select PersonID from PersonsTable where Name = 'Walking Customer'", MainClass.con);
-                    WalkingCustomerID = int.Parse(cmd.ExecuteScalar().ToString());
 
-                    cmd = new SqlCommand("insert into CustomerInvoicesTable (Customer_ID,PaymentType,InvoiceDate,InvoiceNo,TotalAmount,RemainingBalance)" +
-                        "values (@Customer_ID,@PaymentType,@InvoiceDate,@InvoiceNo,@TotalAmount,@RemainingBalance)", MainClass.con);
-                    cmd.Parameters.AddWithValue("@Customer_ID", WalkingCustomerID);
-                    cmd.Parameters.AddWithValue("@PaymentType", "Cash");
-                    cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    cmd.Parameters.AddWithValue("@TotalAmount", txtGrandTotal.Text);
-                    cmd.Parameters.AddWithValue("@RemainingBalance", txtBalance.Text);
-                    cmd.ExecuteNonQuery();
-                    MainClass.con.Close();
-                }
+
 
                 try
                 {
                     MainClass.con.Open();
-                    CustomerInvoiceID = Convert.ToString(MainClass.Retrieve("select MAX(CustomerInvoiceID) from CustomerInvoicesTable").Rows[0][0]);
-                    if (string.IsNullOrEmpty(CustomerInvoiceID))
-                    {
-                        MessageBox.Show("Please Check The Error or Try Again");
-                        return;
-                    }
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                } // Get Customer InvoiceID
-                try
-                {
-                    MainClass.con.Open();
-                    cmd = new SqlCommand("insert into SalesTable(InvoiceNo,CustomerInvoice_ID,Customer_ID,Discount,GrandTotal)" +
-                        "values (@InvoiceNo,@CustomerInvoice_ID,@Customer_ID,@Discount,@GrandTotal)", MainClass.con);
+                    cmd = new SqlCommand("insert into SalesTable(InvoiceNo,Discount,GrandTotal)" +
+                        "values (@InvoiceNo,@Discount,@GrandTotal)", MainClass.con);
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                    if (CustomerToggle.Checked == true)
-                    {
-                        cmd.Parameters.AddWithValue("@CustomerInvoice_ID", CustomerInvoiceID);
-                        cmd.Parameters.AddWithValue("@Customer_ID", CustomerID);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@CustomerInvoice_ID", DBNull.Value);
-                        cmd.Parameters.AddWithValue("@Customer_ID", DBNull.Value);
-                    }
-
                     cmd.Parameters.AddWithValue("@Discount", txtDiscount.Text);
                     cmd.Parameters.AddWithValue("@GrandTotal", txtGrandTotal.Text);
-                 
                     cmd.ExecuteNonQuery();
                     MainClass.con.Close();
                 }
@@ -958,7 +800,7 @@ namespace RestaurantPOS
                     object packunit = null;
                     int productId = 0;
                     float packqty = 0;
-                    
+
                     float finalqty = 0;
                     int mode = 0;
                     int unitId = 0;
@@ -998,24 +840,7 @@ namespace RestaurantPOS
                             } //Finding StockQty
                         }
 
-                        cmd = new SqlCommand("select u.Unit from ProductsTable p inner join UnitsTable u on u.UnitID = p.PackUnitID where p.ProductID = '" + item.Cells[0].Value + "'", MainClass.con);
-                        packunit = cmd.ExecuteScalar();
 
-                        if (packunit != null)
-                        {
-                            if (packunit.ToString() == item.Cells[2].Value.ToString())
-                            {
-                                pack = true;
-                            }
-                            else
-                            {
-                                pack = false;
-                            }
-                        }
-                        else
-                        {
-                            pack = false;
-                        }
 
                         try
                         {
@@ -1052,21 +877,11 @@ namespace RestaurantPOS
                         try
                         {
 
-                            cmd = new SqlCommand("insert into SalesInfo (Sales_ID,Customer_InvoiceID,ProductID,Quantity,Unit,CostPrice,SalePrice,TotalOfProduct)" +
-                            "values (@Sales_ID,@Customer_InvoiceID,@ProductID,@Quantity,@Unit,@CostPrice,@SalePrice,@TotalOfProduct)", MainClass.con);
+                            cmd = new SqlCommand("insert into SalesInfo (Sales_ID,ProductID,Quantity,SalePrice,TotalOfProduct)" +
+                            "values (@Sales_ID,@ProductID,@Quantity,@SalePrice,@TotalOfProduct)", MainClass.con);
                             cmd.Parameters.AddWithValue("Sales_ID", SaleID);
-                            if (CustomerToggle.Checked == true)
-                            {
-                                cmd.Parameters.AddWithValue("Customer_InvoiceID", CustomerInvoiceID);
-                            }
-                            else
-                            {
-                                cmd.Parameters.AddWithValue("Customer_InvoiceID", DBNull.Value);
-                            }
                             cmd.Parameters.AddWithValue("ProductID", productId);
                             cmd.Parameters.AddWithValue("Quantity", item.Cells[5].Value.ToString());
-                            cmd.Parameters.AddWithValue("Unit", unitId);
-                            cmd.Parameters.AddWithValue("CostPrice", item.Cells[3].Value.ToString());
                             cmd.Parameters.AddWithValue("SalePrice", item.Cells[4].Value.ToString());
                             cmd.Parameters.AddWithValue("TotalOfProduct", item.Cells[6].Value.ToString());
                             cmd.ExecuteNonQuery();
@@ -1108,41 +923,13 @@ namespace RestaurantPOS
                     MainClass.con.Close();
                     MessageBox.Show(ex.Message);
                 } //Updating Inventory
-                if (CustomerToggle.Checked == true)
-                {
-                    try
-                    {
-                        MainClass.con.Open();
-                        string InsertPayment = "insert into CustomerLedgersTable (CustomerInvoice_ID,Customer_ID,InvoiceDate,InvoiceNo,TotalAmount,PaidAmount,Balance) values(@CustomerInvoice_ID,@Customer_ID,@InvoiceDate,@InvoiceNo,@TotalAmount,@PaidAmount,@Balance)";
-                        cmd = new SqlCommand(InsertPayment, MainClass.con);
-                        cmd.Parameters.AddWithValue("@CustomerInvoice_ID", CustomerInvoiceID);
-                        cmd.Parameters.AddWithValue("@Customer_ID", cboCustomer.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
-                        cmd.Parameters.AddWithValue("@InvoiceDate", dtInvoiceDate.Value.ToShortDateString());
-                        cmd.Parameters.AddWithValue("@TotalAmount", txtGrandTotal.Text);
-                        cmd.Parameters.AddWithValue("@PaidAmount", txtPaying.Text);
-                        cmd.Parameters.AddWithValue("@Balance", txtBalance.Text);
-                        cmd.ExecuteNonQuery();
-                        MainClass.con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MainClass.con.Close();
-                        MessageBox.Show(ex.Message);
-                    } //Inserting Ledgers
-                }
+
             }
 
             btnGenerate_Click(sender, e);
             MessageBox.Show("Sale Successfuly");
-            if(CustomerToggle.Checked == false)
-            {
-                savedcustomercheck = false;
-            }
-            else
-            {
-                savedcustomercheck = true;
-            }
+
+            savedcustomercheck = false;
             PurchaseReceiptForm s = new PurchaseReceiptForm();
             s.ShowDialog();
             FullClear();
@@ -1151,7 +938,7 @@ namespace RestaurantPOS
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            if(txtDiscount.Text == "")
+            if (txtDiscount.Text == "")
             {
                 txtDiscount.Text = "0";
             }
@@ -1166,7 +953,7 @@ namespace RestaurantPOS
                 dis = float.Parse(txtDiscount.Text);
                 gross -= dis;
                 txtGrandTotal.Text = gross.ToString();
-                
+
             }
         }
     }
