@@ -34,7 +34,7 @@ namespace RestaurantPOS
                 }
                 else
                 {
-                    cmd = new SqlCommand("select p.ProductID,p.ProductName,p.SalePrice,p.Remarks,p.Barocde from ProductsTable p   order by p.ProductName", MainClass.con);
+                    cmd = new SqlCommand("select p.ProductID,p.ProductName,p.SalePrice,p.Remarks,p.Barcode from ProductsTable p   order by p.ProductName", MainClass.con);
                 }
            
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

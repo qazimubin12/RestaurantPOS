@@ -29,10 +29,12 @@ namespace RestaurantPOS
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblLoggedInUser = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.lblStoreAddress = new System.Windows.Forms.Label();
             this.lblStore = new System.Windows.Forms.Label();
@@ -62,6 +64,7 @@ namespace RestaurantPOS
             this.ActionAddGV = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ActionRemoveGV = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtGrandTotal = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnFinalize = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -71,9 +74,6 @@ namespace RestaurantPOS
             this.label12 = new System.Windows.Forms.Label();
             this.txtWPaying = new Guna.UI2.WinForms.Guna2TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtGrandTotal = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblLoggedInUser = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -98,6 +98,30 @@ namespace RestaurantPOS
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1370, 73);
             this.panel1.TabIndex = 24;
+            // 
+            // lblLoggedInUser
+            // 
+            this.lblLoggedInUser.AutoSize = true;
+            this.lblLoggedInUser.BackColor = System.Drawing.Color.Transparent;
+            this.lblLoggedInUser.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.lblLoggedInUser.ForeColor = System.Drawing.Color.White;
+            this.lblLoggedInUser.Location = new System.Drawing.Point(528, 8);
+            this.lblLoggedInUser.Name = "lblLoggedInUser";
+            this.lblLoggedInUser.Size = new System.Drawing.Size(88, 20);
+            this.lblLoggedInUser.TabIndex = 8;
+            this.lblLoggedInUser.Text = "Logged In:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(437, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 20);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Logged In:";
             // 
             // button1
             // 
@@ -353,21 +377,21 @@ namespace RestaurantPOS
             // 
             this.DGVSaleCart.AllowUserToAddRows = false;
             this.DGVSaleCart.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVSaleCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVSaleCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DGVSaleCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVSaleCart.BackgroundColor = System.Drawing.Color.White;
             this.DGVSaleCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVSaleCart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVSaleCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 10F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVSaleCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 10F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVSaleCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.DGVSaleCart.ColumnHeadersHeight = 30;
             this.DGVSaleCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductIDGV,
@@ -379,14 +403,14 @@ namespace RestaurantPOS
             this.TotalOfProductGV,
             this.ActionAddGV,
             this.ActionRemoveGV});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 10F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVSaleCart.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 10F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVSaleCart.DefaultCellStyle = dataGridViewCellStyle12;
             this.DGVSaleCart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVSaleCart.EnableHeadersVisualStyles = false;
             this.DGVSaleCart.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -500,6 +524,35 @@ namespace RestaurantPOS
             this.panel4.Size = new System.Drawing.Size(566, 445);
             this.panel4.TabIndex = 27;
             // 
+            // txtGrandTotal
+            // 
+            this.txtGrandTotal.AutoRoundedCorners = true;
+            this.txtGrandTotal.BackColor = System.Drawing.Color.White;
+            this.txtGrandTotal.BorderRadius = 11;
+            this.txtGrandTotal.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtGrandTotal.DefaultText = "";
+            this.txtGrandTotal.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtGrandTotal.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtGrandTotal.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtGrandTotal.DisabledState.Parent = this.txtGrandTotal;
+            this.txtGrandTotal.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtGrandTotal.Enabled = false;
+            this.txtGrandTotal.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtGrandTotal.FocusedState.Parent = this.txtGrandTotal;
+            this.txtGrandTotal.ForeColor = System.Drawing.Color.Black;
+            this.txtGrandTotal.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtGrandTotal.HoverState.Parent = this.txtGrandTotal;
+            this.txtGrandTotal.IconLeftOffset = new System.Drawing.Point(5, 0);
+            this.txtGrandTotal.Location = new System.Drawing.Point(140, 39);
+            this.txtGrandTotal.Margin = new System.Windows.Forms.Padding(276, 228, 276, 228);
+            this.txtGrandTotal.Name = "txtGrandTotal";
+            this.txtGrandTotal.PasswordChar = '\0';
+            this.txtGrandTotal.PlaceholderText = "";
+            this.txtGrandTotal.SelectedText = "";
+            this.txtGrandTotal.ShadowDecoration.Parent = this.txtGrandTotal;
+            this.txtGrandTotal.Size = new System.Drawing.Size(189, 25);
+            this.txtGrandTotal.TabIndex = 13;
+            // 
             // btnFinalize
             // 
             this.btnFinalize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
@@ -519,7 +572,7 @@ namespace RestaurantPOS
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(134, 14);
+            this.label6.Location = new System.Drawing.Point(136, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(90, 19);
             this.label6.TabIndex = 7;
@@ -530,7 +583,7 @@ namespace RestaurantPOS
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.White;
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(6, 14);
+            this.label15.Location = new System.Drawing.Point(19, 14);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(68, 19);
             this.label15.TabIndex = 7;
@@ -554,14 +607,14 @@ namespace RestaurantPOS
             this.txtDiscount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDiscount.HoverState.Parent = this.txtDiscount;
             this.txtDiscount.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.txtDiscount.Location = new System.Drawing.Point(4, 39);
+            this.txtDiscount.Location = new System.Drawing.Point(17, 39);
             this.txtDiscount.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.PasswordChar = '\0';
             this.txtDiscount.PlaceholderText = "";
             this.txtDiscount.SelectedText = "";
             this.txtDiscount.ShadowDecoration.Parent = this.txtDiscount;
-            this.txtDiscount.Size = new System.Drawing.Size(142, 25);
+            this.txtDiscount.Size = new System.Drawing.Size(119, 25);
             this.txtDiscount.TabIndex = 10;
             this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
             // 
@@ -600,7 +653,7 @@ namespace RestaurantPOS
             this.txtWChange.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtWChange.HoverState.Parent = this.txtWChange;
             this.txtWChange.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.txtWChange.Location = new System.Drawing.Point(140, 65);
+            this.txtWChange.Location = new System.Drawing.Point(161, 65);
             this.txtWChange.Margin = new System.Windows.Forms.Padding(207, 174, 207, 174);
             this.txtWChange.Name = "txtWChange";
             this.txtWChange.PasswordChar = '\0';
@@ -646,7 +699,7 @@ namespace RestaurantPOS
             this.txtWPaying.PlaceholderText = "";
             this.txtWPaying.SelectedText = "";
             this.txtWPaying.ShadowDecoration.Parent = this.txtWPaying;
-            this.txtWPaying.Size = new System.Drawing.Size(129, 35);
+            this.txtWPaying.Size = new System.Drawing.Size(133, 35);
             this.txtWPaying.TabIndex = 10;
             this.txtWPaying.TextChanged += new System.EventHandler(this.txtWPaying_TextChanged);
             // 
@@ -655,64 +708,11 @@ namespace RestaurantPOS
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.White;
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(136, 45);
+            this.label14.Location = new System.Drawing.Point(157, 45);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(66, 19);
             this.label14.TabIndex = 7;
             this.label14.Text = "Change";
-            // 
-            // txtGrandTotal
-            // 
-            this.txtGrandTotal.AutoRoundedCorners = true;
-            this.txtGrandTotal.BackColor = System.Drawing.Color.White;
-            this.txtGrandTotal.BorderRadius = 11;
-            this.txtGrandTotal.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtGrandTotal.DefaultText = "";
-            this.txtGrandTotal.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtGrandTotal.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtGrandTotal.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtGrandTotal.DisabledState.Parent = this.txtGrandTotal;
-            this.txtGrandTotal.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtGrandTotal.Enabled = false;
-            this.txtGrandTotal.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtGrandTotal.FocusedState.Parent = this.txtGrandTotal;
-            this.txtGrandTotal.ForeColor = System.Drawing.Color.Black;
-            this.txtGrandTotal.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtGrandTotal.HoverState.Parent = this.txtGrandTotal;
-            this.txtGrandTotal.IconLeftOffset = new System.Drawing.Point(5, 0);
-            this.txtGrandTotal.Location = new System.Drawing.Point(150, 39);
-            this.txtGrandTotal.Margin = new System.Windows.Forms.Padding(276, 228, 276, 228);
-            this.txtGrandTotal.Name = "txtGrandTotal";
-            this.txtGrandTotal.PasswordChar = '\0';
-            this.txtGrandTotal.PlaceholderText = "";
-            this.txtGrandTotal.SelectedText = "";
-            this.txtGrandTotal.ShadowDecoration.Parent = this.txtGrandTotal;
-            this.txtGrandTotal.Size = new System.Drawing.Size(189, 25);
-            this.txtGrandTotal.TabIndex = 13;
-            // 
-            // lblLoggedInUser
-            // 
-            this.lblLoggedInUser.AutoSize = true;
-            this.lblLoggedInUser.BackColor = System.Drawing.Color.Transparent;
-            this.lblLoggedInUser.Font = new System.Drawing.Font("Century Gothic", 11F);
-            this.lblLoggedInUser.ForeColor = System.Drawing.Color.White;
-            this.lblLoggedInUser.Location = new System.Drawing.Point(528, 8);
-            this.lblLoggedInUser.Name = "lblLoggedInUser";
-            this.lblLoggedInUser.Size = new System.Drawing.Size(88, 20);
-            this.lblLoggedInUser.TabIndex = 8;
-            this.lblLoggedInUser.Text = "Logged In:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 11F);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(437, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 20);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Logged In:";
             // 
             // POS
             // 

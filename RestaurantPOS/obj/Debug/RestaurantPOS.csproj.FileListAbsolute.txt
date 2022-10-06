@@ -24,7 +24,6 @@ D:\C#\RESTAURANT POS\RestaurantPOS\bin\Debug\CrystalDecisions.ReportAppServer.Ob
 D:\C#\RESTAURANT POS\RestaurantPOS\bin\Debug\stdole.dll
 D:\C#\RESTAURANT POS\RestaurantPOS\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
 D:\C#\RESTAURANT POS\RestaurantPOS\bin\Debug\itextsharp.xml
-D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.csproj.AssemblyReference.cache
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.BillForm.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.Brands.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.Categories.resources
@@ -61,3 +60,4 @@ D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.PurchaseReceiptForm.r
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.PurchaseReturn.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.RecentPurchases.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.StockControl.resources
+D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.csproj.AssemblyReference.cache

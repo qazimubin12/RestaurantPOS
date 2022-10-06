@@ -37,7 +37,6 @@ namespace RestaurantPOS
         public static class ControlID
         {
             public static string TextData { get; set; }
-            public static bool PackageCheck { get; set; }
         }
 
         private void txtQty_KeyDown(object sender, KeyEventArgs e)
@@ -47,7 +46,6 @@ namespace RestaurantPOS
                 if (txtQty.Text != "")
                 {
                     ControlID.TextData = txtQty.Text;
-                    ControlID.PackageCheck = CbIsPackage.Checked;
                     if (e.KeyCode == Keys.Enter)
                     {
                         this.Dispose();

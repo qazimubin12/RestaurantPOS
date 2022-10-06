@@ -37,10 +37,8 @@ namespace RestaurantPOS
             this.label1 = new System.Windows.Forms.Label();
             this.DGVRecentPurchases = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.SupplierInvoiceIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchaseIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceNoGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupplierGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchaseDateGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrandTotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActionGV = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -105,10 +103,8 @@ namespace RestaurantPOS
             this.DGVRecentPurchases.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVRecentPurchases.ColumnHeadersHeight = 40;
             this.DGVRecentPurchases.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SupplierInvoiceIDGV,
             this.PurchaseIDGV,
             this.InvoiceNoGV,
-            this.SupplierGV,
             this.PurchaseDateGV,
             this.GrandTotalGV,
             this.ActionGV});
@@ -163,13 +159,6 @@ namespace RestaurantPOS
             this.panel2.Size = new System.Drawing.Size(800, 377);
             this.panel2.TabIndex = 31;
             // 
-            // SupplierInvoiceIDGV
-            // 
-            this.SupplierInvoiceIDGV.HeaderText = "SupplierInvoiceID";
-            this.SupplierInvoiceIDGV.Name = "SupplierInvoiceIDGV";
-            this.SupplierInvoiceIDGV.ReadOnly = true;
-            this.SupplierInvoiceIDGV.Visible = false;
-            // 
             // PurchaseIDGV
             // 
             this.PurchaseIDGV.HeaderText = "PurchaseID";
@@ -182,12 +171,6 @@ namespace RestaurantPOS
             this.InvoiceNoGV.HeaderText = "Invoice No";
             this.InvoiceNoGV.Name = "InvoiceNoGV";
             this.InvoiceNoGV.ReadOnly = true;
-            // 
-            // SupplierGV
-            // 
-            this.SupplierGV.HeaderText = "Supplier";
-            this.SupplierGV.Name = "SupplierGV";
-            this.SupplierGV.ReadOnly = true;
             // 
             // PurchaseDateGV
             // 
@@ -237,10 +220,8 @@ namespace RestaurantPOS
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2DataGridView DGVRecentPurchases;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierInvoiceIDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchaseIDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNoGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn PurchaseDateGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn GrandTotalGV;
         private System.Windows.Forms.DataGridViewButtonColumn ActionGV;

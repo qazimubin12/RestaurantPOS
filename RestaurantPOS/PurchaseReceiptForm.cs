@@ -28,7 +28,7 @@ namespace RestaurantPOS
             {
                 MainClass.ShowPurchaseReceipt(rd, crystalReportViewer1, "PurchaseReceipt", "@PurchaseID", PurchaseInvoice.PURCHASE_ID);
             }
-        }
+        } 
 
         private void PurchaseReceiptForm_FormClosing(object sender, FormClosingEventArgs e)
         {

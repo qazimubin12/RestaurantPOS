@@ -27,7 +27,6 @@ namespace RestaurantPOS
             float cash = 0;
             try
             {
-                MainClass.con.Open();
                 SqlCommand cmd = new SqlCommand("select CashInHand from StoreTable ", MainClass.con);
                 object ob = cmd.ExecuteScalar();
                 if(ob!= null)
@@ -37,7 +36,6 @@ namespace RestaurantPOS
                         cash = float.Parse(ob.ToString());
                     }
                 }
-                MainClass.con.Close();
             }
             catch (Exception ex)
             {
@@ -55,19 +53,16 @@ namespace RestaurantPOS
         }
 
 
-        public static void ShowRecentPurchases(DataGridView dgv, DataGridViewColumn SupplierInvoiceID,DataGridViewColumn PurchaseID, DataGridViewColumn InvoiceNo, DataGridViewColumn SupplierName, DataGridViewColumn PurchaseDate, DataGridViewColumn GrandTotal)
+        public static void ShowRecentPurchases(DataGridView dgv,DataGridViewColumn PurchaseID, DataGridViewColumn InvoiceNo, DataGridViewColumn PurchaseDate, DataGridViewColumn GrandTotal)
         {
 
-            SqlCommand cmd = new SqlCommand("select st.SupplierInvoice_ID,st.PurchaseID,st.InvoiceNo,pt.Name,st.PurchaseDate,st.GrandTotal from PurchasesTable st inner join PersonsTable pt on pt.PersonID = st.Supplier_ID", MainClass.con);
+            SqlCommand cmd = new SqlCommand("select st.PurchaseID,st.InvoiceNo,st.PurchaseDate,st.GrandTotal from PurchasesTable st ", MainClass.con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            SupplierInvoiceID.DataPropertyName = dt.Columns["SupplierInvoice_ID"].ToString();
             PurchaseID.DataPropertyName = dt.Columns["PurchaseID"].ToString();
             InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
-            SupplierName.DataPropertyName = dt.Columns["Name"].ToString();
             PurchaseDate.DataPropertyName = dt.Columns["PurchaseDate"].ToString();
-
             GrandTotal.DataPropertyName = dt.Columns["GrandTotal"].ToString();
             dgv.DataSource = dt;
 
@@ -477,7 +472,7 @@ namespace RestaurantPOS
             dgProducts.Rows.Add("0", "-----Select-----");
             try
             {
-                DataTable dt = Retrieve("select ProductID, ProductName from ProductsTable where StockControl = 1");
+                DataTable dt = Retrieve("select ProductID, ProductName from ProductsTable");
                 if (dt != null)
                 {
                     if (dt.Rows.Count > 0)

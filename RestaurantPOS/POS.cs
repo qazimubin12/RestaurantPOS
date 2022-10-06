@@ -127,41 +127,19 @@ namespace RestaurantPOS
             fqty = float.Parse(QuantityForm.ControlID.TextData);
             error = 0;
 
+
+
+
             try
             {
                 MainClass.con.Open();
-                cmd = new SqlCommand("select InventoryMode from ModeSwitching", MainClass.con);
-                mode2 = int.Parse(cmd.ExecuteScalar().ToString());
-                MainClass.con.Close();
-            }
-            catch (Exception ex)
-            {
-                MainClass.con.Close();
-                MessageBox.Show(ex.Message);
-            } //Mode Checking
-
-
-
-            if (mode2 == 1)
-            {
-                try
+                cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + cboProducts.SelectedValue.ToString() + "'", MainClass.con);
+                object ob = cmd.ExecuteScalar();
+                if (ob != null)
                 {
-                    MainClass.con.Open();
-                    cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + cboProducts.SelectedValue.ToString() + "'", MainClass.con);
-                    object ob = cmd.ExecuteScalar();
-                    if (ob != null)
+                    if (int.Parse(ob.ToString()) != 0)
                     {
-                        if (int.Parse(ob.ToString()) != 0)
-                        {
-                            proceed = 1;
-                        }
-                        else
-                        {
-                            MessageBox.Show("NO STOCKS");
-                            proceed = 0;
-                            MainClass.con.Close();
-                            return;
-                        }
+                        proceed = 1;
                     }
                     else
                     {
@@ -170,218 +148,68 @@ namespace RestaurantPOS
                         MainClass.con.Close();
                         return;
                     }
-                    MainClass.con.Close();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("NO STOCKS");
+                    proceed = 0;
                     MainClass.con.Close();
-                } //checking qty
+                    return;
+                }
+                MainClass.con.Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MainClass.con.Close();
+            } //checking qty
+
 
             if (proceed == 1)
             {
-                if (QuantityForm.ControlID.PackageCheck == false)
+
+                if (combosearch == 0)
                 {
-                    if (combosearch == 0)
+                    if (error == 0)
                     {
-                        if (error == 0)
+
+                        try
                         {
-                            try
+                            MainClass.con.Open();
+                            cmd = new SqlCommand("select SalePrice from ProductsTable  where Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            if (dr.HasRows)
                             {
-                                MainClass.con.Open();
-                                cmd = new SqlCommand("select u.Unit from ProductsTable p inner join UnitsTable u on u.UnitID = p.UnitID where p.Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
-                                object ob = cmd.ExecuteScalar();
-                                if (ob != null)
+                                while (dr.Read())
                                 {
-                                    ProductsData[4] = ob.ToString();
+                                    ProductsData[2] = dr[0].ToString();
+                                    ProductsData[3] = dr[1].ToString();
                                 }
-                                MainClass.con.Close();
-
                             }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                                MainClass.con.Close();
-                            } //Unit
-                            try
-                            {
-                                MainClass.con.Open();
-                                cmd = new SqlCommand("select CostPrice,SalePrice from ProductsTable  where Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
-                                SqlDataReader dr = cmd.ExecuteReader();
-                                if (dr.HasRows)
-                                {
-                                    while (dr.Read())
-                                    {
-                                        ProductsData[2] = dr[0].ToString();
-                                        ProductsData[3] = dr[1].ToString();
-                                    }
-                                }
-                                MainClass.con.Close();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                                MainClass.con.Close();
-                            } //FindingRAtes
+                            MainClass.con.Close();
                         }
-
-
-                        else
+                        catch (Exception ex)
                         {
-                            error = 1;
-                            try
-                            {
-                                MainClass.con.Open();
-                                cmd = new SqlCommand("select u.Unit from ProductsTable p inner join UnitsTable u on u.UnitID = p.PackUnitID where p.Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
-                                object ob = cmd.ExecuteScalar();
-                                if (ob != null)
-                                {
-                                    ProductsData[4] = ob.ToString();
-                                }
-                                MainClass.con.Close();
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                                MainClass.con.Close();
-                            } //Pack Unit
-                            try
-                            {
-                                MainClass.con.Open();
-                                cmd = new SqlCommand("select PackCostPrice,PackSalePrice from ProductsTable  where Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
-                                SqlDataReader dr = cmd.ExecuteReader();
-                                if (dr.HasRows)
-                                {
-                                    while (dr.Read())
-                                    {
-                                        ProductsData[2] = dr[0].ToString();
-                                        ProductsData[3] = dr[1].ToString();
-                                    }
-                                }
-                                MainClass.con.Close();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                                MainClass.con.Close();
-                            } // PAckRates
-                        }
+                            MessageBox.Show(ex.Message);
+                            MainClass.con.Close();
+                        } //FindingRAtes
                     }
+
+
                     else
                     {
-                        if (error == 0)
-                        {
-                            try
-                            {
-                                MainClass.con.Open();
-                                cmd = new SqlCommand("select u.Unit from ProductsTable p inner join UnitsTable u on u.UnitID = p.UnitID where p.ProductName = '" + cboProducts.Text + "'", MainClass.con);
-                                object ob = cmd.ExecuteScalar();
-                                if (ob != null)
-                                {
-                                    ProductsData[4] = ob.ToString();
-                                }
-                                MainClass.con.Close();
 
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                                MainClass.con.Close();
-                            } //Unit
-                            try
-                            {
-                                MainClass.con.Open();
-                                cmd = new SqlCommand("select CostPrice,SalePrice from ProductsTable  where ProductName = '" + cboProducts.Text + "'", MainClass.con);
-                                SqlDataReader dr = cmd.ExecuteReader();
-                                if (dr.HasRows)
-                                {
-                                    while (dr.Read())
-                                    {
-                                        ProductsData[2] = dr[0].ToString();
-                                        ProductsData[3] = dr[1].ToString();
-                                    }
-                                }
-                                MainClass.con.Close();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                                MainClass.con.Close();
-                            } //FindingRAtes
-                        }
-
-
-                        else
-                        {
-                            error = 1;
-                            try
-                            {
-                                MainClass.con.Open();
-                                cmd = new SqlCommand("select u.Unit from ProductsTable p inner join UnitsTable u on u.UnitID = p.PackUnitID where p.ProductName = '" + cboProducts.Text + "'", MainClass.con);
-                                object ob = cmd.ExecuteScalar();
-                                if (ob != null)
-                                {
-                                    ProductsData[4] = ob.ToString();
-                                }
-                                MainClass.con.Close();
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                                MainClass.con.Close();
-                            } //Pack Unit
-                            try
-                            {
-                                MainClass.con.Open();
-                                cmd = new SqlCommand("select PackCostPrice,PackSalePrice from ProductsTable  where ProductName = '" + cboProducts.Text + "'", MainClass.con);
-                                SqlDataReader dr = cmd.ExecuteReader();
-                                if (dr.HasRows)
-                                {
-                                    while (dr.Read())
-                                    {
-                                        ProductsData[2] = dr[0].ToString();
-                                        ProductsData[3] = dr[1].ToString();
-                                    }
-                                }
-                                MainClass.con.Close();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                                MainClass.con.Close();
-                            } // PAckRates
-                        }
                     }
                 }
                 else
                 {
-                    if (combosearch == 0)
+                    if (error == 0)
                     {
-                        error = 1;
-                        try
-                        {
-                            MainClass.con.Open();
-                            cmd = new SqlCommand("select u.Unit from ProductsTable p inner join UnitsTable u on u.UnitID = p.PackUnitID where p.Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
-                            object ob = cmd.ExecuteScalar();
-                            if (ob != null)
-                            {
-                                ProductsData[4] = ob.ToString();
-                            }
-                            MainClass.con.Close();
 
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            MainClass.con.Close();
-                        } //Pack Unit
                         try
                         {
                             MainClass.con.Open();
-                            cmd = new SqlCommand("select PackCostPrice,PackSalePrice from ProductsTable  where Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
+                            cmd = new SqlCommand("select SalePrice from ProductsTable  where ProductName = '" + cboProducts.Text + "'", MainClass.con);
                             SqlDataReader dr = cmd.ExecuteReader();
                             if (dr.HasRows)
                             {
@@ -397,56 +225,14 @@ namespace RestaurantPOS
                         {
                             MessageBox.Show(ex.Message);
                             MainClass.con.Close();
-                        } // PAckRates
+                        } //FindingRAtes
                     }
-                    else
-                    {
-                        error = 1;
-                        try
-                        {
-                            MainClass.con.Open();
-                            cmd = new SqlCommand("select u.Unit from ProductsTable p inner join UnitsTable u on u.UnitID = p.PackUnitID where p.ProductName = '" + cboProducts.Text + "'", MainClass.con);
-                            object ob = cmd.ExecuteScalar();
-                            if (ob != null)
-                            {
-                                ProductsData[4] = ob.ToString();
-                            }
-                            MainClass.con.Close();
 
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            MainClass.con.Close();
-                        } //Pack Unit
-                        try
-                        {
-                            MainClass.con.Open();
-                            cmd = new SqlCommand("select PackCostPrice,PackSalePrice from ProductsTable  where ProductName = '" + cboProducts.Text + "'", MainClass.con);
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            if (dr.HasRows)
-                            {
-                                while (dr.Read())
-                                {
-                                    ProductsData[2] = dr[0].ToString();
-                                    ProductsData[3] = dr[1].ToString();
-                                }
-                            }
-                            MainClass.con.Close();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            MainClass.con.Close();
-                        } // PAckRates
-                    }
+
                 }
 
-                if (ProductsData[3] == "0" && error == 1)
-                {
-                    QuantityForm.ControlID.PackageCheck = false;
-                    GatheringData();
-                }
+
+
             }
         }
         private void CheckTotal()
