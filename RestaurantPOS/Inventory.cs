@@ -12,25 +12,24 @@ namespace RestaurantPOS
 {
     public partial class Inventory : Form
     {
-        private void ShowStocks(DataGridView dgv, DataGridViewColumn Product,DataGridViewColumn Unit, DataGridViewColumn Qty, DataGridViewColumn Rate, string data = null)
+        private void ShowStocks(DataGridView dgv, DataGridViewColumn Product, DataGridViewColumn Qty, DataGridViewColumn Rate, string data = null)
         {
             try
             {
                 SqlCommand cmd = null;
                 if (data != null)
                 {
-                    cmd = new SqlCommand("select p.ProductName,u.Unit,i.Qty,i.Rate from Inventory i inner join ProductsTable p on p.ProductID = i.ProductID inner join UnitsTable u on u.UnitID = i.Unit where p.ProductName like '%" + data + "%'", MainClass.con);
+                    cmd = new SqlCommand("select p.ProductName,i.Qty,i.Rate from Inventory i inner join ProductsTable p on p.ProductID = i.ProductID where p.ProductName like '%" + data + "%'", MainClass.con);
                 }
                 else
                 {
-                    cmd = new SqlCommand("select p.ProductName,u.Unit,i.Qty,i.Rate from Inventory i inner join ProductsTable p on p.ProductID = i.ProductID inner join UnitsTable u on u.UnitID = i.Unit", MainClass.con);
+                    cmd = new SqlCommand("select p.ProductName,i.Qty,i.Rate from Inventory i inner join ProductsTable p on p.ProductID = i.ProductID", MainClass.con);
                 }
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
                 Product.DataPropertyName = dt.Columns["ProductName"].ToString();
-                Unit.DataPropertyName = dt.Columns["Unit"].ToString();
                 Qty.DataPropertyName = dt.Columns["Qty"].ToString();
                 Rate.DataPropertyName = dt.Columns["Rate"].ToString();
                 dgv.DataSource = dt;
@@ -49,12 +48,12 @@ namespace RestaurantPOS
 
         private void Inventory_Load(object sender, EventArgs e)
         {
-            ShowStocks(DGVInventory, ProductGV ,UnitGV, QuantityGV, RateGV);
+            ShowStocks(DGVInventory, ProductGV , QuantityGV, RateGV);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            ShowStocks(DGVInventory, ProductGV,UnitGV, QuantityGV, RateGV, txtSearch.Text.ToString());
+            ShowStocks(DGVInventory, ProductGV, QuantityGV, RateGV, txtSearch.Text.ToString());
         }
 
         private void button1_Click(object sender, EventArgs e)

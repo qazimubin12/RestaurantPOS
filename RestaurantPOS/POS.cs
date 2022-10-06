@@ -133,7 +133,17 @@ namespace RestaurantPOS
             try
             {
                 MainClass.con.Open();
-                cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + cboProducts.SelectedValue.ToString() + "'", MainClass.con);
+                if (combosearch == 0) 
+                {
+                    cmd = new SqlCommand("select ProductID from ProductsTable where Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
+                    object ProductID = cmd.ExecuteScalar();
+                    cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + ProductID + "'", MainClass.con);
+
+                }
+                else
+                {
+                    cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + cboProducts.SelectedValue.ToString() + "'", MainClass.con);
+                }
                 object ob = cmd.ExecuteScalar();
                 if (ob != null)
                 {
@@ -183,7 +193,6 @@ namespace RestaurantPOS
                                 while (dr.Read())
                                 {
                                     ProductsData[2] = dr[0].ToString();
-                                    ProductsData[3] = dr[1].ToString();
                                 }
                             }
                             MainClass.con.Close();
@@ -216,7 +225,6 @@ namespace RestaurantPOS
                                 while (dr.Read())
                                 {
                                     ProductsData[2] = dr[0].ToString();
-                                    ProductsData[3] = dr[1].ToString();
                                 }
                             }
                             MainClass.con.Close();
@@ -238,7 +246,7 @@ namespace RestaurantPOS
         private void CheckTotal()
         {
             ptot = 0;
-            ptot = float.Parse(ProductsData[3]) * fqty;
+            ptot = float.Parse(ProductsData[2]) * fqty;
         }
 
         private void FindGrossTotal()
@@ -249,7 +257,7 @@ namespace RestaurantPOS
             {
                 foreach (DataGridViewRow item in DGVSaleCart.Rows)
                 {
-                    gross += float.Parse(item.Cells[6].Value.ToString());
+                    gross += float.Parse(item.Cells[4].Value.ToString());
                 }
                 txtGrandTotal.Text = gross.ToString();
                 txtWPaying.Enabled = true;
@@ -272,14 +280,19 @@ namespace RestaurantPOS
 
                 if (DGVSaleCart.Rows.Count == 0)
                 {
-                    DGVSaleCart.Rows.Add(Convert.ToInt32(ProductsData[0]), Convert.ToString(ProductsData[1]), Convert.ToString(ProductsData[4]), float.Parse(ProductsData[2]), float.Parse(ProductsData[3]), fqty, ptot);
+                    int ID = Convert.ToInt32(ProductsData[0]);
+                    string Name = ProductsData[1];
+                    float Price = float.Parse(ProductsData[2]);
+                    float Qty = fqty;
+                    float Total = ptot;
+                    DGVSaleCart.Rows.Add(ID,Name,Price,Qty,Total);
                 }
                 else
                 {
-                    foreach (DataGridViewRow item in DGVSaleCart.Rows)
+                        foreach (DataGridViewRow item in DGVSaleCart.Rows)
                     {
-                        if (Convert.ToInt32(ProductsData[0]) == int.Parse(item.Cells[0].Value.ToString())
-                           && (Convert.ToString(ProductsData[4]) == Convert.ToString(item.Cells[2].Value)))
+                        if (Convert.ToInt32(ProductsData[0]) == int.Parse(item.Cells[0].Value.ToString()))
+                       
                         {
                             productcheck = true;
                             break;
@@ -295,14 +308,14 @@ namespace RestaurantPOS
                     {
                         if (productcheck == true)
                         {
-                            if (Convert.ToInt32(ProductsData[0]) == int.Parse(item.Cells[0].Value.ToString())
-                                && (Convert.ToString(ProductsData[4]) == Convert.ToString(item.Cells[2].Value)))
+                            if (Convert.ToInt32(ProductsData[0]) == int.Parse(item.Cells[0].Value.ToString()))
+                                
                             {
 
-                                fqty += float.Parse(item.Cells[5].Value.ToString());
+                                fqty += float.Parse(item.Cells[3].Value.ToString());
                                 CheckTotal();
-                                item.Cells[5].Value = fqty.ToString();
-                                item.Cells[6].Value = ptot.ToString();
+                                item.Cells[3].Value = fqty.ToString();
+                                item.Cells[4].Value = ptot.ToString();
                                 break;
 
                             }
@@ -311,7 +324,12 @@ namespace RestaurantPOS
                         {
                             if (productcheck == false)
                             {
-                                DGVSaleCart.Rows.Add(Convert.ToInt32(ProductsData[0]), Convert.ToString(ProductsData[1]), Convert.ToString(ProductsData[4]), float.Parse(ProductsData[2]), float.Parse(ProductsData[3]), fqty, ptot);
+                                int ID = Convert.ToInt32(ProductsData[0]);
+                                string Name = ProductsData[1];
+                                float Price = float.Parse(ProductsData[2]);
+                                float Qty = fqty;
+                                float Total = ptot;
+                                DGVSaleCart.Rows.Add(ID, Name, Price, Qty, Total);
                                 break;
                             }
                         }
@@ -741,6 +759,11 @@ namespace RestaurantPOS
                 txtGrandTotal.Text = gross.ToString();
 
             }
+        }
+
+        private void cboProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

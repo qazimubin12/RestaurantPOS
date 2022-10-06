@@ -418,8 +418,15 @@ namespace RestaurantPOS
         {
             using (MemoryStream ms = new MemoryStream())
             {
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                return ms.ToArray();
+                if (img != null)
+                {
+                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    return ms.ToArray();
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -434,7 +441,18 @@ namespace RestaurantPOS
         private void btnUpdateStore_Click(object sender, EventArgs e)
         {
             MainClass.con.Open();
-            SqlCommand cmd = new SqlCommand("update StoreTable set FooterLine=@FooterLine, StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty,CashInHand=@CashInHand, GST = @GST, Logo = @Logo ", MainClass.con);
+            SqlCommand cmd = null;
+            if(pictureBox1.Image != null)
+            {
+                cmd = new SqlCommand("update StoreTable set FooterLine=@FooterLine, StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty,CashInHand=@CashInHand, GST = @GST, Logo = @Logo ", MainClass.con);
+                cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
+
+            }
+            else
+            {
+                cmd = new SqlCommand("update StoreTable set FooterLine=@FooterLine, StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty,CashInHand=@CashInHand, GST = @GST ", MainClass.con);
+
+            }
             cmd.Parameters.AddWithValue("@StoreName", txtStoreName.Text);
             cmd.Parameters.AddWithValue("@StoreAddress", txtStoreAddress.Text);
             cmd.Parameters.AddWithValue("@FooterLine", txtFooterLine.Text);
@@ -442,7 +460,6 @@ namespace RestaurantPOS
             cmd.Parameters.AddWithValue("@GST", float.Parse(txtGst.Text));
             cmd.Parameters.AddWithValue("@Currency", txtCurrency.Text);
             cmd.Parameters.AddWithValue("@CashInHand", float.Parse(txtCashInHand.Text));
-            cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
             cmd.ExecuteNonQuery();
             MessageBox.Show("Store Updated Successfully");
             MainClass.con.Close();

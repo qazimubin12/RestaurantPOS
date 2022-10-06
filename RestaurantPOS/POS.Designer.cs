@@ -29,9 +29,9 @@ namespace RestaurantPOS
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLoggedInUser = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,15 +54,6 @@ namespace RestaurantPOS
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DGVSaleCart = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.ProductIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CostPriceGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SalePriceGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalOfProductGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActionAddGV = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ActionRemoveGV = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtGrandTotal = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnFinalize = new System.Windows.Forms.Button();
@@ -74,6 +65,13 @@ namespace RestaurantPOS
             this.label12 = new System.Windows.Forms.Label();
             this.txtWPaying = new Guna.UI2.WinForms.Guna2TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.ProductIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalePriceGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalOfProductGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActionAddGV = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ActionRemoveGV = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -343,6 +341,7 @@ namespace RestaurantPOS
             this.cboProducts.Name = "cboProducts";
             this.cboProducts.Size = new System.Drawing.Size(242, 25);
             this.cboProducts.TabIndex = 1;
+            this.cboProducts.SelectedIndexChanged += new System.EventHandler(this.cboProducts_SelectedIndexChanged);
             this.cboProducts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboProducts_KeyDown);
             // 
             // label3
@@ -377,40 +376,38 @@ namespace RestaurantPOS
             // 
             this.DGVSaleCart.AllowUserToAddRows = false;
             this.DGVSaleCart.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVSaleCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVSaleCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVSaleCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVSaleCart.BackgroundColor = System.Drawing.Color.White;
             this.DGVSaleCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVSaleCart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVSaleCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 10F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVSaleCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVSaleCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVSaleCart.ColumnHeadersHeight = 30;
             this.DGVSaleCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductIDGV,
             this.ProductGV,
-            this.UnitGV,
-            this.CostPriceGV,
             this.SalePriceGV,
             this.QuantityGV,
             this.TotalOfProductGV,
             this.ActionAddGV,
             this.ActionRemoveGV});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 10F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVSaleCart.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVSaleCart.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGVSaleCart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVSaleCart.EnableHeadersVisualStyles = false;
             this.DGVSaleCart.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -444,70 +441,6 @@ namespace RestaurantPOS
             this.DGVSaleCart.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
             this.DGVSaleCart.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.DGVSaleCart.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVSaleCart_CellClick);
-            // 
-            // ProductIDGV
-            // 
-            this.ProductIDGV.HeaderText = "ProductID";
-            this.ProductIDGV.Name = "ProductIDGV";
-            this.ProductIDGV.ReadOnly = true;
-            this.ProductIDGV.Visible = false;
-            // 
-            // ProductGV
-            // 
-            this.ProductGV.HeaderText = "Product";
-            this.ProductGV.Name = "ProductGV";
-            this.ProductGV.ReadOnly = true;
-            // 
-            // UnitGV
-            // 
-            this.UnitGV.HeaderText = "Unit";
-            this.UnitGV.Name = "UnitGV";
-            this.UnitGV.ReadOnly = true;
-            // 
-            // CostPriceGV
-            // 
-            this.CostPriceGV.HeaderText = "CostPrice";
-            this.CostPriceGV.Name = "CostPriceGV";
-            this.CostPriceGV.ReadOnly = true;
-            this.CostPriceGV.Visible = false;
-            // 
-            // SalePriceGV
-            // 
-            this.SalePriceGV.HeaderText = "Price";
-            this.SalePriceGV.Name = "SalePriceGV";
-            this.SalePriceGV.ReadOnly = true;
-            // 
-            // QuantityGV
-            // 
-            this.QuantityGV.HeaderText = "Qty";
-            this.QuantityGV.Name = "QuantityGV";
-            this.QuantityGV.ReadOnly = true;
-            // 
-            // TotalOfProductGV
-            // 
-            this.TotalOfProductGV.HeaderText = "Total";
-            this.TotalOfProductGV.Name = "TotalOfProductGV";
-            this.TotalOfProductGV.ReadOnly = true;
-            // 
-            // ActionAddGV
-            // 
-            this.ActionAddGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ActionAddGV.HeaderText = "";
-            this.ActionAddGV.Name = "ActionAddGV";
-            this.ActionAddGV.ReadOnly = true;
-            this.ActionAddGV.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ActionAddGV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ActionAddGV.Text = "ADD";
-            this.ActionAddGV.UseColumnTextForButtonValue = true;
-            // 
-            // ActionRemoveGV
-            // 
-            this.ActionRemoveGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ActionRemoveGV.HeaderText = "";
-            this.ActionRemoveGV.Name = "ActionRemoveGV";
-            this.ActionRemoveGV.ReadOnly = true;
-            this.ActionRemoveGV.Text = "REMOVE";
-            this.ActionRemoveGV.UseColumnTextForButtonValue = true;
             // 
             // panel4
             // 
@@ -714,6 +647,57 @@ namespace RestaurantPOS
             this.label14.TabIndex = 7;
             this.label14.Text = "Change";
             // 
+            // ProductIDGV
+            // 
+            this.ProductIDGV.HeaderText = "ProductID";
+            this.ProductIDGV.Name = "ProductIDGV";
+            this.ProductIDGV.ReadOnly = true;
+            this.ProductIDGV.Visible = false;
+            // 
+            // ProductGV
+            // 
+            this.ProductGV.HeaderText = "Product";
+            this.ProductGV.Name = "ProductGV";
+            this.ProductGV.ReadOnly = true;
+            // 
+            // SalePriceGV
+            // 
+            this.SalePriceGV.HeaderText = "Price";
+            this.SalePriceGV.Name = "SalePriceGV";
+            this.SalePriceGV.ReadOnly = true;
+            // 
+            // QuantityGV
+            // 
+            this.QuantityGV.HeaderText = "Qty";
+            this.QuantityGV.Name = "QuantityGV";
+            this.QuantityGV.ReadOnly = true;
+            // 
+            // TotalOfProductGV
+            // 
+            this.TotalOfProductGV.HeaderText = "Total";
+            this.TotalOfProductGV.Name = "TotalOfProductGV";
+            this.TotalOfProductGV.ReadOnly = true;
+            // 
+            // ActionAddGV
+            // 
+            this.ActionAddGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ActionAddGV.HeaderText = "";
+            this.ActionAddGV.Name = "ActionAddGV";
+            this.ActionAddGV.ReadOnly = true;
+            this.ActionAddGV.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ActionAddGV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ActionAddGV.Text = "ADD";
+            this.ActionAddGV.UseColumnTextForButtonValue = true;
+            // 
+            // ActionRemoveGV
+            // 
+            this.ActionRemoveGV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ActionRemoveGV.HeaderText = "";
+            this.ActionRemoveGV.Name = "ActionRemoveGV";
+            this.ActionRemoveGV.ReadOnly = true;
+            this.ActionRemoveGV.Text = "REMOVE";
+            this.ActionRemoveGV.UseColumnTextForButtonValue = true;
+            // 
             // POS
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -759,15 +743,6 @@ namespace RestaurantPOS
         public System.Windows.Forms.ComboBox cboProducts;
         public Guna.UI2.WinForms.Guna2TextBox txtSearhBarcode;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductIDGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CostPriceGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SalePriceGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalOfProductGV;
-        private System.Windows.Forms.DataGridViewButtonColumn ActionAddGV;
-        private System.Windows.Forms.DataGridViewButtonColumn ActionRemoveGV;
         private System.Windows.Forms.Label label6;
         private Guna.UI2.WinForms.Guna2GroupBox GBWalking;
         public Guna.UI2.WinForms.Guna2TextBox txtWChange;
@@ -788,5 +763,12 @@ namespace RestaurantPOS
         public Guna.UI2.WinForms.Guna2TextBox txtGrandTotal;
         public System.Windows.Forms.Label lblLoggedInUser;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductIDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SalePriceGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalOfProductGV;
+        private System.Windows.Forms.DataGridViewButtonColumn ActionAddGV;
+        private System.Windows.Forms.DataGridViewButtonColumn ActionRemoveGV;
     }
 }
