@@ -13,12 +13,18 @@ namespace RestaurantPOS
 {
     public partial class RecentSales : Form
     {
+        POS pr;
         public RecentSales()
         {
             InitializeComponent();
         }
 
-        
+        public RecentSales(POS p)
+        {
+            InitializeComponent();
+            this.pr = p;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -26,13 +32,13 @@ namespace RestaurantPOS
 
         private void ViewAllOrders_Load(object sender, EventArgs e)
         {
-            ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTypeGV, OrderTimeGV, SaleGrandTotalGV);
+            ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTimeGV, SaleGrandTotalGV);
         }
-        private void ShowRestaurantSales(DataGridView dgv, DataGridViewColumn SaleID, DataGridViewColumn InvoiceNo, DataGridViewColumn SaleDate, DataGridViewColumn OrderType, DataGridViewColumn SaleTime, DataGridViewColumn GrandTotal, string search = null)
+        private void ShowRestaurantSales(DataGridView dgv, DataGridViewColumn SaleID, DataGridViewColumn InvoiceNo, DataGridViewColumn SaleDate, DataGridViewColumn SaleTime, DataGridViewColumn GrandTotal, string search = null)
         {
             MainClass.con.Open();
             SqlCommand cmd = null;
-            cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',OrderType, SaleTime,round(GrandTotal,0) as 'GrandTotal'  from SalesTable", MainClass.con);
+            cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date', SaleTime,round(GrandTotal,0) as 'GrandTotal'  from SalesTable", MainClass.con);
             
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -41,7 +47,6 @@ namespace RestaurantPOS
             InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
             SaleDate.DataPropertyName = dt.Columns["Date"].ToString();
             SaleTime.DataPropertyName = dt.Columns["SaleTime"].ToString();
-            OrderType.DataPropertyName = dt.Columns["OrderType"].ToString();
             GrandTotal.DataPropertyName = dt.Columns["GrandTotal"].ToString();
             dgv.DataSource = dt;
             MainClass.con.Close();
@@ -89,54 +94,16 @@ namespace RestaurantPOS
                 {
                     MainClass.con.Open();
 
-                    if (DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Dine In" || DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Take Away")
-                    {
-                        cmd = new SqlCommand("select GrandTotal from SalesTable where SaleID = '"+ DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
-                        grandtotaltobeupdatedincashflow = float.Parse(cmd.ExecuteScalar().ToString());
+                    cmd = new SqlCommand("delete from SalesInfo where Sales_ID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
-                        cmd = new SqlCommand("delete from SalesInfo where Sales_ID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
-                        cmd.ExecuteNonQuery();
-
-                        cmd = new SqlCommand("delete from SalesTable where SaleID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    else
-                    {
-                        if (DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Credit")
-                        {
-                            cmd = new SqlCommand("select CustomerInvoice_ID from SalesTable where InvoiceNo = '" + DGVSales.CurrentRow.Cells["SaleInvoiceNoGV"].Value.ToString() + "'", MainClass.con);
-                            customerInvoiceID = cmd.ExecuteScalar().ToString();
-
-                            cmd = new SqlCommand("select CustomerLedgerID from CustomerLedgersTable where CustomerInvoice_ID = '" + customerInvoiceID + "'", MainClass.con);
-                            customerLedgerID = cmd.ExecuteScalar().ToString();
-
-                            cmd = new SqlCommand("delete from CustomerLedgersInfoTable where CustomerLedger_ID = '" + customerLedgerID + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-                            cmd = new SqlCommand("delete from CustomerLedgersTable where CustomerInvoice_ID = '" + customerInvoiceID + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-                            cmd = new SqlCommand("delete from SalesInfo where Sales_ID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-                            cmd = new SqlCommand("delete from SalesTable where SaleID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-                            cmd = new SqlCommand("delete from CustomerInvoicesTable where CustomerInvoiceID = '" + customerInvoiceID + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-
-
-                        }
-                    }
-
-
+                    cmd = new SqlCommand("delete from SalesTable where SaleID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
+                    cmd.ExecuteNonQuery();
 
                     MainClass.con.Close();
 
                     MessageBox.Show("Sale Deleted Successfully");
-                    ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTypeGV, OrderTimeGV, SaleGrandTotalGV);
+                    ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTimeGV, SaleGrandTotalGV);
 
                 }
                 catch (Exception ex)
@@ -148,38 +115,29 @@ namespace RestaurantPOS
         }
 
         public static int RecentReportsSaleID = 0;
-        public static int RecentReportOrderTypeID = 0;
+        public static int SALEID = 0;
+       
         private void DGVSales_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1 || e.ColumnIndex != -1)
             {
                 if (e.ColumnIndex == 0)
                 {
-                    if (DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Dine In")
-                    {
-                        RecentReportOrderTypeID = 1;
+                   
                         RecentReportsSaleID = int.Parse(DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString());
                         BillForm bf = new BillForm();
                         bf.Show();
-
-                    }
-                    else if (DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Take Away")
-                    {
-                        RecentReportOrderTypeID = 2;
-                        RecentReportsSaleID = int.Parse(DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString());
-                        BillForm bf = new BillForm();
-                        bf.Show();
-                    }
-                    else if (DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Credit")
-                    {
-                        RecentReportOrderTypeID = 3;
-                        RecentReportsSaleID = int.Parse(DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString());
-                        BillForm bf = new BillForm();
-                        bf.Show();
-                    }
+                    
                 }
             }
 
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SALEID = int.Parse(DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString());
+            pr.lblID.Text = SALEID.ToString();
+            this.Close();
         }
     }
 }

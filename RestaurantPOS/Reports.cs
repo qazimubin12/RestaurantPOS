@@ -38,169 +38,50 @@ namespace RestaurantPOS
 
             tabControl1.SelectedIndex = 1;
             MainClass.FillSupplier(cboSupplierLedger);
-            ShowLedgersInfo(DGVLedgersReports, CustomerGV, PayingDateGV, LedgerInvoiceNoGV, LedgerTotalGv, PreviousPaidGV, TodaysPaidGV, NewBalanceGV);
             MainClass.HideAllTabsOnTabControl(tabControl1);
-            ShowPurchases(DGVPurchases, SupplierInvoiceIDGV, PaymentTypeGV, InvoiceNoGv, InvoiceDateGV, SupplierNameGV, GrandTotalGV);
-            //    ShowSales(DGVSales, CustomerInvoiceIDGV, PaymentGVC, InvoiceNoGVC, InvoiceDateGVC, CustomerGVC, GrandTotalGVC);
-            ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTypeGV, OrderTimeGV, SaleGrandTotalGV);
-            ShowReturnData(DGVReturnDetails, ReturnIDGV, ReturnSupplierGV, ReturnProductGV, ReturnUnitGV, ReturnRateGV, ReturnQtyGV, ReturnTotalGV, ReturnDateGV, ReturnInvoiceNoGV, ReturnRemarksGV);
+            ShowPurchases(DGVPurchases, PurchaseIDGV, InvoiceNoGv, InvoiceDateGV, RemarksGV, GrandTotalGV);
+            ShowSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTimeGV, CashierGV, SaleGrandTotalGV);
         }
 
-        private void ShowPurchases(DataGridView dgv, DataGridViewColumn SupplierInvoiceID,DataGridViewColumn PaymentType, DataGridViewColumn InvoiceNo, DataGridViewColumn InvoiceDate, DataGridViewColumn PersonName, DataGridViewColumn GrandTotal )
+        private void ShowPurchases(DataGridView dgv, DataGridViewColumn PurchaseID, DataGridViewColumn InvoiceNo, DataGridViewColumn InvoiceDate, DataGridViewColumn Remarks, DataGridViewColumn GrandTotal )
         {
             MainClass.con.Open();
             SqlCommand cmd = null;
             if(purchasedate == 1)
             {
-                cmd = new SqlCommand("select st.SupplierInvoiceID,st.PaymentType,pp.InvoiceNo,format(st.InvoiceDate, 'dd/MM/yyyy') as 'Date',pt.Name,pp.GrandTotal from PurchasesInfo p inner join PurchasesTable pp on pp.PurchaseID = p.Purchase_ID  inner join PersonsTable pt on pt.PersonID = pp.Supplier_ID inner join SupplierInvoicesTable st on st.SupplierInvoiceID = pp.SupplierInvoice_ID where st.InvoiceDate between '" + dtPurchase1.Value.ToShortDateString() + "' and '" + dtPurchase2.Value.ToShortDateString() + "'", MainClass.con);
+                cmd = new SqlCommand("select PurchaseID,InvoiceNo,GrandTotal,format(PurchaseDate, 'dd/MM/yyyy') as 'Date',Remarks from PurchasesTable where PurchaseDate between '" + dtPurchase1.Value.ToShortDateString() + "' and '" + dtPurchase2.Value.ToShortDateString() + "'", MainClass.con);
             }
             else
             {
-                cmd = new SqlCommand("select st.SupplierInvoiceID,st.PaymentType,pp.InvoiceNo,format(st.InvoiceDate, 'dd/MM/yyyy') as 'Date',pt.Name,pp.GrandTotal from PurchasesInfo p inner join PurchasesTable pp on pp.PurchaseID = p.Purchase_ID  inner join PersonsTable pt on pt.PersonID = pp.Supplier_ID inner join SupplierInvoicesTable st on st.SupplierInvoiceID = pp.SupplierInvoice_ID", MainClass.con);
+                if (txtSearchPurhcaseInvoice.Text == "")
+                {
+                    cmd = new SqlCommand("select PurchaseID,InvoiceNo,GrandTotal,format(PurchaseDate, 'dd/MM/yyyy') as 'Date',Remarks from PurchasesTable", MainClass.con);
+                }
+                else
+                {
+                    cmd = new SqlCommand("select PurchaseID,InvoiceNo,GrandTotal,format(PurchaseDate, 'dd/MM/yyyy') as 'Date',Remarks from PurchasesTable where InvoiceNo  like '%" + txtSearchPurhcaseInvoice.Text + "%' ", MainClass.con);
+
+                }
             }   
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            SupplierInvoiceID.DataPropertyName = dt.Columns["SupplierInvoiceID"].ToString();
-            PaymentType.DataPropertyName = dt.Columns["PaymentType"].ToString();
+            PurchaseID.DataPropertyName = dt.Columns["PurchaseID"].ToString();
             InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
             InvoiceDate.DataPropertyName = dt.Columns["Date"].ToString();
-            PersonName.DataPropertyName = dt.Columns["Name"].ToString();
-            GrandTotal.DataPropertyName = dt.Columns["GrandTotal"].ToString();
-            dgv.DataSource = dt;
-            MainClass.con.Close();
-        }
-
-
-        private void ShowReturnData(DataGridView dgv, DataGridViewColumn ID, DataGridViewColumn Name, DataGridViewColumn Product, DataGridViewColumn Unit, DataGridViewColumn Rate, DataGridViewColumn Quantity, DataGridViewColumn Total, DataGridViewColumn Date, DataGridViewColumn InvoiceNo, DataGridViewColumn Remarks)
-        {
-            MainClass.con.Open();
-            SqlCommand cmd = null;
-            
-                cmd = new SqlCommand("selecT st.ID,pt.Name,p.ProductName,u.Unit,st.Rate,st.Quantity,st.GrandTotal,st.ReturnDate,st.InvoiceNo,st.Remarks from StockReturnTable st inner join ProductsTable p on p.ProductID = st.ProductID inner join UnitsTable u on u.UnitID = st.UnitID inner join PersonsTable pt on pt.PersonID = st.SupplierID", MainClass.con);
-            
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            ID.DataPropertyName = dt.Columns["ID"].ToString();
-            Name.DataPropertyName = dt.Columns["Name"].ToString();
-            InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
-            Date.DataPropertyName = dt.Columns["ReturnDate"].ToString();
-            Product.DataPropertyName = dt.Columns["ProductName"].ToString();
-            Total.DataPropertyName = dt.Columns["GrandTotal"].ToString();
-            Rate.DataPropertyName = dt.Columns["Rate"].ToString();
-            Unit.DataPropertyName = dt.Columns["Unit"].ToString();
-            Quantity.DataPropertyName = dt.Columns["Quantity"].ToString();
             Remarks.DataPropertyName = dt.Columns["Remarks"].ToString();
-            dgv.DataSource = dt;
-            MainClass.con.Close();
-        }
-
-
-
-        private void ShowLedgersInfo(DataGridView dgv, DataGridViewColumn Supplier, DataGridViewColumn PayingDate, DataGridViewColumn InvoiceNo,
-            DataGridViewColumn TotalAmount, DataGridViewColumn PreviousPaid, DataGridViewColumn TodayPaid, DataGridViewColumn NewBalance, string search = null)
-        {
-            try
-            {
-                SqlCommand cmd = null;
-                MainClass.con.Open();
-                if (search == "0" || search == null)
-                {
-                    cmd = new SqlCommand("select p.Name,ct.PayingDate,ct.InvoiceNo,ct.TotalAmount,ct.PreviousPaid,ct.TodayPaid,ct.NewBalance  from SupplierLedgersInfoTable ct inner join PersonsTable p on p.PersonID = ct.Supplier_ID", MainClass.con);
-                }
-                else
-                {
-                    cmd = new SqlCommand("select p.Name,ct.PayingDate,ct.InvoiceNo,ct.TotalAmount,ct.PreviousPaid,ct.TodayPaid,ct.NewBalance  from SupplierLedgersInfoTable ct inner join PersonsTable p on p.PersonID = ct.Supplier_ID where ct.Supplier_ID = '" + search + "'", MainClass.con);
-                }
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-
-                Supplier.DataPropertyName = dt.Columns["Name"].ToString();
-                PayingDate.DataPropertyName = dt.Columns["PayingDate"].ToString();
-                InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
-                TotalAmount.DataPropertyName = dt.Columns["TotalAmount"].ToString();
-                PreviousPaid.DataPropertyName = dt.Columns["PreviousPaid"].ToString();
-                TodayPaid.DataPropertyName = dt.Columns["TodayPaid"].ToString();
-                NewBalance.DataPropertyName = dt.Columns["NewBalance"].ToString();
-                dgv.DataSource = dt;
-                MainClass.con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                MainClass.con.Close();
-            }
-        }
-
-
-        private void ShowRestaurantSales(DataGridView dgv, DataGridViewColumn SaleID, DataGridViewColumn InvoiceNo, DataGridViewColumn SaleDate, DataGridViewColumn OrderType, DataGridViewColumn SaleTime, DataGridViewColumn GrandTotal, string search = null)
-        {
-            MainClass.con.Open();
-            SqlCommand cmd = null;
-            if (saledate == 1)
-            {
-                if (search == "" || search == null)
-                {
-                    cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',OrderType, SaleTime,round(GrandTotal,0) as 'GrandTotal' from SalesTable where SaleDate between '" + dtSale1.Value.ToShortDateString() + "' and '" + dtSale2.Value.ToShortDateString() + "' ", MainClass.con);
-                }
-                else
-                {
-                    cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',OrderType, SaleTime,round(GrandTotal,0) as 'GrandTotal'   from SalesTable where SaleDate between '" + dtSale1.Value.ToShortDateString() + "' and '" + dtSale2.Value.ToShortDateString() + "' and InvoiceNo  like '%" + search + "%' ", MainClass.con);
-                }
-            }
-            else
-            {
-                if (search == "" || search == null)
-                {
-                    cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',OrderType, SaleTime,round(GrandTotal,0) as 'GrandTotal'  from SalesTable", MainClass.con);
-                }
-                else
-                {
-                    cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',OrderType, SaleTime,round(GrandTotal,0) as 'GrandTotal'   from SalesTable where InvoiceNo  like '%" + search + "%'", MainClass.con);
-                }
-            }
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            SaleID.DataPropertyName = dt.Columns["SaleID"].ToString();
-            InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
-            SaleDate.DataPropertyName = dt.Columns["Date"].ToString();
-            SaleTime.DataPropertyName = dt.Columns["SaleTime"].ToString();
-            OrderType.DataPropertyName = dt.Columns["OrderType"].ToString();
             GrandTotal.DataPropertyName = dt.Columns["GrandTotal"].ToString();
             dgv.DataSource = dt;
             MainClass.con.Close();
-
-            CalculateProvidedTotal();
         }
 
 
-        //private void ShowSales(DataGridView dgv, DataGridViewColumn CustomerInvoiceID, DataGridViewColumn PaymentType, DataGridViewColumn InvoiceNo, DataGridViewColumn InvoiceDate, DataGridViewColumn PersonName, DataGridViewColumn GrandTotal)
-        //{
-        //    MainClass.con.Open();
-        //    SqlCommand cmd = null;
-        //    if(saledate == 1)
-        //    {
-        //        cmd = new SqlCommand("select st.CustomerInvoiceID,st.PaymentType,pp.InvoiceNo,format(st.InvoiceDate, 'dd/MM/yyyy') as 'Date',pt.Name,pp.GrandTotal from SalesInfo p inner join SalesTable pp on pp.SaleID = p.Sales_ID  inner join PersonsTable pt on pt.PersonID = pp.Customer_ID inner join CustomerInvoicesTable st on st.CustomerInvoiceID = pp.CustomerInvoice_ID where st.InvoiceDate between '" + dtSale1.Value.ToShortDateString() + "' and '" + dtSale2.Value.ToShortDateString() + "' ", MainClass.con);
-        //    }
-        //    else
-        //    {
-        //        cmd = new SqlCommand("select st.CustomerInvoiceID,st.PaymentType,pp.InvoiceNo,format(st.InvoiceDate, 'dd/MM/yyyy') as 'Date',pt.Name,pp.GrandTotal from SalesInfo p inner join SalesTable pp on pp.SaleID = p.Sales_ID  inner join PersonsTable pt on pt.PersonID = pp.Customer_ID inner join CustomerInvoicesTable st on st.CustomerInvoiceID = pp.CustomerInvoice_ID", MainClass.con);
-        //    }
-        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //    DataTable dt = new DataTable();
-        //    da.Fill(dt);
-        //    CustomerInvoiceID.DataPropertyName = dt.Columns["CustomerInvoiceID"].ToString();
-        //    PaymentType.DataPropertyName = dt.Columns["PaymentType"].ToString();
-        //    InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
-        //    InvoiceDate.DataPropertyName = dt.Columns["Date"].ToString();
-        //    PersonName.DataPropertyName = dt.Columns["Name"].ToString();
-        //    GrandTotal.DataPropertyName = dt.Columns["GrandTotal"].ToString();
-        //    dgv.DataSource = dt;
-        //    MainClass.con.Close();
-        //}
+
+
+
+        
+
+
 
 
         private void CalculateProvidedTotal()
@@ -244,64 +125,51 @@ namespace RestaurantPOS
 
         private void txtSearchPurhcaseInvoice_TextChanged(object sender, EventArgs e)
         {
-              ShowPurchasesSearched(DGVPurchases, SupplierInvoiceIDGV, PaymentTypeGV, InvoiceNoGv, InvoiceDateGV, SupplierNameGV, GrandTotalGV);
+            ShowPurchases(DGVPurchases, PurchaseIDGV, InvoiceNoGv, InvoiceDateGV, RemarksGV, GrandTotalGV);
         }
 
 
-        private void ShowPurchasesSearched(DataGridView dgv, DataGridViewColumn SupplierInvoiceID, DataGridViewColumn PaymentType, DataGridViewColumn InvoiceNo, DataGridViewColumn InvoiceDate, DataGridViewColumn PersonName, DataGridViewColumn GrandTotal)
+
+        private void ShowSales(DataGridView dgv, DataGridViewColumn SaleID, DataGridViewColumn InvoiceNo, DataGridViewColumn InvoiceDate, DataGridViewColumn OrderTime, DataGridViewColumn Cashier, DataGridViewColumn GrandTotal)
         {
             MainClass.con.Open();
             SqlCommand cmd = null;
-            if (txtSearchPurhcaseInvoice.Text == "")
+            if (saledate == 1)
             {
-                cmd = new SqlCommand("select st.SupplierInvoiceID,st.PaymentType,pp.InvoiceNo,format(st.InvoiceDate, 'dd/MM/yyyy') as 'Date',pt.Name,pp.GrandTotal from PurchasesInfo p inner join PurchasesTable pp on pp.PurchaseID = p.Purchase_ID  inner join PersonsTable pt on pt.PersonID = pp.Supplier_ID inner join SupplierInvoicesTable st on st.SupplierInvoiceID = pp.SupplierInvoice_ID", MainClass.con);
+                cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',SaleTime,GrandTotal,Cashier from SalesTable where SaleDate between '" + dtSale1.Value.ToShortDateString() + "' and '" + dtSale2.Value.ToShortDateString() + "' ", MainClass.con);
             }
             else
             {
-                cmd = new SqlCommand("select st.SupplierInvoiceID,st.PaymentType,pp.InvoiceNo,format(st.InvoiceDate, 'dd/MM/yyyy') as 'Date',pt.Name,pp.GrandTotal from PurchasesInfo p inner join PurchasesTable pp on pp.PurchaseID = p.Purchase_ID  inner join PersonsTable pt on pt.PersonID = pp.Supplier_ID inner join SupplierInvoicesTable st on st.SupplierInvoiceID = pp.SupplierInvoice_ID where pp.InvoiceNo like '%" + txtSearchPurhcaseInvoice.Text + "%' ", MainClass.con);
+                if (txtSearchSaleInvoice.Text == "")
+                {
+                    cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',SaleTime,GrandTotal,Cashier from SalesTable ", MainClass.con);
+
+                }
+                else
+                {
+                    cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',SaleTime,GrandTotal,Cashier from SalesTable where InvoiceNo  like '%" + txtSearchSaleInvoice.Text + "%'", MainClass.con);
+
+                }
             }
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            SupplierInvoiceID.DataPropertyName = dt.Columns["SupplierInvoiceID"].ToString();
-            PaymentType.DataPropertyName = dt.Columns["PaymentType"].ToString();
+            SaleID.DataPropertyName = dt.Columns["SaleID"].ToString();
+            OrderTime.DataPropertyName = dt.Columns["SaleTime"].ToString();
             InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
             InvoiceDate.DataPropertyName = dt.Columns["Date"].ToString();
-            PersonName.DataPropertyName = dt.Columns["Name"].ToString();
+            Cashier.DataPropertyName = dt.Columns["Cashier"].ToString();
             GrandTotal.DataPropertyName = dt.Columns["GrandTotal"].ToString();
             dgv.DataSource = dt;
             MainClass.con.Close();
         }
 
-        //private void ShowSalesSearched(DataGridView dgv, DataGridViewColumn CustomerInvoiceID, DataGridViewColumn PaymentType, DataGridViewColumn InvoiceNo, DataGridViewColumn InvoiceDate, DataGridViewColumn PersonName, DataGridViewColumn GrandTotal)
-        //{
-        //    MainClass.con.Open();
-        //    SqlCommand cmd = null;
-        //    if(txtSearchSaleInvoice.Text != "")
-        //    {
-        //        cmd = new SqlCommand("select st.CustomerInvoiceID,st.PaymentType,pp.InvoiceNo,format(st.InvoiceDate, 'dd/MM/yyyy') as 'Date',pt.Name,pp.GrandTotal from SalesInfo p inner join SalesTable pp on pp.SaleID = p.Sales_ID  inner join PersonsTable pt on pt.PersonID = pp.Customer_ID inner join CustomerInvoicesTable st on st.CustomerInvoiceID = pp.CustomerInvoice_ID where pp.InvoiceNo  like '%" + txtSearchSaleInvoice.Text + "%'", MainClass.con);
-        //    }
-        //    else
-        //    {
-        //        cmd = new SqlCommand("select st.CustomerInvoiceID,st.PaymentType,pp.InvoiceNo,format(st.InvoiceDate, 'dd/MM/yyyy') as 'Date',pt.Name,pp.GrandTotal from SalesInfo p inner join SalesTable pp on pp.SaleID = p.Sales_ID  inner join PersonsTable pt on pt.PersonID = pp.Customer_ID inner join CustomerInvoicesTable st on st.CustomerInvoiceID = pp.CustomerInvoice_ID", MainClass.con);
-        //    }
-        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //    DataTable dt = new DataTable();
-        //    da.Fill(dt);
-        //    CustomerInvoiceID.DataPropertyName = dt.Columns["CustomerInvoiceID"].ToString();
-        //    PaymentType.DataPropertyName = dt.Columns["PaymentType"].ToString();
-        //    InvoiceNo.DataPropertyName = dt.Columns["InvoiceNo"].ToString();
-        //    InvoiceDate.DataPropertyName = dt.Columns["Date"].ToString();
-        //    PersonName.DataPropertyName = dt.Columns["Name"].ToString();
-        //    GrandTotal.DataPropertyName = dt.Columns["GrandTotal"].ToString();
-        //    dgv.DataSource = dt;
-        //    MainClass.con.Close();
-        //}
+
 
 
         private void button11_Click(object sender, EventArgs e)
         {
-           ShowPurchases(DGVPurchases, SupplierInvoiceIDGV, PaymentTypeGV, InvoiceNoGv, InvoiceDateGV, SupplierNameGV, GrandTotalGV);
+            ShowPurchases(DGVPurchases, PurchaseIDGV, InvoiceNoGv, InvoiceDateGV, RemarksGV, GrandTotalGV);
         }
 
         private void PurchaseDate(object sender, EventArgs e)
@@ -323,7 +191,7 @@ namespace RestaurantPOS
             purchasedate = 0;
             dtPurchase1.Value = DateTime.Now;
             dtPurchase2.Value = DateTime.Now;
-             ShowPurchases(DGVPurchases, SupplierInvoiceIDGV, PaymentTypeGV, InvoiceNoGv, InvoiceDateGV, SupplierNameGV, GrandTotalGV);
+            ShowPurchases(DGVPurchases, PurchaseIDGV, InvoiceNoGv, InvoiceDateGV, RemarksGV, GrandTotalGV);
 
         }
 
@@ -342,7 +210,7 @@ namespace RestaurantPOS
 
         private void button9_Click(object sender, EventArgs e)
         {
-            ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTypeGV, OrderTimeGV, SaleGrandTotalGV);
+            ShowSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTimeGV, CashierGV, SaleGrandTotalGV);
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -350,15 +218,13 @@ namespace RestaurantPOS
             saledate = 0;
             dtSale1.Value = DateTime.Now;
             dtSale2.Value = DateTime.Now;
-            ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTypeGV, OrderTimeGV, SaleGrandTotalGV);
-            //   ShowSales(DGVSales, CustomerInvoiceIDGV, PaymentGVC, InvoiceNoGVC, InvoiceDateGVC, CustomerGVC, GrandTotalGVC);
+            ShowSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTimeGV, CashierGV, SaleGrandTotalGV);
         }
 
         private void txtSearchSaleInvoice_TextChanged(object sender, EventArgs e)
         {
-            ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTypeGV, OrderTimeGV, SaleGrandTotalGV, txtSearchSaleInvoice.Text);
+            ShowSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTimeGV,CashierGV, SaleGrandTotalGV);
 
-            //ShowSalesSearched(DGVSales, CustomerInvoiceIDGV, PaymentGVC, InvoiceNoGVC, InvoiceDateGVC, CustomerGVC, GrandTotalGVC);
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -372,51 +238,22 @@ namespace RestaurantPOS
                 {
                     MainClass.con.Open();
 
-                    if (DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Dine In" || DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Take Away")
-                    {
+                    
                         cmd = new SqlCommand("delete from SalesInfo where Sales_ID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
                         cmd.ExecuteNonQuery();
 
                         cmd = new SqlCommand("delete from SalesTable where SaleID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
                         cmd.ExecuteNonQuery();
-                    }
+                    
 
-                    else
-                    {
-                        if (DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Credit")
-                        {
-                            cmd = new SqlCommand("select CustomerInvoice_ID from SalesTable where InvoiceNo = '" + DGVSales.CurrentRow.Cells["SaleInvoiceNoGV"].Value.ToString() + "'", MainClass.con);
-                            customerInvoiceID = cmd.ExecuteScalar().ToString();
-
-                            cmd = new SqlCommand("select CustomerLedgerID from CustomerLedgersTable where CustomerInvoice_ID = '" + customerInvoiceID + "'", MainClass.con);
-                            customerLedgerID = cmd.ExecuteScalar().ToString();
-
-                            cmd = new SqlCommand("delete from CustomerLedgersInfoTable where CustomerLedger_ID = '" + customerLedgerID + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-                            cmd = new SqlCommand("delete from CustomerLedgersTable where CustomerInvoice_ID = '" + customerInvoiceID + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-                            cmd = new SqlCommand("delete from SalesInfo where Sales_ID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-                            cmd = new SqlCommand("delete from SalesTable where SaleID = '" + DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString() + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-                            cmd = new SqlCommand("delete from CustomerInvoicesTable where CustomerInvoiceID = '" + customerInvoiceID + "'", MainClass.con);
-                            cmd.ExecuteNonQuery();
-
-
-
-                        }
-                    }
+                    
 
 
 
                     MainClass.con.Close();
 
                     MessageBox.Show("Sale Deleted Successfully");
-                    ShowRestaurantSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTypeGV, OrderTimeGV, SaleGrandTotalGV);
+                    ShowSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTimeGV, CashierGV, SaleGrandTotalGV);
 
                 }
                 catch (Exception ex)
@@ -434,7 +271,7 @@ namespace RestaurantPOS
 
         private void CboCustomerLedger_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowLedgersInfo(DGVLedgersReports, CustomerGV, PayingDateGV, LedgerInvoiceNoGV, LedgerTotalGv, PreviousPaidGV, TodaysPaidGV, NewBalanceGV, cboSupplierLedger.SelectedValue.ToString());
+            //ShowLedgersInfo(DGVLedgersReports, CustomerGV, PayingDateGV, LedgerInvoiceNoGV, LedgerTotalGv, PreviousPaidGV, TodaysPaidGV, NewBalanceGV, cboSupplierLedger.SelectedValue.ToString());
         }
 
         private void btnExportPdF_Click(object sender, EventArgs e)

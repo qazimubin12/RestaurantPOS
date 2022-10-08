@@ -30,21 +30,21 @@ namespace RestaurantPOS
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLoggedUser = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
@@ -52,6 +52,7 @@ namespace RestaurantPOS
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnIncomeReports = new System.Windows.Forms.Button();
             this.btnExpenseReports = new System.Windows.Forms.Button();
             this.btnLedgerReports = new System.Windows.Forms.Button();
             this.btnSaleReports = new System.Windows.Forms.Button();
@@ -92,13 +93,6 @@ namespace RestaurantPOS
             this.txtTotalSales = new System.Windows.Forms.TextBox();
             this.txtSearchSaleInvoice = new System.Windows.Forms.TextBox();
             this.DGVSales = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.SaleIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaleInvoiceNoGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderDateGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderTypeGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderTimeGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaleGrandTotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SaleActionGV = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label8 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
@@ -110,13 +104,6 @@ namespace RestaurantPOS
             this.PurchaseReports = new System.Windows.Forms.TabPage();
             this.txtSearchPurhcaseInvoice = new System.Windows.Forms.TextBox();
             this.DGVPurchases = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.SupplierInvoiceIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PaymentTypeGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceNoGv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceDateGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupplierNameGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GrandTotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActionGV = new System.Windows.Forms.DataGridViewButtonColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -127,22 +114,34 @@ namespace RestaurantPOS
             this.label32 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.btnIncomeReports = new System.Windows.Forms.Button();
             this.IncomeReports = new System.Windows.Forms.TabPage();
+            this.txtIncomeAll = new System.Windows.Forms.TextBox();
+            this.txtSalesAll = new System.Windows.Forms.TextBox();
+            this.txtExpensesAll = new System.Windows.Forms.TextBox();
+            this.txtPurchasesAll = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtPurchasesAll = new System.Windows.Forms.TextBox();
-            this.txtExpensesAll = new System.Windows.Forms.TextBox();
-            this.txtSalesAll = new System.Windows.Forms.TextBox();
-            this.txtIncomeAll = new System.Windows.Forms.TextBox();
+            this.SaleIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleInvoiceNoGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderDateGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderTimeGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleGrandTotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CashierGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleActionGV = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.PurchaseIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceNoGv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceDateGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GrandTotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RemarksGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActionGV = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -251,6 +250,23 @@ namespace RestaurantPOS
             this.tableLayoutPanel1.Size = new System.Drawing.Size(276, 523);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // btnIncomeReports
+            // 
+            this.btnIncomeReports.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnIncomeReports.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnIncomeReports.FlatAppearance.BorderSize = 2;
+            this.btnIncomeReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIncomeReports.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnIncomeReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnIncomeReports.Location = new System.Drawing.Point(3, 419);
+            this.btnIncomeReports.Name = "btnIncomeReports";
+            this.btnIncomeReports.Size = new System.Drawing.Size(270, 101);
+            this.btnIncomeReports.TabIndex = 4;
+            this.btnIncomeReports.Text = "INCOME REPORTS";
+            this.btnIncomeReports.UseVisualStyleBackColor = true;
+            this.btnIncomeReports.Visible = false;
+            this.btnIncomeReports.Click += new System.EventHandler(this.btnIncomeReports_Click);
+            // 
             // btnExpenseReports
             // 
             this.btnExpenseReports.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -265,6 +281,7 @@ namespace RestaurantPOS
             this.btnExpenseReports.TabIndex = 3;
             this.btnExpenseReports.Text = "RETURN REPORTS";
             this.btnExpenseReports.UseVisualStyleBackColor = true;
+            this.btnExpenseReports.Visible = false;
             this.btnExpenseReports.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnLedgerReports
@@ -281,6 +298,7 @@ namespace RestaurantPOS
             this.btnLedgerReports.TabIndex = 2;
             this.btnLedgerReports.Text = "LEDGER REPORTS";
             this.btnLedgerReports.UseVisualStyleBackColor = true;
+            this.btnLedgerReports.Visible = false;
             this.btnLedgerReports.Click += new System.EventHandler(this.btnLedgerReports_Click);
             // 
             // btnSaleReports
@@ -360,21 +378,21 @@ namespace RestaurantPOS
             // 
             this.DGVReturnDetails.AllowUserToAddRows = false;
             this.DGVReturnDetails.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVReturnDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVReturnDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVReturnDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVReturnDetails.BackgroundColor = System.Drawing.Color.White;
             this.DGVReturnDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVReturnDetails.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVReturnDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVReturnDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVReturnDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVReturnDetails.ColumnHeadersHeight = 40;
             this.DGVReturnDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ReturnIDGV,
@@ -387,14 +405,14 @@ namespace RestaurantPOS
             this.ReturnTotalGV,
             this.ReturnDateGV,
             this.ReturnRemarksGV});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVReturnDetails.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVReturnDetails.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGVReturnDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DGVReturnDetails.EnableHeadersVisualStyles = false;
             this.DGVReturnDetails.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -570,21 +588,21 @@ namespace RestaurantPOS
             // 
             this.DGVLedgersReports.AllowUserToAddRows = false;
             this.DGVLedgersReports.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVLedgersReports.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVLedgersReports.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DGVLedgersReports.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVLedgersReports.BackgroundColor = System.Drawing.Color.White;
             this.DGVLedgersReports.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVLedgersReports.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVLedgersReports.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVLedgersReports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVLedgersReports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DGVLedgersReports.ColumnHeadersHeight = 30;
             this.DGVLedgersReports.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustomerGV,
@@ -594,14 +612,14 @@ namespace RestaurantPOS
             this.PreviousPaidGV,
             this.TodaysPaidGV,
             this.NewBalanceGV});
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVLedgersReports.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVLedgersReports.DefaultCellStyle = dataGridViewCellStyle6;
             this.DGVLedgersReports.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DGVLedgersReports.EnableHeadersVisualStyles = false;
             this.DGVLedgersReports.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -609,8 +627,8 @@ namespace RestaurantPOS
             this.DGVLedgersReports.Name = "DGVLedgersReports";
             this.DGVLedgersReports.ReadOnly = true;
             this.DGVLedgersReports.RowHeadersVisible = false;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DGVLedgersReports.RowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DGVLedgersReports.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.DGVLedgersReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVLedgersReports.Size = new System.Drawing.Size(708, 389);
             this.DGVLedgersReports.TabIndex = 9;
@@ -762,39 +780,39 @@ namespace RestaurantPOS
             // 
             this.DGVSales.AllowUserToAddRows = false;
             this.DGVSales.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVSales.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVSales.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DGVSales.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVSales.BackgroundColor = System.Drawing.Color.White;
             this.DGVSales.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVSales.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVSales.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVSales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVSales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.DGVSales.ColumnHeadersHeight = 30;
             this.DGVSales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SaleIDGV,
             this.SaleInvoiceNoGV,
             this.OrderDateGV,
-            this.OrderTypeGV,
             this.OrderTimeGV,
             this.SaleGrandTotalGV,
+            this.CashierGV,
             this.SaleActionGV});
             this.DGVSales.ContextMenuStrip = this.SaleReportContextMenuStrip;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVSales.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVSales.DefaultCellStyle = dataGridViewCellStyle10;
             this.DGVSales.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DGVSales.EnableHeadersVisualStyles = false;
             this.DGVSales.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -802,8 +820,8 @@ namespace RestaurantPOS
             this.DGVSales.Name = "DGVSales";
             this.DGVSales.ReadOnly = true;
             this.DGVSales.RowHeadersVisible = false;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DGVSales.RowsDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DGVSales.RowsDefaultCellStyle = dataGridViewCellStyle11;
             this.DGVSales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVSales.Size = new System.Drawing.Size(702, 309);
             this.DGVSales.TabIndex = 8;
@@ -830,52 +848,6 @@ namespace RestaurantPOS
             this.DGVSales.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
             this.DGVSales.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.DGVSales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVSales_CellContentClick);
-            // 
-            // SaleIDGV
-            // 
-            this.SaleIDGV.HeaderText = "SaleID";
-            this.SaleIDGV.Name = "SaleIDGV";
-            this.SaleIDGV.ReadOnly = true;
-            this.SaleIDGV.Visible = false;
-            // 
-            // SaleInvoiceNoGV
-            // 
-            this.SaleInvoiceNoGV.HeaderText = "Invoice No";
-            this.SaleInvoiceNoGV.Name = "SaleInvoiceNoGV";
-            this.SaleInvoiceNoGV.ReadOnly = true;
-            // 
-            // OrderDateGV
-            // 
-            this.OrderDateGV.HeaderText = "Order Date";
-            this.OrderDateGV.Name = "OrderDateGV";
-            this.OrderDateGV.ReadOnly = true;
-            // 
-            // OrderTypeGV
-            // 
-            this.OrderTypeGV.HeaderText = "Order Type";
-            this.OrderTypeGV.Name = "OrderTypeGV";
-            this.OrderTypeGV.ReadOnly = true;
-            // 
-            // OrderTimeGV
-            // 
-            this.OrderTimeGV.HeaderText = "Order Time";
-            this.OrderTimeGV.Name = "OrderTimeGV";
-            this.OrderTimeGV.ReadOnly = true;
-            // 
-            // SaleGrandTotalGV
-            // 
-            this.SaleGrandTotalGV.HeaderText = "Total Amount";
-            this.SaleGrandTotalGV.Name = "SaleGrandTotalGV";
-            this.SaleGrandTotalGV.ReadOnly = true;
-            // 
-            // SaleActionGV
-            // 
-            this.SaleActionGV.HeaderText = "Action";
-            this.SaleActionGV.Name = "SaleActionGV";
-            this.SaleActionGV.ReadOnly = true;
-            this.SaleActionGV.Text = "VIEW";
-            this.SaleActionGV.ToolTipText = "VIEW";
-            this.SaleActionGV.UseColumnTextForButtonValue = true;
             // 
             // label8
             // 
@@ -1007,38 +979,37 @@ namespace RestaurantPOS
             // 
             this.DGVPurchases.AllowUserToAddRows = false;
             this.DGVPurchases.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
-            this.DGVPurchases.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVPurchases.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DGVPurchases.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVPurchases.BackgroundColor = System.Drawing.Color.White;
             this.DGVPurchases.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVPurchases.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVPurchases.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVPurchases.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVPurchases.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.DGVPurchases.ColumnHeadersHeight = 30;
             this.DGVPurchases.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SupplierInvoiceIDGV,
-            this.PaymentTypeGV,
+            this.PurchaseIDGV,
             this.InvoiceNoGv,
             this.InvoiceDateGV,
-            this.SupplierNameGV,
             this.GrandTotalGV,
+            this.RemarksGV,
             this.ActionGV});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVPurchases.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVPurchases.DefaultCellStyle = dataGridViewCellStyle14;
             this.DGVPurchases.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DGVPurchases.EnableHeadersVisualStyles = false;
             this.DGVPurchases.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
@@ -1046,8 +1017,8 @@ namespace RestaurantPOS
             this.DGVPurchases.Name = "DGVPurchases";
             this.DGVPurchases.ReadOnly = true;
             this.DGVPurchases.RowHeadersVisible = false;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DGVPurchases.RowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DGVPurchases.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.DGVPurchases.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVPurchases.Size = new System.Drawing.Size(702, 327);
             this.DGVPurchases.TabIndex = 7;
@@ -1073,52 +1044,6 @@ namespace RestaurantPOS
             this.DGVPurchases.ThemeStyle.RowsStyle.Height = 22;
             this.DGVPurchases.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
             this.DGVPurchases.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // SupplierInvoiceIDGV
-            // 
-            this.SupplierInvoiceIDGV.HeaderText = "SupplierInvoiceID";
-            this.SupplierInvoiceIDGV.Name = "SupplierInvoiceIDGV";
-            this.SupplierInvoiceIDGV.ReadOnly = true;
-            this.SupplierInvoiceIDGV.Visible = false;
-            // 
-            // PaymentTypeGV
-            // 
-            this.PaymentTypeGV.HeaderText = "Payment Type";
-            this.PaymentTypeGV.Name = "PaymentTypeGV";
-            this.PaymentTypeGV.ReadOnly = true;
-            // 
-            // InvoiceNoGv
-            // 
-            this.InvoiceNoGv.HeaderText = "Invoice No";
-            this.InvoiceNoGv.Name = "InvoiceNoGv";
-            this.InvoiceNoGv.ReadOnly = true;
-            // 
-            // InvoiceDateGV
-            // 
-            this.InvoiceDateGV.HeaderText = "InvoiceDate";
-            this.InvoiceDateGV.Name = "InvoiceDateGV";
-            this.InvoiceDateGV.ReadOnly = true;
-            // 
-            // SupplierNameGV
-            // 
-            this.SupplierNameGV.HeaderText = "Supplier";
-            this.SupplierNameGV.Name = "SupplierNameGV";
-            this.SupplierNameGV.ReadOnly = true;
-            // 
-            // GrandTotalGV
-            // 
-            this.GrandTotalGV.HeaderText = "Grand Total";
-            this.GrandTotalGV.Name = "GrandTotalGV";
-            this.GrandTotalGV.ReadOnly = true;
-            // 
-            // ActionGV
-            // 
-            this.ActionGV.HeaderText = "ACTION";
-            this.ActionGV.Name = "ActionGV";
-            this.ActionGV.ReadOnly = true;
-            this.ActionGV.Text = "VIEW";
-            this.ActionGV.ToolTipText = "VIEW";
-            this.ActionGV.UseColumnTextForButtonValue = true;
             // 
             // button1
             // 
@@ -1243,22 +1168,6 @@ namespace RestaurantPOS
             this.tabControl1.Size = new System.Drawing.Size(716, 523);
             this.tabControl1.TabIndex = 26;
             // 
-            // btnIncomeReports
-            // 
-            this.btnIncomeReports.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnIncomeReports.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnIncomeReports.FlatAppearance.BorderSize = 2;
-            this.btnIncomeReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIncomeReports.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btnIncomeReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnIncomeReports.Location = new System.Drawing.Point(3, 419);
-            this.btnIncomeReports.Name = "btnIncomeReports";
-            this.btnIncomeReports.Size = new System.Drawing.Size(270, 101);
-            this.btnIncomeReports.TabIndex = 4;
-            this.btnIncomeReports.Text = "INCOME REPORTS";
-            this.btnIncomeReports.UseVisualStyleBackColor = true;
-            this.btnIncomeReports.Click += new System.EventHandler(this.btnIncomeReports_Click);
-            // 
             // IncomeReports
             // 
             this.IncomeReports.BackColor = System.Drawing.Color.White;
@@ -1282,6 +1191,102 @@ namespace RestaurantPOS
             this.IncomeReports.Size = new System.Drawing.Size(708, 497);
             this.IncomeReports.TabIndex = 4;
             this.IncomeReports.Text = "Income Reports";
+            // 
+            // txtIncomeAll
+            // 
+            this.txtIncomeAll.Enabled = false;
+            this.txtIncomeAll.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
+            this.txtIncomeAll.Location = new System.Drawing.Point(236, 328);
+            this.txtIncomeAll.Name = "txtIncomeAll";
+            this.txtIncomeAll.Size = new System.Drawing.Size(443, 40);
+            this.txtIncomeAll.TabIndex = 33;
+            // 
+            // txtSalesAll
+            // 
+            this.txtSalesAll.Enabled = false;
+            this.txtSalesAll.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
+            this.txtSalesAll.Location = new System.Drawing.Point(236, 262);
+            this.txtSalesAll.Name = "txtSalesAll";
+            this.txtSalesAll.Size = new System.Drawing.Size(443, 40);
+            this.txtSalesAll.TabIndex = 33;
+            // 
+            // txtExpensesAll
+            // 
+            this.txtExpensesAll.Enabled = false;
+            this.txtExpensesAll.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
+            this.txtExpensesAll.Location = new System.Drawing.Point(236, 212);
+            this.txtExpensesAll.Name = "txtExpensesAll";
+            this.txtExpensesAll.Size = new System.Drawing.Size(443, 40);
+            this.txtExpensesAll.TabIndex = 33;
+            // 
+            // txtPurchasesAll
+            // 
+            this.txtPurchasesAll.Enabled = false;
+            this.txtPurchasesAll.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
+            this.txtPurchasesAll.Location = new System.Drawing.Point(236, 163);
+            this.txtPurchasesAll.Name = "txtPurchasesAll";
+            this.txtPurchasesAll.Size = new System.Drawing.Size(443, 40);
+            this.txtPurchasesAll.TabIndex = 33;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.White;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.label15.Location = new System.Drawing.Point(71, 324);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(155, 40);
+            this.label15.TabIndex = 32;
+            this.label15.Text = "Income:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.White;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.label14.Location = new System.Drawing.Point(114, 258);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(112, 40);
+            this.label14.TabIndex = 32;
+            this.label14.Text = "Sales:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.White;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.label13.Location = new System.Drawing.Point(50, 212);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(180, 40);
+            this.label13.TabIndex = 32;
+            this.label13.Text = "Expenses:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.White;
+            this.label12.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.label12.Location = new System.Drawing.Point(45, 162);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(193, 40);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "Purchases:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.White;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.label11.Location = new System.Drawing.Point(216, 24);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(277, 40);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Income Reports";
             // 
             // button7
             // 
@@ -1336,101 +1341,91 @@ namespace RestaurantPOS
             this.dateTimePicker2.Size = new System.Drawing.Size(143, 20);
             this.dateTimePicker2.TabIndex = 27;
             // 
-            // label11
+            // SaleIDGV
             // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.White;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.label11.Location = new System.Drawing.Point(216, 24);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(277, 40);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "Income Reports";
+            this.SaleIDGV.HeaderText = "SaleID";
+            this.SaleIDGV.Name = "SaleIDGV";
+            this.SaleIDGV.ReadOnly = true;
+            this.SaleIDGV.Visible = false;
             // 
-            // label12
+            // SaleInvoiceNoGV
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.White;
-            this.label12.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.label12.Location = new System.Drawing.Point(45, 162);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(193, 40);
-            this.label12.TabIndex = 32;
-            this.label12.Text = "Purchases:";
+            this.SaleInvoiceNoGV.HeaderText = "Invoice No";
+            this.SaleInvoiceNoGV.Name = "SaleInvoiceNoGV";
+            this.SaleInvoiceNoGV.ReadOnly = true;
             // 
-            // label13
+            // OrderDateGV
             // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.White;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.label13.Location = new System.Drawing.Point(50, 212);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(180, 40);
-            this.label13.TabIndex = 32;
-            this.label13.Text = "Expenses:";
+            this.OrderDateGV.HeaderText = "Order Date";
+            this.OrderDateGV.Name = "OrderDateGV";
+            this.OrderDateGV.ReadOnly = true;
             // 
-            // label14
+            // OrderTimeGV
             // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.White;
-            this.label14.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.label14.Location = new System.Drawing.Point(114, 258);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(112, 40);
-            this.label14.TabIndex = 32;
-            this.label14.Text = "Sales:";
+            this.OrderTimeGV.HeaderText = "Order Time";
+            this.OrderTimeGV.Name = "OrderTimeGV";
+            this.OrderTimeGV.ReadOnly = true;
             // 
-            // label15
+            // SaleGrandTotalGV
             // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.White;
-            this.label15.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
-            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.label15.Location = new System.Drawing.Point(71, 324);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(155, 40);
-            this.label15.TabIndex = 32;
-            this.label15.Text = "Income:";
+            this.SaleGrandTotalGV.HeaderText = "Total Amount";
+            this.SaleGrandTotalGV.Name = "SaleGrandTotalGV";
+            this.SaleGrandTotalGV.ReadOnly = true;
             // 
-            // txtPurchasesAll
+            // CashierGV
             // 
-            this.txtPurchasesAll.Enabled = false;
-            this.txtPurchasesAll.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
-            this.txtPurchasesAll.Location = new System.Drawing.Point(236, 163);
-            this.txtPurchasesAll.Name = "txtPurchasesAll";
-            this.txtPurchasesAll.Size = new System.Drawing.Size(443, 40);
-            this.txtPurchasesAll.TabIndex = 33;
+            this.CashierGV.HeaderText = "Cashier";
+            this.CashierGV.Name = "CashierGV";
+            this.CashierGV.ReadOnly = true;
             // 
-            // txtExpensesAll
+            // SaleActionGV
             // 
-            this.txtExpensesAll.Enabled = false;
-            this.txtExpensesAll.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
-            this.txtExpensesAll.Location = new System.Drawing.Point(236, 212);
-            this.txtExpensesAll.Name = "txtExpensesAll";
-            this.txtExpensesAll.Size = new System.Drawing.Size(443, 40);
-            this.txtExpensesAll.TabIndex = 33;
+            this.SaleActionGV.HeaderText = "Action";
+            this.SaleActionGV.Name = "SaleActionGV";
+            this.SaleActionGV.ReadOnly = true;
+            this.SaleActionGV.Text = "VIEW";
+            this.SaleActionGV.ToolTipText = "VIEW";
+            this.SaleActionGV.UseColumnTextForButtonValue = true;
             // 
-            // txtSalesAll
+            // PurchaseIDGV
             // 
-            this.txtSalesAll.Enabled = false;
-            this.txtSalesAll.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
-            this.txtSalesAll.Location = new System.Drawing.Point(236, 262);
-            this.txtSalesAll.Name = "txtSalesAll";
-            this.txtSalesAll.Size = new System.Drawing.Size(443, 40);
-            this.txtSalesAll.TabIndex = 33;
+            this.PurchaseIDGV.HeaderText = "PurchaseID";
+            this.PurchaseIDGV.Name = "PurchaseIDGV";
+            this.PurchaseIDGV.ReadOnly = true;
+            this.PurchaseIDGV.Visible = false;
             // 
-            // txtIncomeAll
+            // InvoiceNoGv
             // 
-            this.txtIncomeAll.Enabled = false;
-            this.txtIncomeAll.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold);
-            this.txtIncomeAll.Location = new System.Drawing.Point(236, 328);
-            this.txtIncomeAll.Name = "txtIncomeAll";
-            this.txtIncomeAll.Size = new System.Drawing.Size(443, 40);
-            this.txtIncomeAll.TabIndex = 33;
+            this.InvoiceNoGv.HeaderText = "Invoice No";
+            this.InvoiceNoGv.Name = "InvoiceNoGv";
+            this.InvoiceNoGv.ReadOnly = true;
+            // 
+            // InvoiceDateGV
+            // 
+            this.InvoiceDateGV.HeaderText = "InvoiceDate";
+            this.InvoiceDateGV.Name = "InvoiceDateGV";
+            this.InvoiceDateGV.ReadOnly = true;
+            // 
+            // GrandTotalGV
+            // 
+            this.GrandTotalGV.HeaderText = "Grand Total";
+            this.GrandTotalGV.Name = "GrandTotalGV";
+            this.GrandTotalGV.ReadOnly = true;
+            // 
+            // RemarksGV
+            // 
+            this.RemarksGV.HeaderText = "Remarks";
+            this.RemarksGV.Name = "RemarksGV";
+            this.RemarksGV.ReadOnly = true;
+            // 
+            // ActionGV
+            // 
+            this.ActionGV.HeaderText = "ACTION";
+            this.ActionGV.Name = "ActionGV";
+            this.ActionGV.ReadOnly = true;
+            this.ActionGV.Text = "VIEW";
+            this.ActionGV.ToolTipText = "VIEW";
+            this.ActionGV.UseColumnTextForButtonValue = true;
             // 
             // Reports
             // 
@@ -1504,13 +1499,6 @@ namespace RestaurantPOS
         private System.Windows.Forms.TextBox txtTotalSales;
         private System.Windows.Forms.TextBox txtSearchSaleInvoice;
         private Guna.UI2.WinForms.Guna2DataGridView DGVSales;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SaleIDGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SaleInvoiceNoGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDateGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderTypeGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderTimeGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SaleGrandTotalGV;
-        private System.Windows.Forms.DataGridViewButtonColumn SaleActionGV;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Button button8;
@@ -1522,13 +1510,6 @@ namespace RestaurantPOS
         private System.Windows.Forms.TabPage PurchaseReports;
         private System.Windows.Forms.TextBox txtSearchPurhcaseInvoice;
         private Guna.UI2.WinForms.Guna2DataGridView DGVPurchases;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierInvoiceIDGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PaymentTypeGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNoGv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceDateGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierNameGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GrandTotalGV;
-        private System.Windows.Forms.DataGridViewButtonColumn ActionGV;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label30;
@@ -1569,5 +1550,18 @@ namespace RestaurantPOS
         private System.Windows.Forms.TextBox txtIncomeAll;
         private System.Windows.Forms.TextBox txtSalesAll;
         private System.Windows.Forms.TextBox txtExpensesAll;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleIDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleInvoiceNoGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDateGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderTimeGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleGrandTotalGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CashierGV;
+        private System.Windows.Forms.DataGridViewButtonColumn SaleActionGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PurchaseIDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceNoGv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceDateGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GrandTotalGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RemarksGV;
+        private System.Windows.Forms.DataGridViewButtonColumn ActionGV;
     }
 }

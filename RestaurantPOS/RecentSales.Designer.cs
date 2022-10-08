@@ -38,15 +38,15 @@ namespace RestaurantPOS
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.DGVSales = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaleIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaleInvoiceNoGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderDateGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderTypeGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderTimeGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaleGrandTotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SaleActionGV = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVSales)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -110,7 +110,6 @@ namespace RestaurantPOS
             this.SaleIDGV,
             this.SaleInvoiceNoGV,
             this.OrderDateGV,
-            this.OrderTypeGV,
             this.OrderTimeGV,
             this.SaleGrandTotalGV,
             this.SaleActionGV});
@@ -159,6 +158,21 @@ namespace RestaurantPOS
             this.DGVSales.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.DGVSales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVSales_CellContentClick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem,
+            this.editToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // SaleIDGV
             // 
             this.SaleIDGV.HeaderText = "SaleID";
@@ -177,12 +191,6 @@ namespace RestaurantPOS
             this.OrderDateGV.HeaderText = "Order Date";
             this.OrderDateGV.Name = "OrderDateGV";
             this.OrderDateGV.ReadOnly = true;
-            // 
-            // OrderTypeGV
-            // 
-            this.OrderTypeGV.HeaderText = "Order Type";
-            this.OrderTypeGV.Name = "OrderTypeGV";
-            this.OrderTypeGV.ReadOnly = true;
             // 
             // OrderTimeGV
             // 
@@ -205,19 +213,12 @@ namespace RestaurantPOS
             this.SaleActionGV.ToolTipText = "VIEW";
             this.SaleActionGV.UseColumnTextForButtonValue = true;
             // 
-            // contextMenuStrip1
+            // editToolStripMenuItem
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // RecentSales
             // 
@@ -245,14 +246,14 @@ namespace RestaurantPOS
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2DataGridView DGVSales;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn SaleIDGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn SaleInvoiceNoGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderDateGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderTypeGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderTimeGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn SaleGrandTotalGV;
         private System.Windows.Forms.DataGridViewButtonColumn SaleActionGV;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
     }
 }

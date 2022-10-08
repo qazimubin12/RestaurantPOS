@@ -96,22 +96,7 @@ namespace RestaurantPOS
                         MainClass.con.Close();
                         MessageBox.Show(ex.Message);
                     }
-                    try
-                    {
-                        float handcash = MainClass.CashInHand();
-                        float cash = handcash - float.Parse(txtPrice.Text);
-
-                        MainClass.con.Open();
-                        SqlCommand cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
-                        cmd.Parameters.AddWithValue("@CashInHand", cash);
-                        cmd.ExecuteNonQuery();
-                        MainClass.con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MainClass.con.Close();
-                        MessageBox.Show(ex.Message);
-                    } //UpdateCash Flow
+                  
                     txtExpenseName.Text = "";
                     txtPrice.Text = "";
                 }
@@ -134,24 +119,6 @@ namespace RestaurantPOS
                             cmd = new SqlCommand("select ExpensePrice from ExpensesTable where ExpenseID = '" + lblID.Text + "'", MainClass.con);
                             lastexpenseminusfromcashflow = float.Parse(cmd.ExecuteScalar().ToString());
                             MainClass.con.Close();
-
-                            try
-                            {
-                                float handcash = MainClass.CashInHand();
-                                float cash = handcash + lastexpenseminusfromcashflow; 
-                                cash -= float.Parse(txtPrice.Text);
-
-                                MainClass.con.Open();
-                                cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
-                                cmd.Parameters.AddWithValue("@CashInHand", cash);
-                                cmd.ExecuteNonQuery();
-                                MainClass.con.Close();
-                            }
-                            catch (Exception ex)
-                            {
-                                MainClass.con.Close();
-                                MessageBox.Show(ex.Message);
-                            } //UpdateCash Flow
 
 
 

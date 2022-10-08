@@ -133,7 +133,7 @@ namespace RestaurantPOS
             try
             {
                 MainClass.con.Open();
-                if (combosearch == 0) 
+                if (combosearch == 0)
                 {
                     cmd = new SqlCommand("select ProductID from ProductsTable where Barcode = '" + txtSearhBarcode.Text + "'", MainClass.con);
                     object ProductID = cmd.ExecuteScalar();
@@ -273,6 +273,7 @@ namespace RestaurantPOS
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
+           
             GatheringData();
             if (proceed == 1)
             {
@@ -285,14 +286,14 @@ namespace RestaurantPOS
                     float Price = float.Parse(ProductsData[2]);
                     float Qty = fqty;
                     float Total = ptot;
-                    DGVSaleCart.Rows.Add(ID,Name,Price,Qty,Total);
+                    DGVSaleCart.Rows.Add(ID, Name, Price, Qty, Total);
                 }
                 else
                 {
-                        foreach (DataGridViewRow item in DGVSaleCart.Rows)
+                    foreach (DataGridViewRow item in DGVSaleCart.Rows)
                     {
                         if (Convert.ToInt32(ProductsData[0]) == int.Parse(item.Cells[0].Value.ToString()))
-                       
+
                         {
                             productcheck = true;
                             break;
@@ -309,7 +310,7 @@ namespace RestaurantPOS
                         if (productcheck == true)
                         {
                             if (Convert.ToInt32(ProductsData[0]) == int.Parse(item.Cells[0].Value.ToString()))
-                                
+
                             {
 
                                 fqty += float.Parse(item.Cells[3].Value.ToString());
@@ -434,7 +435,7 @@ namespace RestaurantPOS
                 float paying = 0;
                 float change = 0;
                 paying = float.Parse(txtWPaying.Text);
-                change = gross - paying;
+                change = paying - gross;
                 txtWChange.Text = change.ToString();
             }
 
@@ -446,40 +447,44 @@ namespace RestaurantPOS
         {
             if (e.RowIndex != -1 && e.ColumnIndex != -1)
             {
-                if (e.ColumnIndex == 8)
+                if (e.ColumnIndex == 5)
                 {
                     float qty = 0;
                     float ptot = 0;
-                    qty = float.Parse(DGVSaleCart.CurrentRow.Cells[5].Value.ToString());
-                    if (qty == 1)
-                    {
-                        DGVSaleCart.Rows.RemoveAt(DGVSaleCart.CurrentRow.Index);
-                    }
-                    else
-                    {
-                        qty -= 1;
-                    }
-
-                    if (DGVSaleCart.Rows.Count != 0)
-                    {
-                        DGVSaleCart.CurrentRow.Cells[5].Value = qty.ToString();
-                        ptot = qty * float.Parse(DGVSaleCart.CurrentRow.Cells[4].Value.ToString());
-                        DGVSaleCart.CurrentRow.Cells[6].Value = ptot.ToString();
-                    }
+                    qty = float.Parse(DGVSaleCart.CurrentRow.Cells[3].Value.ToString());
+                    qty += 1;
+                    DGVSaleCart.CurrentRow.Cells[3].Value = qty.ToString();
+                    ptot = qty * float.Parse(DGVSaleCart.CurrentRow.Cells["SalePriceGV"].Value.ToString());
+                    DGVSaleCart.CurrentRow.Cells[4].Value = ptot.ToString();
 
 
                 }
                 else
                 {
-                    if (e.ColumnIndex == 7)
+                    if (e.ColumnIndex == 6)
                     {
+
                         float qty = 0;
                         float ptot = 0;
-                        qty = float.Parse(DGVSaleCart.CurrentRow.Cells[5].Value.ToString());
-                        qty += 1;
-                        DGVSaleCart.CurrentRow.Cells[5].Value = qty.ToString();
-                        ptot = qty * float.Parse(DGVSaleCart.CurrentRow.Cells[4].Value.ToString());
-                        DGVSaleCart.CurrentRow.Cells[6].Value = ptot.ToString();
+                        qty = float.Parse(DGVSaleCart.CurrentRow.Cells[3].Value.ToString());
+                        if (qty == 1)
+                        {
+                            DGVSaleCart.Rows.RemoveAt(DGVSaleCart.CurrentRow.Index);
+                        }
+                        else
+                        {
+                            qty -= 1;
+                        }
+
+                        if (DGVSaleCart.Rows.Count != 0)
+                        {
+                            DGVSaleCart.CurrentRow.Cells[3].Value = qty.ToString();
+                            ptot = qty * float.Parse(DGVSaleCart.CurrentRow.Cells["SalePriceGV"].Value.ToString());
+                            DGVSaleCart.CurrentRow.Cells[4].Value = ptot.ToString();
+                        }
+
+
+                       
                     }
                 }
 
@@ -553,15 +558,18 @@ namespace RestaurantPOS
                 MessageBox.Show("Please Enter Items");
                 return;
             }
+            else if (float.Parse(txtWChange.Text) < 0) 
+            {
+                MessageBox.Show("Please Enter Correct Value");
+                return;
+            }
             else
             {
                 SqlCommand cmd = null;
                 string invoiceno = "SAL" + txtInvoiceNo.Text.ToString();
                 float grantotal = float.Parse(txtGrandTotal.Text.ToString());
-                string CustomerInvoiceID = "";
                 string SaleID = "";
-                int WalkingCustomerID = 0;
-
+                string saletime = "";
 
 
 
@@ -569,11 +577,20 @@ namespace RestaurantPOS
                 try
                 {
                     MainClass.con.Open();
-                    cmd = new SqlCommand("insert into SalesTable(InvoiceNo,Discount,GrandTotal)" +
-                        "values (@InvoiceNo,@Discount,@GrandTotal)", MainClass.con);
+
+                    cmd = new SqlCommand("SELECT CONVERT(varchar(15),  CAST(GETDATE() AS TIME), 100) as SaleTime", MainClass.con);
+                    saletime = cmd.ExecuteScalar().ToString();
+
+                    cmd = new SqlCommand("insert into SalesTable(InvoiceNo,Discount,GrandTotal,SaleDate,Paying,Change,SaleTime,Cashier)" +
+                        "values (@InvoiceNo,@Discount,@GrandTotal,@SaleDate,@Paying,@Change,@SaleTime,@Cashier)", MainClass.con);
                     cmd.Parameters.AddWithValue("@InvoiceNo", invoiceno);
                     cmd.Parameters.AddWithValue("@Discount", txtDiscount.Text);
                     cmd.Parameters.AddWithValue("@GrandTotal", txtGrandTotal.Text);
+                    cmd.Parameters.AddWithValue("@SaleDate", dtInvoiceDate.Value.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@Paying", float.Parse(txtWPaying.Text));
+                    cmd.Parameters.AddWithValue("@Change", float.Parse(txtWChange.Text));
+                    cmd.Parameters.AddWithValue("@SaleTime", saletime);
+                    cmd.Parameters.AddWithValue("@Cashier", lblLoggedInUser.Text);
                     cmd.ExecuteNonQuery();
                     MainClass.con.Close();
                 }
@@ -591,6 +608,7 @@ namespace RestaurantPOS
                         MessageBox.Show("Please Check The Error or Try Again");
                         return;
                     }
+                    SALEID = int.Parse(SaleID);
                     MainClass.con.Close();
                 }
                 catch (Exception ex)
@@ -601,48 +619,25 @@ namespace RestaurantPOS
                 try
                 {
                     object stockqty = null;
-                    object packunit = null;
                     int productId = 0;
-                    float packqty = 0;
-
-                    float finalqty = 0;
-                    int mode = 0;
-                    int unitId = 0;
-                    bool pack = true;
-
                     MainClass.con.Open();
                     foreach (DataGridViewRow item in DGVSaleCart.Rows)
                     {
 
+
+
+
                         try
                         {
-                            cmd = new SqlCommand("select InventoryMode from ModeSwitching", MainClass.con);
-                            mode = int.Parse(cmd.ExecuteScalar().ToString());
+                            cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + item.Cells[0].Value.ToString() + "'", MainClass.con);
+                            stockqty = cmd.ExecuteScalar();
                         }
                         catch (Exception ex)
                         {
                             MainClass.con.Close();
                             MessageBox.Show(ex.Message);
-                        } //Mode Checking
+                        } //Finding StockQty
 
-
-                        if (mode == 0)
-                        {
-
-                        }
-                        else
-                        {
-                            try
-                            {
-                                cmd = new SqlCommand("select Qty from Inventory where ProductID = '" + item.Cells[0].Value.ToString() + "'", MainClass.con);
-                                stockqty = cmd.ExecuteScalar();
-                            }
-                            catch (Exception ex)
-                            {
-                                MainClass.con.Close();
-                                MessageBox.Show(ex.Message);
-                            } //Finding StockQty
-                        }
 
 
 
@@ -656,26 +651,6 @@ namespace RestaurantPOS
                             MessageBox.Show(ex.Message);
                             MainClass.con.Close();
                         } // Product ID
-                        try
-                        {
-                            if (pack == true)
-                            {
-                                cmd = new SqlCommand("select PackUnitID from ProductsTable where ProductID = '" + item.Cells[0].Value.ToString() + "' ", MainClass.con);
-                            }
-                            else
-                            {
-                                cmd = new SqlCommand("select UnitID from ProductsTable where ProductID = '" + item.Cells[0].Value.ToString() + "' ", MainClass.con);
-                            }
-                            unitId = int.Parse(cmd.ExecuteScalar().ToString());
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                            MainClass.con.Close();
-                        } // Unit ID
-
-                        cmd = new SqlCommand("select PackQty from ProductsTable where ProductID = '" + productId + "'", MainClass.con);
-                        packqty = float.Parse(cmd.ExecuteScalar().ToString());
 
 
                         try
@@ -685,9 +660,9 @@ namespace RestaurantPOS
                             "values (@Sales_ID,@ProductID,@Quantity,@SalePrice,@TotalOfProduct)", MainClass.con);
                             cmd.Parameters.AddWithValue("Sales_ID", SaleID);
                             cmd.Parameters.AddWithValue("ProductID", productId);
-                            cmd.Parameters.AddWithValue("Quantity", item.Cells[5].Value.ToString());
-                            cmd.Parameters.AddWithValue("SalePrice", item.Cells[4].Value.ToString());
-                            cmd.Parameters.AddWithValue("TotalOfProduct", item.Cells[6].Value.ToString());
+                            cmd.Parameters.AddWithValue("Quantity", item.Cells["QuantityGV"].Value.ToString());
+                            cmd.Parameters.AddWithValue("SalePrice", item.Cells["SalePriceGV"].Value.ToString());
+                            cmd.Parameters.AddWithValue("TotalOfProduct", item.Cells["TotalOfProductGV"].Value.ToString());
                             cmd.ExecuteNonQuery();
                         }
                         catch (Exception ex)
@@ -696,27 +671,13 @@ namespace RestaurantPOS
                             MainClass.con.Close();
                         }
 
-                        if (mode == 0)
-                        {
 
-                        }
-                        else
-                        {
-                            if (pack == true)
-                            {
-                                float stock = float.Parse(stockqty.ToString());
-                                finalqty = float.Parse(item.Cells[5].Value.ToString()) * float.Parse(packqty.ToString());
-                                stock -= float.Parse(finalqty.ToString());
-                                MainClass.UpdateInventory(productId, stock);
-                            }
-                            else
-                            {
-                                float qty = 0;
-                                float.TryParse(stockqty.ToString(), out qty);
-                                qty -= float.Parse(item.Cells[5].Value.ToString());
-                                MainClass.UpdateInventory(productId, qty);
-                            }
-                        }
+                        float qty = 0;
+                        float.TryParse(stockqty.ToString(), out qty);
+                        qty -= float.Parse(item.Cells["QuantityGV"].Value.ToString());
+                        MainClass.UpdateInventory(productId, qty);
+
+
 
 
                     }
@@ -732,13 +693,15 @@ namespace RestaurantPOS
 
             btnGenerate_Click(sender, e);
             MessageBox.Show("Sale Successfuly");
-
+            
             savedcustomercheck = false;
-            PurchaseReceiptForm s = new PurchaseReceiptForm();
+            BillForm s = new BillForm();
             s.ShowDialog();
             FullClear();
 
         }
+
+        public static int SALEID = 0;
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
@@ -762,6 +725,67 @@ namespace RestaurantPOS
         }
 
         private void cboProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRecentSales_Click(object sender, EventArgs e)
+        {
+            RecentSales rc = new RecentSales(this);
+            rc.ShowDialog();
+        }
+
+        private void lblID_TextChanged(object sender, EventArgs e)
+        {
+            
+            if(lblID.Text != "")
+            {
+                try
+                {
+                    lblID.Text = RecentSales.SALEID.ToString();
+                    MainClass.con.Open();
+                    SqlCommand cmd = null;
+                    SqlDataReader dr;
+                    cmd = new SqlCommand("select p.ProductID,p.ProductName,s.Quantity,s.SalePrice,s.TotalOfProduct from SalesInfo s inner join ProductsTable p on p.ProductID = s.ProductID where s.Sales_ID = " + lblID.Text + "", MainClass.con);
+                    dr = cmd.ExecuteReader();
+                    if(dr.HasRows)
+                    {
+                        while(dr.Read())
+                        {
+                            DGVSaleCart.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), dr[3].ToString(), dr[4].ToString());
+                        }
+                        dr.Close();
+                    }
+
+
+                    cmd = new SqlCommand("select GrandTotal from SalesTable where SaleID = '" + lblID.Text + "' ", MainClass.con);
+                    txtGrandTotal.Text = cmd.ExecuteScalar().ToString();
+
+                    cmd = new SqlCommand("select InvoiceNo from SalesTable where SaleID = '" + lblID.Text + "' ", MainClass.con);
+                    txtInvoiceNo.Text = cmd.ExecuteScalar().ToString();
+
+                    cmd = new SqlCommand("select Paying from SalesTable where SaleID = '" + lblID.Text + "' ", MainClass.con);
+                    txtWPaying.Text = cmd.ExecuteScalar().ToString();
+
+                    cmd = new SqlCommand("select Change from SalesTable where SaleID = '" + lblID.Text + "' ", MainClass.con);
+                    txtWChange.Text = cmd.ExecuteScalar().ToString();
+
+
+                    MainClass.con.Close();
+
+
+                  
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    MainClass.con.Close();
+                }
+         
+            }
+        }
+
+        private void lblID_Click(object sender, EventArgs e)
         {
 
         }

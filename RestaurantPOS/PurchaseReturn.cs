@@ -494,21 +494,7 @@ namespace RestaurantPOS
                         } //Ledgers Updating
                     }
 
-                    try
-                    {
-                        float handcash = MainClass.CashInHand();
-                        float cash = handcash + float.Parse(txtGrossTotal.Text);
-                        MainClass.con.Open();
-                        cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
-                        cmd.Parameters.AddWithValue("@CashInHand", cash);
-                        cmd.ExecuteNonQuery();
-                        MainClass.con.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        MainClass.con.Close();
-                        MessageBox.Show(ex.Message);
-                    } //UpdateCash Flow
+                  
 
 
                 }

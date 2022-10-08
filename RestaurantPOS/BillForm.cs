@@ -22,54 +22,22 @@ namespace RestaurantPOS
         private void BillForm_Load(object sender, EventArgs e)
         {
             rd = new ReportDocument();
-            if(RestaurantPOS.TakeAwaySaleID != 0)
+            if(POS.SALEID != 0)
             {
-                MainClass.ShowBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", RestaurantPOS.TakeAwaySaleID);
+                MainClass.ShowBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", POS.SALEID);
             }
-            else if(RestaurantPOS.DINEINID != 0)
-            {
-                MainClass.ShowDineInBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", RestaurantPOS.DINEINID);
-            }
-            else if(RestaurantPOS.LedgerSaleID != 0)
-            {
-                MainClass.ShowLedgerBill(rd, crystalReportViewer1, "LedgerBill", "@LedgeBillID", RestaurantPOS.LedgerSaleID);
-            }
-            else if(RestaurantPOS.DeliverySaleID != 0)
-            {
-                MainClass.ShowDeliveryBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", RestaurantPOS.DeliverySaleID);
-            }
-
+           
             else if(Reports.ReportsSaleID != 0)
             {
-                if(Reports.ReportOrderTypeID == 1)
-                {
-                    MainClass.ShowDineInBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", Reports.ReportsSaleID);
-                }
-                else if(Reports.ReportOrderTypeID == 2)
-                {
-                    MainClass.ShowBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", Reports.ReportsSaleID);
-                }
-                else if(Reports.ReportOrderTypeID == 3)
-                {
-                    MainClass.ShowLedgerBill(rd, crystalReportViewer1, "LedgerBill", "@LedgeBillID", Reports.ReportsSaleID);
-                }
+                MainClass.ShowBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", Reports.ReportsSaleID);
+              
             }
 
 
             else if (RecentSales.RecentReportsSaleID != 0)
             {
-                if (RecentSales.RecentReportOrderTypeID == 1)
-                {
-                    MainClass.ShowDineInBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", RecentSales.RecentReportsSaleID);
-                }
-                else if (RecentSales.RecentReportOrderTypeID == 2)
-                {
-                    MainClass.ShowBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", RecentSales.RecentReportsSaleID);
-                }
-                else if (RecentSales.RecentReportOrderTypeID == 3)
-                {
-                    MainClass.ShowLedgerBill(rd, crystalReportViewer1, "LedgerBill", "@LedgeBillID", RecentSales.RecentReportsSaleID);
-                }
+                MainClass.ShowBill(rd, crystalReportViewer1, "CreateBill", "@SalesID", RecentSales.RecentReportsSaleID);
+                
             }
         }
     }

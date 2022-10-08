@@ -96,8 +96,6 @@ namespace RestaurantPOS
                 txtStoreName.Text = dr["StoreName"].ToString();
                 txtStoreAddress.Text = dr["StoreAddress"].ToString();
                 txtLowStockQty.Text = dr["LowStockQty"].ToString();
-                txtGst.Text = dr["GST"].ToString();
-                txtCashInHand.Text = dr["CashInHand"].ToString();
                 txtCurrency.Text = dr["Currency"].ToString();
                 txtFooterLine.Text = dr["FooterLine"].ToString();
               
@@ -107,9 +105,7 @@ namespace RestaurantPOS
                 txtStoreName.Text = "";
                 txtStoreAddress.Text = "";
                 txtLowStockQty.Text = "";
-                txtGst.Text = "";
                 txtCurrency.Text = "";
-                txtCashInHand.Text = "";
                 txtFooterLine.Text = "";
             }
            
@@ -360,23 +356,7 @@ namespace RestaurantPOS
             }
         }
 
-        private void btnSaveMode_Click(object sender, EventArgs e)
-        {
-            MainClass.con.Open();
-            SqlCommand cmd = new SqlCommand("update ModeSwitching set InventoryMode = @InventoryMode", MainClass.con);
-            if(modetoggle.Checked == false)
-            {
-                cmd.Parameters.AddWithValue("@InventoryMode", 0);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@InventoryMode", 1);
-
-            }
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Settings Updated Successfully");
-            MainClass.con.Close();
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -399,12 +379,12 @@ namespace RestaurantPOS
             SqlCommand cmd = null;
             if (pictureBox1.Image == null)
             {
-                string query = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST ,Currency,CashInHand,FooterLine ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "' ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ",'"+txtFooterLine.Text+"')";
+                string query = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty ,Currency,FooterLine ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + txtCurrency.Text + "','"+txtFooterLine.Text+"')";
                 cmd = new SqlCommand(query, MainClass.con);
             }
             else
             {
-                string query2 = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,GST,Logo ,Currency,CashInHand,FooterLine ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "','" + float.Parse(txtGst.Text) + "',@Logo ,'" + txtCurrency.Text + "'," + float.Parse(txtCashInHand.Text) + ",'"+txtFooterLine.Text+"')";
+                string query2 = "INSERT INTO  StoreTable (StoreName,StoreAddress,LowStockQty,Logo ,Currency,FooterLine ) values ('" + txtStoreName.Text + "','" + txtStoreAddress.Text + "','" + txtLowStockQty.Text + "',@Logo ,'" + txtCurrency.Text + "','"+txtFooterLine.Text+"')";
                 cmd = new SqlCommand(query2, MainClass.con);
                 cmd.Parameters.Add("@Logo", SqlDbType.VarBinary).Value = ConvertImageToBytes(pictureBox1.Image);
             }
@@ -444,22 +424,20 @@ namespace RestaurantPOS
             SqlCommand cmd = null;
             if(pictureBox1.Image != null)
             {
-                cmd = new SqlCommand("update StoreTable set FooterLine=@FooterLine, StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty,CashInHand=@CashInHand, GST = @GST, Logo = @Logo ", MainClass.con);
+                cmd = new SqlCommand("update StoreTable set FooterLine=@FooterLine, StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty, Logo = @Logo ", MainClass.con);
                 cmd.Parameters.AddWithValue("@Logo", ConvertImageToBytes(pictureBox1.Image));
 
             }
             else
             {
-                cmd = new SqlCommand("update StoreTable set FooterLine=@FooterLine, StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty,CashInHand=@CashInHand, GST = @GST ", MainClass.con);
+                cmd = new SqlCommand("update StoreTable set FooterLine=@FooterLine, StoreName = @StoreName,Currency=@Currency, StoreAddress= @StoreAddress , LowStockQty = @LowStockQty", MainClass.con);
 
             }
             cmd.Parameters.AddWithValue("@StoreName", txtStoreName.Text);
             cmd.Parameters.AddWithValue("@StoreAddress", txtStoreAddress.Text);
             cmd.Parameters.AddWithValue("@FooterLine", txtFooterLine.Text);
             cmd.Parameters.AddWithValue("@LowStockQty", txtLowStockQty.Text);
-            cmd.Parameters.AddWithValue("@GST", float.Parse(txtGst.Text));
             cmd.Parameters.AddWithValue("@Currency", txtCurrency.Text);
-            cmd.Parameters.AddWithValue("@CashInHand", float.Parse(txtCashInHand.Text));
             cmd.ExecuteNonQuery();
             MessageBox.Show("Store Updated Successfully");
             MainClass.con.Close();

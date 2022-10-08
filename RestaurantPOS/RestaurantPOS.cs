@@ -916,22 +916,7 @@ namespace RestaurantPOS
                         TOKENID = GenerateTokenNumber();
                         MessageBox.Show("Sale Saved");
 
-                        try
-                        {
-                            float handcash = MainClass.CashInHand();
-                            float cash = handcash + float.Parse(lblGrandTotal.Text);
-
-                            MainClass.con.Open();
-                            cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
-                            cmd.Parameters.AddWithValue("@CashInHand", cash);
-                            cmd.ExecuteNonQuery();
-                            MainClass.con.Close();
-                        }
-                        catch (Exception ex)
-                        {
-                            MainClass.con.Close();
-                            MessageBox.Show(ex.Message);
-                        } //UpdateCash Flow
+                     
 
 
                         TokenForm bf = new TokenForm();
@@ -1114,22 +1099,7 @@ namespace RestaurantPOS
 
                 MainClass.con.Close();
                 btnGenerate_Click(sender, e);
-                try
-                {
-                    float handcash = MainClass.CashInHand();
-                    float cash = handcash + float.Parse(lblGrandTotal.Text);
-
-                    MainClass.con.Open();
-                    cmd = new SqlCommand("update StoreTable set CashInHand = @CashInHand", MainClass.con);
-                    cmd.Parameters.AddWithValue("@CashInHand", cash);
-                    cmd.ExecuteNonQuery();
-                    MainClass.con.Close();
-                }
-                catch (Exception ex)
-                {
-                    MainClass.con.Close();
-                    MessageBox.Show(ex.Message);
-                } //UpdateCash Flow
+             
 
                 MessageBox.Show("Sale Finalized");
 
