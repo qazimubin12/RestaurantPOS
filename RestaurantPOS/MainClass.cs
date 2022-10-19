@@ -176,6 +176,37 @@ namespace RestaurantPOS
         }
 
 
+
+        public static void ShowBill(ReportDocument rd, string proc, string param1 = "", object val1 = null)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(proc, MainClass.con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (param1 != "")
+                {
+                    cmd.Parameters.AddWithValue(param1, val1);
+                }
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                PrintDialog p = new PrintDialog();
+                rd.Load(Application.StartupPath + "\\Reports\\Bill.rpt");
+                rd.SetDataSource(dt);
+                rd.PrintOptions.PrinterName = p.PrinterSettings.PrinterName;
+                rd.PrintToPrinter(p.PrinterSettings.Copies, p.PrinterSettings.Collate, p.PrinterSettings.FromPage, p.PrinterSettings.ToPage);
+
+                
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
         public static void ShowDeliveryBill(ReportDocument rd, CrystalReportViewer crv, string proc, string param1 = "", object val1 = null)
         {
             try

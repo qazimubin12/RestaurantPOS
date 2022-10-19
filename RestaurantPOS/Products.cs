@@ -82,6 +82,7 @@ namespace RestaurantPOS
             txtProductName.Text = "";
             txtSalePrice.Text = "";
             txtRemarks.Text = "";
+            txtBarcode.Text = "";
             pedit = 0;
         }
 
@@ -231,7 +232,8 @@ namespace RestaurantPOS
             else
             {
                 if (txtProductName.Text == "" &&
-                txtSalePrice.Text == "" &&               
+                txtSalePrice.Text == "" && 
+                txtBarcode.Text == "" &&
                 txtRemarks.Text == ""  )
                 {
                     HomeScreen hs = new HomeScreen();

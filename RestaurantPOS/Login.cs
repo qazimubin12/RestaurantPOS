@@ -30,56 +30,63 @@ namespace RestaurantPOS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           
+            MainClass.con.Open();
+            SqlCommand cmd1 = new SqlCommand("select ExpiryDate from testing", MainClass.con);
+            DateTime Date = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
+            DateTime expiry = DateTime.Parse(cmd1.ExecuteScalar().ToString());
 
-            try
+            MainClass.con.Close();
+            if (Date < expiry)
             {
-                bool found = false;
-                object count = 0;
-                MainClass.con.Open();
-                SqlCommand cmd = new SqlCommand("select * from UsersTable where Username = @Username and Password = @Password ", MainClass.con);
-                cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
-                cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
-                dr = cmd.ExecuteReader();
-                dr.Read();
-                if (dr.HasRows)
+                try
                 {
-                    found = true;
-                    User_NAME = dr["Name"].ToString();
-                    Role = dr["Role"].ToString();
-                }
-                else
-                {
-                    found = false;
-                    MessageBox.Show("Invalid Details", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Clear();
-                    txtUsername.Focus();
-                }
-                dr.Close();
-                MainClass.con.Close();
-                if (found == true)
-                {
-                    if (Role.ToString() == "Admin")
+                    bool found = false;
+                    object count = 0;
+                    MainClass.con.Open();
+                    SqlCommand cmd = new SqlCommand("select * from UsersTable where Username = @Username and Password = @Password ", MainClass.con);
+                    cmd.Parameters.AddWithValue("@Username", txtUsername.Text);
+                    cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
+                    dr = cmd.ExecuteReader();
+                    dr.Read();
+                    if (dr.HasRows)
                     {
-                        
-                        MessageBox.Show("Welcome " + User_NAME);
-                        HomeScreen das = new HomeScreen();
-                        das.lblLoggedUser.Text = Role.ToString();
-                        MainClass.showWindow(das, this, MDI.ActiveForm);
+                        found = true;
+                        User_NAME = dr["Name"].ToString();
+                        Role = dr["Role"].ToString();
                     }
                     else
                     {
-                        MessageBox.Show("Welcome " + User_NAME);
-                        RestaurantPOS das = new RestaurantPOS();
-                        das.lblLoggedInUser.Text = Role.ToString();
-                        MainClass.showWindow(das, this, MDI.ActiveForm);
+                        found = false;
+                        MessageBox.Show("Invalid Details", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Clear();
+                        txtUsername.Focus();
+                    }
+                    dr.Close();
+                    MainClass.con.Close();
+                    if (found == true)
+                    {
+                        if (Role.ToString() == "Admin")
+                        {
+
+                            MessageBox.Show("Welcome " + User_NAME);
+                            HomeScreen das = new HomeScreen();
+                            das.lblLoggedUser.Text = Role.ToString();
+                            MainClass.showWindow(das, this, MDI.ActiveForm);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Welcome " + User_NAME);
+                            HomeScreen das = new HomeScreen();
+                            das.lblLoggedUser.Text = Role.ToString();
+                            MainClass.showWindow(das, this, MDI.ActiveForm);
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MainClass.con.Close();
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MainClass.con.Close();
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

@@ -162,6 +162,14 @@ namespace RestaurantPOS
         {
             FindDailySales();
             FindLowStocks();
+            if (lblLoggedUser.Text == "Cashier")
+            {
+                btnSettings.Visible = false;
+                btnInventory.Visible = false;
+                btnReports.Visible = false;
+                lowStocksPanel.Visible = false;
+                dailysalesPanel.Visible = false;
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

@@ -36,12 +36,12 @@ namespace RestaurantPOS
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.DGVRecentPurchases = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.PurchaseIDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceNoGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PurchaseDateGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GrandTotalGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActionGV = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVRecentPurchases)).BeginInit();
             this.panel2.SuspendLayout();
@@ -49,7 +49,7 @@ namespace RestaurantPOS
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.panel1.BackColor = System.Drawing.Color.OrangeRed;
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -86,7 +86,7 @@ namespace RestaurantPOS
             // 
             this.DGVRecentPurchases.AllowUserToAddRows = false;
             this.DGVRecentPurchases.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(205)))), ((int)(((byte)(189)))));
             this.DGVRecentPurchases.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVRecentPurchases.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVRecentPurchases.BackgroundColor = System.Drawing.Color.White;
@@ -94,7 +94,7 @@ namespace RestaurantPOS
             this.DGVRecentPurchases.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVRecentPurchases.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -109,16 +109,16 @@ namespace RestaurantPOS
             this.GrandTotalGV,
             this.ActionGV});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(221)))), ((int)(((byte)(211)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(143)))), ((int)(((byte)(107)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGVRecentPurchases.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGVRecentPurchases.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVRecentPurchases.EnableHeadersVisualStyles = false;
-            this.DGVRecentPurchases.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
+            this.DGVRecentPurchases.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(203)))), ((int)(((byte)(186)))));
             this.DGVRecentPurchases.Location = new System.Drawing.Point(0, 0);
             this.DGVRecentPurchases.Name = "DGVRecentPurchases";
             this.DGVRecentPurchases.ReadOnly = true;
@@ -126,38 +126,29 @@ namespace RestaurantPOS
             this.DGVRecentPurchases.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVRecentPurchases.Size = new System.Drawing.Size(800, 377);
             this.DGVRecentPurchases.TabIndex = 30;
-            this.DGVRecentPurchases.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Emerald;
-            this.DGVRecentPurchases.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DGVRecentPurchases.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.DeepOrange;
+            this.DGVRecentPurchases.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(205)))), ((int)(((byte)(189)))));
             this.DGVRecentPurchases.ThemeStyle.AlternatingRowsStyle.Font = null;
             this.DGVRecentPurchases.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
             this.DGVRecentPurchases.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.DGVRecentPurchases.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.DGVRecentPurchases.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.DGVRecentPurchases.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
-            this.DGVRecentPurchases.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.DGVRecentPurchases.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(203)))), ((int)(((byte)(186)))));
+            this.DGVRecentPurchases.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
             this.DGVRecentPurchases.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DGVRecentPurchases.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.DGVRecentPurchases.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.DGVRecentPurchases.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.DGVRecentPurchases.ThemeStyle.HeaderStyle.Height = 40;
             this.DGVRecentPurchases.ThemeStyle.ReadOnly = true;
-            this.DGVRecentPurchases.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            this.DGVRecentPurchases.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(221)))), ((int)(((byte)(211)))));
             this.DGVRecentPurchases.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVRecentPurchases.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.DGVRecentPurchases.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
             this.DGVRecentPurchases.ThemeStyle.RowsStyle.Height = 22;
-            this.DGVRecentPurchases.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            this.DGVRecentPurchases.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(143)))), ((int)(((byte)(107)))));
             this.DGVRecentPurchases.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.DGVRecentPurchases.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVRecentPurchases_CellClick);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.DGVRecentPurchases);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 73);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 377);
-            this.panel2.TabIndex = 31;
             // 
             // PurchaseIDGV
             // 
@@ -193,6 +184,15 @@ namespace RestaurantPOS
             this.ActionGV.Text = "EDIT";
             this.ActionGV.ToolTipText = "EDIT";
             this.ActionGV.UseColumnTextForButtonValue = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.DGVRecentPurchases);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 73);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 377);
+            this.panel2.TabIndex = 31;
             // 
             // RecentPurchases
             // 

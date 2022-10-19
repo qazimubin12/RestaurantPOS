@@ -107,7 +107,7 @@ namespace RestaurantPOS
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.panel1.BackColor = System.Drawing.Color.OrangeRed;
             this.panel1.Controls.Add(this.lblLoggedUser);
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.btnUserSettings);
@@ -147,11 +147,11 @@ namespace RestaurantPOS
             // btnUserSettings
             // 
             this.btnUserSettings.BackColor = System.Drawing.Color.White;
-            this.btnUserSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnUserSettings.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.btnUserSettings.FlatAppearance.BorderSize = 2;
             this.btnUserSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUserSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnUserSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnUserSettings.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnUserSettings.Location = new System.Drawing.Point(264, 46);
             this.btnUserSettings.Name = "btnUserSettings";
             this.btnUserSettings.Size = new System.Drawing.Size(212, 42);
@@ -163,11 +163,11 @@ namespace RestaurantPOS
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.button1.FlatAppearance.BorderSize = 2;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button1.ForeColor = System.Drawing.Color.OrangeRed;
             this.button1.Location = new System.Drawing.Point(700, 46);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(212, 42);
@@ -179,11 +179,11 @@ namespace RestaurantPOS
             // btnDatabaseSettings
             // 
             this.btnDatabaseSettings.BackColor = System.Drawing.Color.White;
-            this.btnDatabaseSettings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnDatabaseSettings.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.btnDatabaseSettings.FlatAppearance.BorderSize = 2;
             this.btnDatabaseSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDatabaseSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnDatabaseSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnDatabaseSettings.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnDatabaseSettings.Location = new System.Drawing.Point(482, 48);
             this.btnDatabaseSettings.Name = "btnDatabaseSettings";
             this.btnDatabaseSettings.Size = new System.Drawing.Size(212, 42);
@@ -295,8 +295,8 @@ namespace RestaurantPOS
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnSave.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.btnSave.FlatAppearance.BorderSize = 2;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -516,7 +516,7 @@ namespace RestaurantPOS
             // 
             this.DgvUsers.AllowUserToAddRows = false;
             this.DgvUsers.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(205)))), ((int)(((byte)(189)))));
             this.DgvUsers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvUsers.BackgroundColor = System.Drawing.Color.White;
@@ -524,7 +524,7 @@ namespace RestaurantPOS
             this.DgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DgvUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -539,16 +539,16 @@ namespace RestaurantPOS
             this.RoleGV});
             this.DgvUsers.ContextMenuStrip = this.contextMenuStrip1;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(221)))), ((int)(((byte)(211)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(143)))), ((int)(((byte)(107)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DgvUsers.DefaultCellStyle = dataGridViewCellStyle3;
             this.DgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgvUsers.EnableHeadersVisualStyles = false;
-            this.DgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
+            this.DgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(203)))), ((int)(((byte)(186)))));
             this.DgvUsers.Location = new System.Drawing.Point(0, 0);
             this.DgvUsers.Name = "DgvUsers";
             this.DgvUsers.ReadOnly = true;
@@ -556,27 +556,27 @@ namespace RestaurantPOS
             this.DgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvUsers.Size = new System.Drawing.Size(555, 487);
             this.DgvUsers.TabIndex = 27;
-            this.DgvUsers.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Emerald;
-            this.DgvUsers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(239)))), ((int)(((byte)(212)))));
+            this.DgvUsers.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.DeepOrange;
+            this.DgvUsers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(205)))), ((int)(((byte)(189)))));
             this.DgvUsers.ThemeStyle.AlternatingRowsStyle.Font = null;
             this.DgvUsers.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
             this.DgvUsers.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
             this.DgvUsers.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.DgvUsers.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.DgvUsers.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(238)))), ((int)(((byte)(208)))));
-            this.DgvUsers.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.DgvUsers.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(203)))), ((int)(((byte)(186)))));
+            this.DgvUsers.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
             this.DgvUsers.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DgvUsers.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DgvUsers.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.DgvUsers.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.DgvUsers.ThemeStyle.HeaderStyle.Height = 30;
             this.DgvUsers.ThemeStyle.ReadOnly = true;
-            this.DgvUsers.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(244)))), ((int)(((byte)(226)))));
+            this.DgvUsers.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(221)))), ((int)(((byte)(211)))));
             this.DgvUsers.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DgvUsers.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DgvUsers.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
             this.DgvUsers.ThemeStyle.RowsStyle.Height = 22;
-            this.DgvUsers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(221)))), ((int)(((byte)(160)))));
+            this.DgvUsers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(143)))), ((int)(((byte)(107)))));
             this.DgvUsers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             // 
             // UserNameGV
@@ -634,6 +634,7 @@ namespace RestaurantPOS
             this.label20.Size = new System.Drawing.Size(239, 40);
             this.label20.TabIndex = 33;
             this.label20.Text = "Wipe All Data";
+            this.label20.Visible = false;
             // 
             // label9
             // 
@@ -706,11 +707,11 @@ namespace RestaurantPOS
             // btnRestoreBrowse
             // 
             this.btnRestoreBrowse.BackColor = System.Drawing.Color.White;
-            this.btnRestoreBrowse.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnRestoreBrowse.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.btnRestoreBrowse.FlatAppearance.BorderSize = 2;
             this.btnRestoreBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestoreBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnRestoreBrowse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnRestoreBrowse.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnRestoreBrowse.Location = new System.Drawing.Point(433, 207);
             this.btnRestoreBrowse.Name = "btnRestoreBrowse";
             this.btnRestoreBrowse.Size = new System.Drawing.Size(85, 32);
@@ -722,27 +723,28 @@ namespace RestaurantPOS
             // btnWipeAllOutData
             // 
             this.btnWipeAllOutData.BackColor = System.Drawing.Color.White;
-            this.btnWipeAllOutData.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnWipeAllOutData.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.btnWipeAllOutData.FlatAppearance.BorderSize = 2;
             this.btnWipeAllOutData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWipeAllOutData.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnWipeAllOutData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnWipeAllOutData.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnWipeAllOutData.Location = new System.Drawing.Point(21, 357);
             this.btnWipeAllOutData.Name = "btnWipeAllOutData";
             this.btnWipeAllOutData.Size = new System.Drawing.Size(212, 42);
             this.btnWipeAllOutData.TabIndex = 31;
             this.btnWipeAllOutData.Text = "WIPE";
             this.btnWipeAllOutData.UseVisualStyleBackColor = false;
+            this.btnWipeAllOutData.Visible = false;
             this.btnWipeAllOutData.Click += new System.EventHandler(this.btnWipeAllOutData_Click);
             // 
             // btnRestore
             // 
             this.btnRestore.BackColor = System.Drawing.Color.White;
-            this.btnRestore.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnRestore.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.btnRestore.FlatAppearance.BorderSize = 2;
             this.btnRestore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnRestore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnRestore.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnRestore.Location = new System.Drawing.Point(17, 246);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(212, 42);
@@ -754,11 +756,11 @@ namespace RestaurantPOS
             // btnBackupBrowse
             // 
             this.btnBackupBrowse.BackColor = System.Drawing.Color.White;
-            this.btnBackupBrowse.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnBackupBrowse.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.btnBackupBrowse.FlatAppearance.BorderSize = 2;
             this.btnBackupBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBackupBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnBackupBrowse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnBackupBrowse.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnBackupBrowse.Location = new System.Drawing.Point(433, 49);
             this.btnBackupBrowse.Name = "btnBackupBrowse";
             this.btnBackupBrowse.Size = new System.Drawing.Size(85, 32);
@@ -770,11 +772,11 @@ namespace RestaurantPOS
             // btnBackup
             // 
             this.btnBackup.BackColor = System.Drawing.Color.White;
-            this.btnBackup.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnBackup.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.btnBackup.FlatAppearance.BorderSize = 2;
             this.btnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnBackup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnBackup.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnBackup.Location = new System.Drawing.Point(17, 87);
             this.btnBackup.Name = "btnBackup";
             this.btnBackup.Size = new System.Drawing.Size(212, 42);
@@ -834,11 +836,11 @@ namespace RestaurantPOS
             // btnSaveStore
             // 
             this.btnSaveStore.BackColor = System.Drawing.Color.White;
-            this.btnSaveStore.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnSaveStore.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.btnSaveStore.FlatAppearance.BorderSize = 2;
             this.btnSaveStore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveStore.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSaveStore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnSaveStore.ForeColor = System.Drawing.Color.OrangeRed;
             this.btnSaveStore.Location = new System.Drawing.Point(741, 369);
             this.btnSaveStore.Name = "btnSaveStore";
             this.btnSaveStore.Size = new System.Drawing.Size(209, 42);
@@ -991,11 +993,11 @@ namespace RestaurantPOS
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
             this.button2.FlatAppearance.BorderSize = 2;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button2.ForeColor = System.Drawing.Color.OrangeRed;
             this.button2.Location = new System.Drawing.Point(741, 260);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(209, 42);

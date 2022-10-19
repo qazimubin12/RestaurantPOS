@@ -301,35 +301,16 @@ namespace RestaurantPOS
         }
 
         public static int ReportsSaleID = 0;
-        public static int ReportOrderTypeID = 0;
+        public static int ReportsPurchaseID = 0;
         private void DGVSales_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex != -1 || e.ColumnIndex != -1)
             {
-                if(e.ColumnIndex == 0)
+                if (e.ColumnIndex == 0)
                 {
-                    if(DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Dine In")
-                    {
-                        ReportOrderTypeID = 1;
-                        ReportsSaleID = int.Parse(DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString());
-                        BillForm bf = new BillForm();
-                        bf.Show();
-
-                    }
-                    else if (DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Take Away")
-                    {
-                        ReportOrderTypeID = 2;
-                        ReportsSaleID = int.Parse(DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString());
-                        BillForm bf = new BillForm();
-                        bf.Show();
-                    }
-                    else if(DGVSales.CurrentRow.Cells["OrderTypeGV"].Value.ToString() == "Credit")
-                    {
-                        ReportOrderTypeID = 3;
-                        ReportsSaleID = int.Parse(DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString());
-                        BillForm bf = new BillForm();
-                        bf.Show();
-                    }
+                    ReportsSaleID = int.Parse(DGVSales.CurrentRow.Cells["SaleIDGV"].Value.ToString());
+                    BillForm bf = new BillForm();
+                    bf.Show();
                 }
             }
         }
@@ -524,6 +505,24 @@ namespace RestaurantPOS
             {
                 MessageBox.Show(ex.Message);
                 MainClass.con.Close();
+            }
+        }
+
+        private void DGVPurchases_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void DGVPurchases_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 || e.ColumnIndex != -1)
+            {
+                if (e.ColumnIndex == 0)
+                {
+                    ReportsPurchaseID = int.Parse(DGVPurchases.CurrentRow.Cells["PurchaseIDGV"].Value.ToString());
+                    PurchaseReceiptForm bf = new PurchaseReceiptForm();
+                    bf.Show();
+                }
             }
         }
     }

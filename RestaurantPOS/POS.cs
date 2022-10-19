@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,6 +34,7 @@ namespace RestaurantPOS
             MainClass.FillProductsPOS(cboProducts);
             GenerateInvoiceNo();
             ShowStore();
+            txtSearhBarcode.Focus();
         }
 
         private void ShowStore()
@@ -259,6 +261,7 @@ namespace RestaurantPOS
                 {
                     gross += float.Parse(item.Cells[4].Value.ToString());
                 }
+                txtGrandTotal.Text = gross.ToString();
                 txtGrandTotal.Text = gross.ToString();
                 txtWPaying.Enabled = true;
             }
@@ -504,11 +507,11 @@ namespace RestaurantPOS
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    txtInvoiceNo.Text = (int.Parse(ds.Tables[0].Rows[0][0].ToString()) + 1).ToString();
+                    txtInvoiceNo.Text = (int.Parse(ds.Tables[0].Rows[0][0].ToString()) + 1).ToString() + DateTime.Now.ToString("HHmmss");
                 }
                 else
                 {
-                    txtInvoiceNo.Text = "1";
+                    txtInvoiceNo.Text = "1" + DateTime.Now.ToString("HHmmss");
                 }
                 MainClass.con.Close();
             }
@@ -695,8 +698,11 @@ namespace RestaurantPOS
             MessageBox.Show("Sale Successfuly");
             
             savedcustomercheck = false;
-            BillForm s = new BillForm();
-            s.ShowDialog();
+            //BillForm s = new BillForm();
+            //s.ShowDialog();
+            ReportDocument rd = new ReportDocument();
+            MainClass.ShowBill(rd, "CreateBill", "@SalesID", POS.SALEID);
+
             FullClear();
 
         }
@@ -788,6 +794,25 @@ namespace RestaurantPOS
         private void lblID_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtGrandTotal_TextChanged(object sender, EventArgs e)
+        {
+            txtWPaying.Text = txtGrandTotal.Text;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            POS p = new POS();
+            p.btnClose.Visible = false;
+            p.btnWindowClose.Visible = true;
+            GenerateInvoiceNo();
+            p.Show();
+        }
+
+        private void btnWindowClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
