@@ -60,4 +60,3 @@ D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.PurchaseReceiptForm.r
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.PurchaseReturn.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.RecentPurchases.resources
 D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.StockControl.resources
-D:\C#\RESTAURANT POS\RestaurantPOS\obj\Debug\RestaurantPOS.csproj.AssemblyReference.cache
