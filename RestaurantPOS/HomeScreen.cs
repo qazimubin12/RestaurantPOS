@@ -212,5 +212,12 @@ namespace RestaurantPOS
 
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Login ls = new Login();
+            MainClass.showWindow(ls, this, MDI.ActiveForm);
+
+        }
     }
 }

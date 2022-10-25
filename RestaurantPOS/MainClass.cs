@@ -142,6 +142,40 @@ namespace RestaurantPOS
             }
         }
 
+
+        public static void FillUsers(ComboBox cmb)
+        {
+            DataTable dgusers = new DataTable();
+            dgusers.Columns.Add("Username");
+            dgusers.Columns.Add("Name");
+            dgusers.Rows.Add("0", "-----Select-----");
+            try
+            {
+                DataTable dt = Retrieve("select Username, Name from UsersTable");
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow user in dt.Rows)
+                        {
+                            dgusers.Rows.Add(user["Username"], user["Name"]);
+                        }
+                    }
+
+                }
+                cmb.DisplayMember = "Name";
+                cmb.ValueMember = "Username";
+
+                cmb.DataSource = dgusers;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                cmb.DataSource = dgusers;
+            }
+        }
+
         public static string ShowPurchaseType(string InvoiceNo)
         {
             SqlCommand cmd = new SqlCommand("select PaymentType from SupplierInvoicesTable where InvoiceNo = '" + InvoiceNo + "' ", MainClass.con);

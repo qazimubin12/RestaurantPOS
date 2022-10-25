@@ -29,10 +29,11 @@ namespace RestaurantPOS
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnWindowClose = new System.Windows.Forms.Button();
             this.lblLoggedInUser = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -63,6 +64,7 @@ namespace RestaurantPOS
             this.ActionAddGV = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ActionRemoveGV = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnRecentSales = new System.Windows.Forms.Button();
             this.txtGrandTotal = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnFinalize = new System.Windows.Forms.Button();
@@ -74,8 +76,6 @@ namespace RestaurantPOS
             this.label12 = new System.Windows.Forms.Label();
             this.txtWPaying = new Guna.UI2.WinForms.Guna2TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnWindowClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.guna2GroupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -102,6 +102,19 @@ namespace RestaurantPOS
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1370, 73);
             this.panel1.TabIndex = 1;
+            // 
+            // btnWindowClose
+            // 
+            this.btnWindowClose.FlatAppearance.BorderSize = 0;
+            this.btnWindowClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWindowClose.Image = global::RestaurantPOS.Properties.Resources.cancel__2_;
+            this.btnWindowClose.Location = new System.Drawing.Point(1325, 0);
+            this.btnWindowClose.Name = "btnWindowClose";
+            this.btnWindowClose.Size = new System.Drawing.Size(45, 36);
+            this.btnWindowClose.TabIndex = 10;
+            this.btnWindowClose.UseVisualStyleBackColor = true;
+            this.btnWindowClose.Visible = false;
+            this.btnWindowClose.Click += new System.EventHandler(this.btnWindowClose_Click);
             // 
             // lblLoggedInUser
             // 
@@ -159,6 +172,7 @@ namespace RestaurantPOS
             this.lblID.Size = new System.Drawing.Size(51, 40);
             this.lblID.TabIndex = 2;
             this.lblID.Text = "ID";
+            this.lblID.Visible = false;
             this.lblID.TextChanged += new System.EventHandler(this.lblID_TextChanged);
             this.lblID.Click += new System.EventHandler(this.lblID_Click);
             // 
@@ -172,6 +186,7 @@ namespace RestaurantPOS
             this.lblStore.Size = new System.Drawing.Size(61, 40);
             this.lblStore.TabIndex = 2;
             this.lblStore.Text = "cc";
+            this.lblStore.Visible = false;
             // 
             // label16
             // 
@@ -183,6 +198,7 @@ namespace RestaurantPOS
             this.label16.Size = new System.Drawing.Size(110, 40);
             this.label16.TabIndex = 2;
             this.label16.Text = "Store:";
+            this.label16.Visible = false;
             // 
             // label1
             // 
@@ -395,21 +411,21 @@ namespace RestaurantPOS
             // 
             this.DGVSaleCart.AllowUserToAddRows = false;
             this.DGVSaleCart.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(205)))), ((int)(((byte)(189)))));
-            this.DGVSaleCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(205)))), ((int)(((byte)(189)))));
+            this.DGVSaleCart.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVSaleCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVSaleCart.BackgroundColor = System.Drawing.Color.White;
             this.DGVSaleCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVSaleCart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVSaleCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVSaleCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(87)))), ((int)(((byte)(34)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVSaleCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVSaleCart.ColumnHeadersHeight = 30;
             this.DGVSaleCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductIDGV,
@@ -419,14 +435,14 @@ namespace RestaurantPOS
             this.TotalOfProductGV,
             this.ActionAddGV,
             this.ActionRemoveGV});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(221)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 10F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(143)))), ((int)(((byte)(107)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVSaleCart.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(221)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(143)))), ((int)(((byte)(107)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVSaleCart.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGVSaleCart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVSaleCart.EnableHeadersVisualStyles = false;
             this.DGVSaleCart.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(203)))), ((int)(((byte)(186)))));
@@ -530,6 +546,22 @@ namespace RestaurantPOS
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(566, 445);
             this.panel4.TabIndex = 27;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.OrangeRed;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
+            this.button2.FlatAppearance.BorderSize = 2;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(422, 248);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(132, 38);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "&START NEW";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnRecentSales
             // 
@@ -737,35 +769,6 @@ namespace RestaurantPOS
             this.label14.Size = new System.Drawing.Size(66, 19);
             this.label14.TabIndex = 7;
             this.label14.Text = "Change";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.OrangeRed;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.OrangeRed;
-            this.button2.FlatAppearance.BorderSize = 2;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(422, 248);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 38);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "&START NEW";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnWindowClose
-            // 
-            this.btnWindowClose.FlatAppearance.BorderSize = 0;
-            this.btnWindowClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWindowClose.Image = global::RestaurantPOS.Properties.Resources.cancel__2_;
-            this.btnWindowClose.Location = new System.Drawing.Point(1325, 0);
-            this.btnWindowClose.Name = "btnWindowClose";
-            this.btnWindowClose.Size = new System.Drawing.Size(45, 36);
-            this.btnWindowClose.TabIndex = 10;
-            this.btnWindowClose.UseVisualStyleBackColor = true;
-            this.btnWindowClose.Visible = false;
-            this.btnWindowClose.Click += new System.EventHandler(this.btnWindowClose_Click);
             // 
             // POS
             // 

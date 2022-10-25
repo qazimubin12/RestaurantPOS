@@ -37,10 +37,11 @@ namespace RestaurantPOS
             lblLoggedUser.Text = "Admin";
 
             tabControl1.SelectedIndex = 1;
-            MainClass.FillSupplier(cboSupplierLedger);
+            //MainClass.FillSupplier(cboSupplierLedger);
             MainClass.HideAllTabsOnTabControl(tabControl1);
             ShowPurchases(DGVPurchases, PurchaseIDGV, InvoiceNoGv, InvoiceDateGV, RemarksGV, GrandTotalGV);
             ShowSales(DGVSales, SaleIDGV, SaleInvoiceNoGV, OrderDateGV, OrderTimeGV, CashierGV, SaleGrandTotalGV);
+            MainClass.FillUsers(cboUsers);
         }
 
         private void ShowPurchases(DataGridView dgv, DataGridViewColumn PurchaseID, DataGridViewColumn InvoiceNo, DataGridViewColumn InvoiceDate, DataGridViewColumn Remarks, DataGridViewColumn GrandTotal )
@@ -136,7 +137,15 @@ namespace RestaurantPOS
             SqlCommand cmd = null;
             if (saledate == 1)
             {
-                cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',SaleTime,GrandTotal,Cashier from SalesTable where SaleDate between '" + dtSale1.Value.ToShortDateString() + "' and '" + dtSale2.Value.ToShortDateString() + "' ", MainClass.con);
+                if (cboUsers.SelectedValue.ToString() != "0")
+                {
+                    cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',SaleTime,GrandTotal,Cashier from SalesTable where SaleDate between '" + dtSale1.Value.ToShortDateString() + "' and '" + dtSale2.Value.ToShortDateString() + "' and Cashier = '"+cboUsers.Text+"' ", MainClass.con);
+
+                }
+                else
+                {
+                    cmd = new SqlCommand("select SaleID,InvoiceNo,format(SaleDate, 'dd/MM/yyyy') as 'Date',SaleTime,GrandTotal,Cashier from SalesTable where SaleDate between '" + dtSale1.Value.ToShortDateString() + "' and '" + dtSale2.Value.ToShortDateString() + "' ", MainClass.con);
+                }
             }
             else
             {

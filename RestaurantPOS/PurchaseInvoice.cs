@@ -118,7 +118,6 @@ namespace RestaurantPOS
                 txtSalePrice.Text = "";
                 return;
             }
-            SqlCommand cmd = null;
             GetPrice();
         }
 
@@ -188,6 +187,7 @@ namespace RestaurantPOS
             txtQuantity.Text = "";
             txtDiscount.Text = "";
             cboProducts.SelectedIndex = 0;
+            txtBarcode.Text = "";
             cboProducts.Focus();
         }
 
@@ -446,7 +446,8 @@ namespace RestaurantPOS
                             }
                             else
                             {
-                                quantity = float.Parse(PurchaseInfos[1]) - float.Parse(PurchaseInfos[1]);
+                                quantity = float.Parse(ob.ToString()) - float.Parse(PurchaseInfos[1]);
+                                quantity += float.Parse(item.Cells["QuantityGV"].Value.ToString());
                             }
                             int ProductID = int.Parse(item.Cells["PcodeGV"].Value.ToString());
                             MainClass.UpdateInventory(ProductID, quantity);
@@ -734,15 +735,10 @@ namespace RestaurantPOS
                             if (stockqty == null)
                             {
 
-
-                
-
-                                cmd = new SqlCommand("insert into Inventory (ProductID,Unit,Qty,Rate) values (@ProductID,@Unit,@Qty,@Rate)", MainClass.con);
-
-                                cmd.Parameters.AddWithValue("@ProductID", productId);
-                                cmd.Parameters.AddWithValue("@Unit", unitId);
-                                cmd.Parameters.AddWithValue("@Qty", item.Cells[3].Value.ToString());
-                                cmd.Parameters.AddWithValue("@Rate", item.Cells[2].Value.ToString());
+                                cmd = new SqlCommand("insert into Inventory (ProductID,Qty,Rate) values (@ProductID,@Qty,@Rate)", MainClass.con);
+                                cmd.Parameters.AddWithValue("@ProductID", item.Cells["PcodeGV"].Value.ToString());
+                                cmd.Parameters.AddWithValue("@Qty", item.Cells["QuantityGV"].Value.ToString());
+                                cmd.Parameters.AddWithValue("@Rate", item.Cells["SalePriceGV"].Value.ToString());
                                 cmd.ExecuteNonQuery();
 
                             } // Inserting 
@@ -751,7 +747,7 @@ namespace RestaurantPOS
 
                                 float qty = 0;
                                 float.TryParse(stockqty.ToString(), out qty);
-                                qty += float.Parse(item.Cells[5].Value.ToString());
+                                qty += float.Parse(item.Cells["QuantityGV"].Value.ToString());
                                 MainClass.UpdateInventory(productId, qty);
 
                             } //Updating
@@ -782,5 +778,54 @@ namespace RestaurantPOS
             RecentPurchases rec = new RecentPurchases(this);
             rec.Show();
         }
+
+        private void txtBarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
+            {
+                GetPriceByBarcode();
+            }
+
+        }
+
+        private void GetPriceByBarcode()
+        {
+            string[] ProductsData = new string[4];
+
+            SqlCommand cmd = null;
+            SqlDataReader dr;
+
+
+            try
+            {
+                MainClass.con.Open();
+                DataTable dt = new DataTable();
+
+
+                cmd = new SqlCommand("select ProductID,SalePrice from ProductsTable where Barcode = '" + txtBarcode.Text + "'  ", MainClass.con);
+                dr = cmd.ExecuteReader();
+
+
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        ProductsData[0] = dr[0].ToString();
+                        ProductsData[1] = dr[1].ToString();
+                      
+                    }
+                }
+                MainClass.con.Close();
+                cboProducts.SelectedValue = ProductsData[0];
+                txtSalePrice.Text = ProductsData[1];
+            }
+            catch (Exception ex)
+            {
+                MainClass.con.Close();
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

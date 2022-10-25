@@ -30,14 +30,14 @@ namespace RestaurantPOS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            MainClass.con.Open();
-            SqlCommand cmd1 = new SqlCommand("select ExpiryDate from testing", MainClass.con);
-            DateTime Date = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
-            DateTime expiry = DateTime.Parse(cmd1.ExecuteScalar().ToString());
+            //MainClass.con.Open();
+            //SqlCommand cmd1 = new SqlCommand("select ExpiryDate from testing", MainClass.con);
+            //DateTime Date = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
+            //DateTime expiry = DateTime.Parse(cmd1.ExecuteScalar().ToString());
 
-            MainClass.con.Close();
-            if (Date < expiry)
-            {
+            //MainClass.con.Close();
+            //if (Date < expiry)
+            //{
                 try
                 {
                     bool found = false;
@@ -87,7 +87,7 @@ namespace RestaurantPOS
                     MainClass.con.Close();
                     MessageBox.Show(ex.Message);
                 }
-            }
+            //}
         }
 
         private void CBShowPassword_CheckedChanged(object sender, EventArgs e)

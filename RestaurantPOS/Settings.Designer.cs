@@ -634,7 +634,6 @@ namespace RestaurantPOS
             this.label20.Size = new System.Drawing.Size(239, 40);
             this.label20.TabIndex = 33;
             this.label20.Text = "Wipe All Data";
-            this.label20.Visible = false;
             // 
             // label9
             // 
@@ -734,7 +733,6 @@ namespace RestaurantPOS
             this.btnWipeAllOutData.TabIndex = 31;
             this.btnWipeAllOutData.Text = "WIPE";
             this.btnWipeAllOutData.UseVisualStyleBackColor = false;
-            this.btnWipeAllOutData.Visible = false;
             this.btnWipeAllOutData.Click += new System.EventHandler(this.btnWipeAllOutData_Click);
             // 
             // btnRestore

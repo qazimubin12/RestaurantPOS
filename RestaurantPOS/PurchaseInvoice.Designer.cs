@@ -47,6 +47,7 @@ namespace RestaurantPOS
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.txtBarcode = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnFinalize = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.cboProducts = new System.Windows.Forms.ComboBox();
@@ -55,6 +56,7 @@ namespace RestaurantPOS
             this.txtSalePrice = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtDiscount = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtQuantity = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -104,11 +106,12 @@ namespace RestaurantPOS
             // 
             this.lblSupplierInvoiceID.AutoSize = true;
             this.lblSupplierInvoiceID.ForeColor = System.Drawing.Color.White;
-            this.lblSupplierInvoiceID.Location = new System.Drawing.Point(443, 41);
+            this.lblSupplierInvoiceID.Location = new System.Drawing.Point(399, 21);
             this.lblSupplierInvoiceID.Name = "lblSupplierInvoiceID";
             this.lblSupplierInvoiceID.Size = new System.Drawing.Size(127, 19);
             this.lblSupplierInvoiceID.TabIndex = 5;
             this.lblSupplierInvoiceID.Text = "SupplierInvoiceID";
+            this.lblSupplierInvoiceID.Visible = false;
             // 
             // lblPurchaseID
             // 
@@ -119,11 +122,12 @@ namespace RestaurantPOS
             this.lblPurchaseID.Size = new System.Drawing.Size(85, 19);
             this.lblPurchaseID.TabIndex = 5;
             this.lblPurchaseID.Text = "PurchaseID";
+            this.lblPurchaseID.Visible = false;
             // 
             // btnRecentPurchases
             // 
             this.btnRecentPurchases.BackColor = System.Drawing.Color.DarkOrchid;
-            this.btnRecentPurchases.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnRecentPurchases.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrchid;
             this.btnRecentPurchases.FlatAppearance.BorderSize = 2;
             this.btnRecentPurchases.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecentPurchases.Font = new System.Drawing.Font("Century Gothic", 10F);
@@ -145,6 +149,7 @@ namespace RestaurantPOS
             this.lblInvoiceNo.Size = new System.Drawing.Size(81, 19);
             this.lblInvoiceNo.TabIndex = 5;
             this.lblInvoiceNo.Text = "InvoiceNO";
+            this.lblInvoiceNo.Visible = false;
             // 
             // button1
             // 
@@ -285,6 +290,7 @@ namespace RestaurantPOS
             // 
             // guna2GroupBox2
             // 
+            this.guna2GroupBox2.Controls.Add(this.txtBarcode);
             this.guna2GroupBox2.Controls.Add(this.btnFinalize);
             this.guna2GroupBox2.Controls.Add(this.btnAdd);
             this.guna2GroupBox2.Controls.Add(this.cboProducts);
@@ -293,6 +299,7 @@ namespace RestaurantPOS
             this.guna2GroupBox2.Controls.Add(this.txtSalePrice);
             this.guna2GroupBox2.Controls.Add(this.txtDiscount);
             this.guna2GroupBox2.Controls.Add(this.txtQuantity);
+            this.guna2GroupBox2.Controls.Add(this.label2);
             this.guna2GroupBox2.Controls.Add(this.label6);
             this.guna2GroupBox2.Controls.Add(this.label13);
             this.guna2GroupBox2.Controls.Add(this.label11);
@@ -309,6 +316,33 @@ namespace RestaurantPOS
             this.guna2GroupBox2.Size = new System.Drawing.Size(403, 437);
             this.guna2GroupBox2.TabIndex = 27;
             this.guna2GroupBox2.Text = "Product Entries";
+            // 
+            // txtBarcode
+            // 
+            this.txtBarcode.AutoRoundedCorners = true;
+            this.txtBarcode.BorderRadius = 11;
+            this.txtBarcode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBarcode.DefaultText = "";
+            this.txtBarcode.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtBarcode.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtBarcode.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtBarcode.DisabledState.Parent = this.txtBarcode;
+            this.txtBarcode.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtBarcode.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtBarcode.FocusedState.Parent = this.txtBarcode;
+            this.txtBarcode.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBarcode.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtBarcode.HoverState.Parent = this.txtBarcode;
+            this.txtBarcode.Location = new System.Drawing.Point(167, 77);
+            this.txtBarcode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.PasswordChar = '\0';
+            this.txtBarcode.PlaceholderText = "";
+            this.txtBarcode.SelectedText = "";
+            this.txtBarcode.ShadowDecoration.Parent = this.txtBarcode;
+            this.txtBarcode.Size = new System.Drawing.Size(229, 25);
+            this.txtBarcode.TabIndex = 9;
+            this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyDown);
             // 
             // btnFinalize
             // 
@@ -351,7 +385,7 @@ namespace RestaurantPOS
             this.cboProducts.FormattingEnabled = true;
             this.cboProducts.Location = new System.Drawing.Point(12, 76);
             this.cboProducts.Name = "cboProducts";
-            this.cboProducts.Size = new System.Drawing.Size(223, 25);
+            this.cboProducts.Size = new System.Drawing.Size(142, 25);
             this.cboProducts.TabIndex = 5;
             this.cboProducts.SelectedIndexChanged += new System.EventHandler(this.cboProducts_SelectedIndexChanged);
             // 
@@ -489,6 +523,17 @@ namespace RestaurantPOS
             this.txtQuantity.Size = new System.Drawing.Size(139, 25);
             this.txtQuantity.TabIndex = 7;
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(179, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(111, 19);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Enter Barcode:";
             // 
             // label6
             // 
@@ -894,5 +939,7 @@ namespace RestaurantPOS
         private System.Windows.Forms.DataGridViewTextBoxColumn DiscountGV;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductTotalGV;
         private System.Windows.Forms.DataGridViewButtonColumn ActionGV;
+        private Guna.UI2.WinForms.Guna2TextBox txtBarcode;
+        private System.Windows.Forms.Label label2;
     }
 }

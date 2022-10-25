@@ -470,17 +470,17 @@ namespace RestaurantPOS
                     MainClass.con.Open();
 
 
-                    cmd = new SqlCommand("delete from StockControl dbcc checkident('StockControl',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from StockControl dbcc checkident('StockControl',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from StockReturnTable dbcc checkident('StockReturnTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from StockReturnTable dbcc checkident('StockReturnTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from CustomerLedgersInfoTable dbcc checkident('CustomerLedgersInfoTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from CustomerLedgersInfoTable dbcc checkident('CustomerLedgersInfoTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from CustomerLedgersTable dbcc checkident('CustomerLedgersTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from CustomerLedgersTable dbcc checkident('CustomerLedgersTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
                     cmd = new SqlCommand("delete from SalesInfo dbcc checkident('SalesInfo',reseed,0)", MainClass.con);
                     cmd.ExecuteNonQuery();
@@ -490,18 +490,18 @@ namespace RestaurantPOS
                     cmd.ExecuteNonQuery();
 
 
-                    cmd = new SqlCommand("delete from CustomerInvoicesTable dbcc checkident('CustomerInvoicesTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from CustomerInvoicesTable dbcc checkident('CustomerInvoicesTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
                     cmd = new SqlCommand("delete from SaleInvoiceNo dbcc checkident('SaleInvoiceNo',reseed,0)", MainClass.con);
                     cmd.ExecuteNonQuery();
                     /////////////////////////////////
 
-                    cmd = new SqlCommand("delete from SupplierLedgersInfoTable dbcc checkident('SupplierLedgersInfoTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from SupplierLedgersInfoTable dbcc checkident('SupplierLedgersInfoTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from SupplierLedgersTable dbcc checkident('SupplierLedgersTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from SupplierLedgersTable dbcc checkident('SupplierLedgersTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
                     cmd = new SqlCommand("delete from PurchasesInfo dbcc checkident('PurchasesInfo',reseed,0)", MainClass.con);
                     cmd.ExecuteNonQuery();
@@ -511,8 +511,8 @@ namespace RestaurantPOS
                     cmd.ExecuteNonQuery();
 
 
-                    cmd = new SqlCommand("delete from SupplierInvoicesTable dbcc checkident('SupplierInvoicesTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from SupplierInvoicesTable dbcc checkident('SupplierInvoicesTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
 
                     cmd = new SqlCommand("delete from InvoiceNo dbcc checkident('InvoiceNo',reseed,0)", MainClass.con);
@@ -522,35 +522,35 @@ namespace RestaurantPOS
                     cmd = new SqlCommand("delete from Inventory", MainClass.con);
                     cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from ExpensesTable dbcc checkident('ExpensesTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from ExpensesTable dbcc checkident('ExpensesTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
                     cmd = new SqlCommand("delete from ProductsTable dbcc checkident('ProductsTable',reseed,0)", MainClass.con);
                     cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from StoreTable", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from StoreTable", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from Tables dbcc checkident('Tables',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from Tables dbcc checkident('Tables',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from UnitsTable dbcc checkident('UnitsTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from UnitsTable dbcc checkident('UnitsTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from UsersTable", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from UsersTable", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from CategoriesTable dbcc checkident('CategoriesTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from CategoriesTable dbcc checkident('CategoriesTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from PersonsTable dbcc checkident('PersonsTable',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from PersonsTable dbcc checkident('PersonsTable',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("delete from TokenNumber dbcc checkident('TokenNumber',reseed,0)", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("delete from TokenNumber dbcc checkident('TokenNumber',reseed,0)", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("insert into UsersTable values('admin','admin','Admin','Admin')", MainClass.con);
-                    cmd.ExecuteNonQuery();
+                    //cmd = new SqlCommand("insert into UsersTable values('admin','admin','Admin','Admin')", MainClass.con);
+                    //cmd.ExecuteNonQuery();
 
 
                     MainClass.con.Close();
